@@ -1,0 +1,661 @@
+{
+  "info": {
+    "_postman_id": "df97705d-e8d1-495a-82ad-61a868b16794",
+    "name": "01-ITT-Developer - esim",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38472871"
+  },
+  "item": [
+    {
+      "name": "eSim",
+      "item": [
+        {
+          "name": "Search",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var template = `\r",
+                  "<style type=\"text/css\">\r",
+                  "    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+                  "    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+                  "    .tftable tr {background-color:#ffffff;}\r",
+                  "    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+                  "    .tftable tr:hover {background-color:#e0ffff;}\r",
+                  "</style>\r",
+                  "\r",
+                  "<table class=\"tftable\" border=\"1\">\r",
+                  "    <tr>\r",
+                  "        <th>Error Type</th>\r",
+                  "        <th>File Path</th>\r",
+                  "        <th>Line Number</th>\r",
+                  "    </tr>\r",
+                  "    <tr>\r",
+                  "        <td>Deprecated</td>\r",
+                  "        <td>ClientResolver.php</td>\r",
+                  "        <td>1409</td>\r",
+                  "    </tr>\r",
+                  "    <tr>\r",
+                  "        <td>Notice</td>\r",
+                  "        <td>dbconfig.php</td>\r",
+                  "        <td>393</td>\r",
+                  "    </tr>\r",
+                  "    <tr>\r",
+                  "        <td>Notice</td>\r",
+                  "        <td>class.insurance_booking.php</td>\r",
+                  "        <td>20</td>\r",
+                  "    </tr>\r",
+                  "    <tr>\r",
+                  "        <td>Parse error</td>\r",
+                  "        <td>class.transfer_amadeus.php</td>\r",
+                  "        <td>1066</td>\r",
+                  "    </tr>\r",
+                  "</table>\r",
+                  "`;\r",
+                  "\r",
+                  "function constructVisualizerPayload() {\r",
+                  "    return { response: null }\r",
+                  "}\r",
+                  "\r",
+                  "pm.visualizer.set(template, constructVisualizerPayload());"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}",
+                "type": "text"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"eSim\": {\n        \"region_type\": \"local\", //local , global , (europe/asia/...) , all (cannot be blank)\n        \"country_code\": \"BD\", // will work for region_type:local only\n        \"plan_type\": \"data\",\n        \"topup_included\": \"yes\"\n    },\n    \"supplier_uid\": \"all\", //all\n    \"partner_id\": \"1\", //ftm_partner_id / mark blank\n    \"short_ref\": \"xxxx111\", //optional for stream search\n    \"language\": \"en\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/search",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "search"
+              ]
+            },
+            "description": "### Transfer Search\n\nThis endpoint allows you to search for transfer options based on the provided criteria.\n\n#### Request Body\n\n- `segment` (array): An array of segments containing details about the departure and arrival locations, outbound date, and other relevant information.\n    \n    - `departure_type`: The type of departure location (e.g., AIRPORT).\n        \n    - `departure_code`: The code of the departure location (e.g., CUN).\n        \n    - `departure_city`: The city of the departure location (e.g., Q.R.).\n        \n    - `departure_country`: The country of the departure location (e.g., MX).\n        \n    - `arrival_type`: The type of arrival location (e.g., LOC).\n        \n    - `arrival_code`: The code of the arrival location.\n        \n    - `arrival_city`: The city of the arrival location.\n        \n    - `arrival_country`: The country of the arrival location.\n        \n    - `outbound_date`: The date and time of the outbound transfer.\n        \n- `travelers_adult` (number): The number of adult travelers.\n    \n- `travelers_child` (number): The number of child travelers.\n    \n- `travelers_child_age` (array): An array of ages of child travelers.\n    \n- `travelers_infants` (number): The number of infant travelers.\n    \n- `travelers_infants_age` (array): An array of ages of infant travelers.\n    \n- `transfer_type` (string): The type of transfer (e.g., private).\n    \n- `supplier_uid` (string): The unique identifier of the supplier.\n    \n- `partner_id` (string): The partner ID.\n    \n- `short_ref` (string): A short reference.\n    \n- `language` (string): The language preference for the response (e.g., en).\n    \n\n#### Response\n\nThe response will contain the transfer options based on the provided criteria."
+          },
+          "response": []
+        },
+        {
+          "name": "Single Esim Package",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}",
+                "type": "text"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tracking_id\": \"11763299361URM1\",\n    \"package_id\": \"X1AO00012||bangladesh||1067||fatafati-in-7days-1gb\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/single-esim-package",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "single-esim-package"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_tracking_id\": \"11176335754526194RQYGH\", // booking_tracking_id from Validation\n    \"member_id\": \"2\", //user Login member_id\n    \"save_pax\": \"yes\", //Save Pax Data\n    \"passenger\": [\n        {\n            \"pax_id\": \"1\",\n            \"pax_type\": \"ADT\",\n            \"title\": \"MR\",\n            \"first_name\": \"Jasim\",\n            \"last_name\": \"Karimm\",\n            \"age\": \"30\",\n            \"isd_code\": \"880\",\n            \"contact_no\": \"1966330000\",\n            \"email_address\": \"test@mail.com\"\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/update-customer",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "update-customer"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_tracking_id\": \"11176335754526194RQYGH\",\n    \"package_tracking_id\": \"11176335754526194RQYGH||fatafati-in-7days-1gb\",\n    \"eSim_quantity\":\"1\",\n    \"member_id\": \"2\", //user Login member_id\n    \"isPartialPay\": \"no\", //yes or no\n    \"redirect_url\": \"https://showkat.innovatedemo.com/inno-travel-tech/custom_modal.html\",\n    \"payment_type\": \"account_balance\", // account_balance or card or onlinepayment\n    \"isd_code\": \"880\",\n    \"contact_no\": \"1966330000\",\n    \"email_address\": \"iam@mail.com\",\n    \"agency_email\": \"iam@mail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/create-booking",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "create-booking"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Data usage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"member_id\": \"2\", //user Login member_id\n    \"tracking_id\": \"11176276126126194RHSGI\",\n    \"eSim_iccid\": \"873000000000040589\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/data-usage",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "data-usage"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Booking Details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"member_id\": \"2\", //user Login member_id\n    \"tracking_id\": \"11176276126126194RHSGI\",\n    \"booking_id\": \"ES2510NOKJAAFK \"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/booking-details",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "booking-details"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Installation instructions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"member_id\": \"1\", //user Login member_id\n    \"tracking_id\": \"11176276126126194RHSGI\",\n    \"eSim_iccid\": \"873000000000040589\",\n    \"preferred_language\": \"en\" //default en when empty\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/installation-instructions",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "installation-instructions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Compatible Devices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"member_id\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/compatible-devices",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "compatible-devices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Topup Packages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"member_id\": \"1\", //user Login member_id\n    \"tracking_id\": \"11176328969726194MHHQA\",\n    \"eSim_iccid\": \"873000000000042014\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/topup-packages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "topup-packages"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Topup Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_tracking_id\": \"11176681417103210LPBXA\",\n    \"topup_tracking_id\": \"TUP11766825537SLD1\",\n    \"package_id\": \"8900000644360253498||asialink-7days-1gb-topup\",\n    \"member_id\": \"2\", //user Login member_id\n    \"redirect_url\": \"https://ittroman.innotraveltech.com/booking-details/e-sim?tracking_id=11176681417103210LPBXA&\",\n    \"payment_type\": \"onlinepayment\", // account_balance or card or onlinepayment\n    \"isd_code\": \"880\",\n    \"contact_no\": \"1966330000\",\n    \"email_address\": \"iam@saaqeb.com\",\n    \"agency_email\": \"iam@saaqeb.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/topup-booking",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "topup-booking"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Topup History",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"member_id\": \"1\", //user Login member_id\n    \"tracking_id\": \"11176328969726194MHHQA\",\n    \"eSim_iccid\": \"873000000000042014\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/topup-history",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "topup-history"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "apikey",
+                "value": "{{apikey}}"
+              },
+              {
+                "key": "secretecode",
+                "value": "{{secretecode}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"supplier_code\": \"airalo\", //user Login member_id\n    \"supplier_uid\": \"X1AO00065\",\n    \"notification_type\":\"webhook_low_data\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/esim/register-webhook",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "esim",
+                "register-webhook"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://serviceapi.talha.innovatedemo.com",
+      "type": "string"
+    },
+    {
+      "key": "apikey",
+      "value": "S1981276579146275161",
+      "type": "string"
+    },
+    {
+      "key": "secretecode",
+      "value": "LlETcjuqKk2SfVwQACDDuxLJbCszOE5wOxV",
+      "type": "string"
+    },
+    {
+      "key": "checkout_url",
+      "value": "https://checkout.talha.innovatedemo.com",
+      "type": "string"
+    }
+  ]
+}

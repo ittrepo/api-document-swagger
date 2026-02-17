@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    container_name: travel-api-swagger
+    environment:
+      - SWAGGER_JSON=/openapi/openapi.yaml
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../openapi:/openapi:ro
+    restart: unless-stopped

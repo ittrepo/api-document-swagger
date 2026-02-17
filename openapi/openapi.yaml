@@ -1,0 +1,439 @@
+openapi: 3.0.3
+info:
+  title: ITT eSIM API
+  version: 1.0.0
+  description: eSIM API endpoints converted from Postman collection.
+servers:
+  - url: https://serviceapi.talha.innovatedemo.com
+tags:
+  - name: eSim
+    description: eSIM related operations
+security:
+  - apiKeyAuth: []
+    secretCodeAuth: []
+paths:
+  /esim/search:
+    post:
+      tags: [eSim]
+      summary: Search eSIM plans
+      operationId: esimSearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  eSim:
+                    region_type: local
+                    country_code: BD
+                    plan_type: data
+                    topup_included: yes
+                  supplier_uid: all
+                  partner_id: "1"
+                  short_ref: xxxx111
+                  language: en
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/single-esim-package:
+    post:
+      tags: [eSim]
+      summary: Get single eSIM package
+      operationId: singleEsimPackage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 11763299361URM1
+                  package_id: X1AO00012||bangladesh||1067||fatafati-in-7days-1gb
+      responses:
+        '200':
+          description: Package details
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/update-customer:
+    post:
+      tags: [eSim]
+      summary: Update customer information
+      operationId: updateCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  booking_tracking_id: 11176335754526194RQYGH
+                  member_id: "2"
+                  save_pax: yes
+                  passenger:
+                    - pax_id: "1"
+                      pax_type: ADT
+                      title: MR
+                      first_name: Jasim
+                      last_name: Karimm
+                      age: "30"
+                      isd_code: "880"
+                      contact_no: 1966330000
+                      email_address: test@mail.com
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/create-booking:
+    post:
+      tags: [eSim]
+      summary: Create eSIM booking
+      operationId: createBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  booking_tracking_id: 11176335754526194RQYGH
+                  package_tracking_id: 11176335754526194RQYGH||fatafati-in-7days-1gb
+                  eSim_quantity: "1"
+                  member_id: "2"
+                  isPartialPay: no
+                  redirect_url: https://showkat.innovatedemo.com/inno-travel-tech/custom_modal.html
+                  payment_type: account_balance
+                  isd_code: "880"
+                  contact_no: 1966330000
+                  email_address: iam@mail.com
+                  agency_email: iam@mail.com
+      responses:
+        '200':
+          description: Booking created
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/data-usage:
+    post:
+      tags: [eSim]
+      summary: Get data usage
+      operationId: dataUsage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "2"
+                  tracking_id: 11176276126126194RHSGI
+                  eSim_iccid: "873000000000040589"
+      responses:
+        '200':
+          description: Usage details
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/booking-details:
+    post:
+      tags: [eSim]
+      summary: Get booking details
+      operationId: bookingDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "2"
+                  tracking_id: 11176276126126194RHSGI
+                  booking_id: ES2510NOKJAAFK
+      responses:
+        '200':
+          description: Booking info
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/installation-instructions:
+    post:
+      tags: [eSim]
+      summary: Get installation instructions
+      operationId: installationInstructions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "1"
+                  tracking_id: 11176276126126194RHSGI
+                  eSim_iccid: "873000000000040589"
+                  preferred_language: en
+      responses:
+        '200':
+          description: Instructions
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/compatible-devices:
+    post:
+      tags: [eSim]
+      summary: Get compatible devices
+      operationId: compatibleDevices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: 1
+      responses:
+        '200':
+          description: List of devices
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/topup-packages:
+    post:
+      tags: [eSim]
+      summary: Get top-up packages
+      operationId: topupPackages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "1"
+                  tracking_id: 11176328969726194MHHQA
+                  eSim_iccid: "873000000000042014"
+      responses:
+        '200':
+          description: Packages
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/topup-booking:
+    post:
+      tags: [eSim]
+      summary: Create top-up booking
+      operationId: topupBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  booking_tracking_id: 11176681417103210LPBXA
+                  topup_tracking_id: TUP11766825537SLD1
+                  package_id: 8900000644360253498||asialink-7days-1gb-topup
+                  member_id: "2"
+                  redirect_url: https://ittroman.innotraveltech.com/booking-details/e-sim?tracking_id=11176681417103210LPBXA&
+                  payment_type: onlinepayment
+                  isd_code: "880"
+                  contact_no: 1966330000
+                  email_address: iam@saaqeb.com
+                  agency_email: iam@saaqeb.com
+      responses:
+        '200':
+          description: Top-up booking created
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/topup-history:
+    post:
+      tags: [eSim]
+      summary: Get top-up history
+      operationId: topupHistory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "1"
+                  tracking_id: 11176328969726194MHHQA
+                  eSim_iccid: "873000000000042014"
+      responses:
+        '200':
+          description: History
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /esim/register-webhook:
+    post:
+      tags: [eSim]
+      summary: Register webhook
+      operationId: registerWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  supplier_code: airalo
+                  supplier_uid: X1AO00065
+                  notification_type: webhook_low_data
+      responses:
+        '200':
+          description: Webhook registered
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+    secretCodeAuth:
+      type: apiKey
+      in: header
+      name: secretecode
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
