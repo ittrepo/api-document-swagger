@@ -1,0 +1,924 @@
+openapi: 3.0.3
+info:
+  title: ITT Flight API
+  version: 1.0.0
+  description: Flight API endpoints converted from Postman collection.
+servers:
+  - url: https://serviceapi.b2b.innovatedemo.com
+tags:
+  - name: Flight
+    description: Flight search, pricing, booking, ancillaries and post-booking flows
+security:
+  - apiKeyAuth: []
+    secretCodeAuth: []
+paths:
+  /flight/package-option:
+    post:
+      tags: [Flight]
+      summary: Find package options
+      operationId: flightPackageOption
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 11170962572705112
+                  flight_key: F1FI00005-5
+                  flight_option: "2"
+                  connected_flight_key: F1FI00005-0
+                  member_id: "1"
+      responses:
+        '200':
+          description: Available package options for the selected flight
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/package-select:
+    post:
+      tags: [Flight]
+      summary: Select a specific package for a flight
+      operationId: flightPackageSelect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 11170962572705112
+                  flight_key: F1FI00005-5
+                  connected_flight_key: F1FI00005-0
+                  flight_option: "2"
+                  package_code: LITE
+                  member_id: "1"
+      responses:
+        '200':
+          description: Package selection confirmed with updated pricing
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/get-package-rate:
+    post:
+      tags: [Flight]
+      summary: Get package rates for roundtrip flights
+      operationId: flightGetPackageRate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 11171006481102719
+                  result_type: group
+                  data:
+                    - flight_key: F1FI00005-0
+                      package_code: LITE
+                    - flight_key: F1FI00005-1
+                      package_code: LITE
+      responses:
+        '200':
+          description: Package rate details for requested segments
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/update-pax-passport:
+    post:
+      tags: [Flight]
+      summary: Update passenger passport and contact information
+      operationId: flightUpdatePaxPassport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 11170298498424273
+                  member_id: "1"
+                  action_type: all
+                  passenger:
+                    - pax_id: "1"
+                      pax_type: ADT
+                      title: Mr
+                      first_name: Nazmus
+                      last_name: Nayeem
+                      gender: M
+                      dob: 1985-10-24
+                      pax_age: "38"
+                      doc_country: BD
+                      doc_no: A4545455
+                      doc_dateofexpiry: 2030-12-25
+                      isd_code: "1"
+                      contact_no: "8722956059"
+                      email_address: iam@saaqeb.com
+      responses:
+        '200':
+          description: Passenger information updated
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/update-booking-info:
+    post:
+      tags: [Flight]
+      summary: Update booking-level information
+      operationId: flightUpdateBookingInfo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 131707836014242733
+                  member_id: "1"
+                  supplier_uid: F1DT00001
+                  supplier_confirmation_id: ord_0000AeqJtGxkm1FwcohJJI
+                  airlines_pnr: 3OTGI6
+                  booking_status: confirm
+                  ticket_status: issued
+                  carrier_hotel: AI
+                  departure_airport: DAC
+                  arrival_airport: BKK
+                  journey_type: OneWay
+                  auto_cancel_status: auto-cancel
+                  auto_cancel: 2024-02-13 23:59:59
+                  booking_remarks: Sample
+                  passenger:
+                    - pax_id: "1"
+                      ticket_number: X121211221
+      responses:
+        '200':
+          description: Booking metadata updated
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/get-pax-details:
+    post:
+      tags: [Flight]
+      summary: Get single passenger details
+      operationId: flightGetPaxDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "1"
+                  tracking_id: 11170298498424273
+                  pax_id: "1"
+                  pax_type: ADT
+      responses:
+        '200':
+          description: Passenger details
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/search:
+    post:
+      tags: [Flight]
+      summary: Search flights (OneWay, RoundTrip, MultiCity)
+      operationId: flightSearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              oneWay:
+                value:
+                  journey_type: OneWay
+                  segment:
+                    - departure_airport_type: AIRPORT
+                      departure_airport: KHI
+                      arrival_airport_type: AIRPORT
+                      arrival_airport: LHE
+                      departure_date: 2025-03-30
+                  travelers_adult: 1
+                  travelers_child: 0
+                  travelers_infants: 0
+                  preferred_carrier: [""]
+                  non_stop_flight: any
+                  baggage_option: any
+                  booking_class: Economy
+                  supplier_uid: F1ZT00006
+                  partner_id: "1"
+                  language: en
+              roundTrip:
+                value:
+                  journey_type: RoundTrip
+                  segment:
+                    - departure_airport_type: AIRPORT
+                      departure_airport: DAC
+                      arrival_airport_type: AIRPORT
+                      arrival_airport: DXB
+                      departure_date: 2025-10-25
+                      arrival_date: 2025-10-30
+                    - departure_airport_type: AIRPORT
+                      departure_airport: DXB
+                      arrival_airport_type: AIRPORT
+                      arrival_airport: DAC
+                      departure_date: 2025-11-26
+                      arrival_date: 2025-11-30
+                  travelers_adult: 1
+                  travelers_child: 0
+                  travelers_infants: 0
+                  supplier_uid: F1EC00009
+                  partner_id: "1"
+                  language: en
+              multiCity:
+                value:
+                  journey_type: MultiCity
+                  segment:
+                    - departure_airport_type: AIRPORT
+                      departure_airport: RUH
+                      arrival_airport_type: AIRPORT
+                      arrival_airport: JED
+                      departure_date: 2023-12-20
+                    - departure_airport_type: AIRPORT
+                      departure_airport: JED
+                      arrival_airport_type: AIRPORT
+                      arrival_airport: AHB
+                      departure_date: 2023-12-22
+                    - departure_airport_type: CITY
+                      departure_airport: AHB
+                      arrival_airport_type: AIRPORT
+                      arrival_airport: JED
+                      departure_date: 2023-12-25
+                  travelers_adult: 1
+                  travelers_child: 0
+                  travelers_infants: 0
+                  supplier_uid: all
+                  partner_id: ""
+                  language: en
+      responses:
+        '200':
+          description: Flight search results
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              examples:
+                default:
+                  value:
+                    status: success
+                    tracking_id: 11177139351426194
+                    currency: BDT
+                    total_flight: 20
+                    data: []
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/search-general:
+    post:
+      tags: [Flight]
+      summary: General flight search
+      operationId: flightSearchGeneral
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  journey_type: OneWay
+                  segment:
+                    - departure_airport_type: AIRPORT
+                      departure_airport: ISB
+                      arrival_airport_type: AIRPORT
+                      arrival_airport: KHI
+                      departure_date: 2025-04-28
+                  travelers_adult: 1
+                  travelers_child: 0
+                  travelers_infants: 0
+                  preferred_carrier: []
+                  non_stop_flight: any
+                  baggage_option: any
+                  booking_class: Economy
+                  supplier_uid: F1ZT00006
+                  partner_id: ""
+                  language: en
+      responses:
+        '200':
+          description: General search results
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/search-calender:
+    post:
+      tags: [Flight]
+      summary: Search calendar fares for +/- days
+      operationId: flightSearchCalendar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "1"
+                  calendar_days: "7"
+                  journey_type: OneWay
+                  preferred_carrier: [""]
+                  departure_airport: [DAC]
+                  arrival_airport: [CXB]
+                  departure_date: ["2025-07-24"]
+                  arrival_date: 2025-07-24
+                  travelers_adult: "1"
+                  travelers_child: "0"
+                  travelers_infants: "0"
+                  non_stop_flight: any
+                  baggage_option: any
+                  booking_class: Economy
+                  supplier_uid: all
+                  partner_id: "1"
+                  language: en
+      responses:
+        '200':
+          description: Calendar fare search results
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/branded-fare:
+    post:
+      tags: [Flight]
+      summary: Get branded fare options for a flight
+      operationId: flightBrandedFare
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "1"
+                  tracking_id: 11174158960526193
+                  flight_key: F1ZT00006-2
+                  result_type: general
+                  connected_flight_key: ""
+                  connected_brand_option: ""
+      responses:
+        '200':
+          description: Branded fare options and benefits
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/validate:
+    post:
+      tags: [Flight]
+      summary: Validate selected itinerary and pricing
+      operationId: flightValidate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "1"
+                  result_type: general
+                  data:
+                    - tracking_id: 11174158269526193
+                      flight_key: F1ZT00006-1
+                      brand_option: OPTION-20
+      responses:
+        '200':
+          description: Validation result with updated price and session info
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/validation-get-status:
+    post:
+      tags: [Flight]
+      summary: Get validation status for a booking
+      operationId: flightValidationGetStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  booking_tracking_id: 11172835977626193
+                  member_id: "1"
+      responses:
+        '200':
+          description: Current validation status and final price
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/fare-rules:
+    post:
+      tags: [Flight]
+      summary: Get fare rules for a priced itinerary
+      operationId: flightFareRules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 11170970096202719
+                  flight_key: F1RT00008-0
+      responses:
+        '200':
+          description: Detailed fare rules such as refund and change policies
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/update-travellers:
+    post:
+      tags: [Flight]
+      summary: Update passenger details in a booking
+      operationId: flightUpdateTravellers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Traveller details updated
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/create-booking:
+    post:
+      tags: [Flight]
+      summary: Create a flight booking
+      operationId: flightCreateBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Booking created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/get-baggage-option:
+    post:
+      tags: [Flight]
+      summary: Get available baggage options
+      operationId: flightGetBaggageOption
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: List of baggage options
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/update-baggage:
+    post:
+      tags: [Flight]
+      summary: Add or update baggage selections
+      operationId: flightUpdateBaggage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Baggage updated for booking
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/get-seat-option:
+    post:
+      tags: [Flight]
+      summary: Get seat map and seat options
+      operationId: flightGetSeatOption
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Seat options and pricing
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/update-seat:
+    post:
+      tags: [Flight]
+      summary: Update seat selections
+      operationId: flightUpdateSeat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Seats updated for passengers
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/get-meal-option:
+    post:
+      tags: [Flight]
+      summary: Get available meal options
+      operationId: flightGetMealOption
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Meal options for segments and passengers
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/update-meals:
+    post:
+      tags: [Flight]
+      summary: Update selected meals
+      operationId: flightUpdateMeals
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Meal selections updated
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/cancel-get-eligibility:
+    post:
+      tags: [Flight]
+      summary: Get cancellation eligibility and penalties
+      operationId: flightCancelGetEligibility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Cancellation eligibility and charges
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/issue-ticket:
+    post:
+      tags: [Flight]
+      summary: Issue tickets for a validated booking
+      operationId: flightIssueTicket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Ticket issued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/cancel-booking:
+    post:
+      tags: [Flight]
+      summary: Cancel a flight booking
+      operationId: flightCancelBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Booking cancelled
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/refund-quote:
+    post:
+      tags: [Flight]
+      summary: Get refund quote for a cancelled booking
+      operationId: flightRefundQuote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Refund quote and breakdown
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/gds-options:
+    post:
+      tags: [Flight]
+      summary: Get GDS options for PNR import and management
+      operationId: flightGdsOptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Available GDS options
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/gds-import-pnr:
+    post:
+      tags: [Flight]
+      summary: Import an existing GDS PNR
+      operationId: flightGdsImportPnr
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Imported PNR details
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /flight/search-stream:
+    post:
+      tags: [Flight]
+      summary: Streamed flight search
+      operationId: flightSearchStream
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Streamed search results
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+    secretCodeAuth:
+      type: apiKey
+      in: header
+      name: secretecode
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string

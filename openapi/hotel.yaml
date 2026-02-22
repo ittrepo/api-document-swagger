@@ -1,0 +1,320 @@
+openapi: 3.0.3
+info:
+  title: ITT Hotel API
+  version: 1.0.0
+  description: Hotel API endpoints converted from Postman collection.
+servers:
+  - url: https://serviceapi.b2b.innovatedemo.com
+tags:
+  - name: Hotel
+    description: Hotel search, availability, room pricing and booking validation
+security:
+  - apiKeyAuth: []
+    secretCodeAuth: []
+paths:
+  /hotel/search-general:
+    post:
+      tags: [Hotel]
+      summary: General hotel search by location and occupancies
+      operationId: hotelSearchGeneral
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              dubaiFamily:
+                value:
+                  location: Dubai - United Arab Emirates
+                  partner_id: "1"
+                  guest_nationality: BD
+                  supplier_uid: H1AS00029
+                  checkIn: 2025-07-09
+                  checkOut: 2025-07-10
+                  radius: auto
+                  breakfast_option: any
+                  hotel_star_level: any
+                  occupancies:
+                    - adult: "2"
+                      child: "1"
+                      child_age: ["3"]
+                    - adult: "2"
+                  short_ref: b1da9390...
+              bangkokExample:
+                value:
+                  location: bangkok
+                  radius: auto
+                  checkIn: 2024-06-11
+                  checkOut: 2024-06-12
+                  occupancies:
+                    - adult: "2"
+                      child: "2"
+                      child_age: ["5", "0"]
+                    - adult: "2"
+                  guest_nationality: SG
+                  hotel_star_level: any
+                  search_currency: any
+                  supplier_uid: H1AL00013
+                  partner_id: "1"
+                  language: en
+      responses:
+        '200':
+          description: General hotel search results
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/auto-suggetion:
+    post:
+      tags: [Hotel]
+      summary: Get auto-suggestions for hotel search locations
+      operationId: hotelAutoSuggestion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  location: paris
+      responses:
+        '200':
+          description: Suggested locations and entities for hotel search
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/search:
+    post:
+      tags: [Hotel]
+      summary: Search hotel availability
+      operationId: hotelSearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              oneRoom:
+                value:
+                  location: Dhaka, Bangladesh
+                  radius: auto
+                  checkIn: 2025-07-11
+                  checkOut: 2025-07-12
+                  occupancies:
+                    - adult: "2"
+                  guest_nationality: AE
+                  hotel_star_level: any
+                  supplier_uid: H1RL00028
+                  partner_id: "1"
+                  language: en
+              twoRooms:
+                value:
+                  location: dubai
+                  radius: auto
+                  checkIn: 2025-05-15
+                  checkOut: 2025-05-16
+                  occupancies:
+                    - adult: "2"
+                    - adult: "2"
+                  guest_nationality: BD
+                  hotel_star_level: any
+                  search_currency: any
+                  supplier_uid: H1RL00018
+                  partner_id: "1"
+                  language: en
+      responses:
+        '200':
+          description: Hotel availability results with mapped hotel inventory
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/rooms:
+    post:
+      tags: [Hotel]
+      summary: Get room availability for a specific hotel
+      operationId: hotelRooms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  hotel_id: H1AS00029#RTPARDAM#PAR
+                  checkIn: 2025-07-02
+                  checkOut: 2025-07-03
+                  occupancies:
+                    - adult: "2"
+                  guest_nationality: BD
+      responses:
+        '200':
+          description: Room-level availability and pricing for the hotel
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/validation-get-detail:
+    post:
+      tags: [Hotel]
+      summary: Get hotel room validation details
+      operationId: hotelValidationGetDetail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 11171005026802719
+                  member_id: "1"
+      responses:
+        '200':
+          description: Validation details for selected hotel room
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/get-hotel-details:
+    post:
+      tags: [Hotel]
+      summary: Get static content and details for a single hotel
+      operationId: hotelGetDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  hotel_id: H1AS00029#HLMAD100#MAD
+      responses:
+        '200':
+          description: Hotel content including photos, facilities and policy text
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/validate:
+    post:
+      tags: [Hotel]
+      summary: Validate hotel room price and policy
+      operationId: hotelValidate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  tracking_id: 11175108883326193
+                  room_tracking_id: 11175108883326193VKD98-H1AS00029-0
+      responses:
+        '200':
+          description: Validation result with updated price and cancellation rules
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400':
+          description: Validation failed or bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+    secretCodeAuth:
+      type: apiKey
+      in: header
+      name: secretecode
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string

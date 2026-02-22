@@ -639,7 +639,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "https://serviceapi.talha.innovatedemo.com",
+      "value": "https://serviceapi.b2b.innovatedemo.com",
       "type": "string"
     },
     {

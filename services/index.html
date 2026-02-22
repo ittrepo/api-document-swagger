@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Services Directory | API Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #050814;
+      --bg-elevated: #0a1020;
+      --bg-soft: #0f172a;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-strong: rgba(56, 189, 248, 0.22);
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --danger: #f97373;
+      --danger-soft: rgba(248, 113, 113, 0.16);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 22px 45px rgba(15, 23, 42, 0.85);
+      --shadow-subtle: 0 14px 30px rgba(15, 23, 42, 0.7);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 45%, #000 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    .shell {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 0, #e0f2fe, #38bdf8 40%, #0f172a 100%);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9), 0 12px 35px rgba(56, 189, 248, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 17px;
+      color: #0b1120;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .brand-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill {
+      border-radius: var(--radius-pill);
+      padding: 5px 11px;
+      font-size: 11px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.22);
+    }
+    .pill-strong {
+      border-color: rgba(56, 189, 248, 0.5);
+      background: linear-gradient(120deg, rgba(56, 189, 248, 0.22), rgba(15, 23, 42, 0.95));
+      color: #e0f2fe;
+      font-weight: 500;
+      cursor: default;
+    }
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 2.3fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .pane {
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.92));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pane::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .pane-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .pane-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pane-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .pane-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 11px;
+      color: var(--text-soft);
+      cursor: default;
+    }
+    .breadcrumb a {
+      color: var(--text-soft);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .breadcrumb a:hover {
+      color: var(--accent);
+    }
+    .breadcrumb-divider {
+      opacity: 0.55;
+    }
+    .layout-spacer {
+      height: 8px;
+    }
+    .search-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .search-input {
+      flex: 1;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      padding: 7px 12px 7px 28px;
+      font-size: 13px;
+      outline: none;
+    }
+    .search-input::placeholder {
+      color: rgba(148, 163, 184, 0.8);
+    }
+    .search-icon {
+      position: absolute;
+      left: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 13px;
+      height: 13px;
+      border-radius: 999px;
+      border: 2px solid rgba(148, 163, 184, 0.9);
+      box-sizing: border-box;
+    }
+    .search-icon::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.9);
+      right: -4px;
+      bottom: -1px;
+      transform: rotate(45deg);
+    }
+    .pill-filter {
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-soft);
+      font-size: 11px;
+      padding: 5px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .pill-filter[data-active="true"] {
+      border-color: rgba(56, 189, 248, 0.5);
+      background: var(--accent-soft);
+      color: #e0f2fe;
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .service-card {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(51, 65, 85, 0.85);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.95));
+      padding: 10px 11px 11px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-subtle);
+      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, border-color 0.08s ease-out, background 0.08s ease-out;
+    }
+    .service-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56, 189, 248, 0.65);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), rgba(15, 23, 42, 0.96));
+    }
+    .service-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .service-card-title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .service-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .service-meta {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+    .service-badge {
+      border-radius: var(--radius-pill);
+      padding: 4px 8px;
+      font-size: 11px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--text-soft);
+    }
+    .service-card-body {
+      font-size: 12px;
+      color: rgba(148, 163, 184, 0.95);
+    }
+    .service-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+    .service-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .service-chip {
+      border-radius: var(--radius-pill);
+      padding: 2px 7px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 10px;
+    }
+    .service-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .service-card-cta span {
+      font-size: 11px;
+    }
+    .service-card-cta svg {
+      width: 11px;
+      height: 11px;
+      stroke: rgba(148, 163, 184, 0.9);
+    }
+    .empty-state {
+      margin-top: 12px;
+      padding: 10px 10px 11px;
+      border-radius: var(--radius-md);
+      border: 1px dashed rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    .empty-highlight {
+      color: #e0f2fe;
+    }
+    .service-detail {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .service-detail-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .service-detail-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .service-detail-name {
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .service-detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      border-radius: var(--radius-pill);
+      padding: 3px 8px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+    .tag-strong {
+      border-color: rgba(56, 189, 248, 0.6);
+      background: var(--accent-soft);
+      color: #e0f2fe;
+    }
+    .pill-badge {
+      border-radius: var(--radius-pill);
+      padding: 4px 8px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+    .pill-badge strong {
+      color: #e0f2fe;
+      font-weight: 500;
+    }
+    .detail-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr);
+      gap: 10px;
+    }
+    .detail-section {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      padding: 10px 11px 11px;
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .detail-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+    .detail-section-sub {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+    .detail-list {
+      margin: 0;
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .detail-list li {
+      line-height: 1.4;
+    }
+    .detail-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .detail-pill {
+      border-radius: var(--radius-pill);
+      padding: 2px 7px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+      font-size: 10px;
+    }
+    .detail-label {
+      font-size: 11px;
+      color: rgba(148, 163, 184, 0.9);
+    }
+    .detail-value {
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+    .detail-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+    .badge-soft {
+      border-radius: var(--radius-pill);
+      padding: 2px 7px;
+      font-size: 10px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: rgba(148, 163, 184, 0.95);
+    }
+    .badge-soft strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+    .redoc-shell {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(51, 65, 85, 0.95);
+      background: rgba(15, 23, 42, 0.98);
+      min-height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    .redoc-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 10px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.95);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+    }
+    .redoc-toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .redoc-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+    .redoc-label {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+    .redoc-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-ghost {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-soft);
+      font-size: 11px;
+      padding: 4px 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-ghost strong {
+      color: #e3f2fd;
+      font-weight: 500;
+    }
+    .btn-ghost svg {
+      width: 11px;
+      height: 11px;
+      stroke: rgba(148, 163, 184, 0.9);
+    }
+    .redoc-container {
+      position: relative;
+      height: 310px;
+    }
+    .redoc-container-inner {
+      position: absolute;
+      inset: 0;
+      overflow: auto;
+    }
+    .redoc-state {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      font-size: 12px;
+      color: var(--text-soft);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 2px solid rgba(55, 65, 81, 0.85);
+      border-top-color: var(--accent);
+      animation: spin 0.7s linear infinite;
+    }
+    .redoc-error {
+      color: var(--danger);
+      background: var(--danger-soft);
+      border-radius: var(--radius-pill);
+      padding: 2px 7px;
+      font-size: 11px;
+    }
+    .analytics-indicator {
+      font-size: 11px;
+      color: var(--text-soft);
+      opacity: 0.8;
+    }
+    .analytics-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+      margin-right: 4px;
+      display: inline-block;
+    }
+    footer {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    footer span {
+      opacity: 0.85;
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    @media (max-width: 960px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .detail-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .pane {
+        padding: 14px 12px 16px;
+      }
+      .search-row {
+        flex-direction: column;
+      }
+      .redoc-container {
+        height: 260px;
+      }
+    }
+  </style>
+  <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div class="brand-text">
+          <div class="brand-title">API Services Directory</div>
+          <div class="brand-subtitle">Service-first navigation across flights, hotels, tours, eSIM and more</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Live spec: OpenAPI 3.0
+        </div>
+        <div class="pill pill-strong">
+          Single source of truth · Redoc + Swagger UI
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="pane">
+        <div class="pane-header">
+          <div class="pane-title-group">
+            <div class="pane-title">Services</div>
+            <div class="pane-subtitle">Browse by domain and jump into API docs in one click</div>
+          </div>
+          <div class="breadcrumb" id="breadcrumb">
+            <a data-nav-root="true">Services</a>
+            <span class="breadcrumb-divider" id="breadcrumb-divider" style="display:none;">/</span>
+            <span id="breadcrumb-leaf" style="display:none;"></span>
+          </div>
+        </div>
+        <div class="layout-spacer"></div>
+        <div class="search-row">
+          <div style="position:relative; flex:1;">
+            <div class="search-icon"></div>
+            <input id="searchInput" class="search-input" placeholder="Search services, domains or capabilities" autocomplete="off">
+          </div>
+          <button class="pill-filter" data-filter="all" data-active="true">
+            All
+          </button>
+          <button class="pill-filter" data-filter="core">
+            Core travel
+          </button>
+          <button class="pill-filter" data-filter="addons">
+            Add-ons
+          </button>
+        </div>
+        <div class="filter-row">
+          <span class="badge-soft"><strong>Tip</strong> · Type “eSIM” or “hotel” to narrow results</span>
+        </div>
+        <div id="servicesGrid" class="services-grid"></div>
+        <div id="emptyState" class="empty-state" style="display:none;">
+          No services match <span class="empty-highlight" id="emptyQuery"></span>. Try another keyword or reset filters.
+        </div>
+      </section>
+      <section class="pane">
+        <div class="pane-header">
+          <div class="pane-title-group">
+            <div class="pane-title">Service details</div>
+            <div class="pane-subtitle" id="detailSubtitle">Select a service on the left to see details, endpoints and documentation.</div>
+          </div>
+          <div class="analytics-indicator">
+            <span class="analytics-dot"></span>
+            Analytics: tracking service views, search and navigation
+          </div>
+        </div>
+        <div class="service-detail" id="serviceDetail">
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>Keyboard-friendly: use the search box to jump directly to a service type.</span>
+      <span>Powered by OpenAPI 3.0, Redoc and Swagger UI.</span>
+    </footer>
+  </div>
+  <script>
+    const services = [
+      {
+        id: 'flight',
+        name: 'Flight',
+        category: 'core',
+        summary: 'Search, price and book flights with real-time availability and ancillaries.',
+        tags: ['GDS', 'LCC', 'NDC-ready'],
+        pricingModel: 'per booking + markup',
+        availability: 'real-time',
+        apiSurface: 'search, pricing, seatmap, create booking, ticketing',
+        status: 'planned',
+        docType: 'redoc',
+        specUrl: '../openapi/flight.yaml',
+        docLink: '#',
+        endpointsHighlight: 'Search, fare rules, ancillaries, PNR sync',
+        features: ['Multi-GDS aggregation', 'Markup and commission control', 'Ancillary upsell surfaces'],
+        theme: '#38bdf8'
+      },
+      {
+        id: 'hotel',
+        name: 'Hotel',
+        category: 'core',
+        summary: 'Curated hotel and stay inventory for leisure and corporate journeys.',
+        tags: ['static + dynamic rates', 'geo search'],
+        pricingModel: 'per room night',
+        availability: 'near real-time',
+        apiSurface: 'search, hotel details, room mapping, booking',
+        status: 'planned',
+        docType: 'redoc',
+        specUrl: '../openapi/hotel.yaml',
+        docLink: '#',
+        endpointsHighlight: 'Search, rate rules, cancellation policies',
+        features: ['City and landmark search', 'Rate plan normalization', 'Corporate and B2B pricing'],
+        theme: '#a855f7'
+      },
+      {
+        id: 'activity',
+        name: 'Activity',
+        category: 'addons',
+        summary: 'Attractions, transfers and day tours with live inventory.',
+        tags: ['attractions', 'transfers'],
+        pricingModel: 'per ticket',
+        availability: 'real-time',
+        apiSurface: 'search, content, book, voucher',
+        status: 'planned',
+        docType: 'redoc',
+        specUrl: '../openapi/activity.yaml',
+        docLink: '#',
+        endpointsHighlight: 'Search, session-based availability, voucher delivery',
+        features: ['Cancellation rules surfaced in search', 'Region and city filters', 'Voucher URL and PDF'],
+        theme: '#f97316'
+      },
+      {
+        id: 'tour',
+        name: 'Tour',
+        category: 'addons',
+        summary: 'Multi-day tours with day-wise itinerary and rooming.',
+        tags: ['packages', 'itinerary'],
+        pricingModel: 'per package',
+        availability: 'batch refreshed',
+        apiSurface: 'search, itinerary details, pricing, booking',
+        status: 'planned',
+        docType: 'redoc',
+        specUrl: '../openapi/tour.yaml',
+        docLink: '#',
+        endpointsHighlight: 'Search, day-wise itinerary, inclusions',
+        features: ['Rooming configuration', 'Passenger customization', 'Markup and commission'],
+        theme: '#22c55e'
+      },
+      {
+        id: 'esim',
+        name: 'eSIM',
+        category: 'addons',
+        summary: 'Global and local data eSIMs with top-up, usage and webhook events.',
+        tags: ['connectivity', 'data-only', 'webhooks'],
+        pricingModel: 'per eSIM + top-up',
+        availability: 'real-time',
+        apiSurface: 'search, package details, customer, booking, usage, webhooks',
+        status: 'live',
+        docType: 'redoc',
+        specUrl: '../openapi/openapi.yaml',
+        docLink: '../redoc/generated-docs.html',
+        endpointsHighlight: '/esim/search, /esim/create-booking, /esim/data-usage',
+        features: [
+          'Region and country-level search',
+          'Customer update and booking lifecycle',
+          'Data usage, top-up history and low-balance webhooks'
+        ],
+        theme: '#38bdf8'
+      }
+    ];
+    const state = {
+      search: '',
+      filter: 'all',
+      selectedServiceId: null,
+      redocInstance: null,
+      analyticsBuffer: []
+    };
+    function track(eventType, payload) {
+      const entry = {
+        type: eventType,
+        payload,
+        ts: Date.now()
+      };
+      state.analyticsBuffer.push(entry);
+      if (!window.__analyticsEvents) {
+        window.__analyticsEvents = [];
+      }
+      window.__analyticsEvents.push(entry);
+      if (console && console.debug) {
+        console.debug('[analytics]', eventType, payload);
+      }
+    }
+    function applyFilter(service) {
+      if (state.filter !== 'all' && service.category !== state.filter) {
+        return false;
+      }
+      if (!state.search) {
+        return true;
+      }
+      const q = state.search.toLowerCase();
+      const fields = [
+        service.name,
+        service.summary,
+        service.apiSurface,
+        service.endpointsHighlight,
+        (service.tags || []).join(' ')
+      ].join(' ').toLowerCase();
+      return fields.includes(q);
+    }
+    function renderServices() {
+      const grid = document.getElementById('servicesGrid');
+      const empty = document.getElementById('emptyState');
+      const emptyQuery = document.getElementById('emptyQuery');
+      grid.innerHTML = '';
+      const filtered = services.filter(applyFilter);
+      if (!filtered.length) {
+        emptyQuery.textContent = state.search || 'current filters';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+      filtered.forEach(service => {
+        const card = document.createElement('article');
+        card.className = 'service-card';
+        card.dataset.serviceId = service.id;
+        const header = document.createElement('div');
+        header.className = 'service-card-header';
+        const title = document.createElement('div');
+        title.className = 'service-card-title';
+        const name = document.createElement('div');
+        name.className = 'service-name';
+        name.textContent = service.name;
+        const meta = document.createElement('div');
+        meta.className = 'service-meta';
+        meta.textContent = service.summary;
+        title.appendChild(name);
+        title.appendChild(meta);
+        const badge = document.createElement('div');
+        badge.className = 'service-badge';
+        badge.textContent = service.status === 'live' ? 'Live · API ready' : 'Planned · Spec scaffold';
+        header.appendChild(title);
+        header.appendChild(badge);
+        const body = document.createElement('div');
+        body.className = 'service-card-body';
+        body.textContent = 'API surface: ' + service.apiSurface;
+        const footer = document.createElement('div');
+        footer.className = 'service-card-footer';
+        const chipRow = document.createElement('div');
+        chipRow.className = 'service-chip-row';
+        (service.tags || []).forEach(tag => {
+          const chip = document.createElement('span');
+          chip.className = 'service-chip';
+          chip.textContent = tag;
+          chipRow.appendChild(chip);
+        });
+        const cta = document.createElement('div');
+        cta.className = 'service-card-cta';
+        const ctaLabel = document.createElement('span');
+        ctaLabel.textContent = 'View details';
+        const ctaIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        ctaIcon.setAttribute('viewBox', '0 0 16 16');
+        const ctaPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        ctaPath.setAttribute('d', 'M4 8h6.5M9 4.5 12.5 8 9 11.5');
+        ctaPath.setAttribute('fill', 'none');
+        ctaPath.setAttribute('stroke-width', '1.4');
+        ctaPath.setAttribute('stroke-linecap', 'round');
+        ctaPath.setAttribute('stroke-linejoin', 'round');
+        ctaIcon.appendChild(ctaPath);
+        cta.appendChild(ctaLabel);
+        cta.appendChild(ctaIcon);
+        footer.appendChild(chipRow);
+        footer.appendChild(cta);
+        card.appendChild(header);
+        card.appendChild(body);
+        card.appendChild(footer);
+        card.addEventListener('click', () => {
+          selectService(service.id, true);
+        });
+        grid.appendChild(card);
+      });
+    }
+    function setBreadcrumb(service) {
+      const root = document.querySelector('[data-nav-root]');
+      const divider = document.getElementById('breadcrumb-divider');
+      const leaf = document.getElementById('breadcrumb-leaf');
+      if (!service) {
+        divider.style.display = 'none';
+        leaf.style.display = 'none';
+        root.textContent = 'Services';
+        return;
+      }
+      divider.style.display = 'inline';
+      leaf.style.display = 'inline';
+      leaf.textContent = service.name;
+      root.textContent = 'Services';
+    }
+    function renderDetail(service) {
+      const container = document.getElementById('serviceDetail');
+      const subtitle = document.getElementById('detailSubtitle');
+      container.innerHTML = '';
+      if (!service) {
+        subtitle.textContent = 'Select a service on the left to see details, endpoints and documentation.';
+        return;
+      }
+      subtitle.textContent = service.name + ' · ' + service.summary;
+      setBreadcrumb(service);
+      const header = document.createElement('div');
+      header.className = 'service-detail-header';
+      const meta = document.createElement('div');
+      meta.className = 'service-detail-meta';
+      const name = document.createElement('div');
+      name.className = 'service-detail-name';
+      name.textContent = service.name;
+      const tagsRow = document.createElement('div');
+      tagsRow.className = 'service-detail-tags';
+      const tagPrimary = document.createElement('span');
+      tagPrimary.className = 'tag tag-strong';
+      tagPrimary.textContent = service.status === 'live' ? 'Live' : 'Planned';
+      tagsRow.appendChild(tagPrimary);
+      (service.tags || []).forEach(t => {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = t;
+        tagsRow.appendChild(tag);
+      });
+      meta.appendChild(name);
+      meta.appendChild(tagsRow);
+      const badge = document.createElement('div');
+      badge.className = 'pill-badge';
+      badge.innerHTML = '<strong>API surface</strong> · ' + service.apiSurface;
+      header.appendChild(meta);
+      header.appendChild(badge);
+      const layout = document.createElement('div');
+      layout.className = 'detail-layout';
+      const overview = document.createElement('section');
+      overview.className = 'detail-section';
+      const overviewHeader = document.createElement('div');
+      overviewHeader.className = 'detail-section-header';
+      overviewHeader.innerHTML = '<span>Overview</span>';
+      const overviewSub = document.createElement('div');
+      overviewSub.className = 'detail-section-sub';
+      overviewSub.textContent = 'High-level positioning, pricing model and availability semantics.';
+      const pills = document.createElement('div');
+      pills.className = 'detail-pill-row';
+      const pillPricing = document.createElement('span');
+      pillPricing.className = 'detail-pill';
+      pillPricing.textContent = 'Pricing: ' + service.pricingModel;
+      const pillAvailability = document.createElement('span');
+      pillAvailability.className = 'detail-pill';
+      pillAvailability.textContent = 'Availability: ' + service.availability;
+      pills.appendChild(pillPricing);
+      pills.appendChild(pillAvailability);
+      const overviewBody = document.createElement('p');
+      overviewBody.textContent = service.summary;
+      overview.appendChild(overviewHeader);
+      overview.appendChild(overviewSub);
+      overview.appendChild(pills);
+      overview.appendChild(overviewBody);
+      const endpoints = document.createElement('section');
+      endpoints.className = 'detail-section';
+      const endpointsHeader = document.createElement('div');
+      endpointsHeader.className = 'detail-section-header';
+      endpointsHeader.innerHTML = '<span>Endpoints and flows</span>';
+      const endpointsSub = document.createElement('div');
+      endpointsSub.className = 'detail-section-sub';
+      endpointsSub.textContent = 'Key flows exposed in this service and how they compose.';
+      const endpointsHighlight = document.createElement('div');
+      endpointsHighlight.className = 'detail-label';
+      endpointsHighlight.textContent = 'Highlights';
+      const endpointsValue = document.createElement('div');
+      endpointsValue.className = 'detail-value';
+      endpointsValue.textContent = service.endpointsHighlight;
+      const endpointsGrid = document.createElement('div');
+      endpointsGrid.className = 'detail-grid-2';
+      const epCell1 = document.createElement('div');
+      const epCell1Label = document.createElement('div');
+      epCell1Label.className = 'detail-label';
+      epCell1Label.textContent = 'Docs';
+      const epCell1Val = document.createElement('div');
+      epCell1Val.className = 'detail-value';
+      epCell1Val.textContent = service.docType === 'redoc' ? 'Redoc (OpenAPI 3.0)' : 'External';
+      epCell1.appendChild(epCell1Label);
+      epCell1.appendChild(epCell1Val);
+      const epCell2 = document.createElement('div');
+      const epCell2Label = document.createElement('div');
+      epCell2Label.className = 'detail-label';
+      epCell2Label.textContent = 'Status';
+      const epCell2Val = document.createElement('div');
+      epCell2Val.className = 'detail-value';
+      epCell2Val.textContent = service.status === 'live' ? 'Production-ready' : 'Specification planned';
+      epCell2.appendChild(epCell2Label);
+      epCell2.appendChild(epCell2Val);
+      endpointsGrid.appendChild(epCell1);
+      endpointsGrid.appendChild(epCell2);
+      endpoints.appendChild(endpointsHeader);
+      endpoints.appendChild(endpointsSub);
+      endpoints.appendChild(endpointsHighlight);
+      endpoints.appendChild(endpointsValue);
+      endpoints.appendChild(endpointsGrid);
+      layout.appendChild(overview);
+      layout.appendChild(endpoints);
+      const monetization = document.createElement('section');
+      monetization.className = 'detail-section';
+      const monetizationHeader = document.createElement('div');
+      monetizationHeader.className = 'detail-section-header';
+      monetizationHeader.innerHTML = '<span>Pricing and availability</span>';
+      const monetizationSub = document.createElement('div');
+      monetizationSub.className = 'detail-section-sub';
+      monetizationSub.textContent = 'Signals and constraints to surface in your UI and quoting logic.';
+      const monetPills = document.createElement('div');
+      monetPills.className = 'detail-pill-row';
+      const monet1 = document.createElement('span');
+      monet1.className = 'badge-soft';
+      monet1.innerHTML = '<strong>Pricing model</strong> · ' + service.pricingModel;
+      const monet2 = document.createElement('span');
+      monet2.className = 'badge-soft';
+      monet2.innerHTML = '<strong>Availability</strong> · ' + service.availability;
+      monetPills.appendChild(monet1);
+      monetPills.appendChild(monet2);
+      const monetList = document.createElement('ul');
+      monetList.className = 'detail-list';
+      (service.features || []).forEach(f => {
+        const li = document.createElement('li');
+        li.textContent = f;
+        monetList.appendChild(li);
+      });
+      monetization.appendChild(monetizationHeader);
+      monetization.appendChild(monetizationSub);
+      monetization.appendChild(monetPills);
+      monetization.appendChild(monetList);
+      const redocShell = document.createElement('section');
+      redocShell.className = 'redoc-shell';
+      const redocToolbar = document.createElement('div');
+      redocToolbar.className = 'redoc-toolbar';
+      const redocToolbarLeft = document.createElement('div');
+      redocToolbarLeft.className = 'redoc-toolbar-left';
+      const redocIndicator = document.createElement('div');
+      redocIndicator.className = 'redoc-indicator';
+      const redocLabel = document.createElement('div');
+      redocLabel.className = 'redoc-label';
+      redocLabel.textContent = 'Inline API reference · powered by Redoc';
+      redocToolbarLeft.appendChild(redocIndicator);
+      redocToolbarLeft.appendChild(redocLabel);
+      const redocActions = document.createElement('div');
+      redocActions.className = 'redoc-actions';
+      const btnFull = document.createElement('a');
+      btnFull.className = 'btn-ghost';
+      btnFull.href = service.docLink || '#';
+      btnFull.target = '_blank';
+      btnFull.rel = 'noopener noreferrer';
+      btnFull.innerHTML = '<strong>Open full docs</strong>';
+      const btnSwagger = document.createElement('a');
+      btnSwagger.className = 'btn-ghost';
+      const swaggerBase = '../swagger/';
+      if (service.specUrl) {
+        const encoded = encodeURIComponent(service.specUrl);
+        btnSwagger.href = swaggerBase + '?url=' + encoded;
+      } else {
+        btnSwagger.href = swaggerBase;
+      }
+      btnSwagger.target = '_blank';
+      btnSwagger.rel = 'noopener noreferrer';
+      btnSwagger.textContent = 'Open in Swagger UI';
+      redocActions.appendChild(btnFull);
+      redocActions.appendChild(btnSwagger);
+      redocToolbar.appendChild(redocToolbarLeft);
+      redocToolbar.appendChild(redocActions);
+      const redocContainer = document.createElement('div');
+      redocContainer.className = 'redoc-container';
+      const redocInner = document.createElement('div');
+      redocInner.className = 'redoc-container-inner';
+      redocInner.id = 'redoc-container-inner';
+      const redocState = document.createElement('div');
+      redocState.className = 'redoc-state';
+      redocState.id = 'redoc-state';
+      const spinner = document.createElement('div');
+      spinner.className = 'spinner';
+      const redocStateText = document.createElement('div');
+      redocStateText.textContent = 'Loading OpenAPI spec for ' + service.name + '...';
+      redocState.appendChild(spinner);
+      redocState.appendChild(redocStateText);
+      redocContainer.appendChild(redocInner);
+      redocContainer.appendChild(redocState);
+      redocShell.appendChild(redocToolbar);
+      redocShell.appendChild(redocContainer);
+      container.appendChild(header);
+      container.appendChild(layout);
+      container.appendChild(monetization);
+      container.appendChild(redocShell);
+      if (service.docType === 'redoc' && service.specUrl) {
+        renderRedocForService(service);
+      } else {
+        const stateView = document.getElementById('redoc-state');
+        if (stateView) {
+          stateView.innerHTML = '';
+          const msg = document.createElement('div');
+          msg.className = 'redoc-error';
+          msg.textContent = 'No inline documentation is configured for this service yet.';
+          stateView.appendChild(msg);
+        }
+      }
+    }
+    async function renderRedocForService(service) {
+      const stateView = document.getElementById('redoc-state');
+      const container = document.getElementById('redoc-container-inner');
+      if (!stateView || !container) {
+        return;
+      }
+      stateView.style.display = 'flex';
+      container.innerHTML = '';
+      try {
+        const res = await fetch(service.specUrl, { cache: 'no-store' });
+        if (!res.ok) {
+          throw new Error('Failed to load spec: ' + res.status);
+        }
+        const text = await res.text();
+        const blob = new Blob([text], { type: 'application/yaml' });
+        const url = URL.createObjectURL(blob);
+        if (state.redocInstance && state.redocInstance.unmount) {
+          state.redocInstance.unmount();
+        }
+        Redoc.init(url, {
+          scrollYOffset: 0,
+          suppressWarnings: true,
+          hideDownloadButton: false,
+          hideHostname: true,
+          expandResponses: '200,201'
+        }, container, redoc => {
+          state.redocInstance = redoc;
+          if (stateView) {
+            stateView.style.display = 'none';
+          }
+          URL.revokeObjectURL(url);
+        });
+      } catch (err) {
+        if (stateView) {
+          stateView.innerHTML = '';
+          const msg = document.createElement('div');
+          msg.className = 'redoc-error';
+          msg.textContent = 'Unable to load API docs for this service.';
+          stateView.appendChild(msg);
+        }
+      }
+    }
+    function applyFilterChipState() {
+      document.querySelectorAll('.pill-filter').forEach(btn => {
+        const value = btn.getAttribute('data-filter') || 'all';
+        btn.dataset.active = value === state.filter ? 'true' : 'false';
+      });
+    }
+    function selectService(serviceId, push = false) {
+      const service = services.find(s => s.id === serviceId) || null;
+      state.selectedServiceId = service ? service.id : null;
+      renderDetail(service);
+      if (push && service) {
+        const hash = '#/service/' + service.id;
+        if (location.hash !== hash) {
+          history.pushState({ serviceId: service.id }, '', hash);
+        }
+        track('service_view', { serviceId: service.id });
+      }
+    }
+    function handleHashChange() {
+      const hash = location.hash || '';
+      const match = hash.match(/#\/service\/([a-z0-9_-]+)/i);
+      if (match && match[1]) {
+        selectService(match[1], false);
+      } else {
+        state.selectedServiceId = null;
+        renderDetail(null);
+        setBreadcrumb(null);
+      }
+    }
+    function init() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', e => {
+        state.search = e.target.value.trim();
+        renderServices();
+        track('search', { query: state.search });
+      });
+      document.querySelectorAll('.pill-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const value = btn.getAttribute('data-filter') || 'all';
+          state.filter = value;
+          applyFilterChipState();
+          renderServices();
+          track('filter', { filter: state.filter });
+        });
+      });
+      const breadcrumbRoot = document.querySelector('[data-nav-root]');
+      breadcrumbRoot.addEventListener('click', () => {
+        history.pushState({}, '', '#');
+        state.selectedServiceId = null;
+        renderDetail(null);
+        setBreadcrumb(null);
+        track('nav_root', {});
+      });
+      renderServices();
+      handleHashChange();
+      window.addEventListener('hashchange', handleHashChange);
+      track('directory_view', {});
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

@@ -4,9 +4,9 @@ services:
     image: swaggerapi/swagger-ui:latest
     container_name: travel-api-swagger
     environment:
-      - SWAGGER_JSON=/openapi/openapi.yaml
+      URLS: '[{"url":"/openapi/flight.yaml","name":"FlightAPI"},{"url":"/openapi/hotel.yaml","name":"HotelAPI"},{"url":"/openapi/esim.yaml","name":"eSIMA_PI"}]'
     ports:
       - "8080:8080"
     volumes:
-      - ../openapi:/openapi:ro
+      - ../openapi:/usr/share/nginx/html/openapi:ro
     restart: unless-stopped

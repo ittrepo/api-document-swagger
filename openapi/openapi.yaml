@@ -2,9 +2,45 @@ openapi: 3.0.3
 info:
   title: ITT eSIM API
   version: 1.0.0
-  description: eSIM API endpoints converted from Postman collection.
+  description: |
+    The ITT eSIM API exposes connectivity services that complement the existing Hotel APIs
+    in the travel platform. Hotel services cover accommodation search, content and booking,
+    while the eSIM services let you attach mobile data connectivity to the same customer
+    journeys.
+
+    This specification focuses exclusively on the eSIM services. Hotel APIs are documented
+    separately in the Hotel API specification and are currently available for production
+    use. The eSIM endpoints described here are available only via the REST interface and
+    are not yet accessible through WSIM based integrations.
+
+    Typical integration pattern:
+
+    - Use Hotel APIs to search and book accommodation.
+    - Use the eSIM APIs from this document to search, price and book data connectivity
+      for the same traveller and trip.
+    - Present eSIM options as an add-on in the booking flow or post-booking journeys.
+
+    Key eSIM flows and their endpoints:
+
+    - Plan discovery and selection
+      - [Search eSIM plans](/esim/search)
+      - [Get single eSIM package](/esim/single-esim-package)
+    - Customer and booking lifecycle
+      - [Update customer information](/esim/update-customer)
+      - [Create eSIM booking](/esim/create-booking)
+      - [Get booking details](/esim/booking-details)
+    - Post-purchase operations
+      - [Get data usage](/esim/data-usage)
+      - [Get installation instructions](/esim/installation-instructions)
+      - [Get compatible devices](/esim/compatible-devices)
+    - Top-up and ongoing spend
+      - [Get top-up packages](/esim/topup-packages)
+      - [Create top-up booking](/esim/topup-booking)
+      - [Get top-up history](/esim/topup-history)
+    - Eventing
+      - [Register webhook](/esim/register-webhook)
 servers:
-  - url: https://serviceapi.talha.innovatedemo.com
+  - url: https://serviceapi.b2b.innovatedemo.com
 tags:
   - name: eSim
     description: eSIM related operations
@@ -16,6 +52,10 @@ paths:
     post:
       tags: [eSim]
       summary: Search eSIM plans
+      description: |
+        Searches for available eSIM plans for a given region, country or supplier. Use this
+        endpoint to build the initial connectivity offer alongside hotel search results,
+        then narrow down to a specific package with `/esim/single-esim-package`.
       operationId: esimSearch
       requestBody:
         required: true
@@ -51,6 +91,10 @@ paths:
     post:
       tags: [eSim]
       summary: Get single eSIM package
+      description: |
+        Retrieves detailed information and pricing for a specific eSIM package that was
+        returned from `/esim/search`. The response can be used to confirm the offer shown
+        to the user before creating a booking with `/esim/create-booking`.
       operationId: singleEsimPackage
       requestBody:
         required: true
@@ -79,6 +123,10 @@ paths:
     post:
       tags: [eSim]
       summary: Update customer information
+      description: |
+        Updates passenger and contact details on an existing eSIM booking. Call this
+        endpoint after hotel or itinerary changes so that the connectivity order has the
+        same traveller profile and contact information as the related hotel booking.
       operationId: updateCustomer
       requestBody:
         required: true
@@ -118,6 +166,11 @@ paths:
     post:
       tags: [eSim]
       summary: Create eSIM booking
+      description: |
+        Creates a confirmed eSIM booking for one or more packages. Typically called after
+        hotel booking confirmation, using the same member and contact details so that eSIM
+        vouchers and installation instructions can be surfaced in the same post-booking
+        experience.
       operationId: createBooking
       requestBody:
         required: true
@@ -155,6 +208,10 @@ paths:
     post:
       tags: [eSim]
       summary: Get data usage
+      description: |
+        Returns data usage for a provisioned eSIM, including remaining balance and
+        consumption trends. Use this to power “trip dashboard” or “upcoming stay” views
+        where usage is shown next to hotel and itinerary details.
       operationId: dataUsage
       requestBody:
         required: true
@@ -184,6 +241,10 @@ paths:
     post:
       tags: [eSim]
       summary: Get booking details
+      description: |
+        Retrieves the full details of an eSIM booking, including package, traveller, and
+        status information. This is the primary read endpoint to keep your UI in sync
+        when showing combined hotel, flight or activity bookings with attached eSIMs.
       operationId: bookingDetails
       requestBody:
         required: true
@@ -214,6 +275,10 @@ paths:
     post:
       tags: [eSim]
       summary: Get installation instructions
+      description: |
+        Provides device-specific installation instructions for a purchased eSIM, in the
+        requested language. Use this endpoint to embed install guides into your trip
+        confirmation flows alongside hotel check-in instructions.
       operationId: installationInstructions
       requestBody:
         required: true
@@ -244,6 +309,10 @@ paths:
     post:
       tags: [eSim]
       summary: Get compatible devices
+      description: |
+        Returns the list of devices that are compatible with the eSIM offering. This can
+        be used during hotel or package checkout to pre-validate that travellers’ phones
+        and tablets support eSIM before you surface connectivity upsells.
       operationId: compatibleDevices
       requestBody:
         required: true
@@ -271,6 +340,10 @@ paths:
     post:
       tags: [eSim]
       summary: Get top-up packages
+      description: |
+        Lists available top-up options for an active eSIM. Call this endpoint when
+        building account or “manage booking” pages so that travellers staying at a hotel
+        can purchase additional data without leaving your application.
       operationId: topupPackages
       requestBody:
         required: true
@@ -300,6 +373,10 @@ paths:
     post:
       tags: [eSim]
       summary: Create top-up booking
+      description: |
+        Creates a booking for a selected top-up package. This is usually invoked from a
+        self-service area where the traveller is reviewing their hotel stay and chooses
+        to add more data for the same trip.
       operationId: topupBooking
       requestBody:
         required: true
@@ -336,6 +413,10 @@ paths:
     post:
       tags: [eSim]
       summary: Get top-up history
+      description: |
+        Returns historical top-up transactions for a given eSIM. Use this to show spend
+        history and support flows (for example, confirming charges related to a hotel
+        stay or corporate trip).
       operationId: topupHistory
       requestBody:
         required: true
@@ -365,6 +446,11 @@ paths:
     post:
       tags: [eSim]
       summary: Register webhook
+      description: |
+        Registers a webhook subscription so that your platform can receive asynchronous
+        events such as low data balance or lifecycle updates. These events can be used to
+        trigger notifications inside your travel UI, for example while the traveller is
+        viewing upcoming or in-progress hotel stays.
       operationId: registerWebhook
       requestBody:
         required: true

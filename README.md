@@ -100,3 +100,13 @@ server {
 
 - Swagger UI not loading spec: verify the volume mount in `swagger/docker-compose.yml` and that `openapi/openapi.yaml` exists.
 - Redoc build issues: ensure Node.js is installed or install Redocly CLI globally.
+
+
+<!-- 
+- http://localhost:8080/?urls.primaryName=Flight%20API
+- Hotel:
+
+http://localhost:8080/?urls.primaryName=Hotel%20API
+- eSIM:
+
+http://localhost:8080/?urls.primaryName=eSIM%20API -->
