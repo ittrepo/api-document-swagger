@@ -227,110 +227,65 @@ paths:
         '404': { $ref: '#/components/responses/NotFound' }
         '500': { $ref: '#/components/responses/ServerError' }
   /flight/search:
-    post:
-      tags: [Flight]
-      summary: Search flights (OneWay, RoundTrip, MultiCity)
-      operationId: flightSearch
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              additionalProperties: true
-            examples:
-              oneWay:
-                value:
-                  journey_type: OneWay
-                  segment:
-                    - departure_airport_type: AIRPORT
-                      departure_airport: KHI
-                      arrival_airport_type: AIRPORT
-                      arrival_airport: LHE
-                      departure_date: 2025-03-30
-                  travelers_adult: 1
-                  travelers_child: 0
-                  travelers_infants: 0
-                  preferred_carrier: [""]
-                  non_stop_flight: any
-                  baggage_option: any
-                  booking_class: Economy
-                  supplier_uid: F1ZT00006
-                  partner_id: "1"
-                  language: en
-              roundTrip:
-                value:
-                  journey_type: RoundTrip
-                  segment:
-                    - departure_airport_type: AIRPORT
-                      departure_airport: DAC
-                      arrival_airport_type: AIRPORT
-                      arrival_airport: DXB
-                      departure_date: 2025-10-25
-                      arrival_date: 2025-10-30
-                    - departure_airport_type: AIRPORT
-                      departure_airport: DXB
-                      arrival_airport_type: AIRPORT
-                      arrival_airport: DAC
-                      departure_date: 2025-11-26
-                      arrival_date: 2025-11-30
-                  travelers_adult: 1
-                  travelers_child: 0
-                  travelers_infants: 0
-                  supplier_uid: F1EC00009
-                  partner_id: "1"
-                  language: en
-              multiCity:
-                value:
-                  journey_type: MultiCity
-                  segment:
-                    - departure_airport_type: AIRPORT
-                      departure_airport: RUH
-                      arrival_airport_type: AIRPORT
-                      arrival_airport: JED
-                      departure_date: 2023-12-20
-                    - departure_airport_type: AIRPORT
-                      departure_airport: JED
-                      arrival_airport_type: AIRPORT
-                      arrival_airport: AHB
-                      departure_date: 2023-12-22
-                    - departure_airport_type: CITY
-                      departure_airport: AHB
-                      arrival_airport_type: AIRPORT
-                      arrival_airport: JED
-                      departure_date: 2023-12-25
-                  travelers_adult: 1
-                  travelers_child: 0
-                  travelers_infants: 0
-                  supplier_uid: all
-                  partner_id: ""
-                  language: en
-      responses:
-        '200':
-          description: Flight search results
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-              examples:
-                default:
-                  value:
-                    status: success
-                    tracking_id: 11177139351426194
-                    currency: BDT
-                    total_flight: 20
-                    data: []
-        '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
-  /flight/search-general:
-    post:
-      tags: [Flight]
-      summary: General flight search
-      operationId: flightSearchGeneral
-      requestBody:
-        required: true
+   post:
+    tags:
+      - Flight
+    summary: Search flights (OneWay, RoundTrip, MultiCity)
+    operationId: flightSearch
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+          examples:
+            oneWay:
+              summary: One Way Search
+              value:
+                journey_type: "OneWay"
+                segment:
+                  - departure_airport_type: "AIRPORT"
+                    departure_airport: "KHI"
+                    arrival_airport_type: "AIRPORT"
+                    arrival_airport: "LHE"
+                    departure_date: "2025-03-30"
+                travelers_adult: 1
+                travelers_child: 0
+                travelers_infants: 0
+                preferred_carrier: [""]
+                non_stop_flight: "any"
+                baggage_option: "any"
+                booking_class: "Economy"
+                supplier_uid: "F1ZT00006"
+                partner_id: "1"
+                language: "en"
+            roundTrip:
+              summary: Round Trip Search
+              value:
+                journey_type: "RoundTrip"
+                segment:
+                  - departure_airport_type: "AIRPORT"
+                    departure_airport: "DAC"
+                    arrival_airport_type: "AIRPORT"
+                    arrival_airport: "DXB"
+                    departure_date: "2025-10-25"
+                    arrival_date: "2025-10-30"
+                  - departure_airport_type: "AIRPORT"
+                    departure_airport: "DXB"
+                    arrival_airport_type: "AIRPORT"
+                    arrival_airport: "DAC"
+                    departure_date: "2025-11-26"
+                    arrival_date: "2025-11-30"
+                travelers_adult: 1
+                travelers_child: 0
+                travelers_infants: 0
+                supplier_uid: "F1EC00009"
+                partner_id: "1"
+                language: "en"
+    responses:
+      '200':
+        description: Flight search results
         content:
           application/json:
             schema:
@@ -338,25 +293,80 @@ paths:
               additionalProperties: true
             examples:
               default:
+                summary: Successful Search Response
                 value:
-                  journey_type: OneWay
-                  segment:
-                    - departure_airport_type: AIRPORT
-                      departure_airport: ISB
-                      arrival_airport_type: AIRPORT
-                      arrival_airport: KHI
-                      departure_date: 2025-04-28
-                  travelers_adult: 1
-                  travelers_child: 0
-                  travelers_infants: 0
-                  preferred_carrier: []
-                  non_stop_flight: any
-                  baggage_option: any
-                  booking_class: Economy
-                  supplier_uid: F1ZT00006
-                  partner_id: ""
-                  language: en
-      responses:
+                  status: "success"
+                  search_duration: "102 seconds"
+                  timestamp: "1771393615"
+                  search_complete: "2026-02-18 11:46:55"
+                  tracking_id: "11177139351426194ETLIZ"
+                  total_fight: 20
+                  currency: "BDT"
+                  resources:
+                    base_url:
+                      carrier: "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/icon"
+                      aircraft: "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/aircraft"
+                  data:
+                    - flight_key: "F1TT00152-0"
+                      journey_type: "OneWay"
+                      price:
+                        currency: "BDT"
+                        total: 5295.3
+                      flight_group:
+                        - group: 1
+                          no_of_stops: 0
+                          flight_time: "PT1H"
+                          routes:
+                            - origin: "DAC"
+                              destination: "CGP"
+                              departure_time: "2026-03-12T10:00:00"
+                      '400': { $ref: '#/components/responses/BadRequest' }
+                      '401': { $ref: '#/components/responses/Unauthorized' }
+                      '404': { $ref: '#/components/responses/NotFound' }
+                      '500': { $ref: '#/components/responses/ServerError' }
+      
+  /flight/search-Roundtrip:
+   post:
+    tags:
+      - Flight
+    summary: Roundtrip flight search
+    operationId: flight Search Roundtrip
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+          examples:
+            default:
+              value:
+                journey_type: "RoundTrip" # OneWay, RoundTrip, MultiCity
+                segment:
+                  - departure_airport_type: "AIRPORT" # CITY or AIRPORT
+                    departure_airport: "DAC"
+                    arrival_airport_type: "AIRPORT" # CITY or AIRPORT
+                    arrival_airport: "DXB"
+                    departure_date: "2026-02-30"
+                  - departure_airport_type: "AIRPORT" # CITY or AIRPORT
+                    departure_airport: "DXB"
+                    arrival_airport_type: "AIRPORT" # CITY or AIRPORT
+                    arrival_airport: "DAC"
+                    departure_date: "2026-03-28" # "2026-01-31"
+                travelers_adult: 1
+                travelers_child: 0
+                travelers_child_age: 0
+                travelers_infants: 0
+                travelers_infants_age: []
+                preferred_carrier: []
+                non_stop_flight: "any" # any or non-stop
+                baggage_option: "any" # any or only-baggage
+                booking_class: "Economy" # Economy, Premium-Economy, Business, First-Class
+                supplier_uid: "F1TT00152" # all//F1EC00009//F1TT00013
+                partner_id: "" # ftm_partner_id / mark blank
+                short_ref: "xxxx111" # optional for stream search
+                language: "en"
+    responses:
         '200':
           description: General search results
           content:
@@ -364,10 +374,519 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+               default:
+                summary: Successful Search Response
+                value:
+                  "status": "success"
+                  "search_duration": "125 seconds"
+                  "timestamp": "1771390708"
+                  "search_complete": "2026-02-18 10:58:28"
+                  "tracking_id": "11177139058426194IFF1Q"
+                  "ftm_partner_id": "1"
+                  "partner_id": "1"
+                  "partner_name": "Innovate Solution"
+                  "message": null,
+                  "total_fight": 226,
+                  "currency": "BDT"
+                  "resources": 
+                        "base_url": 
+                               "carrier": "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/icon"
+                               "aircraft": "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/aircraft"
+                  "data":
+                        "tracking_id": "11177139058426194IFF1Q"
+                        "flight_key": "F1TT00152-225"
+                        "journey_type": "RoundTrip"
+                        "result_type": "group"
+                        "get_branded_fare": "yes"
+                        "hold_possible": "yes"
+                        "package_option": "no"
+                        "supplier_title": "TravelRobotFlight-Sandbox"
+                        "color_code": "#ffffff"
+                        "supplier_code": "travel_robot"
+                        "supplier_uid": "F1TT00152"
+                        "supplier_partner_code": "travel_robot-1-00152"
+                        "search_parameter":
+                            "journey_type": "RoundTrip"
+                            segment:
+                                    - departure_airport_type: "AIRPORT" # CITY or AIRPORT
+                                      departure_airport: "DAC"
+                                      arrival_airport_type: "AIRPORT" # CITY or AIRPORT
+                                      arrival_airport: "DXB"
+                                      departure_date: "2026-02-30"
+                                    - departure_airport_type: "AIRPORT" # CITY or AIRPORT
+                                      departure_airport: "DXB"
+                                      arrival_airport_type: "AIRPORT" # CITY or AIRPORT
+                                      arrival_airport: "DAC"
+                                      departure_date: "2026-03-28" # "2026-01-31"
+                            travelers_adult: 1
+                            travelers_child: 0
+                            travelers_child_age: 0
+                            travelers_infants: 0
+                            travelers_infants_age: []
+                            preferred_carrier: []
+                            non_stop_flight: "any" # any or non-stop
+                            baggage_option: "any" # any or only-baggage
+                            booking_class: "Economy" # Economy, Premium-Economy, Business, First-Class
+                            supplier_uid: "F1TT00152" # all//F1EC00009//F1TT00013
+                            partner_id: "" # ftm_partner_id / mark blank
+                            short_ref: "xxxx111" # optional for stream search
+                            language: "en"
+                            short_ref": "xxxx111"
+                            "version": null,
+                            "team_profile": null
+
+                            "pax_options":
+                                  "doc_required": "yes"
+                                  "pax_dob_required": "yes"
+                                  "seat_selection": "disable"
+                                  "meal_selection": "disable"
+                                  "baggage_selection": "disable"
+                                  "passport_scan_selection": "active"
+                                  "pax_search_selection": "disable"
+                                  "frequent_flyer_selection": "disable"
+                                  "wheelchair_selection": "disable"
+                                  "pax_email_contact_selection": "active"
+                                  "pax_save_option": "active"
+                                  "terms_selection": "check"
+                                  "cancellation_selection": "check"
+                            "flight_group":
+                                          group": 1,
+                                          "FareAlternativeLegKeys": 
+                                              "d8dc2aba34f74cd9a9f14f01c9720428|@3ad35c10-71a2-44fe-a857-c564efe80c32@ce64cbe7-6cee-4595-afc8-b507bd166a66@724fc5a9-3a06-4750-b043-a21365f2a9f8@ab53c5fb-ea78-46e1-afb6-fbfd895f2a26"
+                            "flight_key": "F1TT00152-225-0"
+                            "get_branded_fare": "yes"
+                            "no_of_stops_title": "1 Stop Flight"
+                            "no_of_stops": 1,
+                            "flight_time": "PT8H50M"
+                            "transit_time": "PT2H45M"
+                            "currency": "TRY"
+                            "fareBasisCode": "SOW1BD"
+                            "booking_code": "Economy Class"
+                            "routes":
+                                    "AlternativeRef": "ab53c5fb-ea78-46e1-afb6-fbfd895f2a26"
+                                    "air_segment_key": "1fbff16d-8de9-4a04-a6fb-4ade52c8f2e0"
+                                    "origin": "DAC"
+                                    "departure_time": "2026-03-02T13:00:00"
+                                    "origin_terminal": null,
+                                    "origin_airport":
+                                            "name": "Hazrat Shahjalal International Airport"
+                                            "city": "Dhaka"
+                                            "country": "Bangladesh"
+                                            "timezone": "Asia/Dhaka"
+                                    "destination": "CMB"
+                                    "arrival_time": "2026-03-02T15:55:00"
+                                    "destination_terminal": null,
+                                    "destination_airport":
+                                            "name": "Bandaranayake International Air Port"
+                                            "city": "Colombo"
+                                            "country": "Sri Lanka"
+                                            "timezone": "Asia/Colombo"
+                                    "flight_date": "2026-03-02"
+                                    "flight_time": "PT2H55M"
+                                    "distance": null,
+                                    "lay_over": "not-applicable"
+                                    "lay_over_date": "not-applicable"
+                                    "aircraft":
+                                          "code": "333"
+                                          "name": null,
+                                          "picture": "333.png"
+                                    "operating": 
+                                        "carrier": "UL"
+                                        "carrier_name": "SriLankan Airlines"
+                                        "carrier_logo": "UL.png"
+                                        "flight_number": "190"
+                                    "marketing": 
+                                      "carrier": "UL"
+                                      "carrier_name": "SriLankan Airlines"
+                                      "carrier_logo": "UL.png"
+                                      "flight_number": "190"
+                          
+                                    "booking_class": 
+                                      "cabin_class": "Economy Class"
+                                      "cabin_code": "S"
+                                      "booking_code": "Economy Class"
+                                      "meal_code": null,
+                                      "fareBasisCode": "SOW1BD"
+                                      "seat_available": 9
+                            
+                                    "baggages": 
+                                        "checked": 
+                                            "ADT": 
+                                                  "ptc_title": "Adult"
+                                                  "passenger_type": "ADT"
+                                                  "baggage_type": "checked"
+                                                  "pieceCount": null,
+                                                  "weight": "30"
+                                                  "unit": "kg"
+                                                  "title": "30 kg"
+                                    "carry_on": 
+                                    "ADT": 
+                                        "ptc_title": "Adult"
+                                        "passenger_type": "ADT"
+                                        "baggage_type": "carry_on"
+                                        "pieceCount": "SB"
+                                        "weight": "SB"
+                                        "unit": "SB"
+                                        "title": "SB"
+                            "AlternativeRef": "ab53c5fb-ea78-46e1-afb6-fbfd895f2a26"
+                            "air_segment_key": "fd30aa7b-4da5-4e2a-88f5-ae05cf6c9f18"
+                            "origin": "CMB"
+                            "departure_time": "2026-03-02T18:40:00"
+                            "origin_terminal": null,
+                            "origin_airport": 
+                                "name": "Bandaranayake International Air Port"
+                                "city": "Colombo"
+                                "country": "Sri Lanka"
+                                "timezone": "Asia/Colombo"
+                            "destination": "DXB"
+                            "arrival_time": "2026-03-02T21:50:00"
+                            "destination_terminal": null,
+                            "destination_airport": 
+                                "name": "Dubai International Airport"
+                                "city": "Dubai"
+                                "country": "United Arab Emirates"
+                                "timezone": "Asia/Dubai"
+                            "price": 
+                              "currency": "BDT"
+                              "total": 13767.67,
+                              "gross_total": 13767.67,
+                              "base_fare": 10211.61,
+                              "tax": 3556.06,
+                              "sell": 
+                                  "currency": "BDT"
+                                  "total": 13767.67,
+                                  "base_fare": 10211.61,
+                                  "tax": 3556.06
+                              "price_hash": "eyJmbWciOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6MTM3NjcuNjcsImJhc2VfZmFyZSI6MTAyMTEuNjEsInRheCI6MzU1Ni4wNn0sInN1cHBsaWVyIjp7ImN1cnJlbmN5IjoiVFJZIiwidG90YWwiOjEzNzY3LjY3LCJiYXNlX2ZhcmUiOjEwMjExLjYxLCJ0YXgiOjM1NTYuMDYsImNvbWlzc2lvbl90eXBlIjoiZ2VuZXJhbCIsImNvbWlzc2lvbl92YWx1ZSI6MH0sImdyb3NzX2ZhcmUiOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6MTM3NjcuNjcsImJhc2VfZmFyZSI6MTAyMTEuNjEsInRheCI6MzU1Ni4wNn19"
+                        "price_breakdown": 
+                            
+                                "passenger_id": "1"
+                                "supplier_pax_id": "1"
+                                "passenger_type": "ADT"
+                                "primary_ptc": "ADT"
+                                "ptc_title": "Adult"
+                                "passenger_total": 1,
+                                "pax_calculate_type": "yes"
+                                "comission_type": ""
+                                "comission_value": ""
+                                "currency": "BDT"
+                                "total": 13767.67,
+                                "base_fare": 10211.61,
+                                "tax": 3556.06,
+                                "ticket_issue_charge": 0,
+                                "total_ticket_issue_charge": 0,
+                                "gross": {
+                                    "base_fare": "10211.61",
+                                    "tax": "3556.06",
+                                    "discount": 0,
+                                    "ait": "0.00",
+                                    "service_charge": 0
+                                }
+                                "partner": 
+                                    "currency": "BDT"
+                                    "total": 13767.67,
+                                    "base_fare": 10211.61,
+                                    "tax": 3556.06,
+                                    "gross": 
+                                        "base_fare": "10211.61"
+                                        "tax": "3556.06"
+                                        "discount": "0.00"
+                                        "ait": "0.00"
+                                        "service_charge": 0
+                                    "taxBreakdown": 
+                                        "BD": {
+                                            "title": "BD -Embarkation Fee (Domestic/International)",
+                                            "amount": "0.00"
+                                        }
+                                        "UT": {
+                                            "title": "UT - Foreign Air Travel Tax (FATT)",
+                                            "amount": "0.00"
+                                        }
+                                        "E5": {
+                                            "title": "E5 - Value Added Tax on Embarkation Fees",
+                                            "amount": "0.00"
+                                        }
+                                        "YQ": {
+                                            "title": "YQ - Carrier-Imposed Surcharge/Fuel Surcharge",
+                                            "amount": "0.00"
+                                        }
+                                        "YR": {
+                                            "title": "YR - Another Carrier-Imposed Surcharge",
+                                            "amount": "0.00"
+                                        }
+                                        "Other": 
+                                            "title": "Others taxes"
+                                            "amount": "0.00"
+                                    "group": 1,
+                                    "FareAlternativeLegKeys": 
+                                      "d8dc2aba34f74cd9a9f14f01c9720428|@3ad35c10-71a2-44fe-a857-c564efe80c32@7c119f81-7280-4591-9b29-a437d441b0f2@57a343dd-5c77-4a95-8bb6-46d75517ad17@e27f4fd0-e20f-4e8d-bcfd-17d296225c95"
+                                    "flight_key": "F1TT00152-225-1"
+                                    "get_branded_fare": "yes"
+                                    "no_of_stops_title": "1 Stop Flight"
+                                    "no_of_stops": 1,
+                                    "flight_time": "P1DT4H10M"
+                                    "transit_time": "PT22H5M"
+                                    
+                                    "fareBasisCode": "SOW1BD"
+                                    "booking_code": "Economy Class"
+                                    "routes": "DXB"
+                        "fare_rules": 
+                                "refundable_data": null,
+                                "refundable": "non-refundable"
+                                "change_before_departure": "not-available"
+                        "total_price": 171972.21,
+                        "filter": 
+                            "id": "F1TT00152-47"
+                            "price": 171972.21,
+                            "journey_duration": "PT"
+                            "journey_duration_seconds": null,
+                            "layover_duration": "PT"
+                            "layover_duration_seconds": null,
+                            "carrier_operating": "EK"
+                            "carrier_marketing": "EK"
+                            "aircraft": "77W"
+                            "aircraft_name": null,
+                            "cabin_class": "Economy Class"
+                            "connecting_airport": []
+                            "total_segment_count": 1,
+                            "no_of_stops": 0,
+                            "departure_timing_slot": "evening"
+                            "departure_departure_time": "2026-03-02T18:45:00"
+                            "arrival_timing_slot": "morning"
+                            "arrival_departure_time": "2026-03-28T10:50:00"
+                            "refund": "non-refundable"
+                            "baggage_value": null,
+                            "baggage_unit": null,
+                            "baggage_title": "no-baggage"
+                  "filter_unique_filter_code":          "dac202603021845dxb202603022215587dxb202603280210dac202603281050148"
+                  "destination_reach_time": "PT"
+                  "destination_reach_timestamp": null
+                  "filter_data": 
+                      "lowest_price": 
+                          "id": "F1TT00152-225"
+                          "price": 23486.84,
+                          "gross_total": null,
+                          "journey_duration": "PT"
+                          "journey_duration_seconds": null,
+                          "layover_duration": "PT"
+                          "layover_duration_seconds": null,
+                          "carrier_operating": "UL"
+                          "carrier_marketing": "UL"
+                          "departure_timing_slot": "afternoon"
+                          "departure_departure_time": "2026-03-02T13:00:00"
+                          "arrival_timing_slot": "morning"
+                          "arrival_departure_time": "2026-03-29T11:50:00"
+                  "highest_price": 
+                          "id": "F1TT00152-41"
+                          "price": 171972.21,
+                          "gross_total": null,
+                          "journey_duration": "PT"
+                          "journey_duration_seconds": null,
+                          "layover_duration": "PT"
+                          "layover_duration_seconds": null,
+                          "carrier_operating": "BG"
+                          "carrier_marketing": "BG"
+                          "departure_timing_slot": "evening"
+                          "departure_departure_time": "2026-03-02T20:40:00"
+                          "arrival_timing_slot": "night"
+                          "arrival_departure_time": "2026-03-28T23:00:00"
+                  "lowest_layover_time": 
+                        "id": "F1TT00152-0"
+                        "price": 24628.42,
+                        "gross_total": null,
+                        "journey_duration": "PT"
+                        "journey_duration_seconds": null,
+                        "layover_duration": "PT"
+                        "layover_duration_seconds": null,
+                        "carrier_operating": "BG"
+                        "carrier_marketing": "BG"
+                        "departure_timing_slot": "evening"
+                        "departure_departure_time": "2026-03-02T20:40:00"
+                        "arrival_timing_slot": "morning"
+                        "arrival_departure_time": "2026-03-28T10:50:00"
+                  "highest_layover_time": 
+                        "id": "F1TT00152-0"
+                        "price": 24628.42,
+                        "gross_total": null,
+                        "journey_duration": "PT"
+                        "journey_duration_seconds": null,
+                        "layover_duration": "PT"
+                        "layover_duration_seconds": null,
+                        "carrier_operating": "BG"
+                        "carrier_marketing": "BG"
+                        "departure_timing_slot": "evening"
+                        "departure_departure_time": "2026-03-02T20:40:00"
+                        "arrival_timing_slot": "morning"
+                        "arrival_departure_time": "2026-03-28T10:50:00"
+                  "fastest_duration": 
+                        "id": "F1TT00152-0"
+                        "price": 24628.42,
+                        "gross_total": null,
+                        "journey_duration": "PT"
+                        "journey_duration_seconds": null,
+                        "layover_duration": "PT"
+                        "layover_duration_seconds": null,
+                        "carrier_operating": "BG"
+                        "carrier_marketing": "BG"
+                        "departure_timing_slot": "evening"
+                        "departure_departure_time": "2026-03-02T20:40:00"
+                        "arrival_timing_slot": "morning"
+                        "arrival_departure_time": "2026-03-28T10:50:00"
+                  "highest_duration": 
+                        "id": "F1TT00152-0"
+                        "price": 24628.42,
+                        "gross_total": null,
+                        "journey_duration": "PT"
+                        "journey_duration_seconds": null,
+                        "layover_duration": "PT"
+                        "layover_duration_seconds": null,
+                        "carrier_operating": "BG"
+                        "carrier_marketing": "BG"
+                        "departure_timing_slot": "evening"
+                        "departure_departure_time": "2026-03-02T20:40:00"
+                        "arrival_timing_slot": "morning"
+                        "arrival_departure_time": "2026-03-28T10:50:00"
+                  "lowest_departure_time": 
+                        "id": "F1TT00152-3"
+                        "price": 31722.32,
+                        "gross_total": null,
+                        "journey_duration": "PT"
+                        "journey_duration_seconds": null,
+                        "layover_duration": "PT"
+                        "layover_duration_seconds": null,
+                        "carrier_operating": "EK"
+                        "carrier_marketing": "EK"
+                        "departure_timing_slot": "midnight"
+                        "departure_departure_time": "2026-03-02T01:00:00"
+                        "arrival_timing_slot": "evening"
+                        "arrival_departure_time": "2026-03-28T17:00:00"
+                  "take_off": {
+                      "0": "evening",
+                      "1": "afternoon",
+                      "2": "morning",
+                      "3": "midnight",
+                      "7": "night",
+                      "158": "early-morning"
+                  }
+                  "landing_time": {
+                      "0": "morning",
+                      "2": "midnight",
+                      "3": "evening",
+                      "8": "night",
+                      "12": "early-morning",
+                      "18": "afternoon"
+                   }
+                  "carrier": 
+                  "operating": [
+                                  "8D",
+                                  "AI",
+                                  "BG",
+                                  "EK",
+                                  "FZ",
+                                  "GF",
+                                  "KU",
+                                  "MU",
+                                  "OD",
+                                  "QR",
+                                  "SV",
+                                  "TK",
+                                  "UL"
+                              ]
+                  "marketing": [
+                                  "8D",
+                                  "AI",
+                                  "BG",
+                                  "EK",
+                                  "FZ",
+                                  "GF",
+                                  "KU",
+                                  "MU",
+                                  "OD",
+                                  "QR",
+                                  "SV",
+                                  "TK",
+                                  "UL"
+                              ]
+                  "baggage": [
+                              {
+                                  "baggage_value": null,
+                                  "baggage_unit": null,
+                                  "baggage_title": "no-baggage"
+                              }
+                          ]
+                  "connecting_airport": [
+                                    "BAH",
+                                    "BOM",
+                                    "CAI",
+                                    "CAN",
+                                    "CGP",
+                                    "CMB",
+                                    "DEL",
+                                    "DOH",
+                                    "DXB",
+                                    "IST",
+                                    "JED",
+                                    "KMG",
+                                    "KUL",
+                                    "KWI",
+                                    "RUH"
+                                ]
+                  "no_of_stops": [
+                                    0,
+                                    1,
+                                    2,
+                                    3,
+                                    5,
+                                    7
+                  ]
+                  search_parameter": 
+                      "journey_type": "RoundTrip"
+                      "segment": [
+                                  {
+                                      "departure_airport_type": "AIRPORT",
+                                      "departure_airport": "DAC",
+                                      "arrival_airport_type": "AIRPORT",
+                                      "arrival_airport": "DXB",
+                                      "departure_date": "2026-02-30"
+                                  },
+                                  {
+                                      "departure_airport_type": "AIRPORT",
+                                      "departure_airport": "DXB",
+                                      "arrival_airport_type": "AIRPORT",
+                                      "arrival_airport": "DAC",
+                                      "departure_date": "2026-03-28"
+                                  }
+                      ]
+                      "travelers_adult": 1,
+                      "travelers_child": 0,
+                      "travelers_child_age": 0,
+                      "travelers_infants": 0,
+                      "travelers_infants_age": []
+                      "fare_type": null,
+                      "fare_option": null,
+                      "content_type": null,
+                      "ptc_option": null,
+                      "agency_ethnic_list": null,
+                      "preferred_carrier": []
+                      "non_stop_flight": "any"
+                      "baggage_option": "any"
+                      "booking_class": "Economy"
+                      "supplier_uid": "all"
+                      "partner_id": "1"
+                      "language": "en"
+                      "short_ref": "xxxx111"
+                      "version": null,
+                      "team_profile": null
+                  "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/flight_logs/11177139058426194IFF1Q/search_result.json"
+                  "beforeSearchduration": "1 seconds"
+        
+                
+    
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
-  /flight/search-calender:
+  /flight/search-Multicity:
     post:
       tags: [Flight]
       summary: Search calendar fares for +/- days
@@ -381,24 +900,40 @@ paths:
               additionalProperties: true
             examples:
               default:
-                value:
-                  member_id: "1"
-                  calendar_days: "7"
-                  journey_type: OneWay
-                  preferred_carrier: [""]
-                  departure_airport: [DAC]
-                  arrival_airport: [CXB]
-                  departure_date: ["2025-07-24"]
-                  arrival_date: 2025-07-24
-                  travelers_adult: "1"
-                  travelers_child: "0"
-                  travelers_infants: "0"
-                  non_stop_flight: any
-                  baggage_option: any
-                  booking_class: Economy
-                  supplier_uid: all
-                  partner_id: "1"
-                  language: en
+               value:
+                journey_type: "RoundTrip" # OneWay, RoundTrip, MultiCity
+                segment:
+                  - departure_airport_type: "AIRPORT" # CITY or AIRPORT
+                    departure_airport: "DAC"
+                    arrival_airport_type: "AIRPORT" # CITY or AIRPORT
+                    arrival_airport: "DXB"
+                    departure_date: "2026-02-30"
+
+                  - departure_airport_type: "AIRPORT" # CITY or AIRPORT
+                    departure_airport: "DXB"
+                    arrival_airport_type: "AIRPORT" # CITY or AIRPORT
+                    arrival_airport: "DAC"
+                    departure_date: "2026-03-28" # "2026-01-31"
+
+                  - departure_airport_type: "AIRPORT" # CITY or AIRPORT
+                    departure_airport: "DXB"
+                    arrival_airport_type: "AIRPORT" # CITY or AIRPORT
+                    arrival_airport: "DAC"
+                    departure_date: "2026-03-28" # "2026-01-31"
+                travelers_adult: 1
+                travelers_child: 0
+                travelers_child_age: 0
+                travelers_infants: 0
+                travelers_infants_age: []
+                preferred_carrier: []
+                non_stop_flight: "any" # any or non-stop
+                baggage_option: "any" # any or only-baggage
+                booking_class: "Economy" # Economy, Premium-Economy, Business, First-Class
+                supplier_uid: "F1TT00152" # all//F1EC00009//F1TT00013
+                partner_id: "" # ftm_partner_id / mark blank
+                short_ref: "xxxx111" # optional for stream search
+                language: "en"
+        
       responses:
         '200':
           description: Calendar fare search results
@@ -407,41 +942,945 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              example:
+                default:
+                summary:
+                value:
+                   "status": "success"
+                   "search_duration": "120 seconds"
+                   "timestamp": "1771398099"
+                   "search_complete": "2026-02-18 13:01:39"
+                   "tracking_id": "11177139798126194GPE53"
+                   "ftm_partner_id": "1"
+                   "partner_id": "1"
+                   "partner_name": "Innovate Solution"
+                   "message": null,
+                   "total_fight": 344,
+                   "currency": "BDT"
+                   "resources": 
+                      "base_url": 
+                          "carrier": "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/icon"
+                          "aircraft": "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/aircraft"
+                "data": 
+        
+                  "flight_group": 
+                
+                      "group": 1,
+                      "flight_key": "F1EC00117-0-0"
+                      "no_of_stops_title": "Direct Flight"
+                      "no_of_stops": 0,
+                      "flight_time": "PT5H25M"
+                      "transit_time": null,
+                      "ShoppingResponseID": "XB22F9DE3-AED0-44C1-AD6"
+                      "Owner": "EK"
+                      "OfferID": "XB22F9DE3-AED0-44C1-AD6-1"
+                      "PriceClassRef": "Xpc07000b69563a0"
+                      "OriginDestinationKey": "OD1"
+                      "routes":
+                            "air_segment_key": "Isgm02000b69563a0"
+                            "origin": "DAC"
+                            "departure_time": "2026-02-20 01:00"
+                            "origin_terminal": "1"
+                            "origin_airport":
+                                "name": "Hazrat Shahjalal International Airport"
+                                "city": "Dhaka"
+                                "country": "Bangladesh"
+                                "timezone": "Asia/Dhaka"
+                            "destination": "DXB"
+                            "arrival_time": "2026-02-20 04:25"
+                            "destination_terminal": "3"
+                            "destination_airport": {
+                                "name": "Dubai International Airport",
+                                "city": "Dubai",
+                                "country": "United Arab Emirates",
+                                "timezone": "Asia/Dubai"
+                            }
+                            "flight_date": "2026-02-20"
+                            "flight_time": "PT05H25M"
+                            "distance": "2196"
+                            "lay_over": "not-applicable"
+                            "lay_over_date": "not-applicable"
+                            "aircraft": {
+                                "code": "77W",
+                                "name": "Boeing 777-300ER Passenger",
+                                "picture": "77W.png"
+                            }
+                            "operating": {
+                                "carrier": "EK",
+                                "carrier_name": "Emirates",
+                                "carrier_logo": "EK.png",
+                                "flight_number": "585"
+                            }
+                            "marketing": {
+                                "carrier": "EK",
+                                "carrier_name": "Emirates",
+                                "carrier_logo": "EK.png",
+                                "flight_number": "585"
+                            }
+                            "booking_class": {
+                                "cabin_class": "ECONOMY",
+                                "cabin_code": "Y",
+                                "booking_code": "K",
+                                "meal_code": null,
+                                "seat_available": 5
+                            }
+                            "baggages": 
+                                "checked": 
+                                    "ADT": 
+                                        "passenger_type": "ADT"
+                                        "baggage_type": "checked"
+                                        "pieceCount": null,
+                                        "weight": "30"
+                                        "unit": "kg"
+                                        "title": "30 kg"
+                            "carry_on": 
+                                    "ADT": 
+                                        "passenger_type": "ADT"
+                                        "baggage_type": "carry_on"
+                                        "pieceCount": "1"
+                                        "weight": null,
+                                        "unit": "pieces"
+                                        "title": "1 pieces"
+                            "price": 
+                                  "currency": "BDT"
+                                  "total": 93452,
+                                  "gross_total": 93452,
+                                  "base_fare": 79885,
+                                  "tax": 13567,
+                                  "sell": {
+                                      "currency": "BDT",
+                                      "total": 93452,
+                                      "base_fare": 79885,
+                                      "tax": 13567
+                                  }
+                                  "price_hash": "eyJmbWciOnsiY3VycmVuY3kiOiJCRFQiLCJ0b3RhbCI6OTM0NTIsImJhc2VfZmFyZSI6Nzk4ODUsInRheCI6MTM1Njd9LCJzdXBwbGllciI6eyJjdXJyZW5jeSI6IkJEVCIsInRvdGFsIjo5MzQ1MiwiYmFzZV9mYXJlIjo3OTg4NSwidGF4IjoxMzU2NywiY29taXNzaW9uX3R5cGUiOiJnZW5lcmFsIiwiY29taXNzaW9uX3ZhbHVlIjowfSwiZ3Jvc3NfZmFyZSI6eyJjdXJyZW5jeSI6IkJEVCIsInRvdGFsIjo5MzQ1MiwiYmFzZV9mYXJlIjo3OTg4NSwidGF4IjoxMzU2N319"
+                            "price_breakdown": 
+                            
+                                "passenger_id": "1"
+                                "supplier_pax_id": "1"
+                                "passenger_type": "ADT"
+                                "primary_ptc": "ADT"
+                                "ptc_title": "Adult"
+                                "passenger_total": 1,
+                                "pax_calculate_type": "yes"
+                                "comission_type": ""
+                                "comission_value": ""
+                                "currency": "BDT"
+                                "total": 93452,
+                                "base_fare": 79885,
+                                "tax": 13567,
+                                "ticket_issue_charge": 0,
+                                "total_ticket_issue_charge": 0,
+                                "gross": {
+                                    "base_fare": "79885.00",
+                                    "tax": "13567.00",
+                                    "discount": 0,
+                                    "ait": "0.00",
+                                    "service_charge": 0
+                                }
+                                "partner": 
+                                    "currency": "BDT"
+                                    "total": 93452,
+                                    "base_fare": 79885,
+                                    "tax": 13567,
+                                    "gross": 
+                                        "base_fare": "79885.00"
+                                        "tax": "13567.00"
+                                        "discount": "0.00"
+                                        "ait": "0.00"
+                                        "service_charge": 0
+                                "taxBreakdown":
+                                        "BD": {
+                                            "title": "BD -Embarkation Fee (Domestic/International)",
+                                            "amount": "0.00"
+                                        }
+                                        "UT": {
+                                            "title": "UT - Foreign Air Travel Tax (FATT)",
+                                            "amount": "0.00"
+                                        }
+                                        "E5": {
+                                            "title": "E5 - Value Added Tax on Embarkation Fees",
+                                            "amount": "0.00"
+                                        }
+                                        "YQ": {
+                                            "title": "YQ – Carrier-Imposed Surcharge/Fuel Surcharge",
+                                            "amount": "0.00"
+                                        }
+                                        "YR": {
+                                            "title": "YR – Another Carrier-Imposed Surcharge",
+                                            "amount": "0.00"
+                                        }
+                                        "Other": 
+                                            "title": "Others taxes"
+                                            "amount": "0.00"
+                                        "priceHash":    "eyJmbWciOnsiY3VycmVuY3kiOiJCRFQiLCJ0b3RhbCI6IjkzNDUyLjAwIiwiYmFzZV9mYXJlIjoiNzk4ODUuMDAiLCJ0YXgiOiIxMzU2Ny4wMCIsImdyb3NzIjp7ImJhc2VfZmFyZSI6Ijc5ODg1LjAwIiwidGF4IjoiMTM1NjcuMDAiLCJkaXNjb3VudCI6IjAuMDAiLCJhaXQiOiIwLjAwIiwic2VydmljZV9jaGFyZ2UiOiIwLjAwIn0sImNvbmZpZyI6eyJtYXJrdXBfdHlwZSI6bnVsbCwibWFya3VwX3RpdGxlIjpudWxsLCJyZXZlbnVlIjoiMC4wMCIsInRpY2tldF9pc3N1ZV9jaGFyZ2UiOiIwLjAwIiwidG90YWxfdGlja2V0X2lzc3VlX2NoYXJnZSI6IjAuMDAiLCJjdXJyZW5jeUV4Y2hhbmdlUmF0ZSI6IjEuMDAiLCJGTUdfT3ZlcndyaXRlUnVsZXMiOltdfX0sInN1cHBsaWVyIjp7ImN1cnJlbmN5IjoiQkRUIiwidG90YWwiOiI5MzQ1Mi4wMCIsImJhc2VfZmFyZSI6Ijc5ODg1LjAwIiwidGF4IjoiMTM1NjcuMDAiLCJncm9zcyI6eyJiYXNlX2ZhcmUiOiI3OTg4NS4wMCIsInRheCI6IjEzNTY3LjAwIiwiZGlzY291bnQiOiIwLjAwIiwiYWl0IjoiMC4wMCIsInNlcnZpY2VfY2hhcmdlIjowLCJwZXJfc2VnbWVudF9kaXNjb3VudCI6MCwic2VnbWVudF9kaXNjb3VudCI6IjAuMDAiLCJzdXBwbGllcl9zZWdtZW50X2ZlZXNDYWxjdWxhdGUiOm51bGwsInNlZ21lbnRfZGlzY291bnRfYWNjb3VudFB1cnBvc2UiOm51bGx9fSwiZ3Jvc3NfZmFyZSI6eyJjdXJyZW5jeSI6IkJEVCIsInRvdGFsIjoiOTM0NTIuMDAiLCJiYXNlX2ZhcmUiOiI3OTg4NS4wMCIsInRheCI6IjEzNTY3LjAwIiwiZGlzY291bnQiOiIwLjAwIiwiYWl0IjoiMC4wMCIsInNlcnZpY2VfY2hhcmdlIjoiMC4wMCIsInBheWFibGUiOjkzNDUyLCJ0YXhCcmVha2Rvd24iOnsiQkQiOnsiYW1vdW50IjoiMC4wMCJ9LCJVVCI6eyJhbW91bnQiOiIwLjAwIn0sIkU1Ijp7ImFtb3VudCI6IjAuMDAifSwiWVEiOnsiYW1vdW50IjoiMC4wMCJ9LCJZUiI6eyJhbW91bnQiOiIwLjAwIn0sIk90aGVyIjp7ImFtb3VudCI6IjAuMDAifSwic3VwcGxpZXJUYXhEYXRhIjpbXX19LCJkaXNjb3VudF9jb21pc3Npb25fdGl0bGUiOm51bGwsImRpc2NvdW50X2NvbWlzc2lvbl9yYXRpbyI6MCwiZHluYW1pY19tYXJrdXBfdHlwZSI6bnVsbCwiZHluYW1pY19tYXJrdXBfdGl0bGUiOm51bGwsImR5bmFtaWNfbWFya3VwX3JhdGlvIjpudWxsLCJhcHBsaWNhYmxlX2NvbWlzc2lvbiI6bnVsbCwiYXBwbGljYWJsZV9keW5hbWljX21hcmt1cCI6bnVsbH0="
+
+                            "group": 1
+                            "flight_key": "F1EC00117-0-1"
+                            "no_of_stops_title": "Direct Flight"
+                            "no_of_stops": 0,
+                            "transit_time": null,
+                            "ShoppingResponseID": "XB22F9DE3-AED0-44C1-AD6"
+                            "Owner": "EK"
+                            "OfferID": "XB22F9DE3-AED0-44C1-AD6-4"
+                            "PriceClassRef": "Xpc18000b69563a0"
+                            "OriginDestinationKey": "OD1"
+                            "routes": 
+                                  "air_segment_key": "Isgm02000b69563a0"
+                                  "origin": "DAC"
+                                  "departure_time": "2026-02-20 01:00"
+                                  "origin_terminal": "1"
+                                  "origin_airport": 
+                                  "name": "Hazrat Shahjalal International Airport"
+                                  "city": "Dhaka"
+                                  "country": "Bangladesh"
+                                  "timezone": "Asia/Dhaka"
+
+                                  "destination": "DXB"
+                                  "arrival_time": "2026-02-20 04:25"
+                                  "destination_terminal": "3"
+                                  "destination_airport": 
+                                      "name": "Dubai International Airport"
+                                      "city": "Dubai"
+                                      "country": "United Arab Emirates"
+                                      "timezone": "Asia/Dubai"
+                                  "flight_date": "2026-02-20"
+                                  "flight_time": "PT05H25M"
+                                  "distance": "2196"
+                                  "lay_over": "not-applicable"
+                                  "lay_over_date": "not-applicable"
+                                  "aircraft": 
+                                      "code": "77W"
+                                      "name": "Boeing 777-300ER Passenger"
+                                      "picture": "77W.png"
+                            
+                                  "operating": 
+                                    "carrier": "EK"
+                                    "carrier_name": "Emirates"
+                                    "carrier_logo": "EK.png"
+                                    "flight_number": "585"
+                            
+                                  "marketing": 
+                                    "carrier": "EK"
+                                    "carrier_name": "Emirates"
+                                    "carrier_logo": "EK.png"
+                                    "flight_number": "585"
+                            
+                                  "booking_class": 
+                                    "cabin_class": "ECONOMY"
+                                    "cabin_code": "Y"
+                                    "booking_code": "R"
+                                    "meal_code": null,
+                                    "seat_available": 5
+                                  "baggages": 
+                                  "checked": 
+                                    "ADT": 
+                                        "passenger_type": "ADT"
+                                        "baggage_type": "checked"
+                                        "pieceCount": null,
+                                        "weight": "35"
+                                        "unit": "kg"
+                                        "title": "35 kg"
+                                    
+                                
+                                  "carry_on": 
+                                    "ADT": 
+                                        "passenger_type": "ADT"
+                                        "baggage_type": "carry_on"
+                                        "pieceCount": "1"
+                                        "weight": null,
+                                        "unit": "pieces"
+                                        "title": "1 pieces"
+                                  "price": 
+                                        "currency": "BDT"
+                                        "total": 209535,
+                                        "gross_total": 209535,
+                                        "base_fare": 195968,
+                                        "tax": 13567,
+                                        "sell": 
+                                              "currency": "BDT"
+                                              "total": 209535,
+                                              "base_fare": 195968,
+                                              "tax": 13567
+                                  "price_hash":   "eyJmbWciOnsiY3VycmVuY3kiOiJCRFQiLCJ0b3RhbCI6MjA5NTM1LCJiYXNlX2ZhcmUiOjE5NTk2OCwidGF4IjoxMzU2N30sInN1cHBsaWVyIjp7ImN1cnJlbmN5IjoiQkRUIiwidG90YWwiOjIwOTUzNSwiYmFzZV9mYXJlIjoxOTU5NjgsInRheCI6MTM1NjcsImNvbWlzc2lvbl90eXBlIjoiZ2VuZXJhbCIsImNvbWlzc2lvbl92YWx1ZSI6MH0sImdyb3NzX2ZhcmUiOnsiY3VycmVuY3kiOiJCRFQiLCJ0b3RhbCI6MjA5NTM1LCJiYXNlX2ZhcmUiOjE5NTk2OCwidGF4IjoxMzU2N319"
+
+                                  "price_breakdown":
+                                          "passenger_id": "1"
+                                          "supplier_pax_id": "1"
+                                          "passenger_type": "ADT"
+                                          "primary_ptc": "ADT"
+                                          "ptc_title": "Adult"
+                                          "passenger_total": 1,
+                                          "pax_calculate_type": "yes"
+                                          "comission_type": ""
+                                          "comission_value": ""
+                                          "currency": "BDT"
+                                          "total": 209535,
+                                          "base_fare": 195968,
+                                          "tax": 13567,
+                                          "ticket_issue_charge": 0,
+                                          "total_ticket_issue_charge": 0,
+                                          "gross": 
+                                              "base_fare": "195968.00"
+                                              "tax": "13567.00"
+                                              "discount": 0,
+                                              "ait": "0.00"
+                                              "service_charge": 0
+                                          "partner": 
+                                              "currency": "BDT"
+                                              "total": 209535,
+                                              "base_fare": 195968,
+                                              "tax": 13567,
+                                              "gross": {
+                                                  "base_fare": "195968.00",
+                                                  "tax": "13567.00",
+                                                  "discount": "0.00",
+                                                  "ait": "0.00",
+                                                  "service_charge": 0
+                                              }
+                                              "taxBreakdown": 
+                                                  "BD": {
+                                                      "title": "BD -Embarkation Fee (Domestic/International)",
+                                                      "amount": "0.00"
+                                                  }
+                                                  "UT": {
+                                                      "title": "UT - Foreign Air Travel Tax (FATT)",
+                                                      "amount": "0.00"
+                                                  }
+                                                  "E5": {
+                                                      "title": "E5 - Value Added Tax on Embarkation Fees",
+                                                      "amount": "0.00"
+                                                  }
+                                                  "YQ": {
+                                                      "title": "YQ – Carrier-Imposed Surcharge/Fuel Surcharge",
+                                                      "amount": "0.00"
+                                                  }
+                                                  "YR": {
+                                                      "title": "YR – Another Carrier-Imposed Surcharge",
+                                                      "amount": "0.00"
+                                                  }
+                                                  "Other": {
+                                                      "title": "Others taxes",
+                                                      "amount": "0.00"
+                                                  }
+                                              "priceHash": "eyJmbWciOnsiY3VycmVuY3kiOiJCRFQiLCJ0b3RhbCI6IjIwOTUzNS4wMCIsImJhc2VfZmFyZSI6IjE5NTk2OC4wMCIsInRheCI6IjEzNTY3LjAwIiwiZ3Jvc3MiOnsiYmFzZV9mYXJlIjoiMTk1OTY4LjAwIiwidGF4IjoiMTM1NjcuMDAiLCJkaXNjb3VudCI6IjAuMDAiLCJhaXQiOiIwLjAwIiwic2VydmljZV9jaGFyZ2UiOiIwLjAwIn0sImNvbmZpZyI6eyJtYXJrdXBfdHlwZSI6bnVsbCwibWFya3VwX3RpdGxlIjpudWxsLCJyZXZlbnVlIjoiMC4wMCIsInRpY2tldF9pc3N1ZV9jaGFyZ2UiOiIwLjAwIiwidG90YWxfdGlja2V0X2lzc3VlX2NoYXJnZSI6IjAuMDAiLCJjdXJyZW5jeUV4Y2hhbmdlUmF0ZSI6IjEuMDAiLCJGTUdfT3ZlcndyaXRlUnVsZXMiOltdfX0sInN1cHBsaWVyIjp7ImN1cnJlbmN5IjoiQkRUIiwidG90YWwiOiIyMDk1MzUuMDAiLCJiYXNlX2ZhcmUiOiIxOTU5NjguMDAiLCJ0YXgiOiIxMzU2Ny4wMCIsImdyb3NzIjp7ImJhc2VfZmFyZSI6IjE5NTk2OC4wMCIsInRheCI6IjEzNTY3LjAwIiwiZGlzY291bnQiOiIwLjAwIiwiYWl0IjoiMC4wMCIsInNlcnZpY2VfY2hhcmdlIjowLCJwZXJfc2VnbWVudF9kaXNjb3VudCI6MCwic2VnbWVudF9kaXNjb3VudCI6IjAuMDAiLCJzdXBwbGllcl9zZWdtZW50X2ZlZXNDYWxjdWxhdGUiOm51bGwsInNlZ21lbnRfZGlzY291bnRfYWNjb3VudFB1cnBvc2UiOm51bGx9fSwiZ3Jvc3NfZmFyZSI6eyJjdXJyZW5jeSI6IkJEVCIsInRvdGFsIjoiMjA5NTM1LjAwIiwiYmFzZV9mYXJlIjoiMTk1OTY4LjAwIiwidGF4IjoiMTM1NjcuMDAiLCJkaXNjb3VudCI6IjAuMDAiLCJhaXQiOiIwLjAwIiwic2VydmljZV9jaGFyZ2UiOiIwLjAwIiwicGF5YWJsZSI6MjA5NTM1LCJ0YXhCcmVha2Rvd24iOnsiQkQiOnsiYW1vdW50IjoiMC4wMCJ9LCJVVCI6eyJhbW91bnQiOiIwLjAwIn0sIkU1Ijp7ImFtb3VudCI6IjAuMDAifSwiWVEiOnsiYW1vdW50IjoiMC4wMCJ9LCJZUiI6eyJhbW91bnQiOiIwLjAwIn0sIk90aGVyIjp7ImFtb3VudCI6IjAuMDAifSwic3VwcGxpZXJUYXhEYXRhIjpbXX19LCJkaXNjb3VudF9jb21pc3Npb25fdGl0bGUiOm51bGwsImRpc2NvdW50X2NvbWlzc2lvbl9yYXRpbyI6MCwiZHluYW1pY19tYXJrdXBfdHlwZSI6bnVsbCwiZHluYW1pY19tYXJrdXBfdGl0bGUiOm51bGwsImR5bmFtaWNfbWFya3VwX3JhdGlvIjpudWxsLCJhcHBsaWNhYmxlX2NvbWlzc2lvbiI6bnVsbCwiYXBwbGljYWJsZV9keW5hbWljX21hcmt1cCI6bnVsbH0="
+
+                                              "group": 2,
+                                              "FareAlternativeLegKeys": 
+                                                "3a1f246fde7e40889f8f5e1078afabf6|    @902a36c2-90f3-4907-b074-fb8b91968aca@ae69f9cc-50f6-4b90-9fe0-75b84efad3ac@13d0ccfa-f78b-4717-99d7-bfc99a4f93ea@02ed517c-6f54-45eb-85d6-1ceeecc6aa8b"
+                                          "flight_key": "F1TT00152-39"
+                                          "get_branded_fare": "yes"
+                                          "no_of_stops_title": "1 Stop Flight"
+                                          "no_of_stops": 1
+                                          "flight_time": "PT20H20M"
+                                          "transit_time": "PT11H"
+                                          
+                                          "fareBasisCode": "SRIEGO"
+                                          "booking_code": "Economy Class"
+                                          "routes":
+                                                  "AlternativeRef": "4be6a345-7fe6-46c7-80ab-b405758b40da"
+                                                  "air_segment_key": "e1ecf07b-0e31-4f15-935d-fb9e949ea762"
+                                                  "origin": "DXB"
+                                                  "departure_time": "2026-03-22T20:15:00"
+                                                  "origin_terminal": null,
+                                                  "origin_airport": {
+                                                      "name": "Dubai International Airport",
+                                                      "city": "Dubai",
+                                                      "country": "United Arab Emirates",
+                                                      "timezone": "Asia/Dubai"
+                                                  }
+                                                  "destination": "CAI"
+                                                  "arrival_time": "2026-03-22T22:25:00"
+                                                  "destination_terminal": null,
+                                                  "destination_airport": {
+                                                      "name": "Cairo International Airport",
+                                                      "city": "Cairo",
+                                                      "country": "Egypt",
+                                                      "timezone": "Africa/Cairo"
+                                                  }
+                                                  "flight_date": "2026-03-22"
+                                                  "flight_time": "PT4H10M"
+                                                  "distance": null,
+                                                  "lay_over": "not-applicable"
+                                                  "lay_over_date": "not-applicable"
+                                                  "aircraft": {
+                                                      "code": "738",
+                                                      "name": null,
+                                                      "picture": "738.png"
+                                                  }
+                                                  "operating": {
+                                                      "carrier": "MS",
+                                                      "carrier_name": "Egyptair",
+                                                      "carrier_logo": "MS.png",
+                                                      "flight_number": "906"
+                                                  }
+                                                  "marketing": {
+                                                      "carrier": "MS",
+                                                      "carrier_name": "Egyptair",
+                                                      "carrier_logo": "MS.png",
+                                                      "flight_number": "906"
+                                                  }
+                                                  "booking_class": { 
+                                                      "cabin_class": "Economy Class",
+                                                      "cabin_code": "S"
+                                                      
+                                                  }
+
+                                                  "baggages": 
+                                                    "checked": 
+                                                        "ADT": 
+                                                            "ptc_title": "Adult"
+                                                            "passenger_type": "ADT"
+                                                            "baggage_type": "checked"
+                                                            "pieceCount": "2"
+                                                            "weight": null,
+                                                            "unit": "Piece"
+                                                            "title": "/ 2 piece"
+                                                  "carry_on":
+                                                        "ADT": 
+                                                            "ptc_title": "Adult"
+                                                            "passenger_type": "ADT"
+                                                            "baggage_type": "carry_on"
+                                                            "pieceCount": "SB"
+                                                            "weight": "SB"
+                                                            "unit": "SB"
+                                                            "title": "SB"
+                                          "AlternativeRef": "4be6a345-7fe6-46c7-80ab-b405758b40da"
+                                          "air_segment_key": "c79a1af9-26d2-4b77-8565-ca8a5e6b54ab"
+                                          "origin": "CAI"
+                                          "departure_time": "2026-03-23T09:25:00"
+                                          "origin_terminal": null,
+                                          "origin_airport": 
+                                              "name": "Cairo International Airport"
+                                              "city": "Cairo"
+                                              "country": "Egypt"
+                                              "timezone": "Africa/Cairo"
+                                          "destination": "LHR"
+                                          "arrival_time": "2026-03-23T12:35:00"
+                                          "destination_terminal": null,
+                                          "destination_airport": {
+                                               "name": "London Heathrow Airport",
+                                               "city": "London",
+                                               "country": "United Kingdom",
+                                               "timezone": "Europe/London"
+                                                  }
+
+                                          "flight_date": "2026-03-23"
+                                          "distance": null,
+                                          "lay_over": "PT11H00M"
+                                          "lay_over_date": "not-applicable"
+                                          "aircraft": {
+                                                "code": "773",
+                                                "name": null,
+                                                "picture": "773.png"
+                                                  }
+                                          "operating": {
+                                                "carrier": "MS",
+                                                "carrier_name": "Egyptair",
+                                                "carrier_logo": "MS.png",
+                                                "flight_number": "777"
+                                                  }
+                                          "marketing": {
+                                                "carrier": "MS",
+                                                "carrier_name": "Egyptair",
+                                                "carrier_logo": "MS.png",
+                                                "flight_number": "777"
+                                                  }
+                                          "booking_class": {
+                                                "cabin_class": "Economy Class",
+                                                "cabin_code": "S",
+                                                "booking_code": "Economy Class",
+                                                "meal_code": null,
+                                                "fareBasisCode": "SRIEGO",
+                                                "seat_available": 9
+                                                  }
+                                          "baggages": 
+                                              "checked": {
+                                                  "ADT": {
+                                                      "ptc_title": "Adult",
+                                                      "passenger_type": "ADT",
+                                                      "baggage_type": "checked",
+                                                      "pieceCount": "2",
+                                                      "weight": null,
+                                                      "unit": "Piece",
+                                                      "title": "/ 2 piece"
+                                                        }
+                                                      }
+                                          "carry_on": 
+                                                   "ADT": 
+                                                      "ptc_title": "Adult"
+                                                      "passenger_type": "ADT"
+                                                      "baggage_type": "carry_on"
+                                                      "pieceCount": "SB"
+                                                      "weight": "SB"
+                                                      "unit": "SB"
+                                                      "title": "SB"
+                                          "key": "3a1f246f-de7e-4088-9f8f-5e1078afabf6"
+                                          "price": 
+                                            "currency": "BDT"
+                                            "total": 59789.31,
+                                            "gross_total": 59789.31,
+                                            "base_fare": 40496.39,
+                                            "tax": 19292.92,
+                                            "sell": {
+                                                "currency": "BDT",
+                                                "total": 59789.31,
+                                                "base_fare": 40496.39,
+                                                "tax": 19292.92
+                                            }
+                                            "price_hash": "eyJmbWciOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6NTk3ODkuMzEsImJhc2VfZmFyZSI6NDA0OTYuMzksInRheCI6MTkyOTIuOTJ9LCJzdXBwbGllciI6eyJjdXJyZW5jeSI6IlRSWSIsInRvdGFsIjo1OTc4OS4zMSwiYmFzZV9mYXJlIjo0MDQ5Ni4zOSwidGF4IjoxOTI5Mi45MiwiY29taXNzaW9uX3R5cGUiOiJnZW5lcmFsIiwiY29taXNzaW9uX3ZhbHVlIjowfSwiZ3Jvc3NfZmFyZSI6eyJjdXJyZW5jeSI6IlRSWSIsInRvdGFsIjo1OTc4OS4zMSwiYmFzZV9mYXJlIjo0MDQ5Ni4zOSwidGF4IjoxOTI5Mi45Mn19"
+                                            "price_breakdown": 
+                                                            
+                                                                "passenger_id": "1"
+                                                                "supplier_pax_id": "1"
+                                                                "passenger_type": "ADT"
+                                                                "primary_ptc": "ADT"
+                                                                "ptc_title": "Adult"
+                                                                "passenger_total": 1,
+                                                                "pax_calculate_type": "yes"
+                                                                "comission_type": ""
+                                                                "comission_value": ""
+                                                                "currency": "BDT"
+                                                                "total": 59789.31,
+                                                                "base_fare": 40496.39,
+                                                                "tax": 19292.92,
+                                                                "ticket_issue_charge": 0,
+                                                                "total_ticket_issue_charge": 0,
+                                                                "gross": {
+                                                                    "base_fare": "40496.39",
+                                                                    "tax": "19292.92",
+                                                                    "discount": 0,
+                                                                    "ait": "0.00",
+                                                                    "service_charge": 0
+                                                                }
+                                                                "partner": {
+                                                                        "currency": "BDT",
+                                                                        "total": 59789.31,
+                                                                        "base_fare": 40496.39,
+                                                                        "tax": 19292.92,
+                                                                        "gross": {
+                                                                            "base_fare": "40496.39",
+                                                                            "tax": "19292.92",
+                                                                            "discount": "0.00",
+                                                                            "ait": "0.00",
+                                                                            "service_charge": 0
+                                                                        },
+                                                                        "taxBreakdown": {
+                                                                            "BD": {
+                                                                                "title": "BD -Embarkation Fee (Domestic/International)",
+                                                                                "amount": "0.00"
+                                                                            },
+                                                                            "UT": {
+                                                                                "title": "UT - Foreign Air Travel Tax (FATT)",
+                                                                                "amount": "0.00"
+                                                                            },
+                                                                            "E5": {
+                                                                                "title": "E5 - Value Added Tax on Embarkation Fees",
+                                                                                "amount": "0.00"
+                                                                            },
+                                                                            "YQ": {
+                                                                                "title": "YQ – Carrier-Imposed Surcharge/Fuel Surcharge",
+                                                                                "amount": "0.00"
+                                                                            },
+                                                                            "YR": {
+                                                                                "title": "YR – Another Carrier-Imposed Surcharge",
+                                                                                "amount": "0.00"
+                                                                            },
+                                                                            "Other": {
+                                                                                "title": "Others taxes",
+                                                                                "amount": "0. 00"
+                                                                            }
+                                                                        }
+                                                                    }
+                                          "priceHash": "eyJmbWciOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6IjU5Nzg5LjMxIiwiYmFzZV9mYXJlIjoiNDA0OTYuMzkiLCJ0YXgiOiIxOTI5Mi45MiIsImdyb3NzIjp7ImJhc2VfZmFyZSI6IjQwNDk2LjM5IiwidGF4IjoiMTkyOTIuOTIiLCJkaXNjb3VudCI6IjAuMDAiLCJhaXQiOiIwLjAwIiwic2VydmljZV9jaGFyZ2UiOiIwLjAwIn0sImNvbmZpZyI6eyJtYXJrdXBfdHlwZSI6bnVsbCwibWFya3VwX3RpdGxlIjpudWxsLCJyZXZlbnVlIjoiMC4wMCIsInRpY2tldF9pc3N1ZV9jaGFyZ2UiOiIwLjAwIiwidG90YWxfdGlja2V0X2lzc3VlX2NoYXJnZSI6IjAuMDAiLCJjdXJyZW5jeUV4Y2hhbmdlUmF0ZSI6IjEuMDAiLCJGTUdfT3ZlcndyaXRlUnVsZXMiOltdfX0sInN1cHBsaWVyIjp7ImN1cnJlbmN5IjoiVFJZIiwidG90YWwiOiI1OTc4OS4zMSIsImJhc2VfZmFyZSI6IjQwNDk2LjM5IiwidGF4IjoiMTkyOTIuOTIiLCJncm9zcyI6eyJiYXNlX2ZhcmUiOiI0MDQ5Ni4zOSIsInRheCI6IjE5MjkyLjkyIiwiZGlzY291bnQiOiIwLjAwIiwiYWl0IjoiMC4wMCIsInNlcnZpY2VfY2hhcmdlIjowLCJwZXJfc2VnbWVudF9kaXNjb3VudCI6MCwic2VnbWVudF9kaXNjb3VudCI6IjAuMDAiLCJzdXBwbGllcl9zZWdtZW50X2ZlZXNDYWxjdWxhdGUiOm51bGwsInNlZ21lbnRfZGlzY291bnRfYWNjb3VudFB1cnBvc2UiOm51bGx9fSwiZ3Jvc3NfZmFyZSI6eyJjdXJyZW5jeSI6IlRSWSIsInRvdGFsIjoiNTk3ODkuMzEiLCJiYXNlX2ZhcmUiOiI0MDQ5Ni4zOSIsInRheCI6IjE5MjkyLjkyIiwiZGlzY291bnQiOiIwLjAwIiwiYWl0IjoiMC4wMCIsInNlcnZpY2VfY2hhcmdlIjoiMC4wMCIsInBheWFibGUiOjU5Nzg5LjMxLCJ0YXhCcmVha2Rvd24iOnsiQkQiOnsiYW1vdW50IjoiMC4wMCJ9LCJVVCI6eyJhbW91bnQiOiIwLjAwIn0sIkU1Ijp7ImFtb3VudCI6IjAuMDAifSwiWVEiOnsiYW1vdW50IjoiMC4wMCJ9LCJZUiI6eyJhbW91bnQiOiIwLjAwIn0sIk90aGVyIjp7ImFtb3VudCI6IjAuMDAifSwic3VwcGxpZXJUYXhEYXRhIjpbXX19LCJkaXNjb3VudF9jb21pc3Npb25fdGl0bGUiOm51bGwsImRpc2NvdW50X2NvbWlzc2lvbl9yYXRpbyI6MCwiZHluYW1pY19tYXJrdXBfdHlwZSI6bnVsbCwiZHluYW1pY19tYXJrdXBfdGl0bGUiOm51bGwsImR5bmFtaWNfbWFya3VwX3JhdGlvIjpudWxsLCJhcHBsaWNhYmxlX2NvbWlzc2lvbiI6bnVsbCwiYXBwbGljYWJsZV9keW5hbWljX21hcmt1cCI6bnVsbH0="
+                            "fare_rules": {
+                                        "refundable_data": null,
+                                        "refundable": "non-refundable",
+                                        "change_before_departure": "not-available"
+                                          }
+                            "total_price": 59789.31,
+                            "filter": {
+                                "id": "F1TT00152-39",
+                                "price": 59789.31,
+                                "journey_duration": "PT",
+                                "journey_duration_seconds": null,
+                                "layover_duration": "PT",
+                                "layover_duration_seconds": null,
+                                "carrier_operating": "OD",
+                                "carrier_marketing": "OD",
+                                "aircraft": "330",
+                                "aircraft_name": null,
+                                "cabin_class": "Economy Class",
+                                "connecting_airport": [
+                                    "CAI"
+                                ],
+                                "total_segment_count": 2,
+                                "no_of_stops": 1,
+                                "departure_timing_slot": "midnight",
+                                "departure_departure_time": "2026-02-20T01:10:00",
+                                "arrival_timing_slot": "afternoon",
+                                "arrival_departure_time": "2026-03-23T12:35:00",
+                                "refund": "non-refundable",
+                                "baggage_value": null,
+                                "baggage_unit": null,
+                                "baggage_title": "no-baggage"
+                            }
+                            "filter_unique_filter_code": "dac202602200110kul202602200700161kul202602202305dxb202602210225713dxb202603222015cai202603222225906cai202603230925lhr202603231235777"
+                            "destination_reach_time": "PT"
+                            "destination_reach_timestamp": null
+
+
+                  "tracking_id": "11177139798126194GPE53"
+                  "flight_key": "F1TT00152-40"
+                  "journey_type": "MultiCity"
+                  "result_type": "general"
+                  "get_branded_fare": "yes"
+                  "hold_possible": "yes"
+                  "package_option": "no"
+                  "supplier_title": "TravelRobotFlight-Sandbox"
+                  "color_code": "#ffffff"
+                  "supplier_code": "travel_robot"
+                  "supplier_uid": "F1TT00152"
+                  "supplier_partner_code": "travel_robot-1-00152"
+                 
+                "id": "F1TN00120-31"
+                "price": 533103,
+                "gross_total": 533103,
+                "journey_duration": "PT1D7H10M"
+                "journey_duration_seconds": 112200,
+                "layover_duration": "PT10H20M"
+                "layover_duration_seconds": 37200,
+                "carrier_operating": "SQ"
+                "carrier_marketing": "SQ"
+                "departure_timing_slot": "night"
+                "departure_departure_time": "2026-02-20 23:55:00"
+                "arrival_timing_slot": "evening"
+                "arrival_departure_time": "2026-03-22 18:25:00"
+            
+        
+        "take_off": {
+            "0": null,
+            "2": "midnight",
+            "8": "morning",
+            "14": "evening",
+            "20": "night",
+            "84": "afternoon",
+            "256": "early-morning"
+        }
+        "landing_time": {
+            "0": null,
+            "2": "evening",
+            "3": "morning",
+            "7": "afternoon",
+            "26": "early-morning",
+            "47": "night",
+            "249": "midnight"
+        }
+        "carrier": {
+            "operating": [
+                null,
+                "AI",
+                "BG",
+                "EK",
+                "ET",
+                "FZ",
+                "MU",
+                "OD",
+                "SQ",
+                "SV",
+                "TK",
+                "UL"
+            ],
+            "marketing": [
+                null,
+                "AI",
+                "BG",
+                "EK",
+                "ET",
+                "FZ",
+                "MU",
+                "OD",
+                "SQ",
+                "SV",
+                "TK",
+                "UL"
+            ]
+        }
+        "baggage": [
+            {
+                "baggage_value": null,
+                "baggage_unit": null,
+                "baggage_title": null
+            },
+            {
+                "baggage_value": "pieces",
+                "baggage_unit": "1",
+                "baggage_title": "1 pieces"
+            },
+            {
+                "baggage_value": "pieces",
+                "baggage_unit": "2",
+                "baggage_title": "2 pieces"
+            },
+            {
+                "baggage_value": "kg",
+                "baggage_unit": "30",
+                "baggage_title": "30 kg"
+            },
+            {
+                "baggage_value": "kg",
+                "baggage_unit": "35",
+                "baggage_title": "35 kg"
+            }
+        ]
+        "connecting_airport": [
+            "ADD",
+            "AMM",
+            "BAH",
+            "BEG",
+            "BOM",
+            "CAI",
+            "DEL",
+            "FRA",
+            "GOI",
+            "IST",
+            "JED",
+            "KWI",
+            "MCT",
+            "PVG",
+            "RUH",
+            "SIN",
+            "WAW"
+        ]
+        "no_of_stops": [
+            null,
+            0,
+            1,
+            2,
+            [
+                {
+                    "group": null,
+                    "no_of_stops": 0
+                },
+                {
+                    "group": null,
+                    "no_of_stops": 0
+                }
+            ]
+        ]
+    
+  "search_parameter": {
+              "journey_type": "MultiCity",
+                  "segment":
+                    departure_airport_type: "AIRPORT" 
+                    departure_airport: "DAC"
+                    arrival_airport_type: "AIRPORT" 
+                    arrival_airport: "DXB"
+                    departure_date: "2026-02-30"
+
+                    departure_airport_type: "AIRPORT" 
+                    departure_airport: "DXB"
+                    arrival_airport_type: "AIRPORT" T
+                    arrival_airport: "DAC"
+                    departure_date: "2026-03-28" 
+
+                    departure_airport_type: "AIRPORT" 
+                    departure_airport: "DXB"
+                    arrival_airport_type: "AIRPORT" 
+                    arrival_airport: "DAC"
+                    departure_date: "2026-03-28" 
+                travelers_adult: 1
+                travelers_child: 0
+                travelers_child_age: 0
+                travelers_infants: 0
+                travelers_infants_age: []
+                preferred_carrier: []
+                non_stop_flight: "any" 
+                baggage_option: "any" 
+                booking_class: "Economy" 
+                supplier_uid: "F1TT00152" 
+                partner_id: "" 
+                short_ref: "xxxx111" 
+                language: "en"
+                "short_ref": null,
+                "version": null,
+                "team_profile": null
+    },
+    "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/flight_logs/11177139798126194GPE53/search_result.json",
+    "beforeSearchduration": "1 seconds"        
+                            
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
   /flight/branded-fare:
-    post:
-      tags: [Flight]
-      summary: Get branded fare options for a flight
-      operationId: flightBrandedFare
-      requestBody:
-        required: true
+   post:
+    tags:
+      - Flight
+    summary: Get branded fare options for a flight
+    operationId: flightBrandedFare
+
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - member_id
+              - tracking_id
+              - flight_key
+              - result_type
+            properties:
+              member_id:
+                type: string
+                example: "1"
+              tracking_id:
+                type: string
+                example: "11174158960526193"
+              flight_key:
+                type: string
+                example: "F1ZT00006-2"
+              result_type:
+                type: string
+                example: "general"
+              connected_flight_key:
+                type: string
+                nullable: true
+                example: ""
+              connected_brand_option:
+                type: string
+                nullable: true
+                example: ""
+
+    responses:
+      '200':
+        description: Branded fare options response
         content:
           application/json:
             schema:
               type: object
-              additionalProperties: true
-            examples:
-              default:
-                value:
-                  member_id: "1"
-                  tracking_id: 11174158960526193
-                  flight_key: F1ZT00006-2
-                  result_type: general
-                  connected_flight_key: ""
-                  connected_brand_option: ""
-      responses:
-        '200':
-          description: Branded fare options and benefits
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-        '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+              properties:
+
+                status:
+                  type: string
+                  example: "success"
+
+                reason:
+                  type: string
+                  nullable: true
+                  example: null
+
+                member_id:
+                  type: string
+
+                tracking_id:
+                  type: string
+
+                result_type:
+                  type: string
+
+                total_options:
+                  type: integer
+
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      search_tracking_id:
+                        type: string
+                      tracking_id:
+                        type: string
+                      flight_key:
+                        type: string
+                      new_flight_key:
+                        type: string
+                      brand_option:
+                        type: string
+                      brand_title:
+                        type: string
+                        nullable: true
+                      description:
+                        type: string
+                      order_by:
+                        type: number
+                        format: float
+
+                      info:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            title:
+                              type: string
+                            code:
+                              type: string
+                            value:
+                              type: string
+                            remark:
+                              type: string
+
+                      price:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                          total:
+                            type: number
+                            format: float
+                          gross_total:
+                            type: number
+                            format: float
+                          base_fare:
+                            type: number
+                            format: float
+                          tax:
+                            type: number
+                            format: float
+                          price_hash:
+                            type: string
+
+                selected_flight:
+                  type: object
+                  properties:
+                    tracking_id:
+                      type: string
+                    flight_key:
+                      type: string
+                    journey_type:
+                      type: string
+                    hold_possible:
+                      type: string
+                    supplier_title:
+                      type: string
+                    supplier_code:
+                      type: string
+                    total_price:
+                      type: number
+                      format: float
+
+                    search_parameter:
+                      type: object
+                      properties:
+                        journey_type:
+                          type: string
+                        travelers_adult:
+                          type: integer
+                        travelers_child:
+                          type: integer
+                        travelers_infants:
+                          type: integer
+
+                    fare_rules:
+                      type: object
+                      properties:
+                        refundable:
+                          type: string
+                        change_before_departure:
+                          type: string
+                '400': { $ref: '#/components/responses/BadRequest' }
+                '401': { $ref: '#/components/responses/Unauthorized' }
+                '500': { $ref: '#/components/responses/ServerError' }
   /flight/validate:
     post:
       tags: [Flight]
@@ -471,6 +1910,473 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                 summary: Successful Search Response
+                value:
+                  value:
+                   status: "success"
+                   is_warning: false
+                   reason:
+                   reason_admin:
+                    "search": {
+                        "tracking_id": "11177139202626194TS42Z",
+                        "flight_key": "F1TT00032-0",
+                        "filter_unique_filter_code": "dac202603111510cgp202603111610125"
+                    }
+                    "booking_tracking_id": "11177139214226194U5TSM"
+                    "tracking_id": "11177139202626194TS42Z"
+                    "flight_key": null,
+                    "price_change": "up"
+                    "search_price": {
+                        "currency": "BDT",
+                        "amount": 5199
+                    }
+                    "validation_price": {
+                        "currency": "BDT",
+                        "amount": 5452.32
+                    }
+                    "additional_services": [
+                        {
+                            "type": "meet_and_greet",
+                            "charge_type": "fixed",
+                            "value": 40,
+                            "description": "desc"
+                        }
+                    ]
+                    "session_expire": {
+                        "timestamp": 1771393047,
+                        "datetime": "2026-02-18 11:37:27"
+                    }
+                    "serviceCharge": {
+                        "currency": "BDT",
+                        "reissue": 0,
+                        "void": 0,
+                        "refund": 0
+                    }
+                    "data": {
+                        "tracking_id": "11177139214226194U5TSM",
+                        "flight_key": "F1TT00032-0",
+                        "journey_type": "OneWay",
+                        "result_type": "general",
+                        "get_branded_fare": "no",
+                        "hold_possible": "yes",
+                        "supplier_title": "Travelport-Sandbox",
+                        "color_code": "#ffffff",
+                        "supplier_code": "travelport",
+                        "supplier_uid": "F1TT00032",
+                        "supplier_partner_code": "travelport-1-00032",
+                        "info_message": null,
+                        "tp_trace_id": "11177139202626194TS42Z",
+                        "Session_Key": "e698df00-6cba-467a-80fe-ab37f6ada957",
+                        "FlightTrackingID": 0,
+                        "search_parameter": {
+                            "journey_type": "OneWay",
+                            "segment": [
+                                {
+                                    "departure_airport_type": "AIRPORT",
+                                    "departure_airport": "DAC",
+                                    "arrival_airport_type": "AIRPORT",
+                                    "arrival_airport": "CGP",
+                                    "departure_date": "2026-03-11"
+                                }
+                            ],
+                            "travelers_adult": 1,
+                            "travelers_child": 0,
+                            "travelers_child_age": [],
+                            "travelers_infants": 0,
+                            "travelers_infants_age": [],
+                            "fare_type": null,
+                            "fare_option": null,
+                            "content_type": null,
+                            "ptc_option": null,
+                            "agency_ethnic_list": null,
+                            "preferred_carrier": [],
+                            "non_stop_flight": "any",
+                            "baggage_option": "any",
+                            "booking_class": "Economy",
+                            "supplier_uid": "all",
+                            "partner_id": "1",
+                            "language": "en",
+                            "short_ref": "12121212121",
+                            "version": null,
+                            "team_profile": null
+                        },
+                        "pax_options": {
+                            "doc_required": "no",
+                            "pax_dob_required": "yes",
+                            "seat_selection": "disable",
+                            "meal_selection": "disable",
+                            "baggage_selection": "disable",
+                            "passport_scan_selection": "active",
+                            "pax_search_selection": "active",
+                            "frequent_flyer_selection": "disable",
+                            "wheelchair_selection": "disable",
+                            "pax_email_contact_selection": "active",
+                            "pax_save_option": "active",
+                            "terms_selection": "check",
+                            "cancellation_selection": "check",
+                            "flight_type": "domestic"
+                        },
+                        "flight_group": [
+                            {
+                                "group": 1,
+                                "flight_key": "F1TT00032-0",
+                                "no_of_stops_title": "Direct Flight",
+                                "no_of_stops": 0,
+                                "flight_time": "PT0H55M",
+                                "transit_time": null,
+                                "routes": [
+                                    {
+                                        "air_segment_key": "mDlyCxUqWDKAbVJDIAAAAA==",
+                                        "origin": "DAC",
+                                        "departure_time": "2026-03-11T06:15:00.000+06:00",
+                                        "origin_terminal": "1",
+                                        "origin_airport": {
+                                            "name": "Hazrat Shahjalal International Airport",
+                                            "city": "Dhaka",
+                                            "country": "Bangladesh",
+                                            "timezone": "Asia/Dhaka"
+                                        },
+                                        "destination": "CGP",
+                                        "arrival_time": "2026-03-11T07:10:00.000+06:00",
+                                        "destination_terminal": "1",
+                                        "destination_airport": {
+                                            "name": "Shah Amanat International Airport",
+                                            "city": "Chattogram (Chittagong)",
+                                            "country": "Bangladesh",
+                                            "timezone": "Asia/Dhaka"
+                                        },
+                                        "flight_date": "2026-03-11",
+                                        "flight_time": "PT0H55M",
+                                        "distance": "142",
+                                        "lay_over": "not-applicable",
+                                        "lay_over_date": "not-applicable",
+                                        "aircraft": {
+                                            "code": "738",
+                                            "name": "738",
+                                            "picture": "738.png"
+                                        },
+                                        "operating": {
+                                            "carrier": "BS",
+                                            "carrier_name": "US-Bangla Airlines",
+                                            "carrier_logo": "BS.png",
+                                            "flight_number": "343"
+                                        },
+                                        "marketing": {
+                                            "carrier": "BS",
+                                            "carrier_name": "US-Bangla Airlines",
+                                            "carrier_logo": "BS.png",
+                                            "flight_number": "343"
+                                        },
+                                        "booking_class": {
+                                            "cabin_class": "Economy",
+                                            "cabin_code": "E",
+                                            "booking_code": "E",
+                                            "meal_code": null,
+                                            "seat_available": null,
+                                            "FareInfoRef": null,
+                                            "FareRuleKey": null
+                                        },
+                                        "baggages": {
+                                            "checked": {
+                                                "ADT": {
+                                                    "passenger_type": "ADT",
+                                                    "baggage_type": "checked",
+                                                    "pieceCount": null,
+                                                    "weight": "20",
+                                                    "unit": "kg",
+                                                    "title": "20 kg"
+                                                }
+                                            },
+                                            "carry_on": {
+                                                "ADT": {
+                                                    "passenger_type": "ADT",
+                                                    "baggage_type": "carry_on",
+                                                    "pieceCount": null,
+                                                    "weight": "7",
+                                                    "unit": "kg",
+                                                    "title": "7 kg*"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        ],
+                        "price": {
+                            "currency": "BDT",
+                            "total": 5452.32,
+                            "gross_total": 4699,
+                            "base_fare": 4277.32,
+                            "tax": 1175,
+                            "sell": {
+                                "currency": "BDT",
+                                "total": 5452.32,
+                                "base_fare": 4277.32,
+                                "tax": 1175
+                            },
+                            "price_hash": "eyJmbWciOnsiY3VycmVuY3kiOiJCRFQiLCJ0b3RhbCI6NTQ1Mi4zMiwiYmFzZV9mYXJlIjo0Mjc3LjMyLCJ0YXgiOjExNzV9LCJzdXBwbGllciI6eyJjdXJyZW5jeSI6IkJEVCIsInRvdGFsIjo0NDUyLjMyLCJiYXNlX2ZhcmUiOjMyNzcuMzIsInRheCI6MTE3NSwiY29taXNzaW9uX3R5cGUiOiJnZW5lcmFsIiwiY29taXNzaW9uX3ZhbHVlIjoiNy4wMCJ9LCJncm9zc19mYXJlIjp7ImN1cnJlbmN5IjoiQkRUIiwidG90YWwiOjQ2OTksImJhc2VfZmFyZSI6MzUyNCwidGF4IjoxMTc1fX0=",
+                            "price_breakdown": [
+                                {
+                                    "passenger_id": "1",
+                                    "supplier_pax_id": "1",
+                                    "passenger_type": "ADT",
+                                    "primary_ptc": "ADT",
+                                    "ptc_title": "Adult",
+                                    "passenger_total": 1,
+                                    "pax_calculate_type": "yes",
+                                    "comission_type": "general",
+                                    "comission_value": "7.00",
+                                    "currency": "BDT",
+                                    "total": 5452.32,
+                                    "base_fare": 4277.32,
+                                    "tax": 1175,
+                                    "ticket_issue_charge": 0,
+                                    "total_ticket_issue_charge": 0,
+                                    "gross": {
+                                        "base_fare": "3524.00",
+                                        "tax": "1175.00",
+                                        "discount": 246.68,
+                                        "ait": "0.00",
+                                        "service_charge": 1000
+                                    },
+                                    "partner": {
+                                        "currency": "BDT",
+                                        "total": 5452.32,
+                                        "base_fare": 4277.32,
+                                        "tax": 1175,
+                                        "gross": {
+                                            "base_fare": "3524.00",
+                                            "tax": "1175.00",
+                                            "discount": "246.68",
+                                            "ait": "0.00",
+                                            "service_charge": 1000
+                                        },
+                                        "taxBreakdown": {
+                                            "BD": {
+                                                "title": "BD -Embarkation Fee (Domestic/International)",
+                                                "amount": "25.00"
+                                            },
+                                            "UT": {
+                                                "title": "UT - Foreign Air Travel Tax (FATT)",
+                                                "amount": "200.00"
+                                            },
+                                            "E5": {
+                                                "title": "E5 - Value Added Tax on Embarkation Fees",
+                                                "amount": "30.00"
+                                            },
+                                            "YQ": {
+                                                "title": "YQ – Carrier-Imposed Surcharge/Fuel Surcharge",
+                                                "amount": "50.00"
+                                            },
+                                            "YR": {
+                                                "title": "YR – Another Carrier-Imposed Surcharge",
+                                                "amount": "0.00"
+                                            },
+                                            "Other": {
+                                                "title": "Others taxes",
+                                                "amount": "870.00"
+                                            }
+                                        }
+                                    },
+                                    "priceHash": "eyJmbWciOnsiY3VycmVuY3kiOiJCRFQiLCJ0b3RhbCI6IjU0NTIuMzIiLCJiYXNlX2ZhcmUiOiI0Mjc3LjMyIiwidGF4IjoiMTE3NS4wMCIsImdyb3NzIjp7ImJhc2VfZmFyZSI6IjM1MjQuMDAiLCJ0YXgiOiIxMTc1LjAwIiwiZGlzY291bnQiOiIyNDYuNjgiLCJhaXQiOiIwLjAwIiwic2VydmljZV9jaGFyZ2UiOiIxMDAwLjAwIn0sImNvbmZpZyI6eyJtYXJrdXBfdHlwZSI6bnVsbCwibWFya3VwX3RpdGxlIjpudWxsLCJyZXZlbnVlIjoiMTAwMC4wMCIsInRpY2tldF9pc3N1ZV9jaGFyZ2UiOiIxMDAwLjAwIiwidG90YWxfdGlja2V0X2lzc3VlX2NoYXJnZSI6IjEwMDAuMDAiLCJjdXJyZW5jeUV4Y2hhbmdlUmF0ZSI6IjEuMDAiLCJGTUdfT3ZlcndyaXRlUnVsZXMiOnsiaXNBdmFpbGFibGUiOnRydWUsIm1hcmtldGluZ19jYXJyaWVyIjoiQlMiLCJtYXJrdXBUeXBlIjoiQ2hhcmdlIiwiQ2hhcmdlVHlwZSI6IkZJWEVEIiwiY2hhcmdlRGlzY291bnRWYWx1ZSI6IjEwMDAifX19LCJzdXBwbGllciI6eyJjdXJyZW5jeSI6IkJEVCIsInRvdGFsIjoiNDQ1Mi4zMiIsImJhc2VfZmFyZSI6IjMyNzcuMzIiLCJ0YXgiOiIxMTc1LjAwIiwiZ3Jvc3MiOnsiYmFzZV9mYXJlIjoiMzUyNC4wMCIsInRheCI6IjExNzUuMDAiLCJkaXNjb3VudCI6IjI0Ni42OCIsImFpdCI6IjAuMDAiLCJzZXJ2aWNlX2NoYXJnZSI6MCwicGVyX3NlZ21lbnRfZGlzY291bnQiOjAsInNlZ21lbnRfZGlzY291bnQiOiIwLjAwIiwic3VwcGxpZXJfc2VnbWVudF9mZWVzQ2FsY3VsYXRlIjoiMCIsInNlZ21lbnRfZGlzY291bnRfYWNjb3VudFB1cnBvc2UiOiIwIn19LCJncm9zc19mYXJlIjp7ImN1cnJlbmN5IjoiQkRUIiwidG90YWwiOiI0Njk5LjAwIiwiYmFzZV9mYXJlIjoiMzUyNC4wMCIsInRheCI6IjExNzUuMDAiLCJkaXNjb3VudCI6IjAuMDAiLCJhaXQiOiIwLjAwIiwic2VydmljZV9jaGFyZ2UiOiIwLjAwIiwicGF5YWJsZSI6NDY5OSwidGF4QnJlYWtkb3duIjp7IkJEIjp7ImFtb3VudCI6IjI1LjAwIn0sIlVUIjp7ImFtb3VudCI6IjIwMC4wMCJ9LCJFNSI6eyJhbW91bnQiOiIzMC4wMCJ9LCJZUSI6eyJhbW91bnQiOiI1MC4wMCJ9LCJZUiI6eyJhbW91bnQiOiIwLjAwIn0sIk90aGVyIjp7ImFtb3VudCI6Ijg3MC4wMCJ9LCJzdXBwbGllclRheERhdGEiOlt7ImNvZGUiOiJCRCIsImN1cnJlbmN5IjoiQkRUIiwiYW1vdW50IjoiMjUiLCJ0YXhJbmZvIjoibURseUN4VXFXREtBZ1ZKRElBQUFBQT09In0seyJjb2RlIjoiT1ciLCJjdXJyZW5jeSI6IkJEVCIsImFtb3VudCI6IjcwMCIsInRheEluZm8iOiJtRGx5Q3hVcVdES0FoVkpESUFBQUFBPT0ifSx7ImNvZGUiOiJQNyIsImN1cnJlbmN5IjoiQkRUIiwiYW1vdW50IjoiMTAwIiwidGF4SW5mbyI6Im1EbHlDeFVxV0RLQWlWSkRJQUFBQUE9PSJ9LHsiY29kZSI6IlA4IiwiY3VycmVuY3kiOiJCRFQiLCJhbW91bnQiOiI3MCIsInRheEluZm8iOiJtRGx5Q3hVcVdES0FqVkpESUFBQUFBPT0ifSx7ImNvZGUiOiJVVCIsImN1cnJlbmN5IjoiQkRUIiwiYW1vdW50IjoiMjAwIiwidGF4SW5mbyI6Im1EbHlDeFVxV0RLQWtWSkRJQUFBQUE9PSJ9LHsiY29kZSI6IkU1IiwiY3VycmVuY3kiOiJCRFQiLCJhbW91bnQiOiIzMCIsInRheEluZm8iOiJtRGx5Q3hVcVdES0FsVkpESUFBQUFBPT0ifSx7ImNvZGUiOiJZUSIsImN1cnJlbmN5IjoiQkRUIiwiYW1vdW50IjoiNTAiLCJ0YXhJbmZvIjoibURseUN4VXFXREtBbVZKRElBQUFBQT09In1dfX0sImRpc2NvdW50X2NvbWlzc2lvbl90aXRsZSI6IkRBQyBUTyBDR1AgLTUlIiwiZGlzY291bnRfY29taXNzaW9uX3JhdGlvIjoiNy4wMCIsImR5bmFtaWNfbWFya3VwX3R5cGUiOm51bGwsImR5bmFtaWNfbWFya3VwX3RpdGxlIjpudWxsLCJkeW5hbWljX21hcmt1cF9yYXRpbyI6bnVsbCwiYXBwbGljYWJsZV9jb21pc3Npb24iOnsidGl0bGUiOiJEQUMgVE8gQ0dQIC01JSIsImNvbWlzc2lvbl9leHBpcmVfdGltZXN0YW1wIjoiMTc5ODczOTk5OSIsInNwZWNpZmljX3JvdXRlIjoiYW55X3JvdXRlIiwiY29taXNzaW9uX3R5cGUiOiJnZW5lcmFsIiwiYWR1bHRfYmFzZWZhcmVfcmF0aW8iOiI3LjAwIiwiYWR1bHRfYmFzZWZhcmVfZml4ZWQiOiIwLjAwIiwiYWR1bHRfYmFzZWZhcmVfcmF0aW9fb3ZlciI6IjAuMDAiLCJhZHVsdF9iYXNlZmFyZV9maXhlZF9vdmVyIjoiMC4wMCIsImFkdWx0X3RheF9yYXRpbyI6IjAuMDAiLCJhZHVsdF90YXhfZml4ZWQiOiIwLjAwIiwiYWR1bHRfdGF4X3JhdGlvX292ZXIiOiIwLjAwIiwiYWR1bHRfdGF4X2ZpeGVkX292ZXIiOiIwLjAwIiwiY2hpbGRfYmFzZWZhcmVfcmF0aW8iOiI3LjAwIiwiY2hpbGRfYmFzZWZhcmVfZml4ZWQiOiIwLjAwIiwiY2hpbGRfYmFzZWZhcmVfcmF0aW9fb3ZlciI6IjAuMDAiLCJjaGlsZF9iYXNlZmFyZV9maXhlZF9vdmVyIjoiMC4wMCIsImNoaWxkX3RheF9yYXRpbyI6IjAuMDAiLCJjaGlsZF90YXhfZml4ZWQiOiIwLjAwIiwiY2hpbGRfdGF4X3JhdGlvX292ZXIiOiIwLjAwIiwiY2hpbGRfdGF4X2ZpeGVkX292ZXIiOiIwLjAwIiwiaW5mX2Jhc2VmYXJlX3JhdGlvIjoiNy4wMCIsImluZl9iYXNlZmFyZV9maXhlZCI6IjAuMDAiLCJpbmZfYmFzZWZhcmVfcmF0aW9fb3ZlciI6IjAuMDAiLCJpbmZfYmFzZWZhcmVfZml4ZWRfb3ZlciI6IjAuMDAiLCJpbmZfdGF4X3JhdGlvIjoiMC4wMCIsImluZl90YXhfZml4ZWQiOiIwLjAwIiwiaW5mX3RheF9yYXRpb19vdmVyIjoiMC4wMCIsImluZl90YXhfZml4ZWRfb3ZlciI6IjAuMDAiLCJzZWdtZW50X2Rpc2NvdW50IjoiMC4wMCIsInNlZ21lbnRfZGlzY291bnREb21lc3RpYyI6IjAiLCJzdXBwbGllcl9zZWdtZW50X2ZlZXNDYWxjdWxhdGUiOiIwIiwic2VydmljZUNoYXJnZVBlclBheCI6IjAuMDAifSwiYXBwbGljYWJsZV9keW5hbWljX21hcmt1cCI6bnVsbH0="
+                                }
+                            ]
+                        },
+                        "penalty_info": {
+                            "partial_payment_available": "no",
+                            "currency": "BDT",
+                            "flight_price": 5452.32,
+                            "pay_now": 1908.31,
+                            "rest_payment_date": "2026-02-28T11:00:00",
+                            "rest_payment_amount": 3544.01,
+                            "pay_now_airlines_currency": "BDT",
+                            "pay_now_airlines": 3500,
+                            "pay_now_airlines_minimum": 3500,
+                            "pay_now_charges": 0,
+                            "journey_date": "2026-03-11",
+                            "booking_date": "2026-02-18",
+                            "interval_day": 21,
+                            "iata_payment_date": null,
+                            "partial_pay_day_before": "10",
+                            "total_minimum_payment": 1908.31,
+                            "daysInMonth": null,
+                            "payment_settlement_iata_cycle": "7",
+                            "supplier_currency": "BDT",
+                            "purchase_price": 4452.32,
+                            "total_passenger": 1,
+                            "data": [
+                                {
+                                    "pax_type": "ADT",
+                                    "pax_count": 1,
+                                    "min_cancel_charge": 3500,
+                                    "data": [
+                                        {
+                                            "type": "change",
+                                            "forSegment": null,
+                                            "applied": "prior_to_departure",
+                                            "amount": 3500,
+                                            "currency": "BDT",
+                                            "fmg": {
+                                                "amount": 3500,
+                                                "currency": "BDT",
+                                                "penalty_markup": 0,
+                                                "penalty_exchange_rate": 3500
+                                            },
+                                            "supplier": {
+                                                "amount": "3500.0",
+                                                "currency": "BDT"
+                                            }
+                                        },
+                                        {
+                                            "type": "cancel",
+                                            "forSegment": null,
+                                            "applied": "prior_to_departure",
+                                            "amount": 3500,
+                                            "currency": "BDT",
+                                            "fmg": {
+                                                "amount": 3500,
+                                                "currency": "BDT",
+                                                "penalty_markup": 0,
+                                                "penalty_exchange_rate": 3500
+                                            },
+                                            "supplier": {
+                                                "amount": "3500.0",
+                                                "currency": "BDT"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "partner_policy": {
+                                "Id": "1",
+                                "timestamp_created": "1753097037",
+                                "timestamp_updated": "1753097037",
+                                "ftm_partner_id": "1",
+                                "master_partner_id": "1",
+                                "partial_pay_specific_route": "any_route",
+                                "partial_pay_minium_pay_rules": "custom",
+                                "partial_pay_custom_ratio_pay": "35",
+                                "partial_pay_iata_payment_cycle": "no",
+                                "partial_pay_day_before": "3",
+                                "partial_pay_day_before_SevenTen": "3",
+                                "partial_pay_day_before_ElvenFifteen": "7",
+                                "partial_pay_day_before_SixteenAbove": "10",
+                                "partial_pay_max_amount": "100",
+                                "partial_pay_max_booking": "100",
+                                "partial_pay_limit_type": "ONETIME",
+                                "partial_pay_limit_weekly": "Sunday",
+                                "partial_pay_limit_onetime": "2027-01-19",
+                                "partial_pay_limit_onetime_timestamp": "1800295200",
+                                "partner_name": "Inno Travel Tech",
+                                "remark": "",
+                                "status": "active"
+                            }
+                        },
+                        "get_pax_ptc_data": null,
+                        "fare_rules": {
+                            "refundable_data": null,
+                            "refundable": "non-refundable",
+                            "change_before_departure": "not-available"
+                        },
+                        "calendar_key": "2026-03-11-2026-03-11",
+                        "calendar_flight_date": "2026-03-11",
+                        "calendar_arrival_date": "2026-03-11",
+                        "calendar_carrier": "BS",
+                        "calendar_total_currency": "BDT",
+                        "calendar_total_price": 5452.32,
+                        "calendar_total_sell": 5452.32,
+                        "calendar_supplier_currency": null,
+                        "calendar_supplier_amount": null,
+                        "calendar_fmg_amount": null,
+                        "total_price": 5452.32,
+                        "filter": {
+                            "id": "F1TT00032-0",
+                            "price": 5452.32,
+                            "gross_total": 4699,
+                            "journey_duration": "PT0H55M",
+                            "journey_duration_seconds": 3300,
+                            "layover_duration": "PT0H0M",
+                            "layover_duration_seconds": 0,
+                            "carrier_operating": "BS",
+                            "carrier_marketing": "BS",
+                            "aircraft": "738",
+                            "aircraft_name": "738",
+                            "cabin_class": "Economy",
+                            "connecting_airport": [],
+                            "total_segment_count": 1,
+                            "no_of_stops": [
+                                {
+                                    "group": 1,
+                                    "no_of_stops": 0
+                                }
+                            ],
+                            "departure_timing_slot": "early-morning",
+                            "departure_departure_time": "2026-03-11T06:15:00.000+06:00",
+                            "arrival_timing_slot": "morning",
+                            "arrival_departure_time": "2026-03-11T07:10:00.000+06:00",
+                            "refund": "non-refundable",
+                            "baggage_value": "kg",
+                            "baggage_unit": "20",
+                            "baggage_title": "20 kg"
+                        },
+                        "filter_unique_filter_code": "dac202603110615cgp202603110710343",
+                        "destination_reach_time": "PT",
+                        "destination_reach_timestamp": null,
+                        "post_booking_process": "auto",
+                        "book_now_pay_later": "no"
+                    }
+                    "terms": {
+                        "status": "disable",
+                        "text": null
+                    }
+                    "cancellation_terms": {
+                        "status": "disable",
+                        "text": null
+                    }
+                    "search_parameter": {
+                        "journey_type": "OneWay",
+                        "segment": [
+                            {
+                                "departure_airport_type": "AIRPORT",
+                                "departure_airport": "DAC",
+                                "arrival_airport_type": "AIRPORT",
+                                "arrival_airport": "CGP",
+                                "departure_date": "2026-03-11"
+                            }
+                        ],
+                        "travelers_adult": 1,
+                        "travelers_child": 0,
+                        "travelers_child_age": [],
+                        "travelers_infants": 0,
+                        "travelers_infants_age": [],
+                        "fare_type": null,
+                        "fare_option": null,
+                        "content_type": null,
+                        "ptc_option": null,
+                        "agency_ethnic_list": null,
+                        "preferred_carrier": [],
+                        "non_stop_flight": "any",
+                        "baggage_option": "any",
+                        "booking_class": "Economy",
+                        "supplier_uid": "all",
+                        "partner_id": "1",
+                        "language": "en",
+                        "short_ref": "12121212121",
+                        "version": null,
+                        "team_profile": null
+                    }
+                    "isDomestic_Flight": true,
+                    "passenger_data": null,
+                    "available_addon_service": {
+                        "baggage_option": null,
+                        "seat_option_option": null,
+                        "meal": null
+                    }
+                
+                
+
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
@@ -499,9 +2405,176 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-        '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+              examples:
+                default:
+                  summary: successful search response
+                  value:
+                    status: "success"
+                    re_price_status: null
+                    reason: null
+                    reason_admin: null
+                    price_change: "up"
+                    tracking_id: "11177139202626194TS42Z"
+                    booking_tracking_id: "11177139214226194U5TSM"
+                    flight_key: null
+                    currency: "BDT"
+                    total_amount: 5452.32
+                    search_price:
+                      currency: "BDT"
+                      amount: 5199
+                    validation_price:
+                      currency: "BDT"
+                      amount: 5452.32
+                    additional_services:
+                      - type: "meet_and_greet"
+                        charge_type: "fixed"
+                        value: 40
+                        description: "desc"
+                    session_expire:
+                      timestamp: 1771393047
+                      datetime: "2026-02-18 11:37:27"
+                    serviceCharge:
+                      currency: "BDT"
+                      reissue: 0
+                      void: 0
+                      refund: 
+                            
+                                  resources: 
+                                  "base_url": 
+                                    "carrier": "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/icon"
+                                    "aircraft": "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/aircraft"
+                                  "data": 
+                                   "tracking_id": "11177139214226194U5TSM"
+                                   "flight_key": "F1TT00032-0"
+                                   "journey_type": "OneWay"
+                                   "result_type": "general"
+                                   "get_branded_fare": "no"
+                                   "hold_possible": "yes"
+                                   "supplier_title": "Travelport-Sandbox"
+                                  "color_code": "#ffffff"
+                                  "supplier_code": "travelport"
+                                  "supplier_uid": "F1TT00032"
+                                  "supplier_partner_code": "travelport-1-00032"
+                                  "info_message": null,
+                                  "tp_trace_id": "11177139202626194TS42Z"
+                                  "Session_Key": "e698df00-6cba-467a-80fe-ab37f6ada957"
+                                  "FlightTrackingID": 0,
+                                  "search_parameter": {
+                                    "journey_type": "OneWay",
+                                    "segment": [
+                                                {
+                                                    "departure_airport_type": "AIRPORT",
+                                                    "departure_airport": "DAC",
+                                                    "arrival_airport_type": "AIRPORT",
+                                                    "arrival_airport": "CGP",
+                                                    "departure_date": "2026-03-11"
+                                                }
+                                            ],
+                                            "travelers_adult": 1,
+                                            "travelers_child": 0,
+                                            "travelers_child_age": [],
+                                            "travelers_infants": 0,
+                                            "travelers_infants_age": [],
+                                            "fare_type": null,
+                                            "fare_option": null,
+                                            "content_type": null,
+                                            "ptc_option": null,
+                                            "agency_ethnic_list": null,
+                                            "preferred_carrier": [],
+                                            "non_stop_flight": "any",
+                                            "baggage_option": "any",
+                                            "booking_class": "Economy",
+                                            "supplier_uid": "all",
+                                            "partner_id": "1",
+                                            "language": "en",
+                                            "short_ref": "12121212121",
+                                            "version": null,
+                                            "team_profile": null
+                                                              }
+                                  example:
+                                    group: 1
+                                    no_of_stops: 0
+                                    routes:
+                                      - group: 1
+                                        no_of_stops: 0
+                                    departure_timing_slot: "early-morning"
+                                    departure_departure_time: "2026-03-11T06:15:00.000+06:00"
+                                    arrival_timing_slot: "morning"
+                                    arrival_departure_time: "2026-03-11T07:10:00.000+06:00"
+                                    refund: "non-refundable"
+                                    baggage_value: "kg"
+                                    baggage_unit: "20"
+                                    baggage_title: "20 kg"
+                                    filter_unique_filter_code: "dac202603110615cgp202603110710343"
+                                    destination_reach_time: "PT"
+                                    destination_reach_timestamp: null
+                                    post_booking_process: "auto"
+                                    book_now_pay_later: "no"
+                                    search_parameter:
+                                      journey_type: "OneWay"
+                                      segment:
+                                        - departure_airport_type: "AIRPORT"
+                                          departure_airport: "DAC"
+                                          arrival_airport_type: "AIRPORT"
+                                          arrival_airport: "CGP"
+                                          departure_date: "2026-03-11"
+                                      travelers_adult: 1
+                                      travelers_child: 0
+                                      travelers_child_age: []
+                                      travelers_infants: 0
+                                      travelers_infants_age: []
+                                      fare_type: null
+                                      fare_option: null
+                                      content_type: null
+                                      ptc_option: null
+                                      agency_ethnic_list: null
+                                      preferred_carrier: []
+                                      non_stop_flight: "any"
+                                      baggage_option: "any"
+                                      booking_class: "Economy"
+                                      supplier_uid: "all"
+                                      partner_id: "1"
+                                      language: "en"
+                                      short_ref: "12121212121"
+                                      version: null
+                                      team_profile: null
+                                    isDomestic_Flight: true
+                                    passenger_data: []
+                                    seat_selection_required: null
+                                    meal_selection_required: null
+                                    baggage_selection_required: null
+                                    baggage_data: []
+                                    meal_data: []
+                                    seat_data: []
+                                    baggage_protection_selection_required: "disable"
+                                    baggage_protection_data: []
+                                    discount_data: []
+                                    ancillary_services_validation:
+                                      total_travelers_adult: 1
+                                      total_travelers_child: 0
+                                      baggage:
+                                        required: null
+                                        adult_validation: true
+                                        child_validation: true
+                                      meal:
+                                        required: null
+                                        adult_validation: true
+                                        child_validation: true
+                                      seat:
+                                        required: null
+                                        adult_validation: true
+                                        child_validation: true
+                                      baggage_protection:
+                                        required: "disable"
+                                        validation: true
+                                    terms:
+                                      status: "disable"
+                                      text: null
+                                    cancellation_terms:
+                                      status: "disable"
+                                      text: null
+            
+      
   /flight/fare-rules:
     post:
       tags: [Flight]
@@ -542,6 +2615,30 @@ paths:
             schema:
               type: object
               additionalProperties: true
+            examples:
+              default:
+                value:
+                  booking tracking_id: 11170970096202719
+                  member_id: 1
+                  save_pax: yes
+                  passenger: 
+                                  pax_id: 1
+                                  pax_type: ADT
+                                  gender: M
+                                  title: MR
+                                  first_name: Jhon
+                                  last_name: DOE
+                                  dob: 1998-10-24
+                                  doc_country: BD
+                                  doc_no: A1235121
+                                  doc_dateofexpiry: 2028-10-25
+                                  doc_dateofissue: 2023-10-25
+                                  frequent_flyer: 21321313132
+                                  isd_code: 880
+                                  contact_no: 0175565521
+                                  email_address: iam@jhon.com
+                                  wheelchair_required: no
+                  
       responses:
         '200':
           description: Traveller details updated
@@ -550,6 +2647,47 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                 summary: Successful Search Response
+                value:
+                  value:
+                   status: "success"
+                   is_warning: false
+                   reason:
+                   reason_admin:
+                        "status": success
+                        reason: Passenger data has been successfully updated. 
+                        tracking_id: 11177139214226194U5TSM
+                        total_guest: 
+                        "Final_Supplier_Pax_Data": null,
+                        "price_status": 
+                            "status": "success"
+                            "price_change": "no-change"
+                            "search_price": null,
+                            "validation_price": null
+                            "data":
+                                      "tracking_id": "11177139214226194U5TSM"
+                                      "pax_id": "1"
+                                      "pax_type": "ADT"
+                                      "gender": "M"
+                                      "title": "MR"
+                                      "first_name": "JHON"
+                                      "last_name": "DOE"
+                                      "dob": "1998-10-24"
+                                      "pax_age": "27"
+                                      "doc_country": "BD"
+                                      "nationality": "BD"
+                                      "doc_no": "A1235121"
+                                      "doc_dateofexpiry": "2028-10-25"
+                                      "frequent_flyer_airlines": null,
+                                      "frequent_flyer": "21321313132"
+                                      "wheelchair_required": "no"
+                                      "isd_code": "880"
+                                      "contact_no": "0175565521"
+                                      "email_address": "iam@jhon.com"
+                                      "passport_copy": null,
+                                      "doc_pics": null
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
@@ -565,6 +2703,16 @@ paths:
             schema:
               type: object
               additionalProperties: true
+            examples:
+              default:
+                value: 
+                  "booking_tracking_id": "6911771481303261946AGZX"
+                  "member_id": "1"
+                  "isd_code": "880"
+                  "contact_no": "018729180012"
+                  "email_address": "im@jhon.com"
+                  "payment_type": "account_balance"
+                  "redirect_url": "https://example.com/inno-travel-tech/custom_modal.html"
       responses:
         '200':
           description: Booking created successfully
@@ -573,6 +2721,361 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                 summary: Successful Search Response
+                value:
+                  value:
+                    status: success
+                    reason: "The booking has been successfully created, and it is associated with the Booking Id FL2317OCAA6P."
+                    "general": 
+                              "service_type": "FLIGHT"
+                              "service_details": "OneWay From DAC to LHR Departure date 2023-11-10"
+                              "booking_remarks": null,
+                              "generated_date": "2023-10-17"
+                              "partner_id": "1"
+                              "master_partner_id": null,
+                              "branch_id": null,
+                              "tracking_id": "1169751590226238FFXQU"
+                              "booking_id": "FL2317OCAA6P"
+                              "airlines_pnr": "2Q4JFZ"
+                              "supplier_confirmation_id": "ord_0000AaqjPgNUG2Pgt1KZeq"
+                              "supplier_others_id_a": null,
+                              "supplier_others_id_b": null,
+                              "member_id": null,
+                              "book_by": "NSN"
+                              "ip_address": "103.150.26.238"
+                              "timestamp": "1697515935"
+                              "last_update": "1697515935"
+                    "voucher":
+                              "link": "https://apps.gtrs.travel/voucher/flight-e-ticket?uid=eyJ0cmFja2luZ19pZCI6IjExNjk3NTE1OTAyMjYyMzhGRlhRVSIsImZ0bV9wYXJ0bmVyX2lkIjoiMSIsIm1hc3Rlcl9wYXJ0bmVyX2lkIjpudWxsLCJtZW1iZXJfaWQiOm51bGwsImxpbmtfZXhwaXJlIjoiMjAzMC0xMi0zMSJ9"
+                              "pdf": "https://apps.gtrs.travel/voucher/flight-booking-pdf?uid=eyJ0cmFja2luZ19pZCI6IjExNjk3NTE1OTAyMjYyMzhGRlhRVSIsImZ0bV9wYXJ0bmVyX2lkIjoiMSIsIm1hc3Rlcl9wYXJ0bmVyX2lkIjpudWxsLCJtZW1iZXJfaWQiOm51bGwsImxpbmtfZXhwaXJlIjoiMjAzMC0xMi0zMSJ9"
+                    "booking":
+                              "status": "success"
+                              "booking_status": "hold"
+                              "booking_supplier_status": "hold"
+                              "ticket_status": "queue"
+                              "payment_status": "pending"
+                              "auto_cancel_status": "pending"
+                              "auto_cancel": "2023-10-17 23:59:59"
+                              "auto_cancel_timestamp": "1697587199"
+                    "price": 
+                            "currency": "SGD"
+                            "total_amount": "505.62"
+                            "sell_total_price": "505.62"
+                            "sales_comission": null,
+                            "customer_markup_policy": "2"
+                    "flight":
+                    "modify":
+                            "baggage": "yes"
+                            "seat": "yes"
+                            "meal": "yes"
+                            "itinerary": "yes"
+                    "search_parameter":
+                            "member_id": "1"
+                            "journey_type": "OneWay"
+                            "preferred_carrier": ""
+                            "departure_airport": [
+                                "DAC"
+                            ]
+                            "arrival_airport": [
+                                "LHR"
+                            ]
+                            "departure_date": [
+                                "2023-11-10"
+                            ]
+                            "arrival_date": ""
+                            "travelers_adult": "1"
+                            "travelers_child": "0"
+                            "travelers_child_age": [
+                                "12"
+                            ]
+                            "travelers_infants": "0"
+                            "travelers_infants_age": [
+                                "1"
+                            ]
+                            "non_stop_flight": "any"
+                            "baggage_option": "any"
+                            "booking_class": "Economy"
+                            "supplier_code": "all"
+                            "language": "en"
+                            "departure": 
+                            "date": "2023-11-10"
+                            "time": "06:58"
+                            "arrival": 
+                             "date": "2023-11-10"
+                             "time": 12:14
+                             "departure_airport": DAC
+                             "arrival_airport": LHR
+                            "price" :   
+                                  "purchase":
+                                        "base_fare":      
+                                            "currency": "SGD"
+                                            "amount": 428.5
+                            "tax":
+                                 "currency": "SGD"
+                                 "amount": 77.12
+                            "total":
+                                  "currency": "SGD"
+                                  "amount": 505.62
+                            "price_breakdown": 
+                                            "passenger_id": "pas_0000AaqjIrZwDO29b8u2q5"
+                                            "passenger_type": "ADT"
+                                            "passenger_total": 1,
+                            "base_fare":
+                                      "currency": "SGD"
+                                      "amount": 429
+                            "customer_markup_policy":
+                                      "Id": 2,
+                                      "ftm_partner_id": "1"
+                                      "partner_name": "GTRSystem"
+                                      "supplier_type": "FLIGHT"
+                                      "on_base_fare_ratio_markup": "0.00"
+                                      "on_base_fare_ratio_discount": "0.00"
+                                      "on_base_fare_fixed_markup": "0.00"
+                                      "on_tax_ratio_markup": "0.00"
+                                      "on_tax_fixed_markup": "0.00"
+                                      "cancellation_buffer_days": "3"
+                                      "ssr_charge_ratio": "0.00"
+                                      "ssr_charge_markup": "0.00"
+                                      "timestamp": "1686324825"
+                                      "last_update": "1697112784"
+                                      "markup_min_active": "disable"
+                                      "markup_min": "0.00"
+                                      "markup_max_active": "disable"
+                                      "markup_max": "0.00"
+                                      "ticket_issue_charge": "0.00"
+                                      "penalty_markup": "0.00"
+                            "baggage":
+                                      "passenger_id": "pas_0000AaqjIrZwDO29b8u2q5"
+                                      "passenger_type": "ADT"
+                                      "origin": "DAC"
+                                      "destination": "LHR"
+                                      "baggage_type": "checked"
+                                      "pieceCount": 1,
+                                      "weight": null,
+                                      "unit": null
+                            "fare_rules":   
+                                      "refundable": "partially-refundable"
+                                      "change_before_departure": "charge applicable"
+                            "pax":  
+                                "primary":
+                                         "guest_name": "NAZMUS NAYEEM"
+                                         "guest_email": null,
+                                         "guest_isd_code": null,
+                                         "guest_contact_no": "1966330000"
+                                         "guest_nationality": "BD"  
+                            "data":
+                                  "Id": 14,
+                                  "timestamp": "1697515928"
+                                  "last_update": "1697515928"
+                                  "entry": ""
+                                  "entry_n": null,
+                                  "ftm_partner_id": "1"
+                                  "tracking_id": "1169751590226238FFXQU"
+                                  "service_type": "FLIGHT"
+                                  "room_number": "1"
+                                  "pax_id": "1"
+                                  "pax_type": "ADT"
+                                  "gender": "M"
+                                  "title": "MR"
+                                  "first_name": "NAZMUS"
+                                  "last_name": "NAYEEM"
+                                  "dob": "1985-10-24"
+                                  "pax_age": "38"
+                                  "doc_country": "BD"
+                                  "doc_no": "A1235121"
+                                  "doc_dateofexpiry": "2030-10-25"
+                                  "doc_dateofissue": null,
+                                  "frequent_flyer_airlines": "BG"
+                                  "frequent_flyer": "21321313132"
+                                  "wheelchair_required": "no"
+                                  "isd_code": "880"
+                                  "contact_no": "1966330000"
+                                  "email_address": "iam@saaqeb.com"
+                                  "doc_pics": null,
+                                  "seat_number": null,
+                                  "baggage_option": null,
+                                  "meal_option": null,
+                                  "booking_id": null,
+                                  "ticket_number": null
+                    "partner":
+                            "agency_isd_code": null,
+                            "agency_contact_no": null,
+                            "agency_email": null,
+                            "contact":
+                                  "person_name": "Zahidul"
+                                  "isd_code": "65"
+                                  "number": "31650588"
+                                  "email": "admin@GTRSystem.Com"
+                    "partner_id": "1"
+                    "master_partner_id": "1"
+                    "partner_type": "MAIN"
+                    "partner_profile_code": "GTRS"
+                    "branch_id": "SGHE002"
+                    "brand_name": "GTRSystem"
+                    "tag_line": "Next generation B2B travel reservation portal specially designed only for travel professionals"
+                    "legal_name": "GLOBAL TRAVEL RESERVATION SYSTEM"
+                    "city": "Singapore"
+                    "state": "Singapore"
+                    "postal_code": "049712"
+                    "address": "30 Cecil Street # 19-08 Prudential Tower"
+                    "country": "SG"
+                    "website": "https://gtrsystem.com/"
+                    "customer_hotline": ""
+                    "support_email": "operation@gtrsystem.com"
+                    "customer_support_email": "operation@gtrsystem.com"
+                    "priavcy_link": "https://gtrsystem.com/contact.php"
+                    "terms_link": "https://gtrsystem.com/contact.php"
+                    "logo_1440_448": "https://apps.gtrs.travel//partner_logos/b_rcs_large_image_111696658079262385FFHJ.png"
+                    "logo_224_224": "https://apps.gtrs.travel//partner_logos/b_rcs_small_logo_111696658079262385FFHJ.png"
+                    "logo_1024_1024": "https://apps.gtrs.travel//partner_logos/b_fb_app_icon_111696658079262385FFHJ.png"
+                    "logo_400_400": "https://apps.gtrs.travel//partner_logos/b_viber_account_image_111696658079262385FFHJ.png"
+                    "logo_512_512": "https://apps.gtrs.travel//partner_logos/b_apple_square_logo_111696658079262385FFHJ.png"
+                    "logo_1706_256": "https://apps.gtrs.travel//partner_logos/b_apple_wide_logo_111696658079262385FFHJ.png"
+                    "partner_from_email_address": "noreply@gtrsystem.com"
+                    "partner_from_email_full_name": "GTRSystem"
+                    "supplier": 
+                        "info":
+                              "supplier_type": "FLIGHT"
+                              "supplier_title": null,
+                              "supplier_code": "duffel"
+                              "supplier_uid": "FD00002"
+                              "supplier_partner_code": "duffel-1-003"
+                              "supplier_timezone": null,
+                              "currency": null,
+                              "notification_email": null,
+                              "supplier_fare_rules": null,
+                              "airlines_comission": null
+                        "price": 
+                              "supplier_currency": "USD"
+                              "flight_price": 377.45,
+                              "fmg_price": 377.45,
+                              "revenue": 0,
+                              "total_passenger": 1,
+                              "ticket_issue_charge": "0"
+                              "total_ticket_issue_charge": "0.00"
+                              "purchase": 
+                              "total": 
+                                    "currency": "USD"
+                                    "amount": "377.45"
+                              
+                              "tax": {
+                                    "currency": "USD",
+                                  "amount": "57.57"
+                              }
+                              "base_fare": {
+                                  "currency": "USD",
+                                  "amount": "319.88"
+                              }
+                        "fmg": 
+                              "base_fare": {
+                                  "currency": "USD",
+                                  "amount": 319.88
+                              }
+                              "tax": {
+                                  "currency": "USD",
+                                  "amount": 57.57
+                              }
+                              "total": {
+                                  "currency": "USD",
+                                  "amount": 377.45
+                              }
+                        "supplier_fare_policy":
+                              "ftm_partner_id": "1"
+                              "partner_name": "GTRSystem"
+                              "faregroup_id": "7"
+                              "supplier_type": "FLIGHT"
+                              "supplier_code": "duffel"
+                              "supplier_partner_code": "duffel-1-003"
+                              "title": "Default Fare Group For Duffel USA"
+                              "status": "active"
+                              "on_base_fare_ratio_markup": "0"
+                              "on_base_fare_ratio_discount": "0"
+                              "on_base_fare_fixed_markup": "0"
+                              "on_tax_ratio_markup": "0"
+                              "on_tax_fixed_markup": "0"
+                              "cancellation_buffer_days": "0"
+                              "ssr_charge_ratio": "0"
+                              "ssr_charge_markup": "0"
+                              "markup_min_active": "disable"
+                              "markup_min": "0"
+                              "markup_max_active": "disable"
+                              "markup_max": "0"
+                              "ticket_issue_charge": "0"
+                              "penalty_markup": "0"
+                    "currency_exchange_data":
+                              "agent_currency": "SGD"
+                              "partner_currency_data":
+                                      "from_currency_list":
+                                            
+                                                "0": "SGD"
+                                                "1": "USD"
+                                                "10": "BDT"
+                                                "18": "INR"
+                                                "23": "GBP"
+                                                "24": "AFN"
+                                                "25": "ARS"
+                                                "26": "AED"
+                                                "29": "JPY"
+                                                "34": "PKR"
+                                      "to_currency_list": 
+                                                "0": "BDT"
+                                                "2": "SGD"
+                                                "3": "USD"
+                                                "4": "INR"
+                                                "8": "PHP"
+                                                "15": "EUR"
+                                                "27": "AED"
+                                                "28": "PKR"
+                                      "filter_data":
+                                            "SGD":
+                                                  "from_currency": "SGD"
+                                                  "to_currency": "BDT"
+                                                  "exchange_rate": "80.37384009"
+                                                  "markup_percentage": "2.2"
+                                                  "markup_fixed": "5.00"
+                                                  "status": "active"
+                                            "USD":
+                                                  "from_currency": "USD"
+                                                  "to_currency": "BDT"
+                                                  "exchange_rate": "107.6523107"
+                                                  "markup_percentage": "3.7"
+                                                  "markup_fixed": "5.00"
+                                                  "status": "active"
+                                            "BDT":
+                                                  "from_currency": "BDT"
+                                                  "to_currency": "SGD"
+                                                  "exchange_rate": "0.012508372"
+                                                  "markup_percentage": "-1"
+                                                  "markup_fixed": "0.00"
+                                                  "status": "active"
+                                            "AED":
+                                                "from_currency": "AED"
+                                                "exchange_rate": "29.98674686"
+                                                "markup_percentage": "1"
+                                                "markup_fixed": "1"
+                                                "status": "active"
+                                            "all_currency":
+                                                     "Id": 1,
+                                                     "timestamp": "1673340816"
+                                                     "last_update": "1696519462"
+                                                     "entry": "2"
+                                                     "entry_n": "GTRSystem Admin Zahidul"
+                                                     "ip": "203.117.161.250"
+                                                     "ftm_partner_id": "1"
+                                                     "from_currency": "SGD"
+                                                     "to_currency": "BDT"
+                                                     "exchange_rate": "80.37384009"
+                                                     "last_day_exchange_rate": "79.59757888"
+                                                     "markup_percentage": "2.2"
+                                                     "markup_fixed": "5.00"
+                                                     "status": "active"
+                                                     "expire_timestamp": null,
+                                                     "api_last_update": null,                       
+                                                     "xe_data_json": null,
+                                                     "xe_rate_datetime": null,
+                              
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }

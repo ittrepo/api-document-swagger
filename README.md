@@ -31,7 +31,9 @@ cd swagger
 docker compose up -d
 ```
 
-- Open: `http://localhost:8080`.
+- Open: `
+
+`.
 - The UI auto-loads `../openapi/openapi.yaml` as the API definition.
 
 ## How To Build Redoc Docs
