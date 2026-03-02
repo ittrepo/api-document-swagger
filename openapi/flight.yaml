@@ -7,7 +7,7 @@ servers:
   - url: https://serviceapi.b2b.innovatedemo.com
 tags:
   - name: Flight
-    description: Flight search, pricing, booking, ancillaries and post-booking flows
+    description: Flight search, pricing, booking, ancillaries and post-booking flows.
 security:
   - apiKeyAuth: []
     secretCodeAuth: []
@@ -901,7 +901,7 @@ paths:
             examples:
               default:
                value:
-                journey_type: "RoundTrip" # OneWay, RoundTrip, MultiCity
+                journey_type: "Multicity" # OneWay, RoundTrip, MultiCity
                 segment:
                   - departure_airport_type: "AIRPORT" # CITY or AIRPORT
                     departure_airport: "DAC"
@@ -945,7 +945,7 @@ paths:
               example:
                 default:
                 summary:
-                value:
+                 value:
                    "status": "success"
                    "search_duration": "120 seconds"
                    "timestamp": "1771398099"
@@ -1558,156 +1558,104 @@ paths:
                 "arrival_departure_time": "2026-03-22 18:25:00"
             
         
-        "take_off": {
-            "0": null,
-            "2": "midnight",
-            "8": "morning",
-            "14": "evening",
-            "20": "night",
-            "84": "afternoon",
-            "256": "early-morning"
-        }
-        "landing_time": {
-            "0": null,
-            "2": "evening",
-            "3": "morning",
-            "7": "afternoon",
-            "26": "early-morning",
-            "47": "night",
-            "249": "midnight"
-        }
-        "carrier": {
-            "operating": [
-                null,
-                "AI",
-                "BG",
-                "EK",
-                "ET",
-                "FZ",
-                "MU",
-                "OD",
-                "SQ",
-                "SV",
-                "TK",
-                "UL"
-            ],
-            "marketing": [
-                null,
-                "AI",
-                "BG",
-                "EK",
-                "ET",
-                "FZ",
-                "MU",
-                "OD",
-                "SQ",
-                "SV",
-                "TK",
-                "UL"
-            ]
-        }
-        "baggage": [
-            {
-                "baggage_value": null,
-                "baggage_unit": null,
-                "baggage_title": null
-            },
-            {
-                "baggage_value": "pieces",
-                "baggage_unit": "1",
-                "baggage_title": "1 pieces"
-            },
-            {
-                "baggage_value": "pieces",
-                "baggage_unit": "2",
-                "baggage_title": "2 pieces"
-            },
-            {
-                "baggage_value": "kg",
-                "baggage_unit": "30",
-                "baggage_title": "30 kg"
-            },
-            {
-                "baggage_value": "kg",
-                "baggage_unit": "35",
-                "baggage_title": "35 kg"
-            }
-        ]
-        "connecting_airport": [
-            "ADD",
-            "AMM",
-            "BAH",
-            "BEG",
-            "BOM",
-            "CAI",
-            "DEL",
-            "FRA",
-            "GOI",
-            "IST",
-            "JED",
-            "KWI",
-            "MCT",
-            "PVG",
-            "RUH",
-            "SIN",
-            "WAW"
-        ]
-        "no_of_stops": [
-            null,
-            0,
-            1,
-            2,
-            [
-                {
-                    "group": null,
-                    "no_of_stops": 0
-                },
-                {
-                    "group": null,
-                    "no_of_stops": 0
-                }
-            ]
-        ]
-    
-  "search_parameter": {
-              "journey_type": "MultiCity",
-                  "segment":
-                    departure_airport_type: "AIRPORT" 
-                    departure_airport: "DAC"
-                    arrival_airport_type: "AIRPORT" 
-                    arrival_airport: "DXB"
-                    departure_date: "2026-02-30"
-
-                    departure_airport_type: "AIRPORT" 
-                    departure_airport: "DXB"
-                    arrival_airport_type: "AIRPORT" T
-                    arrival_airport: "DAC"
-                    departure_date: "2026-03-28" 
-
-                    departure_airport_type: "AIRPORT" 
-                    departure_airport: "DXB"
-                    arrival_airport_type: "AIRPORT" 
-                    arrival_airport: "DAC"
-                    departure_date: "2026-03-28" 
-                travelers_adult: 1
-                travelers_child: 0
-                travelers_child_age: 0
-                travelers_infants: 0
-                travelers_infants_age: []
-                preferred_carrier: []
-                non_stop_flight: "any" 
-                baggage_option: "any" 
-                booking_class: "Economy" 
-                supplier_uid: "F1TT00152" 
-                partner_id: "" 
-                short_ref: "xxxx111" 
-                language: "en"
-                "short_ref": null,
-                "version": null,
-                "team_profile": null
-    },
-    "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/flight_logs/11177139798126194GPE53/search_result.json",
-    "beforeSearchduration": "1 seconds"        
+                "take_off": {
+                             "0": null,
+                             "2": "midnight",
+                             "8": "morning",
+                             "14": "evening",
+                             "20": "night",
+                             "84": "afternoon",
+                             "256": "early-morning"
+                                        }
+                "landing_time": {
+                              "0": null,
+                              "2": "evening",
+                              "3": "morning",
+                              "7": "afternoon",
+                              "26": "early-morning",
+                              "47": "night",
+                              "249": "midnight"
+                          }
+                "carrier": {
+                          "operating": [
+                              null,
+                              "AI",
+                              "BG",
+                              "EK",
+                              "ET",
+                              "FZ",
+                              "MU",
+                              "OD",
+                              "SQ",
+                              "SV",
+                              "TK",
+                              "UL"
+                          ],
+                  "marketing": [
+                                null,
+                                "AI",
+                                "BG",
+                                "EK",
+                                "ET",
+                                "FZ",
+                                "MU",
+                                "OD",
+                                "SQ",
+                                "SV",
+                                "TK",
+                                "UL"
+                            ]
+                        }
+                "baggage": [
+                        {
+                            "baggage_value": null,
+                            "baggage_unit": null,
+                            "baggage_title": null
+                        },
+                        {
+                            "baggage_value": "pieces",
+                            "baggage_unit": "1",
+                            "baggage_title": "1 pieces"
+                        },
+                        {
+                            "baggage_value": "pieces",
+                            "baggage_unit": "2",
+                            "baggage_title": "2 pieces"
+                        },
+                        {
+                            "baggage_value": "kg",
+                            "baggage_unit": "30",
+                            "baggage_title": "30 kg"
+                        },
+                        {
+                            "baggage_value": "kg",
+                            "baggage_unit": "35",
+                            "baggage_title": "35 kg"
+                        }
+                    ]
+                "connecting_airport": [
+                                "ADD",
+                                "AMM",
+                                "BAH",
+                                "BEG",
+                                "BOM",
+                                "CAI",
+                                "DEL",
+                                "FRA",
+                                "GOI",
+                                "IST",
+                                "JED",
+                                "KWI",
+                                "MCT",
+                                "PVG",
+                                "RUH",
+                                "SIN",
+                                "WAW"
+                            ]
+                
+                "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/flight_logs/11177139798126194GPE53/search_result.json"
+                "beforeSearchduration": "1 seconds"
+           
                             
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }

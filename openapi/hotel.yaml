@@ -12,7 +12,7 @@ security:
   - apiKeyAuth: []
     secretCodeAuth: []
 paths:
-  /hotel/search-general:
+  /hotel/search-Multiple Adult-Child:
     post:
       tags: [Hotel]
       summary: General hotel search by location and occupancies
@@ -61,12 +61,131 @@ paths:
                   language: en
       responses:
         '200':
-          description: General hotel search results
+          description: General hotel search results 
           content:
             application/json:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+               default:
+                summary: Successful Search Response
+                value: 
+                        "status": "success"
+                        "reason": "Your destination search yielded results for 194 hotels."
+                        "tracking_id": "11177173317126194WKNKI"
+                        "search_duration_seconds": "42 seconds"
+                        "search_total_block": 24,
+                        "search_total_hotel": 1741,
+                        "total_hotel": 194,
+                        "before_mapping_total_hotel": 233,
+                        "name_match_mapping_addon": null,
+                        "ResultPercentage": "0.00%"
+                        "search_parameter":
+                              "tracking_id": "11771733169CCL1"
+                              "location": "Dhaka, Bangladesh"
+                              "radius": "auto"
+                              "search_radius": 17,
+                              "unit": "km"
+                              "checkIn": "2026-03-15"
+                              "checkOut": "2026-03-21"
+                              "total_night": "6"
+                              "total_room": 1,
+                              "total_adult": 2,
+                              "total_child": 0,
+                              "occupancies": 
+                                   {
+                                    "room": 1,
+                                    "adult": "2",
+                                    "child": "0"
+                                  }
+                              "guest_nationality": "BD"
+                              "hotel_star_level": "any"
+                              "search_currency": null,
+                              "latitude": 23.804093,
+                              "longitude": 90.4152376,
+                              "country_name": "Bangladesh"
+                              "country_code": "BD"
+                              "city_name": "Dhaka"
+                              "city_code": "Dhaka"
+                              "area_name": null,
+                              "area_code": null,
+                              "supplier_uid": "all"
+                              "hotel_mapping_count": 1792
+                        "data":
+                              "uid": 36,
+                              "hotel_id": "H1EA00004#17350009"
+                              "vervotechId": "15712948"
+                              "giataId": "725793"
+                              "tracking_id": "11771733169CCL1"
+                              "room_tracking_id": "11771733169CCL1-H1EA00004-36"
+                              "hotel_name": "White House Guest House"
+                              "hotel_name_code": "white-house-guest-house"
+                              "property_type": "Guesthouse"
+                              "room_title": "Dormitory Room"
+                              "promo_tag": "Save:7%"
+                              "rate_type": "Bed-Breakfast"
+                              "star_rating": 3,
+                              "rating_average": null,
+                              "primary_photo": "https://i.travelapi.com/lodging/18000000/17360000/17350100/17350009/ec5cf8b2_z.jpg"
+                              "address": "10B/1, Road 51, Unit B1, Gulshan 2"
+                              "latitude": "23.8011"
+                              "longitude": "90.4145"
+                              "distance_km": "0.34116"
+                              "currency": "BDT"
+                              "total_amount": 28180.83,
+                              "sell_price": 28180.83,
+                              "sell_per_night": 28180.83,
+                              "supplier": {
+                                  "supplier_code": "ean",
+                                  "supplier_uid": "H1EA00004",
+                                  "supplier_partner_code": "ean-1-00004",
+                                  "currency": "USD",
+                                  "purchase": 231.12,
+                                  "fmg_price": 231.12
+                              }
+                              "free_cancellation": 36,
+                              "facility": [
+                                  {
+                                      "title": "Breakfast",
+                                      "icon": "mdi mdi-coffee"
+                                  },
+                                  {
+                                      "title": "Wifi",
+                                      "icon": "mdi mdi-wifi"
+                                  },
+                                  {
+                                      "title": "Restaurant",
+                                      "icon": "mdi mdi-silverware-fork-knife"
+                                  },
+                                  {
+                                      "title": "Airport transfer",
+                                      "icon": "mdi mdi-car-arrow-right"
+                                  },
+                                  {
+                                      "title": "Laundry service",
+                                      "icon": "mdi mdi-washing-machine-alert"
+                                  },
+                                  {
+                                      "title": "Luggage storage",
+                                      "icon": "mdi mdi-bag-checked"
+                                  },
+                                  {
+                                      "title": "Swimming pool",
+                                      "icon": "mdi mdi-pool"
+                                  },
+                                  {
+                                      "title": "Fitness center",
+                                      "icon": "mdi mdi-dumbbell"
+                                  },
+                                  {
+                                      "title": "Car Parking",
+                                      "icon": "mdi mdi-parking"
+                                  }
+                              ]
+                              "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/hotel_logs/11177173317126194WKNKI/search_result.json"
+
+                            
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
@@ -94,10 +213,20 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                  summary: Successful Auto-suggestion Response
+                  value:
+                  - location: "Paris, France"
+                  - location: "Paris, TX, USA"
+                  - location: "Paris Expo Porte de Versailles, Place de la Porte de Versailles, Paris, France"
+                  - location: "Paris Las Vegas, South Las Vegas Boulevard, Las Vegas, NV, USA"
+                  - location: "Paris Orly Airport (ORY), Orly, France"
+
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
-  /hotel/search:
+  /hotel/search-Single Adult:
     post:
       tags: [Hotel]
       summary: Search hotel availability
@@ -146,13 +275,17 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+               default:
+                summary: Successful Search Response
+                value:
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
-  /hotel/rooms:
+  /hotel/Single Hotel Availability:
     post:
       tags: [Hotel]
-      summary: Get room availability for a specific hotel
+      summary: Single Hotel availability for a specific hotel and room.
       operationId: hotelRooms
       requestBody:
         required: true
@@ -172,20 +305,291 @@ paths:
                   guest_nationality: BD
       responses:
         '200':
-          description: Room-level availability and pricing for the hotel
+          description: Hotel availability and pricing for the hotel.
           content:
             application/json:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+               default:
+                summary: Successful Hotel Availability Search Response.
+                value:
+                      "status": "success"
+                      "tracking_id": "11177173361626194GBVQR"
+                      "search_parameter": 
+                          "hotel_id": "H1EA00004#17350009"
+                          "checkIn": "2026-03-15"
+                          "checkOut": "2026-03-16"
+                          "total_night": "1"
+                          "total_room": 2,
+                          "total_adult": 4,
+                          "total_child": 0,
+                          "occupancies": [
+                              {
+                                  "room": 1,
+                                  "adult": "2",
+                                  "child": ""
+                              },
+                              {
+                                  "room": 2,
+                                  "adult": "2",
+                                  "child": ""
+                              }
+                          ]
+                          "guest_nationality": "BD"
+                          "country_code": null
+                          "session_expire": 
+                                "timestamp": 1771735418,
+                                "datetime": "2026-02-22 10:43:38 +06"
+                                "message": "The booking process should be completed by no later than 2026-02-22 10:43:38 +06."
+                          "data": 
+                                "total_rooms": 0,
+                                "conncted_all_supplier": [
+                                      {
+                                          "VervotechId": 15712948,
+                                          "hotel_id": "17350009",
+                                          "supplier_code": "ean"
+                                      },
+                                      {
+                                          "VervotechId": "15712948",
+                                          "hotel_id": "1674896",
+                                          "supplier_code": "tbohotel"
+                                      }
+                                  ]
+                                "rooms": []
+                          "short_ref": "https://temp-logs.b2b.innovatedemo.com/hotel_logs/room_logs/.json"
+
+
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
-  /hotel/validation-get-detail:
+  /hotel/Single hotel Details Content:
     post:
       tags: [Hotel]
-      summary: Get hotel room validation details
-      operationId: hotelValidationGetDetail
+      summary: Single hotel Details Content Check.
+      operationId: hotel Details Content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  hotel_id: H1AS00029#RTPARDAM#PAR
+      responses:
+        '200':
+          description: Hotel Details Content Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              examples:
+               default: 
+                  summary: Successful Hotel Details Content Response
+                  value:
+                        "status": "success"
+                        "hotel_id": "17350009"
+                        "supplier_code": "ean"
+                        "travelgate_supplier_code": ""
+                        "last_update": "Saturday, 2025-04-26 9:54 PM +06:00"
+                        "data": 
+                            "created": "2025-04-26T15:54:10Z"
+                            "timestamp": "1745682850"
+                            "hotel_id": "17350009"
+                            "name": "White House Guest House"
+                            "name_local": "White House Guest House"
+                            "hotel_formerly_name": "White House Guest House"
+                            "brand_text": null,
+                            "property_type": "Guesthouse"
+                            "star_rating": "3.0"
+                            "chain": "Independent"
+                            "brand": "Independent"
+                            "logo": null,
+                            "primary_photo": "https://i.travelapi.com/lodging/18000000/17360000/17350100/17350009/ec5cf8b2_z.jpg"
+                            "review_rating": 
+                                "source": "Expedia.com"
+                                "number_of_reviews": 2,
+                                "rating_average": 362738,
+                                "popularity_score": "1.0"
+                            "policies": 
+                                "checkin": 
+                                    "begin_time": null,
+                                    "end_time": "anytime"
+                                    "instructions": "<ul>  <li>Extra-person charges may apply and vary depending on property policy</li><li>Government-issued photo identification and a credit card, debit card, or cash deposit may be required at check-in for incidental charges</li><li>Special requests are subject to availability upon check-in and may incur additional charges; special requests cannot be guaranteed</li><li>This property accepts credit cards</li><li>Only bookings from non-local guests are accepted; guests whose residence is within 50 mi (80 km) of the property will not be allowed to check in</li>  </ul>"
+                                    "special_instructions": null,
+                                    "min_age": 18
+                                "checkout": {
+                                        "time": "12:00 PM"
+                                    }
+                                "fees": {
+                                        "optional": "<ul> <li>Airport shuttle fee: USD 20 per person (one-way)</li><li>Airport shuttle fee per child: USD 20.00</li></ul> <p>The above list may not be comprehensive. Fees and deposits may not include tax and are subject to change. </p>"
+                                        }
+                                "know_before_you_go": null,
+                                "pets": [
+                                    "Pets not allowed"
+                                ]
+                                "remark": null,
+                                "child_and_extra_bed_policy": {
+                                    "infant_age": null,
+                                    "children_age_from": null,
+                                    "children_age_to": null,
+                                    "children_stay_free": null,
+                                    "min_guest_age": null
+                                } 
+                                "nationality_restrictions": null
+                            "address": 
+                              "latitude": 23.80112,
+                              "longitude": 90.41445,
+                              "address_line_1": "10B/1, Road 51, Unit B1, Gulshan 2"
+                              "address_line_2": null,
+                              "city": "Dhaka"
+                              "state": null,
+                              "country": "BD"
+                              "country_code": "BD"
+                              "postal_code": "1212"
+                              "full_address": "10B/1, Road 51, Unit B1, Gulshan 2 , Dhaka, , BD-1212"
+                              "google_map_site_link": "http://maps.google.com/maps?q=10B/1+Road+51+Unit+B1+Gulshan+2++Dhaka++BD-1212"
+                              "local_lang": {
+                                  "latitude": 23.80112,
+                                  "longitude": 90.41445,
+                                  "address_line_1": "10B/1, Road 51, Unit B1, Gulshan 2",
+                                  "address_line_2": null,
+                                  "city": "Dhaka",
+                                  "state": null,
+                                  "country": "BD",
+                                  "country_code": "BD",
+                                  "postal_code": "1212",
+                                  "full_address": "10B/1, Road 51, Unit B1, Gulshan 2 , Dhaka, , BD-1212",
+                                  "google_map_site_link": "http://maps.google.com/maps?q=10B/1 Road 51 Unit B1 Gulshan 2  Dhaka  BD-1212"
+                              }
+                              "mapping": {
+                                  "continent_id": null,
+                                  "country_id": "BD",
+                                  "province_id": null,
+                                  "state_id": null,
+                                  "city_id": null,
+                                  "area_id": null
+                              }
+                              "contacts": {
+                                  "phone_numbers": [
+                                      "880 1711 871359",
+                                      "880-1711-871359"
+                                  ],
+                                  "fax": null,
+                                  "email_address": [
+                                      "whitehousebd@hotmail.com"
+                                  ],
+                                  "website": null
+                              }
+                              "descriptions": 
+                                  
+                                      "title": "Headline"
+                                      "text": "In Dhaka (Gulshan)"
+                              "title": "Location"
+                              "text": "With a stay at White House Guest House in Dhaka (Gulshan), you'll be within a 10-minute walk of United Hospital and Gulshan Ladies Park.  This guesthouse is 0.8 mi (1.3 km) from Embassy of Turkey and 0.8 mi (1.3 km) from Embassy of South Korea."
+
+                              "room_type":
+                                  {
+                                      "room_id": "220511109",
+                                      "title": "Single room Attach Bathroom",
+                                      "title_lang": "Single room Attach Bathroom",
+                                      "room_pic": null,
+                                      "description": "<p><strong>1 Twin Bed</strong></p><p><b>Internet</b> - Free WiFi </p><p><b>Food & Drink</b> - Coffee/tea maker, shared/communal kitchen access,  24-hour room service, and free bottled water</p><p><b>Bathroom</b> - Private bathroom, bathtub or shower, free toiletries, and towels</p><p><b>Practical</b> - Safe, free newspaper, and desk</p><p><b>Comfort</b> - Climate-controlled air conditioning and daily housekeeping</p><p>Non-Smoking</p>",
+                                      "max_allowed": {
+                                          "total": 1,
+                                          "adults": 1,
+                                          "children": 0,
+                                          "infant": "n/a"
+                                      },
+                                      "no_of_room": "n/a",
+                                      "room_size": null,
+                                      "bed_type": [
+                                          {
+                                              "description": "1 Twin Bed",
+                                              "configuration": [
+                                                  {
+                                                      "quantity": 1,
+                                                      "size": "Twin",
+                                                      "type": "TwinBed"
+                                                  }
+                                              ],
+                                              "max_extrabeds": "n/a"
+                                          }
+                                      ],
+                                      "shared_bathroom": "n/a"
+                                  }
+                              "shared_bathroom": "n/a"
+                              "views": [
+                                  "Valley view"
+                              ]
+                            "amenities": 
+                                          
+                                              "type": "Dry cleaning/laundry service"
+                                              "title": "Dry cleaning/laundry service"
+                                              "icon": "mdi mdi-alpha-f-circle-outline"
+                            "facilities": [
+                                          {
+                                              "type": "professional-property-host/manager",
+                                              "title": "Professional property host/manager",
+                                              "icon": "mdi mdi-alpha-f-circle-outline"
+                                          },
+                                          {
+                                              "type": "no-cribs-(infant-beds)-available",
+                                              "title": "No cribs (infant beds) available",
+                                              "icon": "mdi mdi-alpha-f-circle-outline"
+                                          }
+                                      ]
+                            "hotel_photo": 
+                                          {
+                                              "picture_id": 3,
+                                              "title": "Primary Image",
+                                              "url": "https://i.travelapi.com/lodging/18000000/17360000/17350100/17350009/ec5cf8b2_z.jpg"
+                                          }
+                            "point_of_interests": 
+                                                  
+                                                      "code": null,
+                                                      "name": "International Convention City Bashundhara"
+                                                  
+                                                  
+                            "train_stations": [
+                                                  {
+                                                      "code": "DAC",
+                                                      "name": "Airport Railway Station"
+                                                  }
+                                              ]
+                            "connected_locations": 
+                                                  {
+                                                      "code": null,
+                                                      "name": "Dhaka"
+                                                  }
+                            "neighbourhoods": 
+                                                {
+                                                    "code": "DAC",
+                                                    "name": "Kāmarpāra"
+                                                }
+                            "stadiums":
+                                                    {
+                                                        "code": null,
+                                                        "name": "Bangladesh Army Stadium"
+                                                    }
+                                                
+                                                  
+                                          
+
+                                  
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/Price and Policy validation:
+    post:
+      tags: [Hotel]
+      summary: Get Price and Policy validation validation details
+      operationId: hotelPricePolicyValidation
       requestBody:
         required: true
         content:
@@ -197,6 +601,296 @@ paths:
               default:
                 value:
                   tracking_id: 11171005026802719
+                  room_tracking_id: 11175108883326193VKD98-H1AS00029-0
+      responses:
+        '200':
+          description: Validation details for selected hotel room
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              examples:
+                default:
+                  summary: Successful Price and Policy Validation Response
+                  value:
+                          "status": "success"
+                          tracking_id: "11177174741026194FHMV2"
+                          room_tracking_id: "11177174741026194FHMV2-H1TL00142-0"
+                          booking_tracking_id: "111771747633261941E6VT"
+                          price_change: "no-change"
+                          search_price:
+                              currency: "BDT"
+                              amount: 10014.46
+                          validation_price:
+                              currency: "BDT"
+                              amount: 10014.46
+                          session_expire:
+                              timestamp: 1771748533
+                              datetime: "2026-02-22 14:22:13 +06"
+                              message: "The booking process should be completed by no later than 2026-02-22 14:22:13 +06."
+                          search_parameter:
+                              hotel_id: "H1TL00142#KGB1097616"
+                              checkIn: "2026-03-15"
+                              checkOut: "2026-03-16"
+                              total_night: "1"
+                              total_room: 2
+                              total_adult: 4
+                              total_child: 0
+                              occupancies:
+                                - room: 1
+                                  adult: "2"
+                                  child: ""
+                                - room: 2
+                                  adult: "2"
+                                  child: ""
+                              guest_nationality: "BD"
+                              country_code: null
+                              supplement_key: null
+                          data:
+                                summery:
+                                tracking_id: "11177174741026194FHMV2"
+                                room_tracking_id: "11177174741026194FHMV2-H1TL00142-0"
+                                hotel_id: "H1TL00142#KGB1097616"
+                                title: "DOUBLE CLUB QUEEN BED"
+                                room_category: "club-room"
+                                room_category_name: "Club Room"
+                                room_category_priority: 15
+                                promo_price_tag: false
+                                total_amount: 10014.46
+                                sell_total_price: 10014.46
+                                currency: "BDT"
+                                sales_commission: 0
+                                supplier:
+                                  supplier_code: "travelrobothotel"
+                                  supplier_uid: "H1TL00142"
+                                  supplier_partner_code: "travelrobothotel-1-00142"
+                                  currency: "TRY"
+                                  purchase: 10014.46
+                                  fmg_price: 10014.46
+                                hold_possible: "no"
+                                policies:
+                                  summery: "non-refundable"
+                                  auto_cancel: "2026-02-22T14:07:13"
+                                  auto_cancel_timestamp: "1771747633"
+                          data():
+                                - room_number: "DOUBLE CLUB QUEEN BED"
+                                  name: "DOUBLE CLUB QUEEN BED"
+                                  rate_comments: ". Check-in hour 15:00-.Car park YES (Without additional debit notes).Check-out hour -00:00."
+                                  rate_code: "RO"
+                                  rate_type: "Room Only"
+                                  info:
+                                    available_room: null
+                                    size: []
+                                  occupancies:
+                                    total_room: "1"
+                                    adult: null
+                                    child: null
+                                  rate_data:
+                                    RoomCode: "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@e020e4194bc049eaa6c71104e812d246"
+                                  price:
+                                    promo_tag: null
+                                    purchase:
+                                      total:
+                                        currency: "BDT"
+                                        amount: 10014.46
+                                        before_discount: 10014.46
+                                        discount: 0
+                                        point: 0
+                                      price_breakdown:
+                                        currency: "BDT"
+                                        total: 10014.46
+                                        base_fare: 10014.46
+                                        tax: 0
+                                        extra_person_fee: 0
+                                        supplier_sales_comission: null
+                                        payable_at_property: []
+                                    sell:
+                                      total:
+                                        currency: "BDT"
+                                        amount: 10014.46
+                                        gross_price: 10014.46
+                                        platform_fees_or_extra_tax: 0
+                                        point: 0
+                                      price_breakdown:
+                                        currency: "BDT"
+                                        total: 10014.46
+                                        base_fare: 10014.46
+                                        tax: 0
+                                        platform_fees_or_extra_tax: 0
+                                        extra_person_fee: 0
+                                        supplier_sales_comission: null
+                                        payable_at_property: []
+                                    fmg:
+                                      total:
+                                        currency: "TRY"
+                                        amount: 10014.46
+                                      price_breakdown:
+                                        currency: "TRY"
+                                        total: 10014.46
+                                        base_fare: 10014.46
+                                        tax: 0
+                                        extra_person_fee: 0
+                                        supplier_sales_comission: null
+                                        base_fare_fmg_charge: 0
+                                        membership_discount_percentige: 0
+                                        membership_discount_amount: 0
+                                        final_base_fare_fmg_charge: 0
+                                        payable_at_property: []
+                                    supplier:
+                                      total:
+                                        currency: "TRY"
+                                        amount: 10014.46
+                                      price_breakdown:
+                                        currency: "TRY"
+                                        total: 10014.46
+                                        base_fare: 10014.46
+                                        tax: 0
+                                        sales_tax: 0
+                                        property_fees: 0
+                                        surcharges: 0
+                                        service_charge: 0
+                                        extra_person_fee: 0
+                                        supplier_sales_comission: null
+                                        payable_at_property: []
+                                  meal_option: []
+                                  bed_option: []
+                                  amenities: []
+                                  cancellation_raw:
+                                    - CurrencyCode: "TRY"
+                                      EndDate: "2026-03-15T00:00:00"
+                                      Id: 0
+                                      PenaltyAmount: 10014.46
+                                      PenaltyBuyAmount: 10014.46
+                                      PolicyDescription: "Policy : penalty amount between 20.02.2026 19:59 - 15.03.2026 00:00 dates is 10,014.46 TRY"
+                                      PolicyType: "Policy"
+                                      RoomCode: "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@e020e4194bc049eaa6c71104e812d246"
+                                      StartDate: "2026-02-20T19:59:00"
+                                  cancellation_policy:
+                                    hold_possible: "no"
+                                    summery: "non-refundable"
+                                    auto_cancel: "2026-02-22T14:07:13"
+                                    auto_cancel_timestamp: "1771747633"
+                                    policy_breakdown: []
+                                - room_number: "DOUBLE CLUB QUEEN BED"
+                                  name: "DOUBLE CLUB QUEEN BED"
+                                  rate_comments: ". Check-in hour 15:00-.Car park YES (Without additional debit notes).Check-out hour -00:00."
+                                  rate_code: "RO"
+                                  rate_type: "Room Only"
+                                  info:
+                                    available_room: null
+                                    size: []
+                                  occupancies:
+                                    total_room: "1"
+                                    adult: null
+                                    child: null
+                                  rate_data:
+                                    RoomCode: "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@d6bfe6091b6a49a1b7942f51a39c6c8c"
+                                  price:
+                                    promo_tag: null
+                                    purchase:
+                                      total:
+                                        currency: "BDT"
+                                        amount: 10014.46
+                                        before_discount: 10014.46
+                                        discount: 0
+                                        point: 0
+                                      price_breakdown:
+                                        currency: "BDT"
+                                        total: 10014.46
+                                        base_fare: 10014.46
+                                        tax: 0
+                                        extra_person_fee: 0
+                                        supplier_sales_comission: null
+                                        payable_at_property: []
+                                    sell:
+                                      total:
+                                        currency: "BDT"
+                                        amount: 10014.46
+                                        gross_price: 10014.46
+                                        platform_fees_or_extra_tax: 0
+                                        point: 0
+                                      price_breakdown:
+                                        currency: "BDT"
+                                        total: 10014.46
+                                        base_fare: 10014.46
+                                        tax: 0
+                                        platform_fees_or_extra_tax: 0
+                                        extra_person_fee: 0
+                                        supplier_sales_comission: null
+                                        payable_at_property: []
+                                    fmg:
+                                      total:
+                                        currency: "TRY"
+                                        amount: 10014.46
+                                      price_breakdown:
+                                        currency: "TRY"
+                                        total: 10014.46
+                                        base_fare: 10014.46
+                                        tax: 0
+                                        extra_person_fee: 0
+                                        supplier_sales_comission: null
+                                        base_fare_fmg_charge: 0
+                                        membership_discount_percentige: 0
+                                        membership_discount_amount: 0
+                                        final_base_fare_fmg_charge: 0
+                                        payable_at_property: []
+                                    supplier:
+                                      total:
+                                        currency: "TRY"
+                                        amount: 10014.46
+                                      price_breakdown:
+                                        currency: "TRY"
+                                        total: 10014.46
+                                        base_fare: 10014.46
+                                        tax: 0
+                                        sales_tax: 0
+                                        property_fees: 0
+                                        surcharges: 0
+                                        service_charge: 0
+                                        extra_person_fee: 0
+                                        supplier_sales_comission: null
+                                        payable_at_property: []
+                                  meal_option: []
+                                  bed_option: []
+                                  amenities: []
+                                  cancellation_raw:
+                                    - CurrencyCode: "TRY"
+                                      EndDate: "2026-03-15T00:00:00"
+                                      Id: 0
+                                      PenaltyAmount: 10014.46
+                                      PenaltyBuyAmount: 10014.46
+                                      PolicyDescription: "Policy : penalty amount between 20.02.2026 19:59 - 15.03.2026 00:00 dates is 10,014.46 TRY"
+                                      PolicyType: "Policy"
+                                      RoomCode: "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@d6bfe6091b6a49a1b7942f51a39c6c8c"
+                                      StartDate: "2026-02-20T19:59:00"
+                                  cancellation_policy:
+                                    hold_possible: "no"
+                                    summery: "non-refundable"
+                                    auto_cancel: "2026-02-22T14:07:13"
+                                    auto_cancel_timestamp: "1771747633"
+                                    policy_breakdown: []
+                                    post_booking_process: "auto"
+                                    book_now_pay_later: "no"
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/Get-Price-validation-detail:
+    post:
+      tags: [Hotel]
+      summary: Get Get-Price validation details
+      operationId: Get-Price-validation-detail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  booking_tracking_id: "111771747633261941E6VT"
                   member_id: "1"
       responses:
         '200':
@@ -206,14 +900,414 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                  summary: Successful Get-price Validation Detail Response.
+                  value:
+                         "status": "success"
+                         "booking_tracking_id": "111771747633261941E6VT"
+                         "tracking_id": "11177174741026194FHMV2"
+                         "room_tracking_id": "11177174741026194FHMV2-H1TL00142-0"
+                         "price_change": "no-change"
+                         "search_price": 
+                              "currency": "BDT"
+                              "amount": 10014.46
+                         "validation_price": 
+                            "currency": "BDT"
+                            "amount": 10014.46
+                        
+                         "session_expire": 
+                            "timestamp": 1771748533,
+                            "datetime": "2026-02-22 14:22:13 +06"
+                            "message": "The booking process should be completed by no later than 2026-02-22 14:22:13 +06."
+                        
+                         "search_parameter": 
+                            "hotel_id": "H1TL00142#KGB1097616"
+                            "checkIn": "2026-03-15"
+                            "checkOut": "2026-03-16"
+                            "total_night": "1"
+                            "total_room": 2,
+                            "total_adult": 4,
+                            "total_child": 0,
+                            "occupancies": [
+                                {
+                                    "room": 1,
+                                    "adult": "2",
+                                    "child": ""
+                                },
+                                {
+                                    "room": 2,
+                                    "adult": "2",
+                                    "child": ""
+                                }
+                            ]
+                            "guest_nationality": "BD"
+                            "country_code": null
+                            "supplement_key": null
+
+                              
+                          
+                            "data": 
+                                    "summery": 
+                                        "tracking_id": "11177174741026194FHMV2"
+                                        "room_tracking_id": "11177174741026194FHMV2-H1TL00142-0"
+                                        "hotel_id": "H1TL00142#KGB1097616"
+                                        "title": "DOUBLE CLUB QUEEN BED"
+                                        "room_category": "club-room"
+                                        "room_category_name": "Club Room"
+                                        "room_category_priority": 15,
+                                        "promo_price_tag": false,
+                                        "total_amount": 10014.46,
+                                        "sell_total_price": 10014.46,
+                                        "currency": "BDT"
+                                        "sales_commission": 0,
+                                        "supplier": {
+                                            "supplier_code": "travelrobothotel",
+                                            "supplier_uid": "H1TL00142",
+                                            "supplier_partner_code": "travelrobothotel-1-00142",
+                                            "currency": "TRY",
+                                            "purchase": 10014.46,
+                                            "fmg_price": 10014.46
+                                        }
+                                        "hold_possible": "no"
+                                        "policies": {
+                                            "summery": "non-refundable",
+                                            "auto_cancel": "2026-02-22T14:07:13",
+                                            "auto_cancel_timestamp": "1771747633"
+                                        }
+                                    "data":
+                                          "room_number": "DOUBLE CLUB QUEEN BED"
+                                          "name": "DOUBLE CLUB QUEEN BED"
+                                          "rate_comments": ".  Check-in hour 15:00-.Car park YES (Without additional debit notes).Check-out hour -00:00."
+                                          "rate_code": "RO"
+                                          "rate_type": "Room Only"
+                                          "info": {
+                                              "available_room": null,
+                                              "size": []
+                                          }
+                                          "occupancies": {
+                                              "total_room": "1",
+                                              "adult": null,
+                                              "child": null
+                                          }
+                                          "rate_data": {
+                                              "RoomCode": "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@e020e4194bc049eaa6c71104e812d246"
+                                          }
+                                          "price": 
+                                            "promo_tag": null,
+                                            "purchase": {
+                                                "total": {
+                                                    "currency": "BDT",
+                                                    "amount": 10014.46,
+                                                    "before_discount": 10014.46,
+                                                    "discount": 0,
+                                                    "point": 0
+                                                },
+                                              "price_breakdown": {
+                                                    "currency": "BDT",
+                                                    "total": 10014.46,
+                                                    "base_fare": 10014.46,
+                                                    "tax": 0,
+                                                    "extra_person_fee": 0,
+                                                    "supplier_sales_comission": null,
+                                                    "payable_at_property": []
+                                                }
+                                            }
+                                            "sell": 
+                                            "total": {
+                                                    "currency": "BDT",
+                                                    "amount": 10014.46,
+                                                    "gross_price": 10014.46,
+                                                    "platform_fees_or_extra_tax": 0,
+                                                    "point": 0
+                                            }
+                                            "price_breakdown": {
+                                                    "currency": "BDT",
+                                                    "total": 10014.46,
+                                                    "base_fare": 10014.46,
+                                                    "tax": 0,
+                                                    "platform_fees_or_extra_tax": 0,
+                                                    "extra_person_fee": 0,
+                                                    "supplier_sales_comission": null,
+                                                    "payable_at_property": []
+                                                }
+                                            
+                                            "fmg":
+                                                "total": {
+                                                    "currency": "TRY",
+                                                    "amount": 10014.46
+                                                }
+                                          "price_breakdown": {
+                                              "currency": "TRY",
+                                              "total": 10014.46,
+                                              "base_fare": 10014.46,
+                                              "tax": 0,
+                                              "extra_person_fee": 0,
+                                              "supplier_sales_comission": null,
+                                              "base_fare_fmg_charge": 0,
+                                              "membership_discount_percentige": 0,
+                                              "membership_discount_amount": 0,
+                                              "final_base_fare_fmg_charge": 0,
+                                              "payable_at_property": []
+                                          }
+                                          supplier": {
+                                              "total": {
+                                                  "currency": "TRY",
+                                                  "amount": 10014.46
+                                              },
+                                              "price_breakdown": {
+                                                  "currency": "TRY",
+                                                  "total": 10014.46,
+                                                  "base_fare": 10014.46,
+                                                  "tax": 0,
+                                                  "sales_tax": 0,
+                                                  "property_fees": 0,
+                                                  "surcharges": 0,
+                                                  "service_charge": 0,
+                                                  "extra_person_fee": 0,
+                                                  "supplier_sales_comission": null,
+                                                  "payable_at_property": []
+                                              }
+                                          }
+                                          "meal_option": []
+                                          "bed_option": []
+                                          "amenities": []
+                                          "cancellation_raw": [
+                                              {
+                                                  "CurrencyCode": "TRY",
+                                                  "EndDate": "2026-03-15T00:00:00",
+                                                  "Id": 0,
+                                                  "PenaltyAmount": 10014.46,
+                                                  "PenaltyBuyAmount": 10014.46,
+                                                  "PolicyDescription": "Policy : penalty amount between 20.02.2026 19:59 - 15.03.2026 00:00 dates is 10,014.46 TRY",
+                                                  "PolicyType": "Policy",
+                                                  "RoomCode": "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@e020e4194bc049eaa6c71104e812d246",
+                                                  "StartDate": "2026-02-20T19:59:00"
+                                              }
+                                          ]   
+                                          "cancellation_policy": {
+                                              "hold_possible": "no",
+                                              "summery": "non-refundable",
+                                              "auto_cancel": "2026-02-22T14:07:13",
+                                              "auto_cancel_timestamp": "1771747633",
+                                              "policy_breakdown": [],
+                                              "post_booking_process": "auto",
+                                              "book_now_pay_later": "no"
+                                          }
+                                    "room_number": "DOUBLE CLUB QUEEN BED"
+                                    "name": "DOUBLE CLUB QUEEN BED"
+                                    "rate_comments": ".  Check-in hour 15:00-.Car park YES (Without additional debit notes).Check-out hour -00:00."
+                                    "rate_code": "RO"
+                                    "rate_type": "Room Only"
+                                    "info": {
+                                        "available_room": null,
+                                        "size": []
+                                    }
+                                    "occupancies": {
+                                        "total_room": "1",
+                                        "adult": null,
+                                        "child": null
+                                    }
+                                    "rate_data": {
+                                        "RoomCode": "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@d6bfe6091b6a49a1b7942f51a39c6c8c"
+                                    }
+                            "price": 
+                                "promo_tag": null,
+                                "purchase": {
+                                    "total": {
+                                          "currency": "BDT",
+                                          "amount": 10014.46,
+                                          "before_discount": 10014.46,
+                                          "discount": 0,
+                                          "point": 0
+                                      },
+                                     "price_breakdown": {
+                                          "currency": "BDT",
+                                          "total": 10014.46,
+                                          "base_fare": 10014.46,
+                                          "tax": 0,
+                                          "extra_person_fee": 0,
+                                          "supplier_sales_comission": null,
+                                          "payable_at_property": []
+                                      }
+                                  }
+                                "sell": 
+                                  "total": {
+                                      "currency": "BDT",
+                                      "amount": 10014.46,
+                                      "gross_price": 10014.46,
+                                      "platform_fees_or_extra_tax": 0,
+                                      "point": 0
+                                  }
+                                  "price_breakdown": {
+                                      "currency": "BDT",
+                                      "total": 10014.46,
+                                      "base_fare": 10014.46,
+                                      "tax": 0,
+                                      "platform_fees_or_extra_tax": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "payable_at_property": []
+                                  }
+                            "fmg": {
+                                  "total": {
+                                      "currency": "TRY",
+                                      "amount": 10014.46
+                                  },
+                                  "price_breakdown": {
+                                      "currency": "TRY",
+                                      "total": 10014.46,
+                                      "base_fare": 10014.46,
+                                      "tax": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "base_fare_fmg_charge": 0,
+                                      "membership_discount_percentige": 0,
+                                      "membership_discount_amount": 0,
+                                      "final_base_fare_fmg_charge": 0,
+                                      "payable_at_property": []
+                                  }
+                              }
+                            "post_booking_process": "auto"
+                            "book_now_pay_later": "no"
+                         "guest_data": []
+                         "hotel_contents": 
+                                "status": "success"
+                                "hotel_id": "KGB1097616"
+                                "supplier_code": "travelrobothotel"
+                                "travelgate_supplier_code": "Test_020126"
+                                "last_update": "Thursday, 1970-01-01 6:00 AM +06:00"
+                                "data": 
+                                    "created": "2026-02-22T09:08:21"
+                                    "timestamp": 1771747701,
+                                    "hotel_id": "KGB1097616"
+                                    "name": "Club Quarters Hotel, Trafalgar Square"
+                                    "name_local": "Club Quarters Hotel, Trafalgar Square"
+                                    "hotel_formerly_name": "Club Quarters Hotel, Trafalgar Square"
+                                    "destination_code": "540025"
+                                    "country_code": "GB"
+                                    "brand_text": null,
+                                    "property_type": "Hotel"
+                                    "star_rating": 4,
+                                    "chain": null,
+                                    "brand": null,
+                                    "logo": null,
+                                    "primary_photo": "https://cdn.kplus.com.tr/?url=aS50cmF2ZWxhcGkuY29tL2xvZGdpbmcvMjAwMDAwMC8xNTkwMDAwLzE1ODQ3MDAvMTU4NDY2MS8yYmIyMWY0NV9iLmpwZw=="
+                                    "review_rating": {
+                                        "source": null,
+                                        "number_of_reviews": null,
+                                        "rating_average": null,
+                                        "popularity_score": null
+                                    }
+                                "policies": {
+                                    "check_in": {
+                                        "begin_time": null,
+                                        "end_time": null,
+                                        "instructions": null,
+                                        "min_age": null
+                                    },
+                                    "checkout": {
+                                        "time": null
+                                    },
+                                    "fees": {
+                                        "optional": null
+                                    },
+                                    "know_before_you_go": null,
+                                    "pets": [],
+                                    "remark": null,
+                                    "child_and_extra_bed_policy": {
+                                        "infant_age": null,
+                                        "children_age_from": null,
+                                        "children_age_to": null,
+                                        "children_stay_free": null,
+                                        "min_guest_age": null
+                                    },
+                                    "nationality_restrictions": null
+                                }
+                                "address": 
+                                      "latitude": 51.50712,
+                                      "longitude": -0.125892,
+                                      "address_line_1": "8 Northumberland Ave London, Greater London, England GB"
+                                      "address_line_2": null,
+                                      "city": null,
+                                      "state": null,
+                                      "country": null,
+                                      "country_code": "GB"
+                                      "postal_code": null,
+                                      "full_address": "8 Northumberland Ave London, Greater London, England GB"
+                                      "google_map_site_link": "http://maps.google.com/maps?q=8+Northumberland+Ave+London,+Greater+London,+England+GB"
+                                      "local_lang": {
+                                          "latitude": 51.50712,
+                                          "longitude": -0.125892,
+                                          "address_line_1": "8 Northumberland Ave London, Greater London, England GB",
+                                          "address_line_2": null,
+                                          "city": null,
+                                          "state": null,
+                                          "country": null,
+                                          "country_code": "GB",
+                                          "postal_code": null,
+                                          "full_address": "8 Northumberland Ave London, Greater London, England GB",
+                                          "google_map_site_link": "http://maps.google.com/maps?q=8+Northumberland+Ave+London,+Greater+London,+England+GB"
+                                      }
+                                      "mapping": {
+                                            "continent_id": null,
+                                            "country_id": null,
+                                            "province_id": null,
+                                            "state_id": null,
+                                            "city_id": null,
+                                            "area_id": null
+                                        }
+                                      "contacts": 
+                                        "phone_numbers": [
+                                            "44 207 8399333"
+                                        ]
+                                        "fax": []
+                                        "email_address": [
+                                            "memberservices@clubquarters.com"
+                                        ]
+                                        "website": []
+                                      "room_type": []
+                                      "spoken_languages": 
+                                                {
+                                                    "type": "spoken_languages",
+                                                    "title": "English",
+                                                    "icon": "mdi mdi-translate-variant"
+                                                }
+                                      "amenities": null,
+                                      "facilities": 
+                                          {
+                                              "type": "Facility",
+                                              "title": "Parking",
+                                              "icon": "mdi mdi-translate-variant"
+                                          }
+                                      "hotel_photo": 
+                                            {
+                                                "picture_id": null,
+                                                "title": "Primary image",
+                                                "url": "https://cdn.kplus.com.tr/?url=aS50cmF2ZWxhcGkuY29tL2xvZGdpbmcvMjAwMDAwMC8xNTkwMDAwLzE1ODQ3MDAvMTU4NDY2MS8yYmIyMWY0NV9iLmpwZw=="
+                                            }
+                                      "point_of_interests": 
+                                            {
+                                                "code": "1",
+                                                "name": "London Dungeon"
+                                            }
+                                      "nearest_airports": null,
+                                      "train_stations": null,
+                                      "connected_locations": null,
+                                      "stadiums": null
+                                  
+          
+                                    
+                                                                                                
+                                                              
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
-  /hotel/get-hotel-details:
+  /hotel/Update travellers info:
     post:
       tags: [Hotel]
-      summary: Get static content and details for a single hotel
-      operationId: hotelGetDetails
+      summary: Update travellers info for a hotel booking
+      operationId: hotelUpdateTravellersInfo
       requestBody:
         required: true
         content:
