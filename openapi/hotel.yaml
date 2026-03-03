@@ -1319,6 +1319,28 @@ paths:
               default:
                 value:
                   hotel_id: H1AS00029#HLMAD100#MAD
+                  "tracking_id": "111771747633261941E6VT"
+                  "member_id": "1"
+                  "save_pax": "yes"
+                  "passenger":
+                            
+                            "pax_id": "1"
+                            "room_number": "1"
+                            "pax_type": "ADT"
+                            "gender": "M"
+                            "title": "Mr"
+                            "first_name": "Jhon"
+                            "last_name": "Doe"
+                            "age": "30"
+
+                            -"pax_id": "4"
+                            -"room_number": "2"
+                            -"pax_type": "CNN"
+                            -"title": "Mr"
+                            -"first_name": "Jubi"
+                            -"last_name": "Hossen"
+                            -"age": "5"
+                    
       responses:
         '200':
           description: Hotel content including photos, facilities and policy text
@@ -1327,11 +1349,51 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                  summary: Successful Update travellers info Response.
+                  value:
+                         "status": "success"
+                         "reason": "Passenger data has been successfully updated."
+                         "tracking_id": "111771747633261941E6VT"
+                         "total_guest": 2,
+                         "data": [
+                            {
+                                "tracking_id": "111771747633261941E6VT",
+                                "pax_id": "1",
+                                "pax_type": "ADT",
+                                "gender": null,
+                                "title": "MR",
+                                "first_name": "JHON",
+                                "last_name": "DOE",
+                                "pax_age": "30",
+                                "isd_code": "",
+                                "contact_no": "",
+                                "email_address": "",
+                                "supplement_data": "{\"selected_date\":null,\"arrival_date\":null,\"arrival_time\":null,\"arrival_flight_no\":null,\"to_city_name\":null,\"departure_date\":null,\"departure_time\":null,\"departure_flight_no\":null,\"from_city_name\":null}"
+                            },  
+                            {
+                                "tracking_id": "111771747633261941E6VT",
+                                "pax_id": "2",
+                                "pax_type": "ADT",
+                                "gender": null,
+                                "title": "MR",
+                                "first_name": "JONS",
+                                "last_name": "DON",
+                                "pax_age": "30",
+                                "isd_code": "",
+                                "contact_no": "",
+                                "email_address": "",
+                                "supplement_data": "{\"selected_date\":null,\"arrival_date\":null,\"arrival_time\":null,\"arrival_flight_no\":null,\"to_city_name\":null,\"departure_date\":null,\"departure_time\":null,\"departure_flight_no\":null,\"from_city_name\":null}"
+                            },
+                         ]
+
+
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '404': { $ref: '#/components/responses/NotFound' }
         '500': { $ref: '#/components/responses/ServerError' }
-  /hotel/validate:
+  /hotel/create Booking:
     post:
       tags: [Hotel]
       summary: Validate hotel room price and policy
@@ -1348,6 +1410,16 @@ paths:
                 value:
                   tracking_id: 11175108883326193
                   room_tracking_id: 11175108883326193VKD98-H1AS00029-0
+                  "isd_code": "1"
+                  "contact_no": "01700000000"
+                  "email_address": "sandbox@innovatesolution.com"
+                  "payment_type": "account_balance"
+                  "redirect_url": "https://agent.innotraveltech.com/booking-details/hotel"
+                  "agency_isd_code": "1"
+                  "agency_contact_no": "01700000000"
+                  "agency_email": "sandbox@innovatesolution.com"
+                  "member_id": "1"
+                  "special_requests_notes": "n/a"
       responses:
         '200':
           description: Validation result with updated price and cancellation rules
@@ -1356,6 +1428,684 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                  summary: Successful Create Booking Response.
+                  value:
+                        "status": "success"
+                        "reason": "The booking has been successfully created, and it is associated with the Booking Id HO2622FEIDACKY."
+                        "tracking_id": "111771747633261941E6VT"
+                        "booking_id": "HO2622FEIDACKY"
+                        "general": 
+                            "service_type": "HOTEL"
+                            "service_details": "Hotel 1 night(s) Booking Check-In 2026-03-15 and CheckOut 2026-03-16. 2 room(s) with 4 adult(s) 0 child(s)"
+                            "booking_remarks": null,
+                            "generated_date": "2026-02-22"
+                            "partner_id": "1"
+                            "master_partner_id": "1"
+                            "branch_id": "BDHE001"
+                            "tracking_id": "111771747633261941E6VT"
+                            "booking_id": "HO2622FEIDACKY"
+                            "hotel_ref_id": null,
+                            "supplier_confirmation_id": "6VEW02X8Q5"
+                            "supplier_others_id_a": "a7a2fb6a-33b9-4b9b-9d92-cfef08ee34cf"
+                            "supplier_others_id_b": null,
+                            "member_id": "1"
+                            "book_by": "NS Nayeem"
+                            "ip_address": null,
+                            "timestamp": "1771748594"
+                            "last_update": "1771748594"
+                            "supplier_invoice_company": null,
+                            "supplier_invoice_number": null
+                        "voucher": {
+                            "link": "https://manage.b2b.innovatedemo.com/voucher/hotel-voucher?uid=eyJ0cmFja2luZ19pZCI6IjExMTc3MTc0NzYzMzI2MTk0MUU2VlQiLCJmdG1fcGFydG5lcl9pZCI6IjEiLCJtYXN0ZXJfcGFydG5lcl9pZCI6IjEiLCJtZW1iZXJfaWQiOiIxIiwibGlua19leHBpcmUiOiIyMDI2LTA1LTIzIn0=",
+                            "pdf": "https://manage.b2b.innovatedemo.com/voucher/hotel-booking-pdf?uid=eyJ0cmFja2luZ19pZCI6IjExMTc3MTc0NzYzMzI2MTk0MUU2VlQiLCJmdG1fcGFydG5lcl9pZCI6IjEiLCJtYXN0ZXJfcGFydG5lcl9pZCI6IjEiLCJtZW1iZXJfaWQiOiIxIiwibGlua19leHBpcmUiOiIyMDI2LTA1LTIzIn0="
+                                     }
+                        "booking": {
+                            "status": "success",
+                            "booking_status": "confirm",
+                            "booking_supplier_status": "confirm",
+                            "voucher_status": "issued",
+                            "payment_status": "pending",
+                            "auto_cancel_status": "pending",
+                            "partner_timezone": "Asia/Dhaka",
+                            "auto_cancel": "2026-02-22T14:07:13",
+                            "auto_cancel_timestamp": "1771747633"
+                        }
+                        "price": {
+                            "currency": "BDT",
+                            "total_amount": "20028.92",
+                            "sell_total_price": "20028.92",
+                            "sales_comission": "0"
+                        }
+                        "hotel": 
+                            "search_parameter": {
+                                "hotel_id": "H1TL00142#KGB1097616",
+                                "checkIn": "2026-03-15",
+                                "checkOut": "2026-03-16",
+                                "total_night": "1",
+                                "total_room": 2,
+                                "total_adult": 4,
+                                "total_child": 0,
+                                "occupancies": [
+                                    {
+                                        "room": 1,
+                                        "adult": "2",
+                                        "child": ""
+                                    },
+                                    {
+                                        "room": 2,
+                                        "adult": "2",
+                                        "child": ""
+                                    }
+                                ],
+                                "guest_nationality": "BD",
+                                "country_code": null,
+                                "supplement_key": null
+                            }
+                        "room": 
+                              "summery": {
+                                  "tracking_id": "11177174741026194FHMV2",
+                                  "room_tracking_id": "11177174741026194FHMV2-H1TL00142-0",
+                                  "hotel_id": "H1TL00142#KGB1097616",
+                                  "title": "DOUBLE CLUB QUEEN BED",
+                                  "room_category": "club-room",
+                                  "room_category_name": "Club Room",
+                                  "room_category_priority": 15,
+                                  "promo_price_tag": false,
+                                  "total_amount": 10014.46,
+                                  "sell_total_price": 10014.46,
+                                  "currency": "BDT",
+                                  "sales_commission": 0,
+                                  "supplier": {
+                                      "supplier_code": "travelrobothotel",
+                                      "supplier_uid": "H1TL00142",
+                                      "supplier_partner_code": "travelrobothotel-1-00142",
+                                      "currency": "TRY",
+                                      "purchase": 10014.46,
+                                      "fmg_price": 10014.46
+                                  },
+                                  "hold_possible": "no",
+                                  "policies": {
+                                      "summery": "non-refundable",
+                                      "auto_cancel": "2026-02-22T14:07:13",
+                                      "auto_cancel_timestamp": "1771747633"
+                                  }
+                              }
+                        -"data"(): 
+                
+                              "room_number": "DOUBLE CLUB QUEEN BED"
+                              "name": "DOUBLE CLUB QUEEN BED"
+                              "rate_comments": ".  Check-in hour 15:00-.Car park YES (Without additional debit notes).Check-out hour -00:00."
+                              "rate_code": "RO"
+                              "rate_type": "Room Only"
+                              "info": {
+                                    "available_room": null,
+                                      "size": []
+                                  }
+                        "occupancies": {
+                                      "total_room": "1",
+                                      "adult": null,
+                                      "child": null
+                                  }
+                        "rate_data": {
+                                      "RoomCode": "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@e020e4194bc049eaa6c71104e812d246"
+                                  }
+                        -"price": 
+                                      "promo_tag": null,
+                                      "purchase": {
+                                          "total": {
+                                              "currency": "BDT",
+                                              "amount": 10014.46,
+                                              "before_discount": 10014.46,
+                                              "discount": 0,
+                                              "point": 0
+                                          },
+                                          "price_breakdown": {
+                                              "currency": "BDT",
+                                              "total": 10014.46,
+                                              "base_fare": 10014.46,
+                                              "tax": 0,
+                                              "extra_person_fee": 0,
+                                              "supplier_sales_comission": null,
+                                              "payable_at_property": []
+                                          }
+                                      }
+                                      "sell": 
+                                          "total": {
+                                              "currency": "BDT",
+                                              "amount": 10014.46,
+                                              "gross_price": 10014.46,
+                                              "platform_fees_or_extra_tax": 0,
+                                              "point": 0
+                                          }
+                                      "price_breakdown": {
+                                            "currency": "BDT",
+                                            "total": 10014.46,
+                                            "base_fare": 10014.46,
+                                            "tax": 0,
+                                            "platform_fees_or_extra_tax": 0,
+                                            "extra_person_fee": 0,
+                                            "supplier_sales_comission": null,
+                                            "payable_at_property": []
+                                        }
+                                      "fmg": 
+                                        "total": {
+                                            "currency": "TRY",
+                                            "amount": 10014.46
+                                        }
+                                        "price_breakdown": {
+                                            "currency": "TRY",
+                                            "total": 10014.46,
+                                            "base_fare": 10014.46,
+                                            "tax": 0,
+                                            "extra_person_fee": 0,
+                                            "supplier_sales_comission": null,
+                                            "base_fare_fmg_charge": 0,
+                                            "membership_discount_percentige": 0,
+                                            "membership_discount_amount": 0,
+                                            "final_base_fare_fmg_charge": 0,
+                                            "payable_at_property": []
+                                        }
+                                      "supplier": 
+                                          "total": {  
+                                              "currency": "TRY",
+                                              "amount": 10014.46
+                                          }
+                                          "price_breakdown": {
+                                              "currency": "TRY",
+                                              "total": 10014.46,
+                                              "base_fare": 10014.46,
+                                              "tax": 0,
+                                              "sales_tax": 0,
+                                              "property_fees": 0,
+                                              "surcharges": 0,
+                                              "service_charge": 0,
+                                              "extra_person_fee": 0,
+                                              "supplier_sales_comission": null,
+                                              "payable_at_property": []
+                                          }
+                                      "meal_option": []
+                                      "bed_option": []
+                                      "amenities": []
+                                      "cancellation_raw": [
+                                          {
+                                              "CurrencyCode": "TRY",
+                                              "EndDate": "2026-03-15T00:00:00",
+                                              "Id": 0,
+                                              "PenaltyAmount": 10014.46,
+                                              "PenaltyBuyAmount": 10014.46,
+                                              "PolicyDescription": "Policy : penalty amount between 20.02.2026 19:59 - 15.03.2026 00:00 dates is 10,014.46 TRY",
+                                              "PolicyType": "Policy",
+                                              "RoomCode": "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@e020e4194bc049eaa6c71104e812d246",
+                                              "StartDate": "2026-02-20T19:59:00"
+                                          }
+                                      ]
+                                      "cancellation_policy": 
+                                        "hold_possible": "no"
+                                        "summery": "non-refundable"
+                                        "auto_cancel": "2026-02-22T14:07:13"
+                                        "auto_cancel_timestamp": "1771747633"
+                                        "policy_breakdown": []
+                                    
+                                      "room_number": "DOUBLE CLUB QUEEN BED"
+                                      "name": "DOUBLE CLUB QUEEN BED"
+                                      "rate_comments": ".  Check-in hour 15:00-.Car park YES (Without additional debit notes).Check-out hour -00:00."
+                                      "rate_code": "RO"
+                                      "rate_type": "Room Only"
+                                      "info": {
+                                          "available_room": null,
+                                          "size": []
+                                      }
+                                      "occupancies": {
+                                          "total_room": "1",
+                                          "adult": null,
+                                          "child": null
+                                      }
+                                      "rate_data": {
+                                          "RoomCode": "fff05113fce24739a9cb3549eb78c043|@KGB1097616@29@d6bfe6091b6a49a1b7942f51a39c6c8c"
+                                      }
+                                      "price": 
+                                        "promo_tag": null,
+                                        "purchase": {
+                                            "total": {
+                                                "currency": "BDT",
+                                                "amount": 10014.46,
+                                                "before_discount": 10014.46,
+                                                "discount": 0,
+                                                "point": 0
+                                            },
+                                            "price_breakdown": {
+                                                "currency": "BDT",
+                                                "total": 10014.46,
+                                                "base_fare": 10014.46,
+                                                "tax": 0,
+                                                "extra_person_fee": 0,
+                                                "supplier_sales_comission": null,
+                                                "payable_at_property": []
+                                            }
+                                        }
+                                        "sell": 
+                                          "total": {
+                                              "currency": "BDT",
+                                              "amount": 10014.46,
+                                              "gross_price": 10014.46,
+                                              "platform_fees_or_extra_tax": 0,
+                                              "point": 0
+                                          }
+                                          "price_breakdown": {
+                                              "currency": "BDT",
+                                              "total": 10014.46,
+                                              "base_fare": 10014.46,
+                                              "tax": 0,
+                                              "platform_fees_or_extra_tax": 0,
+                                              "extra_person_fee": 0,
+                                              "supplier_sales_comission": null,
+                                              "payable_at_property": []
+                                          }
+                                          "fmg": 
+                                            "total": {
+                                                "currency": "TRY",
+                                                "amount": 10014.46
+                                            }
+                                            "price_breakdown": {
+                                                "currency": "TRY",
+                                                "total": 10014.46,
+                                                "base_fare": 10014.46,
+                                                "tax": 0,
+                                                "extra_person_fee": 0,
+                                                "supplier_sales_comission": null,
+                                                "base_fare_fmg_charge": 0,
+                                                "membership_discount_percentige": 0,
+                                                "membership_discount_amount": 0,
+                                                "final_base_fare_fmg_charge": 0,
+                                                "payable_at_property": []
+                                            }
+                                            "hotel_contents": 
+                                              "created": "2026-02-22T09:23:12"
+                                              "timestamp": 1771748592,
+                                              "hotel_id": "KGB1097616"
+                                              "name": "Club Quarters Hotel, Trafalgar Square"
+                                              "name_local": "Club Quarters Hotel, Trafalgar Square"
+                                              "hotel_formerly_name": "Club Quarters Hotel, Trafalgar Square"
+                                              "destination_code": "540025"
+                                              "country_code": "GB"
+                                              "brand_text": null,
+                                              "property_type": "Hotel"
+                                              "star_rating": 4,
+                                              "chain": null,
+                                              "brand": null,
+                                              "logo": null,
+                                              "primary_photo": "https://cdn.kplus.com.tr/?url=aS50cmF2ZWxhcGkuY29tL2xvZGdpbmcvMjAwMDAwMC8xNTkwMDAwLzE1ODQ3MDAvMTU4NDY2MS8yYmIyMWY0NV9iLmpwZw=="
+                                              "review_rating": {
+                                                  "source": null,
+                                                  "number_of_reviews": null,
+                                                  "rating_average": null,
+                                                  "popularity_score": null
+                                              }
+                                            "policies": 
+                                              "check_in": {
+                                                  "begin_time": null,
+                                                  "end_time": null,
+                                                  "instructions": null,
+                                                  "min_age": null
+                                              }
+                                              "checkout": {
+                                                  "time": null
+                                              }
+                                              "fees": {
+                                                  "optional": null
+                                              }
+                                              "know_before_you_go": null,
+                                              "pets": []
+                                              "remark": null,
+                                              "child_and_extra_bed_policy": {
+                                                  "infant_age": null,
+                                                  "children_age_from": null,
+                                                  "children_age_to": null,
+                                                  "children_stay_free": null,
+                                                  "min_guest_age": null
+                                              }
+                                              "nationality_restrictions": null
+                                          "address": 
+                                              "latitude": 51.50712,
+                                              "longitude": -0.125892,
+                                              "address_line_1": "8 Northumberland Ave London, Greater London, England GB"
+                                              "address_line_2": null,
+                                              "city": null,
+                                              "state": null,
+                                              "country": null,
+                                              "country_code": "GB"
+                                              "postal_code": null,
+                                              "full_address": "8 Northumberland Ave London, Greater London, England GB"
+                                              "google_map_site_link": "http://maps.google.com/maps?q=8+Northumberland+Ave+London,+Greater+London,+England+GB"
+                                              "local_lang": {
+                                                  "latitude": 51.50712,
+                                                  "longitude": -0.125892,
+                                                  "address_line_1": "8 Northumberland Ave London, Greater London, England GB",
+                                                  "address_line_2": null,
+                                                  "city": null,
+                                                  "state": null,
+                                                  "country": null,
+                                                  "country_code": "GB",
+                                                  "postal_code": null,
+                                                  "full_address": "8 Northumberland Ave London, Greater London, England GB",
+                                                  "google_map_site_link": "http://maps.google.com/maps?q=8+Northumberland+Ave+London,+Greater+London,+England+GB"
+                                              }
+                                          "mapping": {
+                                                "continent_id": null,
+                                                "country_id": null,
+                                                "province_id": null,
+                                                "state_id": null,
+                                                "city_id": null,
+                                                "area_id": null
+                                            }
+                                        "contacts": {
+                                              "phone_numbers": [
+                                                  "44 207 8399333"
+                                              ],
+                                              "fax": [],
+                                              "email_address": [
+                                                  "memberservices@clubquarters.com"
+                                              ],
+                                              "website": []
+                                          }
+                                        
+                                        "room_type": null,
+                                        "spoken_languages": [
+                                            {
+                                                "type": "spoken_languages",
+                                                "title": "English",
+                                                "icon": "mdi mdi-translate-variant"
+                                            }
+                                        ]
+                                        "amenities": null,
+                                        "facilities": [
+                                            {
+                                                "type": "Facility",
+                                                "title": "Parking",
+                                                "icon": "mdi mdi-translate-variant"
+                                            },
+                                            {
+                                                "picture_id": null,
+                                                "title": "Primary image",
+                                                "url": "https://cdn.kplus.com.tr/?url=aS50cmF2ZWxhcGkuY29tL2xvZGdpbmcvMjAwMDAwMC8xNTkwMDAwLzE1ODQ3MDAvMTU4NDY2MS8yYmIyMWY0NV9iLmpwZw=="
+                                            },
+                                            {
+                                                "picture_id": null,
+                                                "title": "Lobby",
+                                                "url": "https://cdn.kplus.com.tr/?url=aS50cmF2ZWxhcGkuY29tL2xvZGdpbmcvMjAwMDAwMC8xNTkwMDAwLzE1ODQ3MDAvMTU4NDY2MS82ODMyYzZkM19iLmpwZw=="
+                                            },
+                                        ]
+                                      "point_of_interests": [
+                                          {
+                                              "code": "1",
+                                              "name": "London Dungeon"
+                                          },
+                                          {
+                                              "code": "1",
+                                              "name": "Westminster Bridge"
+                                          },
+                                      ]
+                                      "nearest_airports": null,
+                                      "train_stations": null,
+                                      "connected_locations": null,
+                                      "stadiums": null
+                        "pax": 
+                            "primary": 
+                                "guest_name": "MR JHON DOE"
+                                "guest_email": "sandbox@innovatesolution.com"
+                                "guest_isd_code": null,
+                                "guest_contact_no": "101700000000"
+                                "guest_nationality": "BD"
+                        "data": [
+                              {
+                                  "Id": "6820",
+                                  "timestamp": "1771748165",
+                                  "last_update": "1771748211",
+                                  "entry": "1",
+                                  "entry_n": "NS Nayeem",
+                                  "ftm_partner_id": "1",
+                                  "master_partner_id": null,
+                                  "tracking_id": "111771747633261941E6VT",
+                                  "service_type": "HOTEL",
+                                  "room_number": "1",
+                                  "pax_id": "1",
+                                  "passenger_id": null,
+                                  "supplier_pax_id": null,
+                                  "pax_type": "ADT",
+                                  "paxType_Identity": null,
+                                  "primary_ptc": null,
+                                  "ptc_title": null,
+                                  "gender": null,
+                                  "title": "MR",
+                                  "first_name": "JHON",
+                                  "last_name": "DOE",
+                                  "dob": null,
+                                  "pax_age": "30",
+                                  "nationality": null,
+                                  "doc_type": null,
+                                  "doc_country": null,
+                                  "doc_no": null,
+                                  "cnic": null,
+                                  "doc_dateofexpiry": "2033-12-31",
+                                  "doc_dateofissue": "2022-12-31",
+                                  "frequent_flyer_airlines": null,
+                                  "frequent_flyer": null,
+                                  "purpose_of_visit": null,
+                                  "special_request": null,
+                                  "residential_address": null,
+                                  "wheelchair_required": null,
+                                  "isd_code": "",
+                                  "contact_no": "",
+                                  "email_address": "",
+                                  "doc_pics": null,
+                                  "seat_number": null,
+                                  "baggage_option": null,
+                                  "meal_option": null,
+                                  "booking_id": null,
+                                  "ticket_number": null,
+                                  "ticket_status": null,
+                                  "ticket_issueTimeStamp": null,
+                                  "ticket_supplier_status": null,
+                                  "ticket_status_title": null,
+                                  "tktNumberValidation": "0",
+                                  "comission_type": null,
+                                  "comission_value": "0.00",
+                                  "currency": null,
+                                  "sell_total": "0.00",
+                                  "sell_base_fare": "0.00",
+                                  "sell_tax": "0.00",
+                                  "sell_discount": "0.00",
+                                  "sell_ait": "0",
+                                  "sell_service_charge": "0.00",
+                                  "sell_gross_base_fare": "0.00",
+                                  "sell_gross_tax": "0.00",
+                                  "cus_ticket_issue_charge": "0",
+                                  "price_total": "0.00",
+                                  "price_base_fare": "0.00",
+                                  "price_tax": "0.00",
+                                  "price_taxBreakdown_BD": "0.00",
+                                  "price_taxBreakdown_UT": "0.00",
+                                  "price_taxBreakdown_E5": "0.00",
+                                  "price_taxBreakdown_YQ": "0.00",
+                                  "price_taxBreakdown_YR": "0.00",
+                                  "price_taxBreakdown_Other": "0.00",
+                                  "price_discount": "0",
+                                  "price_ait": "0",
+                                  "price_service_charge": "0.00",
+                                  "price_gross_base_fare": "0.00",
+                                  "price_gross_tax": "0.00",
+                                  "ticket_issue_charge": "0",
+                                  "total_ticket_issue_charge": "0.00",
+                                  "supplier_currency": null,
+                                  "currencyExchangeRate": null,
+                                  "fmg_total": "0.00",
+                                  "fmg_base_fare": "0.00",
+                                  "fmg_tax": "0.00",
+                                  "fmg_discount": "0",
+                                  "fmg_ait": "0",
+                                  "fmg_service_charge": "0.00",
+                                  "fmg_gross_base_fare": "0.00",
+                                  "fmg_gross_tax": "0.00",
+                                  "fmg_markup_type": null,
+                                  "fmg_charge": "0",
+                                  "fmg_revenue": "0.00",
+                                  "supplier_total": "0.00",
+                                  "supplier_base_fare": "0.00",
+                                  "supplier_tax": "0.00",
+                                  "supplier_discount": "0",
+                                  "supplier_ait": "0",
+                                  "supplier_service_charge": "0.00",
+                                  "supplier_gross_base_fare": "0.00",
+                                  "supplier_gross_tax": "0.00",
+                                  "supplier_primary_commission": "0",
+                                  "supplier_segment_feesCalculate": "0",
+                                  "segment_discount_accountPurpose": null,
+                                  "supplier_per_segment_discount": "0",
+                                  "supplier_total_segment": "0",
+                                  "supplier_total_segment_discount": "0",
+                                  "gross_fare_total": null,
+                                  "gross_fare_base_fare": "0.00",
+                                  "gross_fare_tax": "0.00",
+                                  "gross_fare_tax_BD": "0.00",
+                                  "gross_fare_tax_UT": "0.00",
+                                  "gross_fare_tax_E5": "0.00",
+                                  "gross_fare_tax_YQ": "0.00",
+                                  "gross_fare_tax_YR": "0.00",
+                                  "gross_fare_tax_Other": "0.00",
+                                  "gross_fare_tax_breakDownJSON": null,
+                                  "gross_fare_discount_amount": "0.00",
+                                  "gross_fare_ait_amount": "0.00",
+                                  "gross_fare_service_charge": "0.00",
+                                  "custom_gross_discount": "0.00",
+                                  "custom_gross_charges": "0",
+                                  "custom_gross_service_fee": "0",
+                                  "custom_gross_markup": "0",
+                                  "applicable_comission_title": null,
+                                  "discount_comission_ratio": null,
+                                  "discount_comission_type": null,
+                                  "dynamic_markup_type": null,
+                                  "dynamic_markup_title": null,
+                                  "dynamic_markup_ratio": null,
+                                  "passport_copy": null,
+                                  "beneficiary_name": null,
+                                  "beneficiary_relation": null,
+                                  "beneficiary_cnic": null,
+                                  "beneficiary_contact": null,
+                                  "beneficiary_address": null,
+                                  "spouse_adult_name": null,
+                                  "spouse_adult_dob": null,
+                                  "spouse_adult_passportno": null,
+                                  "child1_name": null,
+                                  "child1_dob": null,
+                                  "child1_passportno": null,
+                                  "child2_name": null,
+                                  "child2_dob": null,
+                                  "child2_passportno": null,
+                                  "child3_name": null,
+                                  "child3_dob": null,
+                                  "child3_passportno": null,
+                                  "child4_name": null,
+                                  "child4_dob": null,
+                                  "child4_passportno": null,
+                                  "policyNumber": null,
+                                  "policyVoucher": null,
+                                  "isVoid": "0",
+                                  "voidDate": null,
+                                  "voidTimestamp": null,
+                                  "isRefund": "0",
+                                  "refundDate": null,
+                                  "refundTimestamp": null,
+                                  "refundSupplerAmount": null,
+                                  "refundSupplerPenalty": null,
+                                  "refundCharge": null,
+                                  "refundAmount": null,
+                                  "refundPenalty": null,
+                                  "supplement_data": "{\"selected_date\":null,\"arrival_date\":null,\"arrival_time\":null,\"arrival_flight_no\":null,\"to_city_name\":null,\"departure_date\":null,\"departure_time\":null,\"departure_flight_no\":null,\"from_city_name\":null}"
+                              },
+                        ]
+                        "partner": 
+                          "agency_isd_code": "1"
+                          "agency_contact_no": "01700000000"
+                          "agency_email": "sandbox@innovatesolution.com"
+                          "contact": {
+                              "person_name": "Nazmus",
+                              "isd_code": "880",
+                              "number": "1546776554",
+                              "email": "cto@innovatesolution.co"
+                          }
+                          "partner_id": "1"
+                          "master_partner_id": "1"
+                          "partner_type": "MASTER"
+                          "partner_profile_code": "ITT"
+                          "branch_id": "BDHE001"
+                          "brand_name": "Inno Travel Tech"
+                          "tag_line": "Next generation B2B travel reservation portal specially designed only for travel professionals"
+                          "legal_name": "Innovate Solution"
+                          "city": "Singapore"
+                          "state": "Singapore"
+                          "postal_code": "049712"
+                          "address": "30 Cecil Street # 19-08 Prudential Tower."
+                          "country": "SG"
+                          "website": "https://innovatedemo.com/"
+                          "customer_hotline": "2345678"
+                          "support_email": "cto@innovatesolution.com"
+                          "customer_support_email": "no-reply@innovatesolution.com"
+                          "priavcy_link": "https://innovatedemo.com/contact.php"
+                          "terms_link": "https://innovatedemo.com/contact.php"
+                          "logo_1440_448": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png"
+                          "logo_224_224": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png"
+                          "logo_1024_1024": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png"
+                          "logo_400_400": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png"
+                          "logo_512_512": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png"
+                          "logo_1706_256": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png"
+                          "partner_from_email_address": "no-reply@reservationmastermind.com"
+                          "partner_from_email_full_name": "Inno Travel Tech"
+                        "supplier": 
+                          "info": {
+                              "supplier_type": "HOTEL",
+                              "supplier_title": "travelrobot sendbox",
+                              "supplier_code": "travelrobothotel",
+                              "supplier_uid": "H1TL00142",
+                              "supplier_partner_code": "travelrobothotel-1-00142",
+                              "supplier_timezone": "Asia/Singapore",
+                              "currency": "USD",
+                              "notification_email": "operation@innotraveltech.com",
+                              "supplier_fare_rules": null,
+                              "airlines_comission": null
+                          }
+                          "price": 
+                            "supplier_currency": null,
+                            "purchase": null,
+                            "fmg_price": null,
+                            "revenue": 0,
+                            "currency_exchange_data": {
+                                "agent_currency": "BDT",
+                                "partner_currency_data": {
+                                    "from_currency_list": [],
+                                    "to_currency_list": [],
+                                    "filter_data": null,
+                                    "all_currency": []
+                                }
+                            }
+                            "terms": {
+                                  "status": "disable",
+                                  "text": null
+                              }
+                          "terms": {
+                              "status": "disable",
+                              "text": null
+                          }
+                          "cancellation_terms": {
+                              "status": "disable",
+                              "text": null
+                          } 
+                        
+                                                                                                   
+                                          
+                                    
+                                    
         '400':
           description: Validation failed or bad request
           content:
@@ -1363,6 +2113,62 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+  /hotel/Booking Details:
+    post:
+      tags: [Hotel]
+      summary: Search hotel availability
+      operationId: hotelSearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              oneRoom:
+                value:
+                  location: Dhaka, Bangladesh
+                  radius: auto
+                  checkIn: 2025-07-11
+                  checkOut: 2025-07-12
+                  occupancies:
+                    - adult: "2"
+                  guest_nationality: AE
+                  hotel_star_level: any
+                  supplier_uid: H1RL00028
+                  partner_id: "1"
+                  language: en
+              twoRooms:
+                value:
+                  location: dubai
+                  radius: auto
+                  checkIn: 2025-05-15
+                  checkOut: 2025-05-16
+                  occupancies:
+                    - adult: "2"
+                    - adult: "2"
+                  guest_nationality: BD
+                  hotel_star_level: any
+                  search_currency: any
+                  supplier_uid: H1RL00018
+                  partner_id: "1"
+                  language: en
+      responses:
+        '200':
+          description: Hotel availability results with mapped hotel inventory
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              examples:
+               default:
+                summary: Successful Search Response
+                value:
+        '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
 components:
