@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: ITT Hotel API
+  version: 1.0.0
+  description: Hotel API endpoints converted from Postman collection.
+servers:
+  - url: https://serviceapi.b2b.innovatedemo.com
+tags:
+  - name: Hotel
+    description: Hotel search, availability, room pricing and booking validation
+security:
+  - apiKeyAuth: []
+    secretCodeAuth: []
+paths:
+  /hotel/Cancel Booking:
+    post:
+      tags: [Hotel]
+      summary: Cancel hotel booking.
+      operationId: hotelCancelBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              Cancel hotel booking:
+                value:
+                  "member_id": "1"
+                  "tracking_id": "11177251811403210FPDT2"
+                  "reason": "not required"
+      responses:
+        '200':
+          description: Successfully cancelled booking
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              examples:
+               default:
+                summary: Successful Cancel Booking Response
+                value:
+                  "status": "success"
+                  "reason": "The booking has been successfully canceled.. Refund ref id. ITT-RFD-030326-0052 request for BDT 490.36 has been successfully submitted. The finance team will proceed to verify and update accordingly."
+                  "reason_admin": null,
+                  "tracking_id": "11177251811403210FPDT2"
+                  "booking_id": "HO2603MA6SACYB"
+                  "booking_status": "cancel"
+                  "booking_supplier_status": "cancel"
+                  "cancellationReference": null,
+                  "post_booking_details": {
+                      "last_update": "1772518476",
+                      "tracking_id": "11177251811403210FPDT2",
+                      "booking_id": "HO2603MA6SACYB",
+                      "supplier_confirmation_id": "370036221",
+                      "airlines_pnr": null,
+                      "service_type": "HOTEL",
+                      "status": "cancel",
+                      "booking_status": "cancel",
+                      "generated_date": "2026-03-03"
+                  } 
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+    secretCodeAuth:
+      type: apiKey
+      in: header
+      name: secretecode
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+
