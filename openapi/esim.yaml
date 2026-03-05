@@ -44,6 +44,220 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                  value:
+                    "status": "success"
+                    "reason": "A total of 24 eSIM packages were found for your search."
+                    "tracking_id": "117726070533RO1"
+                    "search_parameter": {
+                        "eSim": {
+                            "region_type": "local",
+                            "country_code": "BD",
+                            "plan_type": "data",
+                            "topup_included": "yes"
+                        },
+                        "supplier_uid": "all",
+                        "partner_id": "1",
+                        "short_ref": "xxxx111",
+                        "language": "en",
+                        "tracking_id": "117726070533RO1"
+                    }
+                    "total_esim_package": 24,
+                    "data": 
+                        
+                            "tracking_id": "117726070533RO1"
+                            "package_id": "X1AO00084||bangladesh||1067||fatafati-in-7days-1gb"
+                            "supplier": "airalo"
+                            "supplier_partner_code": "airalo-1-00084"
+                            "supplier_key": "fatafati-in-7days-1gb"
+                            "sell_price": 489.41,
+                            "sell_currency": "BDT"
+                            "package_type": "sim"
+                            "title": "1 GB - 7 days"
+                            "data": "1 GB"
+                            "package_details": 
+                                "data_amount": 1024,
+                                "voice_amount": null,
+                                "text_amount": null,
+                                "validity_days": 7,
+                                "is_unlimited": false,
+                                "has_fair_usage_policy": false
+                            "region_details": 
+                                "id": "bangladesh"
+                                "name": "Bangladesh"
+                                "country_code": "BD"
+                                "image": {
+                                    "width": 132,
+                                    "height": 99,
+                                    "url": "https://cdn-revamp.airalo.com/images/7633c268-6c9a-47e9-86e0-78ea5f07f1e9.png"
+                                }
+                            "operator_details": 
+                              "image": 
+                                  "width": 1035,
+                                  "height": 653,
+                                  "url": "https://cdn-revamp.airalo.com/images/e10c1246-bafa-4998-bfe9-e9e279aa2eb8.png"
+                            "validity": {
+                                "activation_days": 365,
+                                "topup_days": 180
+                            }
+                            "coverage_type": "local"
+                            "esim_type": "prepaid"
+                            "plan_type": "data"
+                            "activation_policy": "first-usage"
+                            "rechargeable": true,
+                            "info": null
+                            "coverage_country": 
+                              {
+                                  "country": "BD",
+                                  "networks": [
+                                      "GrameenPhone"
+                                  ],
+                                  "network_types": [
+                                      "4G"
+                                  ]
+                              }
+                            price": 
+                              "promo_tag": null,
+                              "purchase": {
+                                  "total": {
+                                      "currency": "BDT",
+                                      "amount": 489.41,
+                                      "before_discount": 489.41,
+                                      "discount": 0,
+                                      "point": 0
+                                  },
+                                  "price_breakdown": {
+                                      "currency": "BDT",
+                                      "total": 489.41,
+                                      "base_fare": 489.41,
+                                      "tax": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "payable_at_property": []
+                                  }
+                              }
+                            "sell": {
+                                "total": {
+                                    "currency": "BDT",
+                                    "amount": 489.41,
+                                    "gross_price": 489.41,
+                                    "platform_fees_or_extra_tax": 0,
+                                    "point": 0
+                                },
+                                "price_breakdown": {
+                                    "currency": "BDT",
+                                    "total": 489.41,
+                                    "base_fare": 489.41,
+                                    "tax": 0,
+                                    "platform_fees_or_extra_tax": 0,
+                                    "extra_person_fee": 0,
+                                    "supplier_sales_comission": null,
+                                    "payable_at_property": []
+                                }
+                            }
+                            "fmg": {
+                                "total": {
+                                    "currency": "USD",
+                                    "amount": 4
+                                },
+                                "price_breakdown": {
+                                    "currency": "USD",
+                                    "total": 4,
+                                    "base_fare": 4,
+                                    "tax": 0,
+                                    "extra_person_fee": 0,
+                                    "supplier_sales_comission": null,
+                                    "base_fare_fmg_charge": 0,
+                                    "membership_discount_percentige": 0,
+                                    "membership_discount_amount": 0,
+                                    "final_base_fare_fmg_charge": 0,
+                                    "payable_at_property": []
+                                }
+                            }
+                    "supplier": 
+                        "total": 
+                            "currency": "USD"
+                            "amount": 4
+                    
+                        "price_breakdown": 
+                          "currency": "USD"
+                          "total": 4,
+                          "base_fare": 4,
+                          "tax": 0,
+                          "sales_tax": 0,
+                          "property_fees": 0,
+                          "surcharges": 0,
+                          "service_charge": 0,
+                          "extra_person_fee": 0,
+                          "supplier_sales_comission": null,
+                          "payable_at_property": []
+                        "fair_usage_policy": null,
+                        "qr_installation": "<p><br></p><p><b>eSIM name:</b> Fatafati</p><p><br></p><p><b>Coverage: </b>Bangladesh</p><p><br></p><p><b>To activate the eSIM by scanning the QR code on your eSIM capable device you need to print or display this QR code on other device:</b></p><p><br></p><ol><li>Settings > Cellular/Mobile > Add Cellular/Mobile Plan.</li><li>Scan QR code.</li><li>Confirm eSIM plan details.</li><li>Label the eSIM.</li></ol><p><br></p><p><b>To access Data:</b></p><p><br></p><ol><li>Enable data roaming.</li></ol><p><br></p><p><b>To top up:</b></p><p><br></p><p>Visit airalo.com/my-esims or if purchased through the Airalo website/app visit “My eSIMs” tab.</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>"
+                        "manual_installation": "<p><br></p><p><b>eSIM name:</b> Fatafati</p><p><br></p><p><b>Coverage: </b>Bangladesh</p><p><br></p><p><b>To manually activate the eSIM on your eSIM capable device:</b></p><p><br></p><ol><li>Settings > Cellular/Mobile > Add Cellular/Mobile Plan.</li><li>Manually enter the SM-DP+ Address and activation code.</li><li>Confirm eSIM plan details.</li><li>Label the eSIM.</li></ol><p><br></p><p><b>To access Data:</b></p><p><br></p><ol><li>Enable data roaming.</li></ol><p><br></p><p><b>To top up:</b></p><p><br></p><p>Visit airalo.com/my-esims or if purchased through the Airalo website/app visit “My eSIMs” tab.</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>"
+                    "filter": 
+                      "data_amount": 1024,
+                      "voice_amount": 0,
+                      "text_amount": 0,
+                      "validity_days": 7,
+                      "coverage_type": "local"
+                      "esim_type": "prepaid"
+                      "plan_type": "data"
+                      "coverage_country": [
+                          "BD"
+                      ]
+                    -"filter": {
+                      "data_amount": [
+                            1024,
+                            2048,
+                            3072,
+                            5120,
+                            28672,
+                            0,
+                            10240,
+                            43008,
+                            53248,
+                            20480,
+                            66560,
+                            93184,
+                            173056
+                        ],
+                  "voice_amount": [
+            0
+                    ],
+                  "text_amount": [
+                        0
+                    ],
+                  "validity_days": [
+                        7,
+                        15,
+                        30,
+                        3,
+                        5,
+                        10
+                    ],
+                  "esim_type": [
+                      "prepaid"
+                  ],
+                  "coverage_type": [
+                      "local"
+                  ],
+                  "plan_type": [
+                      "data"
+                  ],
+                  "coverage_country": [
+                      "BD"
+                  ],
+                  "min_price": 489,
+                  "max_price": 12112
+                    }
+                "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/esim_logs/117726070533RO1/search_result.json"
+
+                              
+                        
+                                      
+                        
+                
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
@@ -72,6 +286,161 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                  value:
+                        "status": "success"
+                        "tracking_id": "11177260822126194QDWJV"
+                        "search_parameter": {
+                          "eSim": {
+                            "region_type": "local",
+                            "country_code": "BD",
+                            "plan_type": "data",
+                            "topup_included": "yes"
+                        },
+                        "supplier_uid": "X1AO00084",
+                        "partner_id": "1",
+                        "short_ref": "xxxx111",
+                        "language": "en",
+                        "tracking_id": "117726070533RO1",
+                        "supplier_type": "ESIM",
+                        "supplier_code": "airalo",
+                        "supplier_partner_code": "airalo-1-00084"
+                      }
+                        "data": 
+                            "booking_tracking_id": "11177260822126194QDWJV"
+                            "package_tracking_id": "11177260822126194QDWJV||fatafati-in-7days-1gb"
+                            "supplier": "airalo"
+                            "supplier_partner_code": "airalo-1-00084"
+                            "supplier_key": "fatafati-in-7days-1gb"
+                            "sell_price": 489.41,
+                            "sell_currency": "BDT"
+                            "package_type": "sim"
+                            "title": "1 GB - 7 days"
+                            "data": "1 GB"
+                            "package_details": {
+                                "data_amount": 1024,
+                                "voice_amount": null
+                                
+                            }
+                        "region_details": 
+                          "id": "bangladesh"
+                          
+                            
+                                
+                        "operator_details": 
+                            "image": 
+                                "width": 1035,
+                                "height": 653,
+                                "url": "https://cdn-revamp.airalo.com/images/e10c1246-bafa-4998-bfe9-e9e279aa2eb8.png"
+                            
+                            "validity": 
+                                "activation_days": 365,
+                                "topup_days": 180
+                            
+                            "coverage_type": "local"
+                            "esim_type": "prepaid"
+                            "plan_type": "data"
+                            "activation_policy": "first-usage"
+                            "rechargeable": true,
+                            "info": null
+                        
+                        "coverage_country": [
+                        {
+                            "country": "BD",
+                            "networks": [
+                                "GrameenPhone"
+                            ],
+                            "network_types": [
+                                "4G"
+                            ]
+                        }
+                    ]
+                        "price": 
+                            "promo_tag": null,
+                            "purchase": {
+                                "total": {
+                                    "currency": "BDT",
+                                    "amount": 489.41,
+                                    "before_discount": 489.41,
+                                    "discount": 0,
+                                    "point": 0
+                                },
+                          "price_breakdown": {
+                              "currency": "BDT",
+                              "total": 489.41,
+                              "base_fare": 489.41,
+                              "tax": 0,
+                              "extra_person_fee": 0,
+                              "supplier_sales_comission": null,
+                              "payable_at_property": []
+                          }
+                               }
+                            "sell": {
+                            "total": {
+                            "currency": "BDT",
+                            "amount": 489.41,
+                            "gross_price": 489.41,
+                            "platform_fees_or_extra_tax": 0,
+                            "point": 0
+                        },
+                        "price_breakdown": {
+                            "currency": "BDT",
+                            "total": 489.41,
+                            "base_fare": 489.41,
+                            "tax": 0,
+                            "platform_fees_or_extra_tax": 0,
+                            "extra_person_fee": 0,
+                            "supplier_sales_comission": null,
+                            "payable_at_property": []
+                        }
+                    }
+
+                        "fmg": {
+                        "total": {
+                            "currency": "USD",
+                            "amount": 4
+                        },
+                        "price_breakdown": {
+                            "currency": "USD",
+                            "total": 4,
+                            "base_fare": 4,
+                            "tax": 0,
+                            "extra_person_fee": 0,
+                            "supplier_sales_comission": null,
+                            "base_fare_fmg_charge": 0,
+                            "membership_discount_percentige": 0,
+                            "membership_discount_amount": 0,
+                            "final_base_fare_fmg_charge": 0,
+                            "payable_at_property": []
+                        }
+                    }
+
+                        "supplier": {
+                        "total": {
+                            "currency": "USD",
+                            "amount": 4
+                        },
+                        "price_breakdown": {
+                            "currency": "USD",
+                            "total": 4,
+                            "base_fare": 4,
+                            "tax": 0,
+                            "sales_tax": 0,
+                            "property_fees": 0,
+                            "surcharges": 0,
+                            "service_charge": 0,
+                            "extra_person_fee": 0,
+                            "supplier_sales_comission": null,
+                            "payable_at_property": []
+                        }
+                    }
+
+                        "fair_usage_policy": null,
+                        "qr_installation": "<p><br></p><p><b>eSIM name:</b> Fatafati</p><p><br></p><p><b>Coverage:</b>Bangladesh</p><p><br></p><p><b>To activate the eSIM by scanning the QR code on your eSIM capable device you need to print or display this QR code on other device:</b></p><p><br></p><ol><li>Settings > Cellular/Mobile > Add Cellular/Mobile Plan.</li><li>Scan QR code.</li><li>Confirm eSIM plan details.</li><li>Label the eSIM.</li></ol><p><br></p><p><b>To access Data:</b></p><p><br></p><ol><li>Enable data roaming.</li></ol><p><br></p><p><b>To top up:</b></p><p><br></p><p>Visit airalo.com/my-esims or if purchased through the Airalo website/app visit “My eSIMs” tab.</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>"
+                        "manual_installation": "<p><br></p><p><b>eSIM name:</b> Fatafati</p><p><br></p><p><b>Coverage: </b>Bangladesh</p><p><br></p><p><b>To manually activate the eSIM on your eSIM capable device:</b></p><p><br></p><ol><li>Settings > Cellular/Mobile > Add Cellular/Mobile Plan.</li><li>Manually enter the SM-DP+ Address and activation code.</li><li>Confirm eSIM plan details.</li><li>Label the eSIM.</li></ol><p><br></p><p><b>To access Data:</b></p><p><br></p><ol><li>Enable data roaming.</li></ol><p><br></p><p><b>To top up:</b></p><p><br></p><p>Visit airalo.com/my-esims or if purchased through the Airalo website/app visit “My eSIMs” tab.</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>"
+                
+                
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
@@ -111,6 +480,26 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+              examples:
+                default:
+                  value:
+                        "status": "success"
+                        "reason": "Customer data has been successfully updated."
+                        "tracking_id": "11177260822126194QDWJV"
+                        "total_guest": 1,
+                        "data":
+                             "tracking_id": "11177260822126194QDWJV"
+                             "pax_id": "1"
+                             "pax_type": "ADT"
+                             "gender": null,
+                             "title": "MR"
+                             "first_name": "JASIM"
+                             "last_name": "KARIMM"
+                             "pax_age": "30"
+                             "isd_code": "880"
+                             "contact_no": "1966330000"
+                             "email_address": "test@mail.com"
+                        
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
