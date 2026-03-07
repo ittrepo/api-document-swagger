@@ -2,6 +2,13 @@
 
 A self-hosted, production-ready API documentation system using a single OpenAPI 3.0 source of truth, Swagger UI for internal testing, and Redoc for clean public docs. Static, easy to maintain, and deployable on any web server.
 
+## Production Deployment
+
+For production deployment on an Apache VPS, see the following guides:
+
+-   [Production Deployment Guide](PRODUCTION.md) - Full step-by-step instructions.
+-   [Production Installation README](INSTALL_PROD.md) - Quick-start installation steps.
+
 ## Folder Structure
 
 ```
