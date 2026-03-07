@@ -3,11 +3,24 @@ info:
   title: ITT Flight API
   version: 1.0.0
   description: Flight API endpoints converted from Postman collection.
+
 servers:
-  - url: https://serviceapi.b2b.innovatedemo.com
+  - url: "{protocol}://{fullUrl}"
+    description: Dynamic Server Selection
+    variables:
+      protocol:
+        enum:
+          - https
+          - http
+        default: https
+      fullUrl:
+        default: serviceapi.b2b.innovatedemo.com
+        description: Full URL of the server, e.g., serviceapi.b2b.innovatedemo.com or localhost:8080
+
 tags:
   - name: Flight
     description: Flight search, pricing, booking, ancillaries and post-booking flows.
+
 security:
   - apiKeyAuth: []
     secretCodeAuth: []
@@ -1613,9 +1626,9 @@ paths:
                           type: string
                         change_before_departure:
                           type: string
-                '400': { $ref: '#/components/responses/BadRequest' }
-                '401': { $ref: '#/components/responses/Unauthorized' }
-                '500': { $ref: '#/components/responses/ServerError' }
+      '400': { $ref: '#/components/responses/BadRequest' }
+      '401': { $ref: '#/components/responses/Unauthorized' }
+      '500': { $ref: '#/components/responses/ServerError' }
   /flight/validate:
     post:
       tags: [Flight]
