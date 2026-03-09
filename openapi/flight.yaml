@@ -30,13 +30,14 @@ paths:
    post:
     tags:
       - Flight
-    summary: Search flights (OneWay, RoundTrip, MultiCity)
-    operationId: flightSearch
+    summary: Search flights OneWay 
+    operationId: flightSearchoneWay
     requestBody:
       required: true
       content:
         application/json:
           schema:
+              
             type: object
             additionalProperties: true
           examples:
@@ -46,10 +47,10 @@ paths:
                 journey_type: "OneWay"
                 segment:
                   - departure_airport_type: "AIRPORT"
-                    departure_airport: "KHI"
+                    departure_airport: "DAC"
                     arrival_airport_type: "AIRPORT"
-                    arrival_airport: "LHE"
-                    departure_date: "2025-03-30"
+                    arrival_airport: "DXB"
+                    departure_date: "2026-03-30"
                 travelers_adult: 1
                 travelers_child: 0
                 travelers_infants: 0
@@ -57,32 +58,10 @@ paths:
                 non_stop_flight: "any"
                 baggage_option: "any"
                 booking_class: "Economy"
-                supplier_uid: "F1ZT00006"
+                supplier_uid: "all"
                 partner_id: "1"
                 language: "en"
-            roundTrip:
-              summary: Round Trip Search
-              value:
-                journey_type: "RoundTrip"
-                segment:
-                  - departure_airport_type: "AIRPORT"
-                    departure_airport: "DAC"
-                    arrival_airport_type: "AIRPORT"
-                    arrival_airport: "DXB"
-                    departure_date: "2025-10-25"
-                    arrival_date: "2025-10-30"
-                  - departure_airport_type: "AIRPORT"
-                    departure_airport: "DXB"
-                    arrival_airport_type: "AIRPORT"
-                    arrival_airport: "DAC"
-                    departure_date: "2025-11-26"
-                    arrival_date: "2025-11-30"
-                travelers_adult: 1
-                travelers_child: 0
-                travelers_infants: 0
-                supplier_uid: "F1EC00009"
-                partner_id: "1"
-                language: "en"
+            
     responses:
       '200':
         description: Flight search results
@@ -120,10 +99,10 @@ paths:
                             - origin: "DAC"
                               destination: "CGP"
                               departure_time: "2026-03-12T10:00:00"
-                      '400': { $ref: '#/components/responses/BadRequest' }
-                      '401': { $ref: '#/components/responses/Unauthorized' }
-                      '404': { $ref: '#/components/responses/NotFound' }
-                      '500': { $ref: '#/components/responses/ServerError' }
+      '400': { $ref: '#/components/responses/BadRequest' }
+      '401': { $ref: '#/components/responses/Unauthorized' }
+      '404': { $ref: '#/components/responses/NotFound' }
+      '500': { $ref: '#/components/responses/ServerError' }
       
   /flight/search-Roundtrip:
    post:
@@ -135,7 +114,9 @@ paths:
       required: true
       content:
         application/json:
+        
           schema:
+    
             type: object
             additionalProperties: true
           examples:
@@ -1648,8 +1629,8 @@ paths:
                   result_type: general
                   data:
                     - tracking_id: 11174158269526193
-                      flight_key: F1ZT00006-1
-                      brand_option: OPTION-20
+                      flight_key: String
+                      brand_option: String
       responses:
         '200':
           description: Validation result with updated price and session info
@@ -2143,8 +2124,8 @@ paths:
             examples:
               default:
                 value:
-                  booking_tracking_id: 11172835977626193
-                  member_id: "1"
+                      booking_tracking_id: 11172835977626193
+                      member_id: "1"
       responses:
         '200':
           description: Current validation status and final price
@@ -2366,27 +2347,27 @@ paths:
             examples:
               default:
                 value:
-                  booking tracking_id: 11170970096202719
-                  member_id: 1
-                  save_pax: yes
-                  passenger: 
-                                  pax_id: 1
-                                  pax_type: ADT
-                                  gender: M
-                                  title: MR
-                                  first_name: Jhon
-                                  last_name: DOE
-                                  dob: 1998-10-24
-                                  doc_country: BD
-                                  doc_no: A1235121
-                                  doc_dateofexpiry: 2028-10-25
-                                  doc_dateofissue: 2023-10-25
-                                  frequent_flyer: 21321313132
-                                  isd_code: 880
-                                  contact_no: 0175565521
-                                  email_address: iam@jhon.com
-                                  wheelchair_required: no
-                  
+                  booking_tracking_id: "6911771481303261946AGZX"
+                  member_id: "1"
+                  save_pax: "yes"
+                  passenger:
+                    - pax_id: "1"
+                      pax_type: "ADT"
+                      gender: "M"
+                      title: "MR"
+                      first_name: "Jhon"
+                      last_name: "DOE"
+                      dob: "1998-10-24"
+                      doc_country: "BD"
+                      doc_no: "A1235121"
+                      doc_dateofexpiry: "2028-10-25"
+                      doc_dateofissue: "2023-10-25"
+                      frequent_flyer: "21321313132"
+                      isd_code: "880"
+                      contact_no: "0175565521"
+                      email_address: "iam@jhon.com"
+                      wheelchair_required: "no"
+                              
       responses:
         '200':
           description: Traveller details updated
