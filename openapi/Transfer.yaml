@@ -12,11 +12,11 @@ security:
   - apiKeyAuth: []
     secretCodeAuth: []
 paths:
-  /hotel/Cancel Booking:
+  /hotel/Transfer Search:
     post:
-      tags: [Hotel]
-      summary: Cancel hotel booking.
-      operationId: hotelCancelBooking
+      tags: [Transfer]
+      summary: Search for transfers.
+      operationId: TransferSearch
       requestBody:
         required: true
         content:
@@ -25,14 +25,42 @@ paths:
               type: object
               additionalProperties: true
             examples:
-              Cancel hotel booking:
+              Transfer Search Request:
                 value:
-                  "member_id": "1"
-                  "tracking_id": "11177251811403210FPDT2"
-                  "reason": "not required"
+                  {
+                    "segment": [
+                        {
+                            "departure_type": "AIRPORT",
+                            "departure_code": "DXB",
+                            "departure": "Dubai International Airport, Dubai",
+                            "arrival_type": "LOC",
+                            "arrival_code": "Dubai Mall - Dubai - United Arab Emirates",
+                            "arrival": "Dubai Mall - Dubai - United Arab Emirates",
+                            "outbound_date": "2026-03-30T00:00:00"
+                        }
+                    ],
+                    "journey_type": "OneWay",
+                    "travelers_adult": 2,
+                    "travelers_adult_types": [
+                        ""
+                    ],
+                    "travelers_child": 0,
+                    "travelers_child_types": [],
+                    "travelers_child_age": [],
+                    "travelers_infants": 0,
+                    "travelers_infants_age": [],
+                    "travelers_infants_types": [],
+                    "guest_nationality": "BD",
+                    "transfer_type": "private",
+                    "supplier_uid": "all",
+                    "partner_id": "",
+                    "short_ref": "xxxx111",
+                    "language": "en",
+                    "service_type": "regular" 
+                }
       responses:
         '200':
-          description: Successfully cancelled booking
+          description: Successfully Transfer Search Response
           content:
             application/json:
               schema:
@@ -40,27 +68,216 @@ paths:
                 additionalProperties: true
               examples:
                default:
-                summary: Successful Cancel Booking Response
+                summary: Successful Transfer Search Response.
                 value:
-                  "status": "success"
-                  "reason": "The booking has been successfully canceled.. Refund ref id. ITT-RFD-030326-0052 request for BDT 490.36 has been successfully submitted. The finance team will proceed to verify and update accordingly."
-                  "reason_admin": null,
-                  "tracking_id": "11177251811403210FPDT2"
-                  "booking_id": "HO2603MA6SACYB"
-                  "booking_status": "cancel"
-                  "booking_supplier_status": "cancel"
-                  "cancellationReference": null,
-                  "post_booking_details": {
-                      "last_update": "1772518476",
-                      "tracking_id": "11177251811403210FPDT2",
-                      "booking_id": "HO2603MA6SACYB",
-                      "supplier_confirmation_id": "370036221",
-                      "airlines_pnr": null,
-                      "service_type": "HOTEL",
-                      "status": "cancel",
-                      "booking_status": "cancel",
-                      "generated_date": "2026-03-03"
-                  } 
+                    "status": "success"
+                    "reason": "Your destination search yielded results for 15 transfers."
+                    "tracking_id": "117728706608V21"
+                    "search_parameter": 
+                        "segment": 
+                            "departure_type": "AIRPORT"
+                            "departure_code": "DXB"
+                            "departure": "Dubai International Airport, Dubai"
+                            "arrival_type": "LOC"
+                            "arrival_code": "Dubai Mall - Dubai - United Arab Emirates"
+                            "arrival": "Dubai Mall - Dubai - United Arab Emirates"
+                            "outbound_date": "2026-03-30T00:00:00"
+                            "arrival_lat": 25.1972295,
+                            "arrival_long": 55.279747,
+                            "arrival_city": "Dubai"
+                            "arrival_country": "AE"
+                            "departure_lat": 25.2515401,
+                            "departure_long": 55.3683066,
+                            "departure_city": "Dubai"
+                            "departure_country": "AE"
+                        "journey_type": "OneWay"
+                        "travelers_adult": 2,
+                        "travelers_adult_types": [
+                            ""
+                        ]
+                        "travelers_child": 0,
+                        "travelers_child_types": []
+                        "travelers_child_age": []
+                        "travelers_infants": 0,
+                        "travelers_infants_age": []
+                        "travelers_infants_types": []
+                        "guest_nationality": "BD"
+                        "transfer_type": "private"
+                        "supplier_uid": "all"
+                        "partner_id": ""
+                        "short_ref": "xxxx111"
+                        "language": "en"
+                        "service_type": "regular"
+                        "country_code": "AE"
+                        "tracking_id": "117728706608V21"
+                        "total_transfer": 15,
+                        "transfer_data": 
+                            
+                                "transfer_id": "T1HS00025#0-43"
+                                "transfer_supplier": "hotelbeds"
+                                "sell_total": 3252.73,
+                                "sell_currency": "BDT"
+                                "transfer_type": "PRIVATE"
+                                "transfer_vehicle": "Car"
+                                "transfer_category": "Standard"
+                                "transfer_baggage": "3 suitcases permitted"
+                                "data":
+                                      "direction": "ARRIVAL"
+                                      "supplier_key": "ARRIVAL|IATA|DXB|ATLAS~GPS|573142~25.1972295,55.279747|2026-03-30|00:00|2026-03-30|00:00|2~0~0||3|||||148|PRVT||CR|STND|22.88||||43|573142|SIMPLE|789325ca9e5ba1ab8ee691d3df19626b|1441780|T|6318c3706227910444154663bded6327|2026-03-07|09:04"
+                                      "sell_price": 3252.73,
+                                      "platform_fees_or_extra_tax": 0,
+                                      "transfer_duration": "40 min. Estimated journey time"
+                                      "transfer_distance": null,
+                                      "pickup": 
+                                          "location": "DXB"
+                                          "location_type": "IATA"
+                                          "dateTime": "2026-03-30T00:00:00"
+                                          "address": {
+                                              "line": "Dubai Airport",
+                                              "zip": null,
+                                              "city": null,
+                                              "country_code": null,
+                                              "geoCode": "25.248664,55.352916"
+                                          }
+                                "dropoff":
+                                      "location": "573142"
+                                      "location_type": "ATLAS"
+                                      "dateTime": "2026-03-30T00:40:00"
+                                      "address": 
+                                          "line": "Dream Inn - Trident Grand Marina 2BR Apartment"
+                                          "zip": null,
+                                          "city": null,
+                                          "country_code": null,
+                                          "geoCode": null
+                                "vehicle": 
+                                      "type": "Car"
+                                      "category": "Standard"
+                                      "description": null,
+                                      "imageUrl": "https://assets.htxstaging.com/imgs/default/vehicle_set/private.jpg"
+                                      "capacity": {
+                                          "minPassengers": 1,
+                                          "maxPassengers": 3,
+                                          "bags": "3 suitcases permitted"
+                                      }
+                                "price": 
+                                    "promo_tag": null,
+                                    "purchase": 
+                                        "total": {
+                                            "currency": "BDT",
+                                            "amount": 3252.73,
+                                            "before_discount": 3252.73,
+                                            "discount": 0,
+                                            "point": 0
+                                        }
+                                        "price_breakdown": {
+                                            "currency": "BDT",
+                                            "total": 3252.73,
+                                            "base_fare": 3252.73,
+                                            "tax": 0,
+                                            "extra_person_fee": 0,
+                                            "supplier_sales_comission": null,
+                                            "payable_at_property": []
+                                        }
+                                        "sell": {
+                                            "total": {
+                                                "currency": "BDT",
+                                                "amount": 3252.73,
+                                                "gross_price": 3252.73,
+                                                "platform_fees_or_extra_tax": 0,
+                                                "point": 0
+                                            },
+                                            "price_breakdown": {
+                                                "currency": "BDT",
+                                                "total": 3252.73,
+                                                "base_fare": 3252.73,
+                                                "tax": 0,
+                                                "platform_fees_or_extra_tax": 0,
+                                                "extra_person_fee": 0,
+                                                "supplier_sales_comission": null,
+                                                "payable_at_property": []
+                                            }
+                                        }
+                                        "fmg": {
+                                            "total": {
+                                                "currency": "EUR",
+                                                "amount": 22.88
+                                            },
+                                            "price_breakdown": {
+                                                "currency": "EUR",
+                                                "total": 22.88,
+                                                "base_fare": 22.88,
+                                                "tax": 0,
+                                                "extra_person_fee": 0,
+                                                "supplier_sales_comission": null,
+                                                "base_fare_fmg_charge": 0,
+                                                "membership_discount_percentige": 0,
+                                                "membership_discount_amount": 0,
+                                                "final_base_fare_fmg_charge": 0,
+                                                "payable_at_property": []
+                                            }
+                                        }
+                                        "supplier": 
+                                            "total": {
+                                                "currency": "EUR",
+                                                "amount": 22.88
+                                            }
+                                            "price_breakdown": 
+                                                "currency": "EUR"
+                                                "total": 22.88,
+                                                "base_fare": 22.88,
+                                                "tax": 0,
+                                                "sales_tax": 0,
+                                                "property_fees": 0,
+                                                "surcharges": 0,
+                                                "service_charge": 0,
+                                                "extra_person_fee": 0,
+                                                "supplier_sales_comission": null,
+                                                "payable_at_property": []
+                                        "payment_method": null,
+                                        "cancellationPolicy": 
+                                            "hold_possible": "yes"
+                                            "summery": "refundable"
+                                            "auto_cancel": "2026-03-07T14:04:22"
+                                            "auto_cancel_timestamp": "1772870662"
+                                            "policy_breakdown": 
+                                                 "from": "2026-03-07T14:04:22"
+                                                 "from_timestamp": "1772870662"
+                                                 "to": "2026-03-28T23:59:00"
+                                                 "to_timestamp": 1774720740
+                                                 "currency": "BDT"
+                                                 "amount": 0,
+                                                 "partner": {
+                                                      "currency": "BDT",
+                                                      "amount": 0
+                                                  }
+                                                 "fmg": {
+                                                      "currency": "EUR",
+                                                      "amount": 0
+                                                  }
+                                                 "supplier": {
+                                                      "currency": "EUR",
+                                                      "amount": 0
+                                                 }
+                                                 "additional_services": 
+                                                  
+                                                      "id": 7823,
+                                                      "additional_service_id": 2,
+                                                      "price": 1223.19,
+                                                      "name": "Infant seat (few months old)"
+                                                      "description": null,
+                                                      "uid": "5d3da41a-fe59-11eb-a2d6-e992f37ca87f"
+                                                      "slug": "trans.additional_services.infant_seat.name"
+                                                      "default_include": false,
+                                                      "currency": "USD"
+                                                      "category": "baby_seat"
+                                                      "type": "infant_seat"
+                                                      "service_provider_id": 1,
+                                                      "is_special": false,
+                                                      "price_rub": 665,
+                                                      "alternative_price": 10
+                                                  
+
+                  
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '500': { $ref: '#/components/responses/ServerError' }
