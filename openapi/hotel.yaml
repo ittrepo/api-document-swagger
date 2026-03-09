@@ -3,11 +3,24 @@ info:
   title: ITT Hotel API
   version: 1.0.0
   description: Hotel API endpoints converted from Postman collection.
+
 servers:
-  - url: https://serviceapi.b2b.innovatedemo.com
+  - url: "{protocol}://{fullUrl}"
+    description: Dynamic Server Selection
+    variables:
+      protocol:
+        enum:
+          - https
+          - http
+        default: https
+      fullUrl:
+        default: serviceapi.b2b.innovatedemo.com
+        description: Full URL of the server, e.g., serviceapi.b2b.innovatedemo.com or localhost:8080
+
 tags:
   - name: Hotel
-    description: Hotel search, availability, room pricing and booking validation
+    description: Hotel search, pricing, booking, ancillaries and post-booking flows.
+
 security:
   - apiKeyAuth: []
     secretCodeAuth: []
