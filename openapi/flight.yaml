@@ -1268,6 +1268,44 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+                    booking_tracking_id:
+                        type: string
+                        description: Booking tracking ID from previous step
+                        example: "6911771481303261946AGZX"
+
+                    member_id:
+                        type: string
+                        description: Member account ID
+                        example: "1"
+
+                    isd_code:
+                        type: string
+                        description: Country ISD code for contact number
+                        example: "880"
+
+                    contact_no:
+                        type: string
+                        description: Contact number of the passenger
+                        example: "018729180012"
+
+                    email_address:
+                        type: string
+                        format: email
+                        description: Passenger email address
+                        example: "iam@jhon.com"
+
+                    payment_type:
+                        type: string
+                        description: Payment method (e.g., account_balance, card, bKash, etc.)
+                        example: "account_balance"
+
+                    redirect_url:
+                        type: string
+                        format: uri
+                        description: URL to redirect after successful payment
+                        example: "https://example.com/inno-travel-tech/custom_modal.html"
               additionalProperties: true
             examples:
               default:
