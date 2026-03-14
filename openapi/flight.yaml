@@ -1694,6 +1694,18 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+                booking_tracking_id:
+                    type: string
+                    description: Unique booking tracking ID
+                    example: "11177139375926194Q6NOF"
+
+                member_id:
+                    type: string
+                    description: Member account ID
+                    example: "1"
+
               additionalProperties: true
             example:
               Get baggage options:
@@ -1733,6 +1745,45 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+                 booking_tracking_id:
+                    type: string
+                    description: Booking tracking ID from booking step
+                    example: "71176110719926193FHWN5"
+
+                 member_id:
+                    type: string
+                    description: Member account ID
+                    example: "1"
+
+                 pax_type:
+                    type: string
+                    description: Passenger type (ADT = Adult, CNN = Child, INF = Infant)
+                    example: "ADT"
+
+                 pax_id:
+                    type: string
+                    description: Passenger ID
+                    example: "1"
+                 data:
+                    type: array
+                    description: Selected baggage options
+                    items:
+                     type: object
+                     required:
+                      - select_code
+                      - baggage_quantity
+                     properties:
+                        select_code:
+                            type: string
+                            description: Baggage option code
+                            example: "3"
+                        baggage_quantity:
+                            type: string
+                            description: Number of baggage selected
+                            example: "1"
+
               additionalProperties: true
             example:
                     {
@@ -2009,6 +2060,17 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+                booking_tracking_id:
+                    type: string
+                    description: Unique booking tracking ID
+                    example: "11177139375926194Q6NOF"
+
+                member_id:
+                    type: string
+                    description: Member account ID
+                    example: "1"
               additionalProperties: true
             example:
                 {
@@ -2110,6 +2172,21 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+                booking_tracking_id:
+                    type: string
+                    description: Unique booking tracking ID
+                    example: "11177139375926194Q6NOF"
+
+                member_id:
+                    type: string
+                    description: Member account ID
+                    example: "1"
+                Booking_id:
+                    type: string
+                    description: Unique booking ID
+                    example: "FL2314SEAAAE"
               additionalProperties: true
             example:
                 {
@@ -2227,6 +2304,17 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+                booking_tracking_id:
+                    type: string
+                    description: Unique booking tracking ID
+                    example: "11177139375926194Q6NOF"
+
+                member_id:
+                    type: string
+                    description: Member account ID
+                    example: "1"
               additionalProperties: true
             example: 
                 {
@@ -2370,6 +2458,44 @@ paths:
         content:
           application/json:
             schema:
+              properties:
+
+                 booking_tracking_id:
+                    type: string
+                    description: Booking tracking ID from booking step
+                    example: "71176110719926193FHWN5"
+
+                 member_id:
+                    type: string
+                    description: Member account ID
+                    example: "1"
+
+                 pax_type:
+                    type: string
+                    description: Passenger type (ADT = Adult, CNN = Child, INF = Infant)
+                    example: "ADT"
+
+                 pax_id:
+                    type: string
+                    description: Passenger ID
+                    example: "1"
+                 data:
+                    type: array
+                    description: Selected Meal options
+                    items:
+                     type: object
+                     required:
+                      - select_code
+                      - Meal_quantity
+                     properties:
+                        select_code:
+                            type: string
+                            description: Meal option code
+                            example: "3"
+                        baggage_quantity:
+                            type: string
+                            description: Number of Meal selected
+                            example: "1"
               type: object
               additionalProperties: true
             example:
@@ -2479,6 +2605,21 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+                booking_tracking_id:
+                    type: string
+                    description: Unique booking tracking ID
+                    example: "11177139375926194Q6NOF"
+
+                member_id:
+                    type: string
+                    description: Member account ID
+                    example: "1"
+                Booking_id:
+                    type: string
+                    description: Unique booking ID
+                    example: "FL2314SEAAAE"
               additionalProperties: true
             example:
                 {
@@ -3323,6 +3464,27 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+                member_id:
+                   type: string
+                   description: Logged in user member ID
+                   example: "1"
+
+                tracking_id:
+                   type: string
+                   description: Tracking ID received from Booking response
+                   example: "186177260842803210UESNA"
+
+                price_change_accepted:
+                   type: string
+                   description: Accept price change if fare updated (yes / no)
+                   example: "no"
+
+                notes:
+                   type: string
+                   description: Additional notes (optional)
+                   example: "not required"
               additionalProperties: true
             example:
                 {
@@ -4295,6 +4457,22 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+
+               member_id:
+                 type: string
+                 description: Logged-in user member ID
+                 example: "1"
+
+               tracking_id:
+                 type: string
+                 description: Booking tracking ID to cancel
+                 example: "11173813474126193F9NJX"
+
+               reason:
+                 type: string
+                 description: Reason for cancellation (optional)
+                 example: "not required"
               additionalProperties: true
             example:
               {
