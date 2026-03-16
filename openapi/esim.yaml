@@ -36,19 +36,72 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - eSim
+              properties:
+
+                eSim:
+                  type: object
+                  required:
+                    - region_type
+                    - plan_type
+                  properties:
+
+                    region_type:
+                      type: string
+                      description: Region type for eSIM plan (local / global / europe / asia / all)
+                      example: "local"
+
+                    country_code:
+                      type: string
+                      description: Country ISO code (required only when region_type is local)
+                      example: "BD"
+
+                    plan_type:
+                      type: string
+                      description: Type of eSIM plan (e.g., data / voice / combo)
+                      example: "data"
+
+                    topup_included:
+                      type: string
+                      description: Whether top-up is included (yes / no)
+                      example: "yes"
+
+                supplier_uid:
+                  type: string
+                  description: Supplier identifier (use 'all' for all suppliers)
+                  example: "all"
+
+                partner_id:
+                  type: string
+                  description: Partner account ID
+                  example: "1"
+
+                short_ref:
+                  type: string
+                  description: Optional short reference ID for stream search
+                  example: "xxxx111"
+
+                language:
+                  type: string
+                  description: Response language
+                  example: "en"
               additionalProperties: true
             examples:
               default:
                 value:
-                  eSim:
-                    region_type: local
-                    country_code: BD
-                    plan_type: data
-                    topup_included: yes
-                  supplier_uid: all
-                  partner_id: "1"
-                  short_ref: xxxx111
-                  language: en
+                  {
+                      "eSim": {
+                          "region_type": "local", 
+                          "country_code": "BD", 
+                          "plan_type": "data",
+                          "topup_included": "yes"
+                      },
+                      "supplier_uid": "all", 
+                      "partner_id": "1", 
+                      "short_ref": "xxxx111", 
+                      "language": "en"
+                  }
       responses:
         '200':
           description: Search results
@@ -272,8 +325,7 @@ paths:
                         
                 
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /esim/single-esim-package:
     post:
       tags: [eSim]
@@ -285,6 +337,20 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - tracking_id
+                - package_id
+              properties:
+
+                tracking_id:
+                  type: string
+                  description: Search tracking ID returned from eSIM plan search
+                  example: "117726070533RO1"
+
+                package_id:
+                  type: string
+                  description: Unique eSIM package identifier
+                  example: "X1AO00084||bangladesh||1067||fatafati-in-7days-1gb"
               additionalProperties: true
             examples:
               default:
@@ -455,8 +521,7 @@ paths:
                 
                 
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /esim/update-customer:
     post:
       tags: [eSim]
@@ -468,6 +533,84 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - member_id
+                - passenger
+              properties:
+
+                booking_tracking_id:
+                  type: string
+                  description: Booking tracking ID received from validation step
+                  example: "11177260822126194QDWJV"
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                save_pax:
+                  type: string
+                  description: Save passenger data for future bookings (yes / no)
+                  example: "yes"
+
+                passenger:
+                  type: array
+                  description: Passenger details
+                  items:
+                    type: object
+                    required:
+                      - pax_id
+                      - pax_type
+                      - first_name
+                      - last_name
+                    properties:
+
+                      pax_id:
+                        type: string
+                        description: Passenger ID
+                        example: "1"
+
+                      pax_type:
+                        type: string
+                        description: Passenger type (ADT = Adult)
+                        example: "ADT"
+
+                      title:
+                        type: string
+                        description: Passenger title (MR / MRS / MS)
+                        example: "MR"
+
+                      first_name:
+                        type: string
+                        description: Passenger first name
+                        example: "Jasim"
+
+                      last_name:
+                        type: string
+                        description: Passenger last name
+                        example: "Karimm"
+
+                      age:
+                        type: string
+                        description: Passenger age
+                        example: "30"
+
+                      isd_code:
+                        type: string
+                        description: ISD code for contact number
+                        example: "880"
+
+                      contact_no:
+                        type: string
+                        description: Passenger contact number
+                        example: "1966330000"
+
+                      email_address:
+                        type: string
+                        format: email
+                        description: Passenger email address
+                        example: "test@mail.com"
               additionalProperties: true
             examples:
               default:
@@ -514,8 +657,7 @@ paths:
                              "email_address": "test@mail.com"
                         
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /esim/create-booking:
     post:
       tags: [eSim]
@@ -527,6 +669,71 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - package_tracking_id
+                - eSim_quantity
+                - member_id
+                - payment_type
+              properties:
+
+                booking_tracking_id:
+                  type: string
+                  description: Booking tracking ID from validation step
+                  example: "11177260822126194QDWJV"
+
+                package_tracking_id:
+                  type: string
+                  description: Unique package tracking identifier
+                  example: "11177260822126194QDWJV||fatafati-in-7days-1gb"
+
+                eSim_quantity:
+                  type: string
+                  description: Number of eSIM packages to purchase
+                  example: "1"
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                isPartialPay:
+                  type: string
+                  description: Whether partial payment is allowed (yes / no)
+                  example: "no"
+
+                redirect_url:
+                  type: string
+                  format: uri
+                  description: Redirect URL after payment completion
+                  example: "https://showkat.innovatedemo.com/inno-travel-tech/custom_modal.html"
+
+                payment_type:
+                  type: string
+                  description: Payment method (account_balance / card / onlinepayment)
+                  example: "account_balance"
+
+                isd_code:
+                  type: string
+                  description: ISD code for contact number
+                  example: "880"
+
+                contact_no:
+                  type: string
+                  description: Contact number of the customer
+                  example: "1966330000"
+
+                email_address:
+                  type: string
+                  format: email
+                  description: Customer email address
+                  example: "iam@mail.com"
+
+                agency_email:
+                  type: string
+                  format: email
+                  description: Agency email address
+                  example: "iam@mail.com"
               additionalProperties: true
             examples:
               default:
@@ -1110,8 +1317,7 @@ paths:
                         
                             
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   /esim/data-usage:
     post:
       tags: [eSim]
@@ -1123,6 +1329,26 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - tracking_id
+                - eSim_iccid
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                tracking_id:
+                  type: string
+                  description: Booking or eSIM tracking ID
+                  example: "11177260822126194QDWJV"
+
+                eSim_iccid:
+                  type: string
+                  description: eSIM ICCID (Integrated Circuit Card Identifier)
+                  example: "8900000281278633887"
               additionalProperties: true
             examples:
               default:
@@ -1163,8 +1389,7 @@ paths:
                       
                     
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+     
   /esim/booking-details:
     post:
       tags: [eSim]
@@ -1176,6 +1401,26 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - tracking_id
+                - booking_id
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                tracking_id:
+                  type: string
+                  description: eSIM or booking tracking ID
+                  example: "11177260822126194QDWJV"
+
+                booking_id:
+                  type: string
+                  description: Booking ID for the eSIM package
+                  example: "ES2604MAYVA3A8"
               additionalProperties: true
             examples:
               default:
@@ -1192,9 +1437,7 @@ paths:
                 type: object
                 additionalProperties: true
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '404': { $ref: '#/components/responses/NotFound' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /esim/installation-instructions:
     post:
       tags: [eSim]
@@ -1206,6 +1449,31 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - tracking_id
+                - eSim_iccid
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "1"
+
+                tracking_id:
+                  type: string
+                  description: eSIM or booking tracking ID
+                  example: "11177260822126194QDWJV"
+
+                eSim_iccid:
+                  type: string
+                  description: ICCID of the eSIM
+                  example: "8900000281278633887"
+
+                preferred_language:
+                  type: string
+                  description: Preferred response language.
+                  example: "en"
               additionalProperties: true
             examples:
               default:
@@ -1261,8 +1529,7 @@ paths:
                             
                         
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+     
   /esim/compatible-devices:
     post:
       tags: [eSim]
@@ -1274,6 +1541,13 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+              properties:
+                member_id:
+                  type: integer
+                  description: Logged-in user member ID
+                  example: 1
               additionalProperties: true
             examples:
               default:
@@ -1301,8 +1575,7 @@ paths:
                             
                         
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+  
   /esim/topup-packages:
     post:
       tags: [eSim]
@@ -1314,6 +1587,26 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - tracking_id
+                - eSim_iccid
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                tracking_id:
+                  type: string
+                  description: Booking or eSIM tracking ID
+                  example: "11177260822126194QDWJV"
+
+                eSim_iccid:
+                  type: string
+                  description: eSIM ICCID (Integrated Circuit Card Identifier)
+                  example: "8900000281278633887"
               additionalProperties: true
             examples:
               default:
@@ -1461,8 +1754,7 @@ paths:
                     
                             
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /esim/topup-booking:
     post:
       tags: [eSim]
@@ -1474,6 +1766,57 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - topup_tracking_id
+                - package_id
+                - member_id
+                - redirect_url
+                - payment_type
+                - isd_code
+                - contact_no
+                - email_address
+              properties:
+                booking_tracking_id:
+                  type: string
+                  description: Booking tracking ID from validation
+                  example: "11177260822126194QDWJV"
+                topup_tracking_id:
+                  type: string
+                  description: Top-up tracking ID
+                  example: "TUP117726938847PY1"
+                package_id:
+                  type: string
+                  description: Package identifier including ICCID and plan
+                  example: "8900000281278633887||asialink-7days-1gb-topup"
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+                redirect_url:
+                  type: string
+                  description: URL to redirect after payment
+                  example: "https://ittroman.innotraveltech.com/booking-details/e-sim?tracking_id=11176681417103210LPBXA&"
+                payment_type:
+                  type: string
+                  description: Payment type (account_balance / card / onlinepayment)
+                  example: "onlinepayment"
+                isd_code:
+                  type: string
+                  description: Country ISD code
+                  example: "880"
+                contact_no:
+                  type: string
+                  description: Contact number
+                  example: "1966330000"
+                email_address:
+                  type: string
+                  description: Customer email address
+                  example: "iam@example.com"
+                agency_email:
+                  type: string
+                  description: Agency email address (optional)
+                  example: "iam@example.com"
               additionalProperties: true
             examples:
               default:
@@ -1497,8 +1840,7 @@ paths:
                 type: object
                 additionalProperties: true
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /esim/topup-history:
     post:
       tags: [eSim]
@@ -1510,6 +1852,26 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - tracking_id
+                - eSim_iccid
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                tracking_id:
+                  type: string
+                  description: Booking or eSIM tracking ID
+                  example: "11177260822126194QDWJV"
+
+                eSim_iccid:
+                  type: string
+                  description: eSIM ICCID (Integrated Circuit Card Identifier)
+                  example: "8900000281278633887"
               additionalProperties: true
             examples:
               default:
@@ -1526,37 +1888,8 @@ paths:
                 type: object
                 additionalProperties: true
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
-  /esim/register-webhook:
-    post:
-      tags: [eSim]
-      summary: Register webhook
-      operationId: registerWebhook
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              additionalProperties: true
-            examples:
-              default:
-                value:
-                  supplier_code: airalo
-                  supplier_uid: X1AO00065
-                  notification_type: webhook_low_data
-      responses:
-        '200':
-          description: Webhook registered
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-        '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
+ 
 components:
   securitySchemes:
     apiKeyAuth:
