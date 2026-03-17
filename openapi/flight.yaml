@@ -45,46 +45,75 @@ paths:
                     [
                       OneWay,
                       RoundTrip
+                      Multicity
                     ]
                 Segment:
                   type: object
                   properties:
                       departure_airport_type: 
                         type: string
+                        description: Type of departure location (AIRPORT / CITY / STATION)
+                        example: AIRPORT
                       departure_airport: 
                         type: string
+                        description: Departure airport IATA code
+                        example: DAC
                       arrival_airport_type: 
                         type: string
+                        description: Type of arrival location (AIRPORT / CITY / STATION)
+                        example: AIRPORT
                       arrival_airport: 
                         type: string
+                        description: Arrival airport IATA code
+                        example: DXB
                       departure_date: 
                        type: string
+                       format: date
+                       description: Departure date in YYYY-MM-DD format
+                       example: 2026-03-30
                 Passenger Information:
                   type: object
                   properties:
-                      travelers_adult: 
-                        type: integer
-                        example: 1
-                      travelers_child:
-                        type: integer
-                        example: 1
-                      travelers_infants: 
-                        type: integer
-                        example: 1
-                      preferred_carrier: 
-                        type: string
-                      non_stop_flight: 
-                        type: string
-                      baggage_option: 
-                        type: string
-                      booking_class: 
-                        type: "string"
-                      supplier_uid: 
-                        type: string
-                      partner_id: 
-                        type: integer
-                      language: 
-                        type: string
+                       travelers_adult:
+                            type: integer
+                            description: Number of adult passengers
+                            example: 1
+                       travelers_child:
+                            type: integer
+                            description: Number of child passengers
+                            example: 1
+                       travelers_infants:
+                            type: integer
+                            description: Number of infant passengers
+                            example: 0
+                       preferred_carrier:
+                            type: string
+                            description: Preferred airline carrier code (empty for any)
+                            example: ""
+                       non_stop_flight:
+                            type: string
+                            description: Filter for nonstop flights (yes / no / any)
+                            example: any
+                       baggage_option:
+                            type: string
+                            description: Baggage preference filter (any / with / without)
+                            example: any
+                       booking_class:
+                            type: string
+                            description: Cabin class for booking (Economy / Business / First)
+                            example: Economy
+                       supplier_uid:
+                            type: string
+                            description: Supplier identifier (all for any supplier)
+                            example: all
+                       partner_id:
+                            type: integer
+                            description: Partner account ID
+                            example: 1
+                       language:
+                            type: string
+                            description: Response language
+                            example: en
                     
             additionalProperties: true
           examples:
