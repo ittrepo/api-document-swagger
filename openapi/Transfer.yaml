@@ -36,6 +36,151 @@ paths:
           application/json:
             schema:
               type: object
+              
+              required:
+                - segment
+                - journey_type
+                - travelers_adult
+                - guest_nationality
+              properties:
+
+                segment:
+                  type: array
+                  description: List of transfer route segments
+                  items:
+                    type: object
+                    properties:
+                      departure_type:
+                        type: string
+                        description: Type of departure location (AIRPORT / LOC / HOTEL)
+                        example: AIRPORT
+
+                      departure_code:
+                        type: string
+                        description: Departure location code or identifier
+                        example: DXB
+
+                      departure:
+                        type: string
+                        description: Full name of departure location
+                        example: Dubai International Airport, Dubai
+
+                      arrival_type:
+                        type: string
+                        description: Type of arrival location (AIRPORT / LOC / HOTEL)
+                        example: LOC
+
+                      arrival_code:
+                        type: string
+                        description: Arrival location code or identifier
+                        example: Dubai Mall - Dubai - United Arab Emirates
+
+                      arrival:
+                        type: string
+                        description: Full name of arrival location
+                        example: Dubai Mall - Dubai - United Arab Emirates
+
+                      outbound_date:
+                        type: string
+                        format: date-time
+                        description: Transfer date and time (ISO format)
+                        example: 2026-03-30T00:00:00
+                      journey_type:
+                        type: string
+                        description: Type of journey (OneWay / RoundTrip)
+                        enum:
+                          - OneWay
+                          - RoundTrip
+                        example: OneWay
+
+                      travelers_adult:
+                        type: integer
+                        description: Number of adult passengers
+                        example: 2
+
+                      travelers_adult_types:
+                        type: array
+                        description: Adult passenger type list
+                        items:
+                          type: string
+                        example:
+                          - ""
+
+                      travelers_child:
+                        type: integer
+                        description: Number of child passengers
+                        example: 0
+
+                      travelers_child_types:
+                        type: array
+                        description: Child passenger types
+                        items:
+                          type: string
+                        example: []
+
+                      travelers_child_age:
+                        type: array
+                        description: Ages of child passengers
+                        items:
+                          type: integer
+                        example: []
+
+                      travelers_infants:
+                        type: integer
+                        description: Number of infant passengers
+                        example: 0
+
+                      travelers_infants_age:
+                        type: array
+                        description: Ages of infant passengers
+                        items:
+                          type: integer
+                        example: []
+
+                      travelers_infants_types:
+                        type: array
+                        description: Infant passenger types
+                        items:
+                          type: string
+                        example: []
+
+                      guest_nationality:
+                        type: string
+                        description: Guest nationality (ISO country code)
+                        example: BD
+
+                      transfer_type:
+                        type: string
+                        description: Type of transfer (private / shared)
+                        example: private
+
+                      supplier_uid:
+                        type: string
+                        description: Supplier identifier (all for any supplier)
+                        example: all
+
+                      partner_id:
+                        type: string
+                        description: Partner account ID (can be empty)
+                        example: ""
+
+                      short_ref:
+                        type: string
+                        description: Short reference for tracking (optional)
+                        example: xxxx111
+
+                      language:
+                        type: string
+                        description: Response language
+                        example: en
+
+                      service_type:
+                        type: string
+                        description: Service type (regular / premium)
+                        enum:
+                          - regular
+                          - premium
+                        example: regular
               additionalProperties: true
             examples:
               Transfer Search Request:
@@ -292,6 +437,20 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - tracking_id
+                - transfer_id
+              properties:
+
+                tracking_id:
+                  type: string
+                  description: Unique tracking ID from transfer search response
+                  example: "11773034808H6Y1"
+
+                transfer_id:
+                  type: string
+                  description: Unique transfer identifier
+                  example: "T1HS00025#0-43"
               additionalProperties: true
             examples:
               default:
@@ -538,6 +697,83 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - member_id
+                - passenger
+              properties:
+
+                booking_tracking_id:
+                  type: string
+                  description: Booking tracking ID from validation
+                  example: "11177303486226194YSHFB"
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                save_pax:
+                  type: string
+                  description: Save passenger information for future use (yes / no)
+                  example: "yes"
+
+                passenger:
+                  type: array
+                  description: List of passenger details
+                  items:
+                    type: object
+                    required:
+                      - pax_id
+                      - pax_type
+                      - first_name
+                      - last_name
+                    properties:
+
+                      pax_id:
+                        type: string
+                        description: Unique passenger ID
+                        example: "1"
+
+                      pax_type:
+                        type: string
+                        description: Passenger type (ADT = Adult, CNN = Child, INF = Infant)
+                        example: "ADT"
+
+                      title:
+                        type: string
+                        description: Passenger title (MR / MRS / MS / MISS)
+                        example: "MR"
+
+                      first_name:
+                        type: string
+                        description: Passenger first name
+                        example: "Jasim"
+
+                      last_name:
+                        type: string
+                        description: Passenger last name
+                        example: "Kalam"
+
+                      age:
+                        type: string
+                        description: Passenger age
+                        example: "30"
+
+                      isd_code:
+                        type: string
+                        description: Country ISD code
+                        example: "880"
+
+                      contact_no:
+                        type: string
+                        description: Contact number
+                        example: "1966330000"
+
+                      email_address:
+                        type: string
+                        description: Passenger email address
+                        example: "iam@saaqeb.com"
               additionalProperties: true
             examples:
               default:
@@ -634,6 +870,93 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - transfer_tracking_id
+                - member_id
+                - payment_type
+                - isd_code
+                - contact_no
+                - email_address
+              properties:
+
+                booking_tracking_id:
+                  type: string
+                  description: Booking tracking ID from validation
+                  example: "11177303486226194YSHFB"
+
+                transfer_tracking_id:
+                  type: string
+                  description: Transfer tracking ID with segment reference
+                  example: "11177303486226194YSHFB||0-43"
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "1"
+
+                isPartialPay:
+                  type: string
+                  description: Indicates partial payment (yes / no)
+                  example: "no"
+
+                redirect_url:
+                  type: string
+                  description: Redirect URL after payment
+                  example: "https://showkat.innovatedemo.com/inno-travel-tech/custom_modal.html"
+
+                note:
+                  type: string
+                  description: Optional note for driver
+                  example: "Note to driver"
+
+                payment_type:
+                  type: string
+                  description: Payment method (account_balance / card / onlinepayment)
+                  example: "account_balance"
+
+                isd_code:
+                  type: string
+                  description: Country ISD code
+                  example: "880"
+
+                contact_no:
+                  type: string
+                  description: Contact number
+                  example: "1966330000"
+
+                email_address:
+                  type: string
+                  description: Customer email address
+                  example: "iam@saaqeb.com"
+
+                agency_email:
+                  type: string
+                  description: Agency email (optional)
+                  example: "iam@saaqeb.com"
+
+                connected_segment:
+                  type: array
+                  description: Linked travel segments (optional)
+                  items:
+                    type: object
+                    properties:
+                      segment_type:
+                        type: string
+                        description: Type of segment (FLIGHT / TRAIN / BUS)
+                        example: "FLIGHT"
+                      segment_point:
+                        type: string
+                        description: Segment point (ARRIVAL / DEPARTURE)
+                        example: "ARRIVAL"
+                      segment_code:
+                        type: string
+                        description: Travel segment code
+                        example: "XA01-AB"
+                      transfer_point:
+                        type: string
+                        description: Transfer point (START / END)
+                        example: "START"
               additionalProperties: true
             examples:
               default:
@@ -1304,6 +1627,25 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - tracking_id
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "1"
+
+                tracking_id:
+                  type: string
+                  description: Transfer booking tracking ID
+                  example: "11177303486226194YSHFB"
+
+                reason:
+                  type: string
+                  description: Reason for cancellation (optional)
+                  example: "not required"
               additionalProperties: true
             examples:
               default:
@@ -1451,6 +1793,26 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - tracking_id
+                - booking_id
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                tracking_id:
+                  type: string
+                  description: Transfer or booking tracking ID
+                  example: "11177260822126194QDWJV"
+
+                booking_id:
+                  type: string
+                  description: Booking ID for the Transfer package
+                  example: "ES2604MAYVA3A8"
               additionalProperties: true
             example:
                 {

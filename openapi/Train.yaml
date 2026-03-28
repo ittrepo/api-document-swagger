@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: ITT Visa API
+  version: 1.0.0
+  description: Visa API endpoints converted from Postman collection.
+
+servers:
+  - url: "{protocol}://{fullUrl}"
+    description: Dynamic Server Selection
+    variables:
+      protocol:
+        enum:
+          - https
+          - http
+        default: https
+      fullUrl:
+        default: serviceapi.b2b.innovatedemo.com
+        description: Full URL of the server, e.g., serviceapi.b2b.innovatedemo.com or localhost:8080
+
+tags:
+  - name: Visa
+    description: Visa search, pricing, booking, ancillaries and post-booking flows.
+
+security:
+  - apiKeyAuth: []
+    secretCodeAuth: []
+
+
+
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+    secretCodeAuth:
+      type: apiKey
+      in: header
+      name: secretecode
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
