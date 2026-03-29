@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: ITT Hotel API
   version: 1.0.0
-  description: Hotel API endpoints converted from Postman collection.
+  description: Hotel API endpoints converted from Postman collection.fhjdhfjdh
 
 servers:
   - url: "{protocol}://{fullUrl}"
@@ -36,6 +36,85 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+              - location
+              - partner_id
+              - checkIn
+              - checkOut
+              - occupancies
+              properties:
+                location:
+                  type: string
+                  description: Hotel search location
+                  example: "Dubai - United Arab Emirates"
+
+                partner_id:
+                  type: string
+                  description: Partner account ID
+                  example: "1"
+
+                guest_nationality:
+                  type: string
+                  description: Nationality of the guest (ISO country code)
+                  example: "BD"
+
+                supplier_uid:
+                  type: string
+                  description: Supplier unique ID (optional)
+                  example: "H1AS00029"
+
+                checkIn:
+                  type: string
+                  format: date
+                  description: Check-in date (YYYY-MM-DD)
+                  example: "2025-07-09"
+
+                checkOut:
+                  type: string
+                  format: date
+                  description: Check-out date (YYYY-MM-DD)
+                  example: "2025-07-10"
+
+                radius:
+                  type: string
+                  description: Search radius around location (e.g., auto / 5km)
+                  example: "auto"
+
+                breakfast_option:
+                  type: string
+                  description: Breakfast preference filter (any / included / excluded)
+                  example: "any"
+
+                hotel_star_level:
+                  type: string
+                  description: Filter by hotel star rating (any / 3 / 4 / 5)
+                  example: "any"
+                occupancies:
+                    type: object
+                    required:
+                      - adult
+                    properties:
+                      adult:
+                        type: string
+                        description: Number of adults in the room
+                        example: "2"
+                      child:
+                        type: string
+                        description: Number of children in the room
+                        example: "1"
+                      child_age:
+                        type: array
+                        description: Ages of children (if any)
+                        items:
+                          type: string
+                          example: "3"
+                      short_ref:
+                          type: string
+                          description: Short reference ID for tracking (optional)
+                          example: "b1da9390..."
+                                                  
+
+
               additionalProperties: true
             examples:
               dubaiFamily:
@@ -200,8 +279,7 @@ paths:
 
                             
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /hotel/auto-suggetion:
     post:
       tags: [Hotel]
@@ -213,6 +291,13 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - location
+              properties:
+                location:
+                    type: string
+                    description: Location name or partial name for hotel autocomplete/search
+                    example: "paris"
               additionalProperties: true
             examples:
               default:
@@ -237,8 +322,7 @@ paths:
                   - location: "Paris Orly Airport (ORY), Orly, France"
 
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /hotel/search-Single Adult:
     post:
       tags: [Hotel]
@@ -250,6 +334,52 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - hotel_id
+                - checkIn
+                - checkOut
+                - occupancies
+              properties:
+                 hotel_id:
+                   type: string
+                   description: Unique hotel identifier
+                   example: "H1EA00004#17350009"
+                 checkIn:
+                   type: string
+                   format: date
+                   description: Check-in date (YYYY-MM-DD)
+                   example: "2026-03-15"
+                 checkOut:
+                   type: string
+                   format: date
+                   description: Check-out date (YYYY-MM-DD)
+                   example: "2026-03-16"
+                 occupancies:
+                  type: array
+                  description: Room occupancies
+                  items:
+                    type: object
+                    required:
+                      - adult
+                    properties:
+                      adult:
+                        type: string
+                        description: Number of adults in the room
+                        example: "2"
+                      child:
+                        type: string
+                        description: Number of children (optional)
+                        example: "1"
+                      child_age:
+                        type: array
+                        description: Ages of children (if any)
+                      items:
+                        type: string
+                        example: "3"
+                 guest_nationality:
+                        type: string
+                        description: Nationality of the guest (ISO country code)
+                        example: "BD"
               additionalProperties: true
             examples:
               oneRoom:
@@ -293,8 +423,7 @@ paths:
                 summary: Successful Search Response
                 value:
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+
   /hotel/Single Hotel Availability:
     post:
       tags: [Hotel]
@@ -306,6 +435,57 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+              - hotel_id
+              - checkIn
+              - checkOut
+              - occupancies
+              properties:
+
+                hotel_id:
+                  type: string
+                  description: Unique hotel identifier
+                  example: "H1EA00004#17350009"
+
+                checkIn:
+                  type: string
+                  format: date
+                  description: Check-in date in YYYY-MM-DD format
+                  example: "2026-03-15"
+
+                checkOut:
+                  type: string
+                  format: date
+                  description: Check-out date in YYYY-MM-DD format
+                  example: "2026-03-16"
+
+                occupancies:
+                  type: array
+                  description: Room occupancies
+                  items:
+                    type: object
+                    required:
+                      - adult
+                    properties:
+                      adult:
+                        type: string
+                        description: Number of adults in the room
+                        example: "2"
+                      child:
+                        type: string
+                        description: Number of children (optional)
+                        example: "1"
+                      child_age:
+                        type: array
+                        description: Ages of children (if any)
+                        items:
+                          type: string
+                          example: "3"
+
+                guest_nationality:
+                  type: string
+                  description: Nationality of guest (ISO country code)
+                  example: "BD"
               additionalProperties: true
             examples:
               default:
@@ -375,8 +555,7 @@ paths:
 
 
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   /hotel/Single hotel Details Content:
     post:
       tags: [Hotel]
@@ -388,6 +567,13 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                  - hotel_id
+              properties:
+                hotel_id:
+                  type: string
+                  description: Unique hotel identifier
+                  example: "H1EA00004#17350009"
               additionalProperties: true
             examples:
               default:
@@ -596,8 +782,7 @@ paths:
 
                                   
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /hotel/Price and Policy validation:
     post:
       tags: [Hotel]
@@ -609,6 +794,21 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - tracking_id
+                - room_tracking_id
+              properties:
+
+                tracking_id:
+                  type: integer
+                  description: Search tracking ID from hotel search response
+                  example: 11171005026802720
+
+                room_tracking_id:
+                  type: string
+                  description: Unique room tracking identifier
+                  example: "11175108883326193VKD98-H1AS00029-0"
+
               additionalProperties: true
             examples:
               default:
@@ -886,8 +1086,7 @@ paths:
                                     post_booking_process: "auto"
                                     book_now_pay_later: "no"
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   /hotel/Get-Price-validation-detail:
     post:
       tags: [Hotel]
@@ -899,6 +1098,20 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - member_id
+              properties:
+
+                booking_tracking_id:
+                    type: string
+                    description: Unique booking tracking ID
+                    example: "111771747633261941E6VT"
+
+                member_id:
+                    type: string
+                    description: Member account ID
+                    example: "1"
               additionalProperties: true
             examples:
               default:
@@ -1314,8 +1527,7 @@ paths:
                                                                                                 
                                                               
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   /hotel/Update travellers info:
     post:
       tags: [Hotel]
@@ -1327,33 +1539,127 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+              - tracking_id
+              - member_id
+              - passenger
+              properties:
+                tracking_id:
+                  type: string
+                  description: Booking tracking ID from hotel booking step
+                  example: "111771747633261941E6VT"
+                member_id:
+                  type: string
+                  description: Logged-in member account ID
+                  example: "1"
+
+                save_pax:
+                  type: string
+                  description: Save passenger details for future bookings (yes / no)
+                  example: "yes"
+                passenger:
+                  type: array
+                  description: List of passengers for hotel booking
+                  items:
+                    type: object
+                    required:
+                      - pax_id
+                      - room_number
+                      - pax_type
+                      - first_name
+                      - last_name
+                    properties:
+
+                      pax_id:
+                        type: string
+                        description: Passenger ID
+                        example: "1"
+
+                      room_number:
+                        type: string
+                        description: Room number assigned for the passenger
+                        example: "1"
+
+                      pax_type:
+                        type: string
+                        description: Passenger type (ADT = Adult, CNN = Child)
+                        example: "ADT"
+                      gender:
+                        type: string
+                        description: Passenger gender (M / F)
+                        example: "M"
+
+                      title:
+                        type: string
+                        description: Passenger title (Mr / Mrs / Ms / Miss)
+                        example: "Mr"
+
+                      first_name:
+                        type: string
+                        description: Passenger first name
+                        example: "Jhon"
+
+                      last_name:
+                        type: string
+                        description: Passenger last name
+                        example: "Doe"
+
+                      age:
+                        type: string
+                        description: Passenger age
+                        example: "30"
+
               additionalProperties: true
             examples:
               default:
                 value:
-                  hotel_id: H1AS00029#HLMAD100#MAD
-                  "tracking_id": "111771747633261941E6VT"
-                  "member_id": "1"
-                  "save_pax": "yes"
-                  "passenger":
-                            
-                            "pax_id": "1"
-                            "room_number": "1"
-                            "pax_type": "ADT"
-                            "gender": "M"
-                            "title": "Mr"
-                            "first_name": "Jhon"
-                            "last_name": "Doe"
-                            "age": "30"
-
-                            -"pax_id": "4"
-                            -"room_number": "2"
-                            -"pax_type": "CNN"
-                            -"title": "Mr"
-                            -"first_name": "Jubi"
-                            -"last_name": "Hossen"
-                            -"age": "5"
-                    
+                  {
+                      "tracking_id": "111771747633261941E6VT",
+                      "member_id": "1",
+                      "save_pax": "yes",
+                      "passenger": [
+                          {
+                              "pax_id": "1",
+                              "room_number": "1",
+                              "pax_type": "ADT",
+                              "gender": "M",
+                              "title": "Mr",
+                              "first_name": "Jhon",
+                              "last_name": "Doe",
+                              "age": "30"
+                          },
+                          {
+                              "pax_id": "2",
+                              "room_number": "1",
+                              "pax_type": "ADT",
+                              "gender": "M",
+                              "title": "Mr",
+                              "first_name": "Jons",
+                              "last_name": "Don",
+                              "age": "30"
+                          },
+                                  {
+                                      "pax_id": "3",
+                                      "room_number": "2",
+                                      "pax_type": "ADT",
+                                      "gender": "M",
+                                      "title": "Mr",
+                                      "first_name": "Jins",
+                                      "last_name": "Kon",
+                                      "age": "30"
+                                  },
+                                  {
+                                      "pax_id": "4",
+                                      "room_number": "2",
+                                      "pax_type": "ADT",
+                                      "gender": "M",
+                                      "title": "Mr",
+                                      "first_name": "Smallll",
+                                      "last_name": "Kids",
+                                      "age": "30"
+                                  }
+                              ]
+                          }
       responses:
         '200':
           description: Hotel content including photos, facilities and policy text
@@ -1403,9 +1709,7 @@ paths:
 
 
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '404': { $ref: '#/components/responses/NotFound' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   /hotel/create Booking:
     post:
       tags: [Hotel]
@@ -1417,6 +1721,76 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                  - tracking_id
+                  - contact_no
+                  - email_address
+                  - payment_type
+                  - member_id
+              properties:
+
+                  tracking_id:
+                    type: string
+                    description: Booking tracking ID from previous booking step
+                    example: "111771747633261941E6VT"
+
+                  room_tracking_id:
+                    type: string
+                    description: Selected room tracking ID (if applicable)
+                    example: ""
+
+                  isd_code:
+                    type: string
+                    description: ISD code for customer contact number
+                    example: "1"
+
+                  contact_no:
+                    type: string
+                    description: Customer contact number
+                    example: "01700000000"
+
+                  email_address:
+                    type: string
+                    format: email
+                    description: Customer email address
+                    example: "sandbox@innovatesolution.com"
+
+                  payment_type:
+                    type: string
+                    description: Payment method (e.g., account_balance, card, online_payment)
+                    example: "account_balance"
+
+                  redirect_url:
+                    type: string
+                    format: uri
+                    description: URL to redirect after booking confirmation
+                    example: "https://agent.innotraveltech.com/booking-details/hotel"
+
+                  agency_isd_code:
+                    type: string
+                    description: Agency ISD code
+                    example: "1"
+
+                  agency_contact_no:
+                    type: string
+                    description: Agency contact number
+                    example: "01700000000"
+
+                  agency_email:
+                    type: string
+                    format: email
+                    description: Agency email address
+                    example: "sandbox@innovatesolution.com"
+
+                  member_id:
+                    type: string
+                    description: Logged-in member account ID
+                    example: "1"
+
+                  special_requests_notes:
+                    type: string
+                    description: Additional special requests or notes for the booking
+                    example: "n/a"
               additionalProperties: true
             examples:
               default:
@@ -2127,7 +2501,7 @@ paths:
                 type: object
                 additionalProperties: true
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /hotel/Booking Details:
     post:
       tags: [Hotel]
@@ -2139,36 +2513,35 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - tracking_id
+                - booking_id
+                - member_id
+              properties:
+
+                tracking_id:
+                  type: string
+                  description: Booking tracking ID generated during booking process
+                  example: "111771747633261941E6VT"
+
+                booking_id:
+                  type: string
+                  description: Final confirmed hotel booking ID
+                  example: "HO2622FEIDACKY"
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "1"
               additionalProperties: true
             examples:
               oneRoom:
                 value:
-                  location: Dhaka, Bangladesh
-                  radius: auto
-                  checkIn: 2025-07-11
-                  checkOut: 2025-07-12
-                  occupancies:
-                    - adult: "2"
-                  guest_nationality: AE
-                  hotel_star_level: any
-                  supplier_uid: H1RL00028
-                  partner_id: "1"
-                  language: en
-              twoRooms:
-                value:
-                  location: dubai
-                  radius: auto
-                  checkIn: 2025-05-15
-                  checkOut: 2025-05-16
-                  occupancies:
-                    - adult: "2"
-                    - adult: "2"
-                  guest_nationality: BD
-                  hotel_star_level: any
-                  search_currency: any
-                  supplier_uid: H1RL00018
-                  partner_id: "1"
-                  language: en
+                 {
+                    "tracking_id": "111771747633261941E6VT",
+                    "booking_id": "HO2622FEIDACKY",
+                    "member_id": "1" 
+                 }
       responses:
         '200':
           description: Hotel availability results with mapped hotel inventory
@@ -2182,8 +2555,7 @@ paths:
                 summary: Successful Search Response
                 value:
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /hotel/issue-voucher:
     post:
       tags: [Hotel]
@@ -2195,6 +2567,34 @@ paths:
           application/json:
             schema:
               type: object
+              
+              required:
+                - member_id
+                - tracking_id
+                - price_change_accepted
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "1"
+
+                tracking_id:
+                  type: string
+                  description: Booking or Hotel tracking ID
+                  example: "11177251811403210FPDT2"
+
+                price_change_accepted:
+                  type: string
+                  description: Whether the price change is accepted ("yes" or "no")
+                  enum: ["yes", "no"]
+                  example: "no"
+
+                notes:
+                  type: string
+                  description: Additional notes (optional)
+                  nullable: true
+                  example: "not required"
               additionalProperties: true
             examples:
               issue-voucher:
@@ -2239,8 +2639,7 @@ paths:
                       "booking_supplier_status": "ok"
                         }
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /hotel/Cancel Booking:
     post:
       tags: [Hotel]
@@ -2252,6 +2651,26 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+              - member_id
+              - tracking_id
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "1"
+
+                tracking_id:
+                  type: string
+                  description: Booking or Hotel tracking ID
+                  example: "11177251811403210FPDT2"
+
+                reason:
+                  type: string
+                  description: Reason for cancellation (optional)
+                  nullable: true
+                  example: "not required"
               additionalProperties: true
             examples:
               Cancel hotel booking:
@@ -2291,8 +2710,7 @@ paths:
                       "generated_date": "2026-03-03"
                   } 
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
 components:
   securitySchemes:
     apiKeyAuth:

@@ -36,6 +36,151 @@ paths:
           application/json:
             schema:
               type: object
+              
+              required:
+                - segment
+                - journey_type
+                - travelers_adult
+                - guest_nationality
+              properties:
+
+                segment:
+                  type: array
+                  description: List of transfer route segments
+                  items:
+                    type: object
+                    properties:
+                      departure_type:
+                        type: string
+                        description: Type of departure location (AIRPORT / LOC / HOTEL)
+                        example: AIRPORT
+
+                      departure_code:
+                        type: string
+                        description: Departure location code or identifier
+                        example: DXB
+
+                      departure:
+                        type: string
+                        description: Full name of departure location
+                        example: Dubai International Airport, Dubai
+
+                      arrival_type:
+                        type: string
+                        description: Type of arrival location (AIRPORT / LOC / HOTEL)
+                        example: LOC
+
+                      arrival_code:
+                        type: string
+                        description: Arrival location code or identifier
+                        example: Dubai Mall - Dubai - United Arab Emirates
+
+                      arrival:
+                        type: string
+                        description: Full name of arrival location
+                        example: Dubai Mall - Dubai - United Arab Emirates
+
+                      outbound_date:
+                        type: string
+                        format: date-time
+                        description: Transfer date and time (ISO format)
+                        example: 2026-03-30T00:00:00
+                      journey_type:
+                        type: string
+                        description: Type of journey (OneWay / RoundTrip)
+                        enum:
+                          - OneWay
+                          - RoundTrip
+                        example: OneWay
+
+                      travelers_adult:
+                        type: integer
+                        description: Number of adult passengers
+                        example: 2
+
+                      travelers_adult_types:
+                        type: array
+                        description: Adult passenger type list
+                        items:
+                          type: string
+                        example:
+                          - ""
+
+                      travelers_child:
+                        type: integer
+                        description: Number of child passengers
+                        example: 0
+
+                      travelers_child_types:
+                        type: array
+                        description: Child passenger types
+                        items:
+                          type: string
+                        example: []
+
+                      travelers_child_age:
+                        type: array
+                        description: Ages of child passengers
+                        items:
+                          type: integer
+                        example: []
+
+                      travelers_infants:
+                        type: integer
+                        description: Number of infant passengers
+                        example: 0
+
+                      travelers_infants_age:
+                        type: array
+                        description: Ages of infant passengers
+                        items:
+                          type: integer
+                        example: []
+
+                      travelers_infants_types:
+                        type: array
+                        description: Infant passenger types
+                        items:
+                          type: string
+                        example: []
+
+                      guest_nationality:
+                        type: string
+                        description: Guest nationality (ISO country code)
+                        example: BD
+
+                      transfer_type:
+                        type: string
+                        description: Type of transfer (private / shared)
+                        example: private
+
+                      supplier_uid:
+                        type: string
+                        description: Supplier identifier (all for any supplier)
+                        example: all
+
+                      partner_id:
+                        type: string
+                        description: Partner account ID (can be empty)
+                        example: ""
+
+                      short_ref:
+                        type: string
+                        description: Short reference for tracking (optional)
+                        example: xxxx111
+
+                      language:
+                        type: string
+                        description: Response language
+                        example: en
+
+                      service_type:
+                        type: string
+                        description: Service type (regular / premium)
+                        enum:
+                          - regular
+                          - premium
+                        example: regular
               additionalProperties: true
             examples:
               Transfer Search Request:
@@ -292,6 +437,20 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - tracking_id
+                - transfer_id
+              properties:
+
+                tracking_id:
+                  type: string
+                  description: Unique tracking ID from transfer search response
+                  example: "11773034808H6Y1"
+
+                transfer_id:
+                  type: string
+                  description: Unique transfer identifier
+                  example: "T1HS00025#0-43"
               additionalProperties: true
             examples:
               default:
@@ -538,6 +697,83 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - member_id
+                - passenger
+              properties:
+
+                booking_tracking_id:
+                  type: string
+                  description: Booking tracking ID from validation
+                  example: "11177303486226194YSHFB"
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                save_pax:
+                  type: string
+                  description: Save passenger information for future use (yes / no)
+                  example: "yes"
+
+                passenger:
+                  type: array
+                  description: List of passenger details
+                  items:
+                    type: object
+                    required:
+                      - pax_id
+                      - pax_type
+                      - first_name
+                      - last_name
+                    properties:
+
+                      pax_id:
+                        type: string
+                        description: Unique passenger ID
+                        example: "1"
+
+                      pax_type:
+                        type: string
+                        description: Passenger type (ADT = Adult, CNN = Child, INF = Infant)
+                        example: "ADT"
+
+                      title:
+                        type: string
+                        description: Passenger title (MR / MRS / MS / MISS)
+                        example: "MR"
+
+                      first_name:
+                        type: string
+                        description: Passenger first name
+                        example: "Jasim"
+
+                      last_name:
+                        type: string
+                        description: Passenger last name
+                        example: "Kalam"
+
+                      age:
+                        type: string
+                        description: Passenger age
+                        example: "30"
+
+                      isd_code:
+                        type: string
+                        description: Country ISD code
+                        example: "880"
+
+                      contact_no:
+                        type: string
+                        description: Contact number
+                        example: "1966330000"
+
+                      email_address:
+                        type: string
+                        description: Passenger email address
+                        example: "iam@saaqeb.com"
               additionalProperties: true
             examples:
               default:
@@ -634,6 +870,93 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - transfer_tracking_id
+                - member_id
+                - payment_type
+                - isd_code
+                - contact_no
+                - email_address
+              properties:
+
+                booking_tracking_id:
+                  type: string
+                  description: Booking tracking ID from validation
+                  example: "11177303486226194YSHFB"
+
+                transfer_tracking_id:
+                  type: string
+                  description: Transfer tracking ID with segment reference
+                  example: "11177303486226194YSHFB||0-43"
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "1"
+
+                isPartialPay:
+                  type: string
+                  description: Indicates partial payment (yes / no)
+                  example: "no"
+
+                redirect_url:
+                  type: string
+                  description: Redirect URL after payment
+                  example: "https://showkat.innovatedemo.com/inno-travel-tech/custom_modal.html"
+
+                note:
+                  type: string
+                  description: Optional note for driver
+                  example: "Note to driver"
+
+                payment_type:
+                  type: string
+                  description: Payment method (account_balance / card / onlinepayment)
+                  example: "account_balance"
+
+                isd_code:
+                  type: string
+                  description: Country ISD code
+                  example: "880"
+
+                contact_no:
+                  type: string
+                  description: Contact number
+                  example: "1966330000"
+
+                email_address:
+                  type: string
+                  description: Customer email address
+                  example: "iam@saaqeb.com"
+
+                agency_email:
+                  type: string
+                  description: Agency email (optional)
+                  example: "iam@saaqeb.com"
+
+                connected_segment:
+                  type: array
+                  description: Linked travel segments (optional)
+                  items:
+                    type: object
+                    properties:
+                      segment_type:
+                        type: string
+                        description: Type of segment (FLIGHT / TRAIN / BUS)
+                        example: "FLIGHT"
+                      segment_point:
+                        type: string
+                        description: Segment point (ARRIVAL / DEPARTURE)
+                        example: "ARRIVAL"
+                      segment_code:
+                        type: string
+                        description: Travel segment code
+                        example: "XA01-AB"
+                      transfer_point:
+                        type: string
+                        description: Transfer point (START / END)
+                        example: "START"
               additionalProperties: true
             examples:
               default:
@@ -1304,6 +1627,25 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - tracking_id
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "1"
+
+                tracking_id:
+                  type: string
+                  description: Transfer booking tracking ID
+                  example: "11177303486226194YSHFB"
+
+                reason:
+                  type: string
+                  description: Reason for cancellation (optional)
+                  example: "not required"
               additionalProperties: true
             examples:
               default:
@@ -1440,6 +1782,869 @@ paths:
                             ]
                         }
                     }
+  /Transfer/Booking details:
+    post:
+      tags:  [Transfer]
+      summary: Booking details
+      operationId: Bookingdetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - member_id
+                - tracking_id
+                - booking_id
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                tracking_id:
+                  type: string
+                  description: Transfer or booking tracking ID
+                  example: "11177260822126194QDWJV"
+
+                booking_id:
+                  type: string
+                  description: Booking ID for the Transfer package
+                  example: "ES2604MAYVA3A8"
+              additionalProperties: true
+            example:
+                {
+                    "tracking_id": "71176482474026194FH3BA",
+                    "booking_id": "",
+                    "member_id": "1"
+                }
+      responses:
+        '200':
+          description: Booking details Response successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              example:
+                 {
+                            "status": "success",
+                            "reason": "Booking Details For Tracking Id 119177311942703210WDEPJ",
+                            "tracking_id": "119177311942703210WDEPJ",
+                            "booking_id": "FL2610MAPSA3D7",
+                            "pay_tracking_id": null,
+                            "sendGTMEvent": false,
+                            "general": {
+                                "service_type": "FLIGHT",
+                                "booking_platform": "B2B",
+                                "service_details": "OneWay From KWI to ADJ Departure date 2026-06-11",
+                                "booking_remarks": null,
+                                "generated_date": "2026-03-10",
+                                "partner_id": "1",
+                                "master_partner_id": "1",
+                                "branch_id": "BDHE001",
+                                "IsCardPayBooking": "no",
+                                "CardPayStatus": "pending",
+                                "CardPayBookingStatus": "processing",
+                                "CardPayBookingStatusExecute": "pending",
+                                "postBookingProcess": "auto",
+                                "book_now_pay_later": "0",
+                                "tracking_id": "119177311942703210WDEPJ",
+                                "booking_id": "FL2610MAPSA3D7",
+                                "airlines_pnr": "XDR1YK",
+                                "supplier_confirmation_id": "XDR1YK",
+                                "order_id_ndc": null,
+                                "order_id_Farelogix": null,
+                                "supplier_others_id_a": "NzA5NDkwODQhWERSMVlLIWZhbHNl",
+                                "supplier_others_id_b": "120735201421",
+                                "externalBookingRefIds": [],
+                                "supplier_booking_pcc": "NzYxMTI1MzQhSjk-",
+                                "supplier_ticketing_pcc": null,
+                                "supplier_provider_code": null,
+                                "supplier_is_gds": "NO",
+                                "carrier": "J9",
+                                "departure_date": "2026-06-11",
+                                "arrival_date": "2026-06-11",
+                                "isDomestic_Flight": false,
+                                "flightSegment": "KWI-ADJ",
+                                "cabinPriceClass": "Economy Value",
+                                "cabinCode": "EV",
+                                "bookingCode": "E",
+                                "departure_airport": "KWI",
+                                "arrival_airport": "ADJ",
+                                "supplier_code": "jazeera_air",
+                                "supplier_uid": "F1JS00114",
+                                "manualAction": {
+                                    "Required": "no",
+                                    "RequiredCategory": "",
+                                    "RequiredNotes": ""
+                                },
+                                "member_id": "19",
+                                "book_by": "Alif",
+                                "ip_address": "203.76.126.194",
+                                "timestamp": "1773119468",
+                                "last_update": "1773119468"
+                            },
+                            "changeLogs": [],
+                            "voucher": {
+                                "can_view_download": "no",
+                                "link": "https://b2b.innovatedemo.com/voucher/flight?q=MTE5MTc3MzExOTQyNzAzMjEwV0RFUEo=",
+                                "pdf": "https://b2b.innovatedemo.com/voucher?q=eyJ0cmFja2luZ19pZCI6IjExOTE3NzMxMTk0MjcwMzIxMFdERVBKIiwicHJpY2UiOmZhbHNlLCJsaW5rX2V4cGlyZSI6IjIwMjYtMDYtMDgifQ==",
+                                "pdf_with_price": "https://b2b.innovatedemo.com/voucher?q=eyJ0cmFja2luZ19pZCI6IjExOTE3NzMxMTk0MjcwMzIxMFdERVBKIiwicHJpY2UiOnRydWUsImxpbmtfZXhwaXJlIjoiMjAyNi0wNi0wOCJ9",
+                                "supplier_voucher_link": "",
+                                "pax_voucher": [
+                                    {
+                                        "link": "https://b2b.innovatedemo.com/voucher?q=eyJ0cmFja2luZ19pZCI6IjExOTE3NzMxMTk0MjcwMzIxMFdERVBKIiwicGF4X2lkIjoiMSIsInRpY2tldCI6dHJ1ZX0=",
+                                        "pax_id": "1",
+                                        "pax_type": "ADT",
+                                        "first_name": "AMIR",
+                                        "last_name": "ALIF"
+                                    }
+                                ],
+                                "show_supplier_option": "yes",
+                                "url_value": null,
+                                "flight_version": "1",
+                                "hotel_version": "1",
+                                "base_url": null,
+                                "qr_code": "hide"
+                            },
+                            "action": {
+                                "bookingStatus": "Hold",
+                                "bookingStatusColor": "#FD7E14",
+                                "bookingStatusInfo": "Hold",
+                                "supplier_is_gds": "NO",
+                                "view_gds_ticket": "NO",
+                                "cancel_booking": "YES",
+                                "void_ticket": "NO",
+                                "cancel_ticket": "NO",
+                                "split_booking": "NO",
+                                "issue_ticket": "YES",
+                                "issue_ticket_card": "YES",
+                                "re_issue_ticket": "NO",
+                                "issue_ticket_partial_pay": "NO",
+                                "refund_quote": "NO",
+                                "sync_booking": "YES",
+                                "booking_info_update": "NO",
+                                "ticket_issue_date": "",
+                                "applied_flight_departure_date": "2026-06-10",
+                                "flight_departure_date": "2026-06-11",
+                                "current_yyyy_mm_dd": "2026-03-10",
+                                "airlines_permission": {
+                                    "cancel_booking_option": "yes",
+                                    "cancel_ticket_option": "no",
+                                    "flight_confirm_cancel": "active"
+                                },
+                                "partner_permission": {
+                                    "auto_cancel": "active",
+                                    "booking_cancel_otp": "yes",
+                                    "issue_ticket": "active",
+                                    "split_ticket": "disable",
+                                    "flight_confirm_cancel": "active",
+                                    "ticket_reissue": "active"
+                                }
+                            },
+                            "voidRefundData": [],
+                            "reIssueData": [],
+                            "booking": {
+                                "status": "success",
+                                "bookingStatus": "Hold",
+                                "bookingStatusColor": "#FD7E14",
+                                "bookingStatusInfo": "Hold",
+                                "booking_status": "hold",
+                                "booking_supplier_status": "hold",
+                                "ticket_status": "queue",
+                                "ticketMsg": null,
+                                "payment_status": "pending",
+                                "auto_cancel_status": "pending",
+                                "partner_timezone": "Asia/Dhaka",
+                                "syncTimeLimit": "1",
+                                "auto_cancel": "2026-03-10 11:26:08",
+                                "auto_cancel_timestamp": "1773120368",
+                                "ticketingTimeLimit": "2026-03-10 11:26:08",
+                                "supplierTimeLimit": null,
+                                "supplierTimeLimitTimezone": null,
+                                "show_hold_booking_time_limit": "yes",
+                                "show_hold_booking_time_limit_msg": "Thanks For Booking with us.",
+                                "OnlineCheckIn": null,
+                                "OnlineCheckInText": null
+                            },
+                            "price": {
+                                "currency": "BDT",
+                                "total_amount": "130950.62",
+                                "sell_total_price": "141092.48",
+                                "sales_comission": null,
+                                "applied_comission_ratio": "0",
+                                "customer_markup_policy": null,
+                                "partial_pay": {
+                                    "isPartialPay": "no",
+                                    "isPartialPayPossible": "",
+                                    "isPartialDuePaid": "no",
+                                    "currency": "BDT",
+                                    "pay_now": null,
+                                    "due_amount": null,
+                                    "due_date": null,
+                                    "due_date_timestamp": "",
+                                    "supplier_amount": null,
+                                    "supplier_currency": null,
+                                    "markup_charge": null
+                                },
+                                "cancel_reissue_charges": {
+                                    "data": null
+                                }
+                            },
+                            "bookingPaymentRequestDtata": [],
+                            "syncData": {
+                                "Segment": null,
+                                "Travelers": null,
+                                "Price": [],
+                                "FareRules": [],
+                                "FlightFlown": [],
+                                "SSR": []
+                            },
+                            "flight": {
+                                "modify": {
+                                    "baggage": "disable",
+                                    "seat": "disable",
+                                    "meal": "disable",
+                                    "itinerary": "active",
+                                    "doc_update": "active",
+                                    "contact_update": "active"
+                                },
+                                "search_parameter": {
+                                    "journey_type": "OneWay",
+                                    "segment": [
+                                        {
+                                            "departure_airport_type": "AIRPORT",
+                                            "departure_airport": "KWI",
+                                            "arrival_airport_type": "AIRPORT",
+                                            "arrival_airport": "AMM",
+                                            "departure_date": "2026-06-11",
+                                            "departure_time": "anytime",
+                                            "departure_time_within": "anytime",
+                                            "booking_class": "Economy",
+                                            "stop": "any",
+                                            "alliance": {
+                                                "include": [],
+                                                "exclude": []
+                                            },
+                                            "country": {
+                                                "include": [],
+                                                "exclude": []
+                                            },
+                                            "airlines": {
+                                                "include": [],
+                                                "exclude": []
+                                            }
+                                        }
+                                    ],
+                                    "travelers_adult": 1,
+                                    "travelers_child": 0,
+                                    "travelers_child_age": [],
+                                    "travelers_infants": 0,
+                                    "travelers_infants_age": [],
+                                    "fare_type": [],
+                                    "fare_option": [],
+                                    "content_type": "all_content",
+                                    "ptc_option": [],
+                                    "agency_ethnic_list": [],
+                                    "preferred_carrier": [],
+                                    "non_stop_flight": "any",
+                                    "baggage_option": "any",
+                                    "booking_class": "Economy",
+                                    "supplier_uid": "F1JS00114",
+                                    "partner_id": "1",
+                                    "language": "en",
+                                    "short_ref": "6f6720a66cd791d1ca15ba471eccc6804d3cae75b3d1c13a10ad071f1a856963",
+                                    "version": 1,
+                                    "team_profile": [
+                                        null
+                                    ],
+                                    "RefundableOnly": false,
+                                    "BestFareOnly": false
+                                },
+                                "departure": {
+                                    "date": "2026-06-11",
+                                    "time": "09:10"
+                                },
+                                "arrival": {
+                                    "date": "2026-06-11",
+                                    "time": "11:15"
+                                },
+                                "departure_airport": "KWI",
+                                "departure_city": "Kuwait City",
+                                "arrival_airport": "ADJ",
+                                "arrival_city": "Amman",
+                                "flight_group": [
+                                    {
+                                        "no_of_stops_title": "Direct Flight",
+                                        "no_of_stops": "0",
+                                        "flight_time": "PT0H0M",
+                                        "transit_time": "",
+                                        "routes": [
+                                            {
+                                                "air_segment_key": "Sjl_IDI1N34gfn5LV0l_MDYvMTEvMjAyNiAwOToxMH5BREp_MDYvMTEvMjAyNiAxMToxNX5_",
+                                                "flightSegmentID": null,
+                                                "segmentStatus": null,
+                                                "segmentStatusTitle": null,
+                                                "segmentPNR": null,
+                                                "marriageGroup": null,
+                                                "origin": "KWI",
+                                                "departure_time": "2026-06-11T09:10",
+                                                "origin_terminal": "",
+                                                "origin_airport": {
+                                                    "name": "Kuwait International Airport",
+                                                    "city": "Kuwait City",
+                                                    "country": "Kuwait",
+                                                    "timezone": "Asia/Kuwait"
+                                                },
+                                                "destination": "ADJ",
+                                                "arrival_time": "2026-06-11T11:15",
+                                                "destination_terminal": "",
+                                                "destination_airport": {
+                                                    "name": "Amman Civil Airport",
+                                                    "city": "Amman",
+                                                    "country": "Jordan",
+                                                    "timezone": "Asia/Amman"
+                                                },
+                                                "flight_date": "2026-06-11",
+                                                "flight_time": "PT2H5M",
+                                                "distance": "",
+                                                "lay_over": "not-applicable",
+                                                "lay_over_date": "not-applicable",
+                                                "aircraft": {
+                                                    "code": "320",
+                                                    "name": "NE2",
+                                                    "picture": "320.png"
+                                                },
+                                                "codeshare": null,
+                                                "operating": {
+                                                    "carrier": "J9",
+                                                    "carrier_name": "Jazeera Airways",
+                                                    "carrier_logo": "J9.png",
+                                                    "flight_number": ""
+                                                },
+                                                "marketing": {
+                                                    "carrier": "J9",
+                                                    "carrier_name": "Jazeera Airways",
+                                                    "carrier_logo": "J9.png",
+                                                    "flight_number": ""
+                                                },
+                                                "booking_class": {
+                                                    "upsellTitle": "",
+                                                    "cabin_class": "Economy VALUE",
+                                                    "cabin_code": "EV",
+                                                    "booking_code": "EV",
+                                                    "fareBasisCode": "",
+                                                    "meal_code": ""
+                                                },
+                                                "baggages": {
+                                                    "checked": {
+                                                        "ADT": {
+                                                            "ptc_title": "ADT",
+                                                            "passenger_type": "Adult",
+                                                            "baggage_type": "checked",
+                                                            "pieceCount": 1,
+                                                            "weight": 20,
+                                                            "unit": "kg",
+                                                            "title": "20 kg / 1 piece"
+                                                        }
+                                                    },
+                                                    "carry_on": {
+                                                        "ADT": {
+                                                            "ptc_title": "ADT",
+                                                            "passenger_type": "Adult",
+                                                            "baggage_type": "carry_on",
+                                                            "pieceCount": 1,
+                                                            "weight": 7,
+                                                            "unit": "kg",
+                                                            "title": "7 kg / 1 piece"
+                                                        }
+                                                    }
+                                                },
+                                                "ghostSegmentJSON": null
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "price": {
+                                    "purchase": {
+                                        "total": {
+                                            "currency": "BDT",
+                                            "amount": 130950.62
+                                        },
+                                        "base_fare": {
+                                            "currency": "BDT",
+                                            "amount": 126773.32
+                                        },
+                                        "tax": {
+                                            "currency": "BDT",
+                                            "amount": 3576.2
+                                        },
+                                        "price_breakdown": [
+                                            {
+                                                "passenger_id": "1",
+                                                "passenger_type": "ADT",
+                                                "primary_ptc": null,
+                                                "ptc_title": null,
+                                                "passenger_total": 1,
+                                                "total": {
+                                                    "currency": "BDT",
+                                                    "amount": "130950.62"
+                                                },
+                                                "base_fare": {
+                                                    "currency": "BDT",
+                                                    "amount": "126773.32"
+                                                },
+                                                "tax": {
+                                                    "currency": "BDT",
+                                                    "amount": "3576.2"
+                                                },
+                                                "discount": "1752.21",
+                                                "ait": "876.1",
+                                                "service_charge": "41487.13",
+                                                "gross_base_fare": "87639.50",
+                                                "gross_tax": "2700.10"
+                                            }
+                                        ]
+                                    },
+                                    "sell": {
+                                        "total": {
+                                            "currency": "BDT",
+                                            "amount": 141092.48
+                                        },
+                                        "base_fare": {
+                                            "currency": "BDT",
+                                            "amount": 136915.18
+                                        },
+                                        "tax": {
+                                            "currency": "BDT",
+                                            "amount": 3576.2
+                                        },
+                                        "ticket_issue_charge": 0,
+                                        "price_breakdown": [
+                                            {
+                                                "passenger_id": "1",
+                                                "passenger_type": "ADT",
+                                                "primary_ptc": null,
+                                                "ptc_title": null,
+                                                "passenger_total": 1,
+                                                "total": {
+                                                    "currency": "BDT",
+                                                    "amount": "141092.48"
+                                                },
+                                                "base_fare": {
+                                                    "currency": "BDT",
+                                                    "amount": "136915.18"
+                                                },
+                                                "tax": {
+                                                    "currency": "BDT",
+                                                    "amount": "3576.2"
+                                                },
+                                                "cus_ticket_issue_charge": "0",
+                                                "discount": "4287.68",
+                                                "ait": "876.1",
+                                                "service_charge": "54164.46",
+                                                "gross_base_fare": "87639.50",
+                                                "gross_tax": "2700.10"
+                                            }
+                                        ]
+                                    },
+                                    "fmg": {
+                                        "total": {
+                                            "currency": "USD",
+                                            "amount": 1076.18
+                                        },
+                                        "base_fare": {
+                                            "currency": "USD",
+                                            "amount": 1041.85
+                                        },
+                                        "tax": {
+                                            "currency": "USD",
+                                            "amount": 29.39
+                                        },
+                                        "ticket_issue_charge": 300,
+                                        "price_breakdown": [
+                                            {
+                                                "passenger_id": "1",
+                                                "passenger_type": "ADT",
+                                                "primary_ptc": null,
+                                                "ptc_title": null,
+                                                "passenger_total": 1,
+                                                "total": {
+                                                    "currency": "USD",
+                                                    "amount": "1076.18"
+                                                },
+                                                "base_fare": {
+                                                    "currency": "USD",
+                                                    "amount": "1041.85"
+                                                },
+                                                "tax": {
+                                                    "currency": "USD",
+                                                    "amount": "29.39"
+                                                },
+                                                "ticket_issue_charge": "300",
+                                                "discount": "14.4",
+                                                "ait": "7.2",
+                                                "service_charge": "340.95",
+                                                "fmg_charge": "0",
+                                                "gross_base_fare": "720.24",
+                                                "gross_tax": "22.19"
+                                            }
+                                        ]
+                                    },
+                                    "supplier": {
+                                        "total": {
+                                            "currency": "USD",
+                                            "amount": 754.57
+                                        },
+                                        "base_fare": {
+                                            "currency": "USD",
+                                            "amount": 720.24
+                                        },
+                                        "tax": {
+                                            "currency": "USD",
+                                            "amount": 29.39
+                                        },
+                                        "price_breakdown": [
+                                            {
+                                                "passenger_id": "1",
+                                                "passenger_type": "ADT",
+                                                "primary_ptc": null,
+                                                "ptc_title": null,
+                                                "passenger_total": 1,
+                                                "total": {
+                                                    "currency": "USD",
+                                                    "amount": "754.57"
+                                                },
+                                                "base_fare": {
+                                                    "currency": "USD",
+                                                    "amount": "720.24"
+                                                },
+                                                "tax": {
+                                                    "currency": "USD",
+                                                    "amount": "29.39"
+                                                },
+                                                "discount": "0",
+                                                "ait": "7.2",
+                                                "service_charge": "4.94",
+                                                "gross_base_fare": "720.24",
+                                                "gross_tax": "22.19",
+                                                "primary_commission": null,
+                                                "per_segment_discount": "0",
+                                                "total_segment": "1",
+                                                "total_segment_discount": "0",
+                                                "applicable_comission_title": ""
+                                            }
+                                        ]
+                                    },
+                                    "gross": {
+                                        "total": {
+                                            "currency": "USD",
+                                            "amount": 742.43
+                                        },
+                                        "base_fare": {
+                                            "currency": "USD",
+                                            "amount": 720.24
+                                        },
+                                        "tax": {
+                                            "currency": "USD",
+                                            "amount": 22.19
+                                        },
+                                        "price_breakdown": [
+                                            {
+                                                "passenger_id": "1",
+                                                "passenger_type": "ADT",
+                                                "primary_ptc": null,
+                                                "ptc_title": null,
+                                                "passenger_total": 1,
+                                                "total": {
+                                                    "currency": "USD",
+                                                    "amount": "742.43"
+                                                },
+                                                "base_fare": {
+                                                    "currency": "USD",
+                                                    "amount": "720.24"
+                                                },
+                                                "tax": {
+                                                    "currency": "USD",
+                                                    "amount": "22.19"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "customer_markup_policy": null,
+                                "baggage": null,
+                                "fare_rules": {
+                                    "refundable_data": null,
+                                    "refundable": "non-refundable",
+                                    "change_before_departure": "not-available"
+                                },
+                                "read_ssr": []
+                            },
+                            "additional_baggage": [],
+                            "additional_meal": [],
+                            "pax_seat_plan": [],
+                            "baggage_protection": [],
+                            "additional_services": [],
+                            "discount_data": [],
+                            "pax": {
+                                "primary": {
+                                    "guest_name": "MR AMIR ALIF",
+                                    "guest_email": "alif@innovatesolution.com",
+                                    "guest_isd_code": null,
+                                    "guest_contact_no": "8801901402813",
+                                    "guest_nationality": "BD"
+                                },
+                                "data": [
+                                    {
+                                        "Id": "8035",
+                                        "timestamp": "1773119458",
+                                        "last_update": "1773119458",
+                                        "entry": "19",
+                                        "entry_n": "Alif",
+                                        "ftm_partner_id": "1",
+                                        "master_partner_id": null,
+                                        "tracking_id": "119177311942703210WDEPJ",
+                                        "service_type": "FLIGHT",
+                                        "room_number": "1",
+                                        "pax_id": "1",
+                                        "passenger_id": "1",
+                                        "supplier_pax_id": "1",
+                                        "pax_type": "ADT",
+                                        "paxType_Identity": "ADT",
+                                        "primary_ptc": "ADT",
+                                        "ptc_title": "Adult",
+                                        "gender": "M",
+                                        "title": "MR",
+                                        "first_name": "AMIR",
+                                        "last_name": "ALIF",
+                                        "dob": "1996-03-10",
+                                        "pax_age": "30",
+                                        "nationality": "BD",
+                                        "doc_type": "passport",
+                                        "doc_country": "BD",
+                                        "doc_no": "RT43TSF",
+                                        "cnic": null,
+                                        "doc_dateofexpiry": "2031-03-10",
+                                        "doc_dateofissue": "2026-02-10",
+                                        "frequent_flyer_airlines": null,
+                                        "frequent_flyer": "",
+                                        "purpose_of_visit": null,
+                                        "special_request": "",
+                                        "residential_address": null,
+                                        "wheelchair_required": "no",
+                                        "isd_code": "880",
+                                        "contact_no": "",
+                                        "email_address": "alif@innovatesolution.com",
+                                        "doc_pics": null,
+                                        "seat_number": null,
+                                        "baggage_option": null,
+                                        "meal_option": null,
+                                        "booking_id": null,
+                                        "ticket_number": null,
+                                        "ticket_status": "queue",
+                                        "ticket_issueTimeStamp": null,
+                                        "ticket_supplier_status": null,
+                                        "ticket_status_title": null,
+                                        "tktNumberValidation": "0",
+                                        "comission_type": "",
+                                        "comission_value": "",
+                                        "currency": "BDT",
+                                        "sell_total": "141092.48",
+                                        "sell_base_fare": "136915.18",
+                                        "sell_tax": "3576.2",
+                                        "sell_discount": "4287.68",
+                                        "sell_ait": "876.1",
+                                        "sell_service_charge": "54164.46",
+                                        "sell_gross_base_fare": "87639.50",
+                                        "sell_gross_tax": "2700.10",
+                                        "cus_ticket_issue_charge": "0",
+                                        "price_total": "130950.62",
+                                        "price_base_fare": "126773.32",
+                                        "price_tax": "3576.2",
+                                        "price_taxBreakdown_BD": "0",
+                                        "price_taxBreakdown_UT": "0",
+                                        "price_taxBreakdown_E5": "0",
+                                        "price_taxBreakdown_YQ": "0",
+                                        "price_taxBreakdown_YR": "0",
+                                        "price_taxBreakdown_Other": "0",
+                                        "price_discount": "1752.21",
+                                        "price_ait": "876.1",
+                                        "price_service_charge": "41487.13",
+                                        "price_gross_base_fare": "87639.50",
+                                        "price_gross_tax": "2700.10",
+                                        "ticket_issue_charge": "300",
+                                        "total_ticket_issue_charge": "300.00",
+                                        "supplier_currency": "USD",
+                                        "currencyExchangeRate": "121.68",
+                                        "fmg_total": "1076.18",
+                                        "fmg_base_fare": "1041.85",
+                                        "fmg_tax": "29.39",
+                                        "fmg_discount": "14.4",
+                                        "fmg_ait": "7.2",
+                                        "fmg_service_charge": "340.95",
+                                        "fmg_gross_base_fare": "720.24",
+                                        "fmg_gross_tax": "22.19",
+                                        "fmg_markup_type": null,
+                                        "fmg_charge": "0",
+                                        "fmg_revenue": "321.61",
+                                        "supplier_total": "754.57",
+                                        "supplier_base_fare": "720.24",
+                                        "supplier_tax": "29.39",
+                                        "supplier_discount": "0",
+                                        "supplier_ait": "7.2",
+                                        "supplier_service_charge": "4.94",
+                                        "supplier_gross_base_fare": "720.24",
+                                        "supplier_gross_tax": "22.19",
+                                        "supplier_primary_commission": null,
+                                        "supplier_segment_feesCalculate": null,
+                                        "segment_discount_accountPurpose": null,
+                                        "supplier_per_segment_discount": "0",
+                                        "supplier_total_segment": "1",
+                                        "supplier_total_segment_discount": "0",
+                                        "gross_fare_total": "742.43",
+                                        "gross_fare_base_fare": "720.24",
+                                        "gross_fare_tax": "22.19",
+                                        "gross_fare_tax_BD": "0",
+                                        "gross_fare_tax_UT": "0",
+                                        "gross_fare_tax_E5": "0",
+                                        "gross_fare_tax_YQ": "0",
+                                        "gross_fare_tax_YR": "0",
+                                        "gross_fare_tax_Other": "0",
+                                        "gross_fare_tax_breakDownJSON": "[]",
+                                        "gross_fare_discount_amount": "0",
+                                        "gross_fare_ait_amount": "0",
+                                        "gross_fare_service_charge": "4.94",
+                                        "custom_gross_discount": "0.00",
+                                        "custom_gross_charges": "0",
+                                        "custom_gross_service_fee": "0",
+                                        "custom_gross_markup": "0",
+                                        "applicable_comission_title": "",
+                                        "discount_comission_ratio": "0",
+                                        "discount_comission_type": "",
+                                        "dynamic_markup_type": null,
+                                        "dynamic_markup_title": "",
+                                        "dynamic_markup_ratio": null,
+                                        "passport_copy": null,
+                                        "beneficiary_name": null,
+                                        "beneficiary_relation": null,
+                                        "beneficiary_cnic": null,
+                                        "beneficiary_contact": null,
+                                        "beneficiary_address": null,
+                                        "spouse_adult_name": null,
+                                        "spouse_adult_dob": null,
+                                        "spouse_adult_passportno": null,
+                                        "child1_name": null,
+                                        "child1_dob": null,
+                                        "child1_passportno": null,
+                                        "child2_name": null,
+                                        "child2_dob": null,
+                                        "child2_passportno": null,
+                                        "child3_name": null,
+                                        "child3_dob": null,
+                                        "child3_passportno": null,
+                                        "child4_name": null,
+                                        "child4_dob": null,
+                                        "child4_passportno": null,
+                                        "policyNumber": null,
+                                        "policyVoucher": null,
+                                        "isVoid": "0",
+                                        "voidDate": null,
+                                        "voidTimestamp": null,
+                                        "isRefund": "0",
+                                        "refundDate": null,
+                                        "refundTimestamp": null,
+                                        "refundSupplerAmount": null,
+                                        "refundSupplerPenalty": null,
+                                        "refundCharge": null,
+                                        "refundAmount": null,
+                                        "refundPenalty": null,
+                                        "supplement_data": null
+                                    }
+                                ]
+                            },
+                            "invoice_data": [],
+                            "refund_status_list": [
+                                "requested",
+                                "processing",
+                                "refunded"
+                            ],
+                            "refund_data": [],
+                            "partner": {
+                                "agency_isd_code": "880",
+                                "agency_contact_no": "1901402813",
+                                "agency_email": "alif@innovatesolution.com",
+                                "partner_id": "1",
+                                "master_partner_id": "1",
+                                "partner_type": "MASTER",
+                                "partner_service_type": "B2B",
+                                "partner_profile_code": "ITT",
+                                "branch_id": "BDHE001",
+                                "legal_name": "Innovate Solution",
+                                "brand_name": "Inno Travel Tech",
+                                "civil_aviation_certificate": null,
+                                "iata_number": null,
+                                "city": "Singapore",
+                                "state": "Singapore",
+                                "postal_code": "049712",
+                                "address": "30 Cecil Street # 19-08 Prudential Tower.",
+                                "country": "SA",
+                                "contact_number": "2345678",
+                                "website": "https://innovatedemo.com/",
+                                "contacts": {
+                                    "person_name": "Nazmus",
+                                    "number": "8801546776554",
+                                    "email": "cto@innovatesolution.co"
+                                },
+                                "master_partner": null,
+                                "customer_hotline": "2345678",
+                                "support_email": "cto@innovatesolution.com",
+                                "customer_support_email": "no-reply@innovatesolution.com",
+                                "priavcy_link": "https://innovatedemo.com/contact.php",
+                                "terms_link": "https://innovatedemo.com/contact.php",
+                                "logo_1440_448": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png",
+                                "logo_224_224": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png",
+                                "logo_1024_1024": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png",
+                                "logo_400_400": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png",
+                                "logo_512_512": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png",
+                                "logo_1706_256": "https://cdn.innovategrid.com/innotraveltech/partner-brand-logo/1101760003818989887.png",
+                                "brand_color": "#0d0a64",
+                                "brand_text_color": "#ffffff",
+                                "partner_from_email_address": "no-reply@reservationmastermind.com",
+                                "partner_from_email_full_name": "Inno Travel Tech"
+                            },
+                            "supplier": {
+                                "info": {
+                                    "supplier_type": "FLIGHT",
+                                    "supplier_title": "Jazeera Airways",
+                                    "supplier_code": "jazeera_air",
+                                    "supplier_uid": "F1JS00114",
+                                    "supplier_partner_code": "jazeera_air-1-00114",
+                                    "supplier_timezone": null,
+                                    "currency": null,
+                                    "logo": null,
+                                    "notification_email": null,
+                                    "supplier_fare_rules": null,
+                                    "airlines_comission": null
+                                }
+                            },
+                            "terms": {
+                                "status": null,
+                                "text": null
+                            },
+                            "cancellation_terms": {
+                                "status": null,
+                                "text": null
+                            },
+                            "special_notice_status": "disable",
+                            "special_notice": null
+                        }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '500': { $ref: '#/components/responses/ServerError' }
 
 components:
   securitySchemes:
