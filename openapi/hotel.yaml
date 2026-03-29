@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: ITT Hotel API
   version: 1.0.0
-  description: Hotel API endpoints converted from Postman collection.fhjdhfjdh
+  description: Hotel API endpoints converted from Postman collection.
 
 servers:
   - url: "{protocol}://{fullUrl}"
