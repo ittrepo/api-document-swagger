@@ -22,7 +22,7 @@ This README provides the installation steps for deploying the API Documentation 
 1.  **Build Documentation:**
     ```bash
     cd /var/www/api-docs
-    npx @redocly/cli build-docs openapi/openapi.yaml -o redoc/generated-docs.html
+    sh scripts/build-all-docs.sh
     ```
 
 2.  **Set Permissions:**

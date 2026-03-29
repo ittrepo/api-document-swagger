@@ -33,4 +33,23 @@ Since you have multiple services (Flight, Hotel, eSIM, etc.), you can run the sa
 
 ## 3. Automation: Generating Everything at Once
 
-I can create a script called `build-all.sh` that updates all 8 documentation files with a single command. Would you like me to do that?
+Use the `build-all-docs.sh` script to update all API documentation files and the central portal with a single command.
+
+```bash
+sh scripts/build-all-docs.sh
+```
+
+### What this script does:
+1.  **Builds 8 Services**: Generates HTML for Flight, Hotel, eSIM, Visa, etc.
+2.  **Instruments UI**: Automatically injects a **"Back to Home"** button into every generated page.
+3.  **Updates Portal**: Ensures the `redoc/index.html` portal is ready for viewing.
+
+## 4. Production Deployment
+
+When deploying to production (e.g., `api.innotraveltech.com`), follow these steps:
+
+1.  Pull the latest changes on your VPS.
+2.  Run `sh scripts/build-all-docs.sh`.
+3.  Ensure your Apache/Nginx configuration points to `redoc/index.html` as the main entry point.
+
+Refer to [PRODUCTION.md](PRODUCTION.md) for detailed server configuration.
