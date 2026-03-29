@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITT API Documentation Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #38bdf8;
+            --accent-secondary: #818cf8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.1) 0, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.1) 0, transparent 50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-top {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-footer::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-footer::after {
+            transform: translateX(5px);
+        }
+
+        footer {
+            margin-top: auto;
+            padding-top: 4rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            body {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>API Documentation</h1>
+        <p class="subtitle">Access the technical specifications and integration guides for all ITT platform services.
+            Generated via Redocly for a premium developer experience.</p>
+    </header>
+
+    <div class="grid">
+        <a href="openapi.html" class="card">
+            <div class="card-top">
+                <span class="card-icon">🏗️</span>
+                <h3 class="card-title">Combined API</h3>
+                <p class="card-desc">The complete API specification combining all services into a single unified
+                    workspace.</p>
+            </div>
+            <div class="card-footer">View Documentation</div>
+        </a>
+
+        <a href="generated-flight.html" class="card">
+            <div class="card-top">
+                <span class="card-icon">✈️</span>
+                <h3 class="card-title">Flight API</h3>
+                <p class="card-desc">Search, booking, and management endpoints for global flight services.</p>
+            </div>
+            <div class="card-footer">View Documentation</div>
+        </a>
+
+        <a href="generated-hotel.html" class="card">
+            <div class="card-top">
+                <span class="card-icon">🏨</span>
+                <h3 class="card-title">Hotel API</h3>
+                <p class="card-desc">Comprehensive access to hotel inventories, pricing, and reservation systems.</p>
+            </div>
+            <div class="card-footer">View Documentation</div>
+        </a>
+
+        <a href="esim.html" class="card">
+            <div class="card-top">
+                <span class="card-icon">📱</span>
+                <h3 class="card-title">eSIM API</h3>
+                <p class="card-desc">Digital SIM provisioning, data plan management, and connectivity services.</p>
+            </div>
+            <div class="card-footer">View Documentation</div>
+        </a>
+
+        <a href="visa.html" class="card">
+            <div class="card-top">
+                <span class="card-icon">🛂</span>
+                <h3 class="card-title">Visa API</h3>
+                <p class="card-desc">Automated visa processing and application management services.</p>
+            </div>
+            <div class="card-footer">View Documentation</div>
+        </a>
+
+        <a href="train.html" class="card">
+            <div class="card-top">
+                <span class="card-icon">🚆</span>
+                <h3 class="card-title">Train API</h3>
+                <p class="card-desc">Global railway search, ticketing, and scheduling integrations.</p>
+            </div>
+            <div class="card-footer">View Documentation</div>
+        </a>
+
+        <a href="transfer.html" class="card">
+            <div class="card-top">
+                <span class="card-icon">🚗</span>
+                <h3 class="card-title">Transfer API</h3>
+                <p class="card-desc">Airport transfers, taxi services, and ground transportation logistics.</p>
+            </div>
+            <div class="card-footer">View Documentation</div>
+        </a>
+
+        <a href="tour-package.html" class="card">
+            <div class="card-top">
+                <span class="card-icon">🎒</span>
+                <h3 class="card-title">Tour Package API</h3>
+                <p class="card-desc">Curated travel experiences, holiday packages, and activity bookings.</p>
+            </div>
+            <div class="card-footer">View Documentation</div>
+        </a>
+    </div>
+
+    <footer>
+        &copy; 2026 ITT Platform. All rights reserved.
+    </footer>
+</body>
+
+</html>

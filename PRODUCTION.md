@@ -40,11 +40,15 @@ This serves the API documentation as a subpath (e.g., `api.innotraveltech.com/do
     ServerName api.innotraveltech.com
     DocumentRoot /var/www/api-docs
 
-    # Serve Redoc at /docs
-    Alias /docs /var/www/api-docs/redoc/generated-docs.html
+    # Serve the Documentation Portal (Index) at /docs
+    Alias /docs /var/www/api-docs/redoc/index.html
 
-    # Serve the services directory at /services
-    Alias /services /var/www/api-docs/services/index.html
+    # Serve the individual service docs
+    <Directory "/var/www/api-docs/redoc">
+        Options FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
 
     # Serve OpenAPI specs at /openapi
     <Directory "/var/www/api-docs/openapi">
@@ -115,8 +119,8 @@ Create a script `deploy.sh` on the VPS to pull changes and rebuild docs:
 cd /var/www/api-docs
 git pull origin main
 
-# Rebuild Redoc
-npx @redocly/cli build-docs openapi/openapi.yaml -o redoc/generated-docs.html
+# Rebuild All Documentation
+sh scripts/build-all-docs.sh
 
 # Fix permissions
 sudo chown -R www-data:www-data /var/www/api-docs

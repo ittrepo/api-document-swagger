@@ -44,7 +44,7 @@ paths:
                   enum:
                     [
                       OneWay,
-                      RoundTrip
+                      RoundTrip,
                       Multicity
                     ]
                 Segment:
@@ -1332,7 +1332,7 @@ paths:
 
                     redirect_url:
                         type: string
-                        format: uri
+                        format: url
                         description: URL to redirect after successful payment
                         example: "https://example.com/inno-travel-tech/custom_modal.html"
               additionalProperties: true

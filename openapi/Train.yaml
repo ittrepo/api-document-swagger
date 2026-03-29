@@ -24,6 +24,54 @@ tags:
 security:
   - apiKeyAuth: []
     secretCodeAuth: []
+paths:
+  /esim/booking-details:
+    post:
+      tags: [eSim]
+      summary: Get booking details
+      operationId: bookingDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - member_id
+                - tracking_id
+                - booking_id
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                tracking_id:
+                  type: string
+                  description: eSIM or booking tracking ID
+                  example: "11177260822126194QDWJV"
+
+                booking_id:
+                  type: string
+                  description: Booking ID for the eSIM package
+                  example: "ES2604MAYVA3A8"
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "2"
+                  tracking_id: 11176276126126194RHSGI
+                  booking_id: ES2510NOKJAAFK
+      responses:
+        '200':
+          description: Booking info
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400': { $ref: '#/components/responses/BadRequest' }
 
 
 
