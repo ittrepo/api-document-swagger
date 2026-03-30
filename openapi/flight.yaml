@@ -38,6 +38,10 @@ paths:
         application/json:
           schema:
             type: object
+            required: 
+                - journey_type
+                - Segment
+                - Passenger Information
             properties:
                 journey_type:
                   type: string
@@ -49,6 +53,10 @@ paths:
                     ]
                 Segment:
                   type: object
+                  required: 
+                    - departure_airport
+                    - arrival_airport
+                    - departure_date
                   properties:
                       departure_airport_type: 
                         type: string
@@ -73,6 +81,10 @@ paths:
                        example: 2026-03-30
                 Passenger Information:
                   type: object
+                  required: 
+                    - travelers_adult
+                    - booking_class
+                    - partner_id
                   properties:
                        travelers_adult:
                             type: integer
@@ -150,31 +162,571 @@ paths:
               default:
                 summary: Successful Search Response
                 value:
-                  status: "success"
-                  search_duration: "102 seconds"
-                  timestamp: "1771393615"
-                  search_complete: "2026-02-18 11:46:55"
-                  tracking_id: "11177139351426194ETLIZ"
-                  total_fight: 20
-                  currency: "BDT"
-                  resources:
-                    base_url:
-                      carrier: "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/icon"
-                      aircraft: "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/aircraft"
-                  data:
-                    - flight_key: "F1TT00152-0"
-                      journey_type: "OneWay"
-                      price:
-                        currency: "BDT"
-                        total: 5295.3
-                      flight_group:
-                        - group: 1
-                          no_of_stops: 0
-                          flight_time: "PT1H"
-                          routes:
-                            - origin: "DAC"
-                              destination: "CGP"
-                              departure_time: "2026-03-12T10:00:00"
+                        {
+                                "status": "success",
+                                "search_duration": "102 seconds",
+                                "timestamp": "1771393615",
+                                "search_complete": "2026-02-18 11:46:55",
+                                "tracking_id": "11177139351426194ETLIZ",
+                                "ftm_partner_id": "1",
+                                "partner_id": "1",
+                                "partner_name": "Innovate Solution",
+                                "message": null,
+                                "total_fight": 20,
+                                "currency": "BDT",
+                                "resources": {
+                                    "base_url": {
+                                        "carrier": "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/icon",
+                                        "aircraft": "https://airlines-resources.s3.ap-southeast-1.amazonaws.com/aircraft"
+                                    }
+                                },
+                                "data": [
+                                    {
+                                        "tracking_id": "11177139351426194ETLIZ",
+                                        "flight_key": "F1TT00152-0",
+                                        "journey_type": "OneWay",
+                                        "result_type": "general",
+                                        "get_branded_fare": "yes",
+                                        "hold_possible": "yes",
+                                        "package_option": "no",
+                                        "supplier_title": "TravelRobotFlight-Sandbox",
+                                        "color_code": "#ffffff",
+                                        "supplier_code": "travel_robot",
+                                        "supplier_uid": "F1TT00152",
+                                        "supplier_partner_code": "travel_robot-1-00152",
+                                        "search_parameter": {
+                                            "journey_type": "OneWay",
+                                            "segment": [
+                                                {
+                                                    "departure_airport_type": "AIRPORT",
+                                                    "departure_airport": "DAC",
+                                                    "arrival_airport_type": "AIRPORT",
+                                                    "arrival_airport": "CGP",
+                                                    "departure_date": "2026-03-12"
+                                                }
+                                            ],
+                                            "travelers_adult": 1,
+                                            "travelers_child": 0,
+                                            "travelers_child_age": [],
+                                            "travelers_infants": 0,
+                                            "travelers_infants_age": [],
+                                            "fare_type": null,
+                                            "fare_option": null,
+                                            "content_type": null,
+                                            "ptc_option": null,
+                                            "agency_ethnic_list": null,
+                                            "preferred_carrier": [],
+                                            "non_stop_flight": "any",
+                                            "baggage_option": "any",
+                                            "booking_class": "Economy",
+                                            "supplier_uid": "all",
+                                            "partner_id": "1",
+                                            "language": "en",
+                                            "short_ref": "12121212121",
+                                            "version": null,
+                                            "team_profile": null
+                                        },
+                                        "pax_options": {
+                                            "doc_required": "yes",
+                                            "pax_dob_required": "yes",
+                                            "seat_selection": "disable",
+                                            "meal_selection": "disable",
+                                            "baggage_selection": "disable",
+                                            "passport_scan_selection": "active",
+                                            "pax_search_selection": "disable",
+                                            "frequent_flyer_selection": "disable",
+                                            "wheelchair_selection": "disable",
+                                            "pax_email_contact_selection": "active",
+                                            "pax_save_option": "active",
+                                            "terms_selection": "check",
+                                            "cancellation_selection": "check"
+                                        },
+                                        "flight_group": [
+                                            {
+                                                "group": 1,
+                                                "FareAlternativeLegKeys": [
+                                                    "0b8de539575a4abda9686ea0b114a59a|@a4f4b226-1db2-4a98-80e1-d37158dc084d@e5ec065b-141a-40a5-893f-2489a22476b1@fa10acf4-8528-4f4b-b1aa-1916cafe0616@3279a9d5-f48e-4dbb-832d-fdebf358fc65"
+                                                ],
+                                                "flight_key": "F1TT00152-0-",
+                                                "get_branded_fare": "yes",
+                                                "no_of_stops_title": "Direct Flight",
+                                                "no_of_stops": 0,
+                                                "flight_time": "PT1H",
+                                                "transit_time": "PT",
+                                                "currency": "TRY",
+                                                "fareBasisCode": "YOW",
+                                                "booking_code": "Economy Class",
+                                                "routes": [
+                                                    {
+                                                        "AlternativeRef": "3279a9d5-f48e-4dbb-832d-fdebf358fc65",
+                                                        "air_segment_key": "89ead430-4902-4228-ba46-48607b80cb29",
+                                                        "origin": "DAC",
+                                                        "departure_time": "2026-03-12T10:00:00",
+                                                        "origin_terminal": null,
+                                                        "origin_airport": {
+                                                            "name": "Hazrat Shahjalal International Airport",
+                                                            "city": "Dhaka",
+                                                            "country": "Bangladesh",
+                                                            "timezone": "Asia/Dhaka"
+                                                        },
+                                                        "destination": "CGP",
+                                                        "arrival_time": "2026-03-12T11:00:00",
+                                                        "destination_terminal": null,
+                                                        "destination_airport": {
+                                                            "name": "Shah Amanat International Airport",
+                                                            "city": "Chattogram (Chittagong)",
+                                                            "country": "Bangladesh",
+                                                            "timezone": "Asia/Dhaka"
+                                                        },
+                                                        "flight_date": "2026-03-12",
+                                                        "flight_time": "PT1H",
+                                                        "distance": null,
+                                                        "lay_over": "not-applicable",
+                                                        "lay_over_date": "not-applicable",
+                                                        "aircraft": {
+                                                            "code": "773",
+                                                            "name": null,
+                                                            "picture": "773.png"
+                                                        },
+                                                        "operating": {
+                                                            "carrier": "BG",
+                                                            "carrier_name": "Biman Bangladesh Airlines",
+                                                            "carrier_logo": "BG.png",
+                                                            "flight_number": "121"
+                                                        },
+                                                        "marketing": {
+                                                            "carrier": "BG",
+                                                            "carrier_name": "Biman Bangladesh Airlines",
+                                                            "carrier_logo": "BG.png",
+                                                            "flight_number": "121"
+                                                        },
+                                                        "booking_class": {
+                                                            "cabin_class": "Economy Class",
+                                                            "cabin_code": "Y",
+                                                            "booking_code": "Economy Class",
+                                                            "meal_code": null,
+                                                            "fareBasisCode": "YOW",
+                                                            "seat_available": 9
+                                                        },
+                                                        "baggages": {
+                                                            "checked": {
+                                                                "ADT": {
+                                                                    "ptc_title": "Adult",
+                                                                    "passenger_type": "ADT",
+                                                                    "baggage_type": "checked",
+                                                                    "pieceCount": null,
+                                                                    "weight": "20",
+                                                                    "unit": "kg",
+                                                                    "title": "20 kg"
+                                                                }
+                                                            },
+                                                            "carry_on": {
+                                                                "ADT": {
+                                                                    "ptc_title": "Adult",
+                                                                    "passenger_type": "ADT",
+                                                                    "baggage_type": "carry_on",
+                                                                    "pieceCount": "SB",
+                                                                    "weight": "SB",
+                                                                    "unit": "SB",
+                                                                    "title": "SB"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                ],
+                                                "key": "0b8de539-575a-4abd-a968-6ea0b114a59a"
+                                            }
+                                        ],
+                                        "price": {
+                                            "currency": "BDT",
+                                            "total": 5295.3,
+                                            "gross_total": 5295.3,
+                                            "base_fare": 4853.39,
+                                            "tax": 441.91,
+                                            "sell": {
+                                                "currency": "BDT",
+                                                "total": 5295.3,
+                                                "base_fare": 4853.39,
+                                                "tax": 441.91
+                                            },
+                                            "price_hash": "eyJmbWciOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6NTI5NS4zLCJiYXNlX2ZhcmUiOjQ4NTMuMzksInRheCI6NDQxLjkxfSwic3VwcGxpZXIiOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6NTI5NS4zLCJiYXNlX2ZhcmUiOjQ4NTMuMzksInRheCI6NDQxLjkxLCJjb21pc3Npb25fdHlwZSI6ImdlbmVyYWwiLCJjb21pc3Npb25fdmFsdWUiOjB9LCJncm9zc19mYXJlIjp7ImN1cnJlbmN5IjoiVFJZIiwidG90YWwiOjUyOTUuMywiYmFzZV9mYXJlIjo0ODUzLjM5LCJ0YXgiOjQ0MS45MX19",
+                                            "price_breakdown": [
+                                                {
+                                                    "passenger_id": "1",
+                                                    "supplier_pax_id": "1",
+                                                    "passenger_type": "ADT",
+                                                    "primary_ptc": "ADT",
+                                                    "ptc_title": "Adult",
+                                                    "passenger_total": 1,
+                                                    "pax_calculate_type": "yes",
+                                                    "comission_type": "",
+                                                    "comission_value": "",
+                                                    "currency": "BDT",
+                                                    "total": 5295.3,
+                                                    "base_fare": 4853.39,
+                                                    "tax": 441.91,
+                                                    "ticket_issue_charge": 0,
+                                                    "total_ticket_issue_charge": 0,
+                                                    "gross": {
+                                                        "base_fare": "4853.39",
+                                                        "tax": "441.91",
+                                                        "discount": 0,
+                                                        "ait": "0.00",
+                                                        "service_charge": 0
+                                                    },
+                                                    "partner": {
+                                                        "currency": "BDT",
+                                                        "total": 5295.3,
+                                                        "base_fare": 4853.39,
+                                                        "tax": 441.91,
+                                                        "gross": {
+                                                            "base_fare": "4853.39",
+                                                            "tax": "441.91",
+                                                            "discount": "0.00",
+                                                            "ait": "0.00",
+                                                            "service_charge": 0
+                                                        },
+                                                        "taxBreakdown": {
+                                                            "BD": {
+                                                                "title": "BD -Embarkation Fee (Domestic/International)",
+                                                                "amount": "0.00"
+                                                            },
+                                                            "UT": {
+                                                                "title": "UT - Foreign Air Travel Tax (FATT)",
+                                                                "amount": "0.00"
+                                                            },
+                                                            "E5": {
+                                                                "title": "E5 - Value Added Tax on Embarkation Fees",
+                                                                "amount": "0.00"
+                                                            },
+                                                            "YQ": {
+                                                                "title": "YQ – Carrier-Imposed Surcharge/Fuel Surcharge",
+                                                                "amount": "0.00"
+                                                            },
+                                                            "YR": {
+                                                                "title": "YR – Another Carrier-Imposed Surcharge",
+                                                                "amount": "0.00"
+                                                            },
+                                                            "Other": {
+                                                                "title": "Others taxes",
+                                                                "amount": "0.00"
+                                                            }
+                                                        }
+                                                    },
+                                                    "priceHash": "eyJmbWciOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6IjUyOTUuMzAiLCJiYXNlX2ZhcmUiOiI0ODUzLjM5IiwidGF4IjoiNDQxLjkxIiwiZ3Jvc3MiOnsiYmFzZV9mYXJlIjoiNDg1My4zOSIsInRheCI6IjQ0MS45MSIsImRpc2NvdW50IjoiMC4wMCIsImFpdCI6IjAuMDAiLCJzZXJ2aWNlX2NoYXJnZSI6IjAuMDAifSwiY29uZmlnIjp7Im1hcmt1cF90eXBlIjpudWxsLCJtYXJrdXBfdGl0bGUiOm51bGwsInJldmVudWUiOiIwLjAwIiwidGlja2V0X2lzc3VlX2NoYXJnZSI6IjAuMDAiLCJ0b3RhbF90aWNrZXRfaXNzdWVfY2hhcmdlIjoiMC4wMCIsImN1cnJlbmN5RXhjaGFuZ2VSYXRlIjoiMS4wMCIsIkZNR19PdmVyd3JpdGVSdWxlcyI6W119fSwic3VwcGxpZXIiOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6IjUyOTUuMzAiLCJiYXNlX2ZhcmUiOiI0ODUzLjM5IiwidGF4IjoiNDQxLjkxIiwiZ3Jvc3MiOnsiYmFzZV9mYXJlIjoiNDg1My4zOSIsInRheCI6IjQ0MS45MSIsImRpc2NvdW50IjoiMC4wMCIsImFpdCI6IjAuMDAiLCJzZXJ2aWNlX2NoYXJnZSI6MCwicGVyX3NlZ21lbnRfZGlzY291bnQiOjAsInNlZ21lbnRfZGlzY291bnQiOiIwLjAwIiwic3VwcGxpZXJfc2VnbWVudF9mZWVzQ2FsY3VsYXRlIjpudWxsLCJzZWdtZW50X2Rpc2NvdW50X2FjY291bnRQdXJwb3NlIjpudWxsfX0sImdyb3NzX2ZhcmUiOnsiY3VycmVuY3kiOiJUUlkiLCJ0b3RhbCI6IjUyOTUuMzAiLCJiYXNlX2ZhcmUiOiI0ODUzLjM5IiwidGF4IjoiNDQxLjkxIiwiZGlzY291bnQiOiIwLjAwIiwiYWl0IjoiMC4wMCIsInNlcnZpY2VfY2hhcmdlIjoiMC4wMCIsInBheWFibGUiOjUyOTUuMywidGF4QnJlYWtkb3duIjp7IkJEIjp7ImFtb3VudCI6IjAuMDAifSwiVVQiOnsiYW1vdW50IjoiMC4wMCJ9LCJFNSI6eyJhbW91bnQiOiIwLjAwIn0sIllRIjp7ImFtb3VudCI6IjAuMDAifSwiWVIiOnsiYW1vdW50IjoiMC4wMCJ9LCJPdGhlciI6eyJhbW91bnQiOiIwLjAwIn0sInN1cHBsaWVyVGF4RGF0YSI6W119fSwiZGlzY291bnRfY29taXNzaW9uX3RpdGxlIjpudWxsLCJkaXNjb3VudF9jb21pc3Npb25fcmF0aW8iOjAsImR5bmFtaWNfbWFya3VwX3R5cGUiOm51bGwsImR5bmFtaWNfbWFya3VwX3RpdGxlIjpudWxsLCJkeW5hbWljX21hcmt1cF9yYXRpbyI6bnVsbCwiYXBwbGljYWJsZV9jb21pc3Npb24iOm51bGwsImFwcGxpY2FibGVfZHluYW1pY19tYXJrdXAiOm51bGx9"
+                                                }
+                                            ]
+                                        },
+                                        "fare_rules": {
+                                            "refundable_data": null,
+                                            "refundable": "non-refundable",
+                                            "change_before_departure": "not-available"
+                                        },
+                                        "total_price": 5295.3,
+                                        "filter": {
+                                            "id": "F1TT00152-0",
+                                            "price": 5295.3,
+                                            "journey_duration": "PT",
+                                            "journey_duration_seconds": null,
+                                            "layover_duration": "PT",
+                                            "layover_duration_seconds": null,
+                                            "carrier_operating": "BG",
+                                            "carrier_marketing": "BG",
+                                            "aircraft": "773",
+                                            "aircraft_name": null,
+                                            "cabin_class": "Economy Class",
+                                            "connecting_airport": [],
+                                            "total_segment_count": 1,
+                                            "no_of_stops": 0,
+                                            "departure_timing_slot": "morning",
+                                            "departure_departure_time": "2026-03-12T10:00:00",
+                                            "arrival_timing_slot": "morning",
+                                            "arrival_departure_time": "2026-03-12T11:00:00",
+                                            "refund": "non-refundable",
+                                            "baggage_value": null,
+                                            "baggage_unit": null,
+                                            "baggage_title": "no-baggage"
+                                        },
+                                        "filter_unique_filter_code": "dac202603121000cgp202603121100121",
+                                        "destination_reach_time": "PT",
+                                        "destination_reach_timestamp": null
+                                    },
+                                    
+                                ],
+                                "filter_data": {
+                                    "lowest_price": {
+                                        "id": "F1TT00152-0",
+                                        "price": 5295.3,
+                                        "gross_total": null,
+                                        "journey_duration": "PT",
+                                        "journey_duration_seconds": null,
+                                        "layover_duration": "PT",
+                                        "layover_duration_seconds": null,
+                                        "carrier_operating": "BG",
+                                        "carrier_marketing": "BG",
+                                        "departure_timing_slot": "morning",
+                                        "departure_departure_time": "2026-03-12T10:00:00",
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-12T11:00:00"
+                                    },
+                                    "highest_price": {
+                                        "id": "F1PS00082-7",
+                                        "price": 436742.65,
+                                        "gross_total": null,
+                                        "journey_duration": "PT1H",
+                                        "journey_duration_seconds": 3600,
+                                        "layover_duration": "PT",
+                                        "layover_duration_seconds": 0,
+                                        "carrier_operating": "BG",
+                                        "carrier_marketing": "BG",
+                                        "departure_timing_slot": null,
+                                        "departure_departure_time": null,
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-12T09:00:00"
+                                    },
+                                    "lowest_layover_time": {
+                                        "id": "F1TT00152-0",
+                                        "price": 5295.3,
+                                        "gross_total": null,
+                                        "journey_duration": "PT",
+                                        "journey_duration_seconds": null,
+                                        "layover_duration": "PT",
+                                        "layover_duration_seconds": null,
+                                        "carrier_operating": "BG",
+                                        "carrier_marketing": "BG",
+                                        "departure_timing_slot": "morning",
+                                        "departure_departure_time": "2026-03-12T10:00:00",
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-12T11:00:00"
+                                    },
+                                    "highest_layover_time": {
+                                        "id": "F1PS00082-6",
+                                        "price": 435373.96,
+                                        "gross_total": null,
+                                        "journey_duration": "PT29H10M",
+                                        "journey_duration_seconds": 105000,
+                                        "layover_duration": "PT19H20M",
+                                        "layover_duration_seconds": 69600,
+                                        "carrier_operating": "OV",
+                                        "carrier_marketing": "OV",
+                                        "departure_timing_slot": null,
+                                        "departure_departure_time": null,
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-13T07:55:00"
+                                    },
+                                    "fastest_duration": {
+                                        "id": "F1TT00152-0",
+                                        "price": 5295.3,
+                                        "gross_total": null,
+                                        "journey_duration": "PT",
+                                        "journey_duration_seconds": null,
+                                        "layover_duration": "PT",
+                                        "layover_duration_seconds": null,
+                                        "carrier_operating": "BG",
+                                        "carrier_marketing": "BG",
+                                        "departure_timing_slot": "morning",
+                                        "departure_departure_time": "2026-03-12T10:00:00",
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-12T11:00:00"
+                                    },
+                                    "highest_duration": {
+                                        "id": "F1PS00082-6",
+                                        "price": 435373.96,
+                                        "gross_total": null,
+                                        "journey_duration": "PT29H10M",
+                                        "journey_duration_seconds": 105000,
+                                        "layover_duration": "PT19H20M",
+                                        "layover_duration_seconds": 69600,
+                                        "carrier_operating": "OV",
+                                        "carrier_marketing": "OV",
+                                        "departure_timing_slot": null,
+                                        "departure_departure_time": null,
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-13T07:55:00"
+                                    },
+                                    "lowest_departure_time": {
+                                        "id": "F1PS00082-0",
+                                        "price": 57903.38,
+                                        "gross_total": null,
+                                        "journey_duration": "PT1H",
+                                        "journey_duration_seconds": 3600,
+                                        "layover_duration": "PT",
+                                        "layover_duration_seconds": 0,
+                                        "carrier_operating": "BG",
+                                        "carrier_marketing": "BG",
+                                        "departure_timing_slot": null,
+                                        "departure_departure_time": null,
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-12T11:00:00"
+                                    },
+                                    "lowest_arrival_time": {
+                                        "id": "F1PS00082-7",
+                                        "price": 436742.65,
+                                        "gross_total": null,
+                                        "journey_duration": "PT1H",
+                                        "journey_duration_seconds": 3600,
+                                        "layover_duration": "PT",
+                                        "layover_duration_seconds": 0,
+                                        "carrier_operating": "BG",
+                                        "carrier_marketing": "BG",
+                                        "departure_timing_slot": null,
+                                        "departure_departure_time": null,
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-12T09:00:00"
+                                    },
+                                    "latest_takeoff": {
+                                        "id": "F1TT00152-4",
+                                        "price": 5295.3,
+                                        "gross_total": null,
+                                        "journey_duration": "PT",
+                                        "journey_duration_seconds": null,
+                                        "layover_duration": "PT",
+                                        "layover_duration_seconds": null,
+                                        "carrier_operating": "BG",
+                                        "carrier_marketing": "BG",
+                                        "departure_timing_slot": "evening",
+                                        "departure_departure_time": "2026-03-12T20:45:00",
+                                        "arrival_timing_slot": "night",
+                                        "arrival_departure_time": "2026-03-12T21:45:00"
+                                    },
+                                    "latest_landing": {
+                                        "id": "F1TT00152-5",
+                                        "price": 40140.08,
+                                        "gross_total": null,
+                                        "journey_duration": "PT",
+                                        "journey_duration_seconds": null,
+                                        "layover_duration": "PT",
+                                        "layover_duration_seconds": null,
+                                        "carrier_operating": "OV",
+                                        "carrier_marketing": "OV",
+                                        "departure_timing_slot": "midnight",
+                                        "departure_departure_time": "2026-03-12T02:45:00",
+                                        "arrival_timing_slot": "morning",
+                                        "arrival_departure_time": "2026-03-13T07:55:00"
+                                    },
+                                    "airlines_with_price": [
+                                        {
+                                            "id": "F1TT00152-0",
+                                            "price": 5295.3,
+                                            "gross_total": null,
+                                            "journey_duration": "PT",
+                                            "journey_duration_seconds": null,
+                                            "layover_duration": "PT",
+                                            "layover_duration_seconds": null,
+                                            "carrier_operating": "BG",
+                                            "carrier_marketing": "BG",
+                                            "departure_timing_slot": "morning",
+                                            "departure_departure_time": "2026-03-12T10:00:00",
+                                            "arrival_timing_slot": "morning",
+                                            "arrival_departure_time": "2026-03-12T11:00:00"
+                                        },
+                                        {
+                                            "id": "F1TT00152-5",
+                                            "price": 40140.08,
+                                            "gross_total": null,
+                                            "journey_duration": "PT",
+                                            "journey_duration_seconds": null,
+                                            "layover_duration": "PT",
+                                            "layover_duration_seconds": null,
+                                            "carrier_operating": "OV",
+                                            "carrier_marketing": "OV",
+                                            "departure_timing_slot": "midnight",
+                                            "departure_departure_time": "2026-03-12T02:45:00",
+                                            "arrival_timing_slot": "morning",
+                                            "arrival_departure_time": "2026-03-13T07:55:00"
+                                        },
+                                        {
+                                            "id": "F1TT00152-7",
+                                            "price": 40440.27,
+                                            "gross_total": null,
+                                            "journey_duration": "PT",
+                                            "journey_duration_seconds": null,
+                                            "layover_duration": "PT",
+                                            "layover_duration_seconds": null,
+                                            "carrier_operating": "OV",
+                                            "carrier_marketing": "X1",
+                                            "departure_timing_slot": "early-morning",
+                                            "departure_departure_time": "2026-03-12T05:10:00",
+                                            "arrival_timing_slot": "morning",
+                                            "arrival_departure_time": "2026-03-13T07:55:00"
+                                        }
+                                    ],
+                                    "take_off": {
+                                        "0": "morning",
+                                        "1": "afternoon",
+                                        "3": "evening",
+                                        "5": "midnight",
+                                        "6": "early-morning",
+                                        "8": null
+                                    },
+                                    "landing_time": {
+                                        "0": "morning",
+                                        "1": "afternoon",
+                                        "3": "evening",
+                                        "4": "night",
+                                        "9": "day"
+                                    },
+                                    "carrier": {
+                                        "operating": [
+                                            "BG",
+                                            "OV"
+                                        ],
+                                        "marketing": [
+                                            "BG",
+                                            "OV",
+                                            "X1"
+                                        ]
+                                    },
+                                    "baggage": [
+                                        {
+                                            "baggage_value": null,
+                                            "baggage_unit": null,
+                                            "baggage_title": "no-baggage"
+                                        }
+                                    ],
+                                    "connecting_airport": [
+                                        "MCT"
+                                    ],
+                                    "no_of_stops": [
+                                        0,
+                                        1
+                                    ]
+                                },
+                                "search_parameter": {
+                                    "journey_type": "OneWay",
+                                    "segment": [
+                                        {
+                                            "departure_airport_type": "AIRPORT",
+                                            "departure_airport": "DAC",
+                                            "arrival_airport_type": "AIRPORT",
+                                            "arrival_airport": "CGP",
+                                            "departure_date": "2026-03-12"
+                                        }
+                                    ],
+                                    "travelers_adult": 1,
+                                    "travelers_child": 0,
+                                    "travelers_child_age": [],
+                                    "travelers_infants": 0,
+                                    "travelers_infants_age": [],
+                                    "fare_type": null,
+                                    "fare_option": null,
+                                    "content_type": null,
+                                    "ptc_option": null,
+                                    "agency_ethnic_list": null,
+                                    "preferred_carrier": [],
+                                    "non_stop_flight": "any",
+                                    "baggage_option": "any",
+                                    "booking_class": "Economy",
+                                    "supplier_uid": "all",
+                                    "partner_id": "1",
+                                    "language": "en",
+                                    "short_ref": "12121212121",
+                                    "version": null,
+                                    "team_profile": null
+                                },
+                                "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/flight_logs/11177139351426194ETLIZ/search_result.json",
+                                "beforeSearchduration": "1 seconds"
+                            }
       
       
   
@@ -358,6 +910,10 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - member_id
+                - result_type
+                - data
               additionalProperties: true
               properties:
                 member_id:
@@ -368,6 +924,9 @@ paths:
                     type: array
                 items:
                     type: object
+                    required:
+                    - tracking_id
+                    - flight_key
                     properties:
                         tracking_id:
                             type: string
@@ -873,6 +1432,9 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_traking_id
+                - member_id
               properties:
                 booking_traking_id:
                     type: string
@@ -1080,6 +1642,10 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - booking_tracking_id
+                - member_id
+                - passenger
               properties:
                  booking_tracking_id:
                     type: string
@@ -1265,6 +1831,12 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - isd_code
+                - contact_no
+                - email_address
+                - payment_type
+                - redirect_url
               properties:
 
                     booking_tracking_id:

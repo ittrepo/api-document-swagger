@@ -36,50 +36,48 @@ paths:
           application/json:
             schema:
               type: object
-              
               required:
-                - segment
-                - journey_type
-                - travelers_adult
-                - guest_nationality
+                - segment  
               properties:
-
                 segment:
                   type: array
                   description: List of transfer route segments
                   items:
                     type: object
+                    required: 
+                      - departure_type
+                      - departure_code
+                      - arrival_type
+                      - arrival_code
+                      - outbound_date
+                      - journey_type
+                      - travelers_adult
+                      - guest_nationality
                     properties:
                       departure_type:
                         type: string
                         description: Type of departure location (AIRPORT / LOC / HOTEL)
                         example: AIRPORT
-
                       departure_code:
                         type: string
                         description: Departure location code or identifier
                         example: DXB
-
                       departure:
                         type: string
                         description: Full name of departure location
                         example: Dubai International Airport, Dubai
-
                       arrival_type:
                         type: string
                         description: Type of arrival location (AIRPORT / LOC / HOTEL)
                         example: LOC
-
                       arrival_code:
                         type: string
                         description: Arrival location code or identifier
                         example: Dubai Mall - Dubai - United Arab Emirates
-
                       arrival:
                         type: string
                         description: Full name of arrival location
                         example: Dubai Mall - Dubai - United Arab Emirates
-
                       outbound_date:
                         type: string
                         format: date-time
@@ -92,88 +90,72 @@ paths:
                           - OneWay
                           - RoundTrip
                         example: OneWay
-
                       travelers_adult:
                         type: integer
                         description: Number of adult passengers
                         example: 2
-
                       travelers_adult_types:
                         type: array
                         description: Adult passenger type list
                         items:
                           type: string
-                        example:
-                          - ""
-
+                        example: [""]
                       travelers_child:
                         type: integer
                         description: Number of child passengers
                         example: 0
-
                       travelers_child_types:
                         type: array
                         description: Child passenger types
                         items:
                           type: string
                         example: []
-
                       travelers_child_age:
                         type: array
                         description: Ages of child passengers
                         items:
                           type: integer
                         example: []
-
                       travelers_infants:
                         type: integer
                         description: Number of infant passengers
                         example: 0
-
                       travelers_infants_age:
                         type: array
                         description: Ages of infant passengers
                         items:
                           type: integer
                         example: []
-
                       travelers_infants_types:
                         type: array
                         description: Infant passenger types
                         items:
                           type: string
                         example: []
-
                       guest_nationality:
                         type: string
                         description: Guest nationality (ISO country code)
                         example: BD
-
                       transfer_type:
                         type: string
                         description: Type of transfer (private / shared)
                         example: private
-
                       supplier_uid:
                         type: string
                         description: Supplier identifier (all for any supplier)
                         example: all
-
                       partner_id:
                         type: string
                         description: Partner account ID (can be empty)
                         example: ""
-
                       short_ref:
                         type: string
                         description: Short reference for tracking (optional)
                         example: xxxx111
-
                       language:
                         type: string
                         description: Response language
                         example: en
-
                       service_type:
                         type: string
                         description: Service type (regular / premium)
