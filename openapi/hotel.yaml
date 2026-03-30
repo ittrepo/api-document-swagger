@@ -67,7 +67,7 @@ paths:
                   - location: "Paris Las Vegas, South Las Vegas Boulevard, Las Vegas, NV, USA"
                   - location: "Paris Orly Airport (ORY), Orly, France"
 
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
         
   /hotel/search:
     post:
@@ -322,7 +322,7 @@ paths:
                               "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/hotel_logs/11177173317126194WKNKI/search_result.json"
 
                             
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
 
   /hotel/rooms:
     post:
@@ -761,7 +761,6 @@ paths:
                         }
 
 
-        '400': { $ref: '#/components/responses/BadRequest' }
        
   /hotel/get-hotel-details:
     post:
@@ -988,7 +987,7 @@ paths:
                                           
 
                                   
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
         
   /hotel/validate:
     post:
@@ -1292,7 +1291,7 @@ paths:
                                     policy_breakdown: []
                                     post_booking_process: "auto"
                                     book_now_pay_later: "no"
-        '400': { $ref: '#/components/responses/BadRequest' }
+     
        
   /hotel/validation-price-get-detail:
     post:
@@ -1733,7 +1732,7 @@ paths:
                                     
                                                                                                 
                                                               
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
        
   /hotel/update-travellers:
     post:
@@ -1915,7 +1914,6 @@ paths:
                          ]
 
 
-        '400': { $ref: '#/components/responses/BadRequest' }
        
   /hotel/create:
     post:
@@ -2761,7 +2759,7 @@ paths:
                default:
                 summary: Successful Search Response
                 value:
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
         
   /hotel/issue-voucher:
     post:
@@ -2845,7 +2843,7 @@ paths:
                       "reason": "The booking has been successfully Issue voucher",
                       "booking_supplier_status": "ok"
                         }
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
         
   /hotel/cancel-booking:
     post:
@@ -2916,7 +2914,7 @@ paths:
                       "booking_status": "cancel",
                       "generated_date": "2026-03-03"
                   } 
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
         
 components:
   securitySchemes:

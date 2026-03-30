@@ -175,7 +175,7 @@ paths:
                             - origin: "DAC"
                               destination: "CGP"
                               departure_time: "2026-03-12T10:00:00"
-      '400': { $ref: '#/components/responses/BadRequest' }
+      
       
   
   /flight/branded-fare:
@@ -344,7 +344,7 @@ paths:
                           type: string
                         change_before_departure:
                           type: string
-      '400': { $ref: '#/components/responses/BadRequest' }
+     
       
   /flight/validate:
     post:
@@ -859,7 +859,7 @@ paths:
                 
                 
 
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
        
   /flight/validation-get-status:
     post:
@@ -1063,7 +1063,7 @@ paths:
                                     cancellation_terms:
                                       status: "disable"
                                       text: null
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
             
       
  
@@ -1251,7 +1251,7 @@ paths:
                                 }
                             ]
                         }
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
        
   /flight/create-booking:
     post:
@@ -2164,7 +2164,7 @@ paths:
                 
                     
                               
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
        
   /flight/get-baggage-option:
     post:
@@ -2444,7 +2444,7 @@ paths:
 
                       
 
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
      
   /flight/update-baggage:
     post:
@@ -2759,7 +2759,7 @@ paths:
                                   }
                               }
                     
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
         
   /flight/get-seat-option:
     post:
@@ -2871,7 +2871,7 @@ paths:
                             }
                         ]
                     }
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
         
   /flight/update-seat:
     post:
@@ -3003,7 +3003,7 @@ paths:
                                                     
                 
     
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
     
   /flight/get-meal-option:
     post:
@@ -3158,7 +3158,7 @@ paths:
                       ],
                       "json_file": "/var/www/alif/logs_data/flight_logs/11177304475068881NMEBB/meal_options_data.json"
                   }
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
         
   /flight/update-meals:
     post:
@@ -3304,7 +3304,7 @@ paths:
                           ]
                       ]
                   }
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
   
   /flight/Booking details:
     post:
@@ -4162,7 +4162,7 @@ paths:
                             "special_notice_status": "disable",
                             "special_notice": null
                         }
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
        
   
   /flight/issue-ticket:
@@ -4177,27 +4177,33 @@ paths:
           application/json:
             schema:
               type: object
+
+              required:
+                - member_id
+                - tracking_id
+                - price_change_accepted
+
               properties:
 
                 member_id:
-                   type: string
-                   description: Logged in user member ID
-                   example: "1"
+                 type: string
+                 description: Logged in user member ID (Required)
+                 example: "1"
 
                 tracking_id:
-                   type: string
-                   description: Tracking ID received from Booking response
-                   example: "186177260842803210UESNA"
+                 type: string
+                 description: Tracking ID received from Booking response (Required)
+                 example: "186177260842803210UESNA"
 
                 price_change_accepted:
-                   type: string
-                   description: Accept price change if fare updated (yes / no)
-                   example: "no"
+                 type: string
+                 description: Accept price change if fare updated (yes / no) (Required)
+                 example: "no"
 
                 notes:
-                   type: string
-                   description: Additional notes (optional)
-                   example: "not required"
+                 type: string
+                 description: Additional notes (Optional)
+                 example: "not required"
               additionalProperties: true
             example:
                 {
@@ -5156,7 +5162,7 @@ paths:
                           }
                       }
                   }
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
         
   /flight/cancel-booking:
     post:
@@ -5701,8 +5707,8 @@ paths:
                       }
                   }
 
-                  
-        '400': { $ref: '#/components/responses/BadRequest' }
+
+        
         
   
 components:

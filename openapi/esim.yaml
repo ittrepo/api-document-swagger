@@ -324,8 +324,7 @@ paths:
                                       
                         
                 
-        '400': { $ref: '#/components/responses/BadRequest' }
-        
+       
   /esim/single-esim-package:
     post:
       tags: [eSim]
@@ -520,7 +519,7 @@ paths:
                         "manual_installation": "<p><br></p><p><b>eSIM name:</b> Fatafati</p><p><br></p><p><b>Coverage: </b>Bangladesh</p><p><br></p><p><b>To manually activate the eSIM on your eSIM capable device:</b></p><p><br></p><ol><li>Settings > Cellular/Mobile > Add Cellular/Mobile Plan.</li><li>Manually enter the SM-DP+ Address and activation code.</li><li>Confirm eSIM plan details.</li><li>Label the eSIM.</li></ol><p><br></p><p><b>To access Data:</b></p><p><br></p><ol><li>Enable data roaming.</li></ol><p><br></p><p><b>To top up:</b></p><p><br></p><p>Visit airalo.com/my-esims or if purchased through the Airalo website/app visit “My eSIMs” tab.</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p>"
                 
                 
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
         
   /esim/update-customer:
     post:
@@ -656,7 +655,7 @@ paths:
                              "contact_no": "1966330000"
                              "email_address": "test@mail.com"
                         
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
         
   /esim/create-booking:
     post:
@@ -1316,7 +1315,7 @@ paths:
                               
                         
                             
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
        
   /esim/data-usage:
     post:
@@ -1388,7 +1387,7 @@ paths:
                             "remaining": 0
                       
                     
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
      
   /esim/booking-details:
     post:
@@ -2252,7 +2251,7 @@ paths:
                                 "special_notice_status": "disable",
                                 "special_notice": null
                               }
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
         
   /esim/installation-instructions:
     post:
@@ -2344,8 +2343,7 @@ paths:
                                
                             
                         
-        '400': { $ref: '#/components/responses/BadRequest' }
-     
+       
   /esim/compatible-devices:
     post:
       tags: [eSim]
@@ -2390,7 +2388,7 @@ paths:
                             "name": "X20"
                             
                         
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
   
   /esim/topup-packages:
     post:
@@ -2569,7 +2567,7 @@ paths:
             
                     
                             
-        '400': { $ref: '#/components/responses/BadRequest' }
+       
         
   /esim/topup-booking:
     post:
@@ -2662,7 +2660,7 @@ paths:
                                   
                                
 
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
         
   /esim/topup-history:
     post:
@@ -2712,7 +2710,7 @@ paths:
                 additionalProperties: true
               example: 
                   status: Success
-        '400': { $ref: '#/components/responses/BadRequest' }
+      
        
  
 components:
