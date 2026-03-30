@@ -682,8 +682,7 @@ paths:
                                   "description": "FINDING YOUR DRIVER\n\nTerminal 1:  Exit INTO the arrivals hall in the designated waiting area where a representative will be waiting, holding a sign with “KOI” on it. You will be escorted to your car at the parking pickup point (approx. 3-5 min walk). Please be advised there may be a short wait before the escort.\n\nTerminal 2: Exit INTO the arrivals hall in the designated waiting area where a representative will be waiting, holding a sign with your name on it.\n\nTerminal 3: Exit INTO the arrivals hall and proceed to the greeting area near Boots Pharmacy, where your representative will be waiting holding a sign with “KOI” on it. You will be escorted to the car at the parking pickup point (approx. 3-5 min walk). A short wait may be required.\n\nIdentify yourself by showing this confirmation to your Supplier, for whom we act as a booking agent.\n\nImportant Note: Your driver will arrive at the airport 30 minutes AFTER the flight has landed, this is to allow for the lengthy process of reaching the arrivals hall. Your driver will then wait for a maximum of a further 60 minutes upon their arrival if you have booked a Standard Service, and 75 min if you have booked a Premium Service. If you arrive before the 30 minutes, please contact the supplier on their office or emergency number below, advise that you are ready to be transferred and wait for the driver in the arrivals hall.\n\nIn the event of delays over 60 minutes on arrival you must call the supplier. There are 60 minutes wait time included from your flight landing/cruise disembarkation time/train arrival time.\n\nIF YOU CAN'T LOCATE YOUR DRIVER, please contact them directly by clicking on this link https://hbd.htxstaging.com.\nYou will need an internet or mobile phone connection to be able to call/message your driver.\n\nPlease don't attempt to contact your driver until you are at the agreed meeting point as, with the best intentions of providing you with the most efficient service, driver information is subject to change. If you are unable to locate your driver using CheckPickup, contact your supplier for assistance. Do not leave without having contacted your supplier using the details below first.\n\nDISCLAIMER HolidayTaxis Group Limited (part of HBX Group) processes your personal data for the purpose of providing you with contracted travel services. For more information about how we process your personal data, please refer to the Privacy Policy.You have the right to access, rectify, delete, and restrict the processing of your data, as well as other rights recognized by applicable law. You can exercise these rights by contacting us at dataprotection@holidaytaxis.com"
 
         "400": { $ref: "#/components/responses/BadRequest" }
-        "401": { $ref: "#/components/responses/Unauthorized" }
-        "500": { $ref: "#/components/responses/ServerError" }
+      
 
   /Transfer/Update Traveler Info:
     post:
@@ -856,8 +855,7 @@ paths:
                         ],
                     }
         "400": { $ref: "#/components/responses/BadRequest" }
-        "401": { $ref: "#/components/responses/Unauthorized" }
-        "500": { $ref: "#/components/responses/ServerError" }
+        
   /Transfeer/Create Booking:
     post:
       tags: [Transfer]
@@ -1613,8 +1611,7 @@ paths:
                                                     "method": "GET"
                                                 }
         "400": { $ref: "#/components/responses/BadRequest" }
-        "401": { $ref: "#/components/responses/Unauthorized" }
-        "500": { $ref: "#/components/responses/ServerError" }
+       
   /Transfer/Cancel Booking:
     post:
       tags: [Transfer]
@@ -1781,6 +1778,9 @@ paths:
                             ]
                         }
                     }
+
+        "400": { $ref: "#/components/responses/BadRequest" }
+      
   /Transfer/Booking details:
     post:
       tags:  [Transfer]
@@ -2642,8 +2642,7 @@ paths:
                             "special_notice": null
                         }
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
 
 components:
   securitySchemes:

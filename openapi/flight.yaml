@@ -29,7 +29,7 @@ paths:
   /flight/search:
    post:
     tags:
-      - Flight
+      - "Flight Search & Pricing"
     summary: Search flights OneWay 
     operationId: flightSearchoneWay
     requestBody:
@@ -176,14 +176,12 @@ paths:
                               destination: "CGP"
                               departure_time: "2026-03-12T10:00:00"
       '400': { $ref: '#/components/responses/BadRequest' }
-      '401': { $ref: '#/components/responses/Unauthorized' }
-      '404': { $ref: '#/components/responses/NotFound' }
-      '500': { $ref: '#/components/responses/ServerError' }
+      
   
   /flight/branded-fare:
    post:
     tags:
-      - Flight
+      - "Flight Search & Pricing"
     summary: Get branded fare options for a flight
     operationId: flightBrandedFare
 
@@ -347,11 +345,11 @@ paths:
                         change_before_departure:
                           type: string
       '400': { $ref: '#/components/responses/BadRequest' }
-      '401': { $ref: '#/components/responses/Unauthorized' }
-      '500': { $ref: '#/components/responses/ServerError' }
+      
   /flight/validate:
     post:
-      tags: [Flight]
+      tags: 
+        - "Flight Search & Pricing"
       summary: Validate selected itinerary and pricing
       operationId: flightValidate
       requestBody:
@@ -664,7 +662,7 @@ paths:
                                             }
                                         }
                                     },
-                                    "priceHash": "eyJmbWciOnsiY3VycmVuY3kiOiJCRFQiLCJ0b3RhbCI6IjU0NTIuMzIiLCJiYXNlX2ZhcmUiOiI0Mjc3LjMyIiwidGF4IjoiMTE3NS4wMCIsImdyb3NzIjp7ImJhc2VfZmFyZSI6IjM1MjQuMDAiLCJ0YXgiOiIxMTc1LjAwIiwiZGlzY291bnQiOiIyNDYuNjgiLCJhaXQiOiIwLjAwIiwic2VydmljZV9jaGFyZ2UiOiIxMDAwLjAwIn0sImNvbmZpZyI6eyJtYXJrdXBfdHlwZSI6bnVsbCwibWFya3VwX3RpdGxlIjpudWxsLCJyZXZlbnVlIjoiMTAwMC4wMCIsInRpY2tldF9pc3N1ZV9jaGFyZ2UiOiIxMDAwLjAwIiwidG90YWxfdGlja2V0X2lzc3VlX2NoYXJnZSI6IjEwMDAuMDAiLCJjdXJyZW5jeUV4Y2hhbmdlUmF0ZSI6IjEuMDAiLCJGTUdfT3ZlcndyaXRlUnVsZXMiOnsiaXNBdmFpbGFibGUiOnRydWUsIm1hcmtldGluZ19jYXJyaWVyIjoiQlMiLCJtYXJrdXBUeXBlIjoiQ2hhcmdlIiwiQ2hhcmdlVHlwZSI6IkZJWEVEIiwiY2hhcmdlRGlzY291bnRWYWx1ZSI6IjEwMDAifX19LCJzdXBwbGllciI6eyJjdXJyZW5jeSI6IkJEVCIsInRvdGFsIjoiNDQ1Mi4zMiIsImJhc2VfZmFyZSI6IjMyNzcuMzIiLCJ0YXgiOiIxMTc1LjAwIiwiZ3Jvc3MiOnsiYmFzZV9mYXJlIjoiMzUyNC4wMCIsInRheCI6IjExNzUuMDAiLCJkaXNjb3VudCI6IjI0Ni42OCIsImFpdCI6IjAuMDAiLCJzZXJ2aWNlX2NoYXJnZSI6MCwicGVyX3NlZ21lbnRfZGlzY291bnQiOjAsInNlZ21lbnRfZGlzY291bnQiOiIwLjAwIiwic3VwcGxpZXJfc2VnbWVudF9mZWVzQ2FsY3VsYXRlIjoiMCIsInNlZ21lbnRfZGlzY291bnRfYWNjb3VudFB1cnBvc2UiOiIwIn19LCJncm9zc19mYXJlIjp7ImN1cnJlbmN5IjoiQkRUIiwidG90YWwiOiI0Njk5LjAwIiwiYmFzZV9mYXJlIjoiMzUyNC4wMCIsInRheCI6IjExNzUuMDAiLCJkaXNjb3VudCI6IjAuMDAiLCJhaXQiOiIwLjAwIiwic2VydmljZV9jaGFyZ2UiOiIwLjAwIiwicGF5YWJsZSI6NDY5OSwidGF4QnJlYWtkb3duIjp7IkJEIjp7ImFtb3VudCI6IjI1LjAwIn0sIlVUIjp7ImFtb3VudCI6IjIwMC4wMCJ9LCJFNSI6eyJhbW91bnQiOiIzMC4wMCJ9LCJZUSI6eyJhbW91bnQiOiI1MC4wMCJ9LCJZUiI6eyJhbW91bnQiOiIwLjAwIn0sIk90aGVyIjp7ImFtb3VudCI6Ijg3MC4wMCJ9LCJzdXBwbGllclRheERhdGEiOlt7ImNvZGUiOiJCRCIsImN1cnJlbmN5IjoiQkRUIiwiYW1vdW50IjoiMjUiLCJ0YXhJbmZvIjoibURseUN4VXFXREtBZ1ZKRElBQUFBQT09In0seyJjb2RlIjoiT1ciLCJjdXJyZW5jeSI6IkJEVCIsImFtb3VudCI6IjcwMCIsInRheEluZm8iOiJtRGx5Q3hVcVdES0FoVkpESUFBQUFBPT0ifSx7ImNvZGUiOiJQNyIsImN1cnJlbmN5IjoiQkRUIiwiYW1vdW50IjoiMTAwIiwidGF4SW5mbyI6Im1EbHlDeFVxV0RLQWlWSkRJQUFBQUE9PSJ9LHsiY29kZSI6IlA4IiwiY3VycmVuY3kiOiJCRFQiLCJhbW91bnQiOiI3MCIsInRheEluZm8iOiJtRGx5Q3hVcVdES0FqVkpESUFBQUFBPT0ifSx7ImNvZGUiOiJVVCIsImN1cnJlbmN5IjoiQkRUIiwiYW1vdW50IjoiMjAwIiwidGF4SW5mbyI6Im1EbHlDeFVxV0RLQWtWSkRJQUFBQUE9PSJ9LHsiY29kZSI6IkU1IiwiY3VycmVuY3kiOiJCRFQiLCJhbW91bnQiOiIzMCIsInRheEluZm8iOiJtRGx5Q3hVcVdES0FsVkpESUFBQUFBPT0ifSx7ImNvZGUiOiJZUSIsImN1cnJlbmN5IjoiQkRUIiwiYW1vdW50IjoiNTAiLCJ0YXhJbmZvIjoibURseUN4VXFXREtBbVZKRElBQUFBQT09In1dfX0sImRpc2NvdW50X2NvbWlzc2lvbl90aXRsZSI6IkRBQyBUTyBDR1AgLTUlIiwiZGlzY291bnRfY29taXNzaW9uX3JhdGlvIjoiNy4wMCIsImR5bmFtaWNfbWFya3VwX3R5cGUiOm51bGwsImR5bmFtaWNfbWFya3VwX3RpdGxlIjpudWxsLCJkeW5hbWljX21hcmt1cF9yYXRpbyI6bnVsbCwiYXBwbGljYWJsZV9jb21pc3Npb24iOnsidGl0bGUiOiJEQUMgVE8gQ0dQIC01JSIsImNvbWlzc2lvbl9leHBpcmVfdGltZXN0YW1wIjoiMTc5ODczOTk5OSIsInNwZWNpZmljX3JvdXRlIjoiYW55X3JvdXRlIiwiY29taXNzaW9uX3R5cGUiOiJnZW5lcmFsIiwiYWR1bHRfYmFzZWZhcmVfcmF0aW8iOiI3LjAwIiwiYWR1bHRfYmFzZWZhcmVfZml4ZWQiOiIwLjAwIiwiYWR1bHRfYmFzZWZhcmVfcmF0aW9fb3ZlciI6IjAuMDAiLCJhZHVsdF9iYXNlZmFyZV9maXhlZF9vdmVyIjoiMC4wMCIsImFkdWx0X3RheF9yYXRpbyI6IjAuMDAiLCJhZHVsdF90YXhfZml4ZWQiOiIwLjAwIiwiYWR1bHRfdGF4X3JhdGlvX292ZXIiOiIwLjAwIiwiYWR1bHRfdGF4X2ZpeGVkX292ZXIiOiIwLjAwIiwiY2hpbGRfYmFzZWZhcmVfcmF0aW8iOiI3LjAwIiwiY2hpbGRfYmFzZWZhcmVfZml4ZWQiOiIwLjAwIiwiY2hpbGRfYmFzZWZhcmVfcmF0aW9fb3ZlciI6IjAuMDAiLCJjaGlsZF9iYXNlZmFyZV9maXhlZF9vdmVyIjoiMC4wMCIsImNoaWxkX3RheF9yYXRpbyI6IjAuMDAiLCJjaGlsZF90YXhfZml4ZWQiOiIwLjAwIiwiY2hpbGRfdGF4X3JhdGlvX292ZXIiOiIwLjAwIiwiY2hpbGRfdGF4X2ZpeGVkX292ZXIiOiIwLjAwIiwiaW5mX2Jhc2VmYXJlX3JhdGlvIjoiNy4wMCIsImluZl9iYXNlZmFyZV9maXhlZCI6IjAuMDAiLCJpbmZfYmFzZWZhcmVfcmF0aW9fb3ZlciI6IjAuMDAiLCJpbmZfYmFzZWZhcmVfZml4ZWRfb3ZlciI6IjAuMDAiLCJpbmZfdGF4X3JhdGlvIjoiMC4wMCIsImluZl90YXhfZml4ZWQiOiIwLjAwIiwiaW5mX3RheF9yYXRpb19vdmVyIjoiMC4wMCIsImluZl90YXhfZml4ZWRfb3ZlciI6IjAuMDAiLCJzZWdtZW50X2Rpc2NvdW50IjoiMC4wMCIsInNlZ21lbnRfZGlzY291bnREb21lc3RpYyI6IjAiLCJzdXBwbGllcl9zZWdtZW50X2ZlZXNDYWxjdWxhdGUiOiIwIiwic2VydmljZUNoYXJnZVBlclBheCI6IjAuMDAifSwiYXBwbGljYWJsZV9keW5hbWljX21hcmt1cCI6bnVsbH0="
+                                    "priceHash": "string"
                                 }
                             ]
                         },
@@ -862,11 +860,11 @@ paths:
                 
 
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   /flight/validation-get-status:
     post:
-      tags: [Flight]
+      tags: 
+        - "Flight Search & Pricing"
       summary: Get validation status for a booking
       operationId: flightValidationGetStatus
       requestBody:
@@ -1065,46 +1063,15 @@ paths:
                                     cancellation_terms:
                                       status: "disable"
                                       text: null
+        '400': { $ref: '#/components/responses/BadRequest' }
             
       
-  /flight/fare-rules:
-    post:
-      tags: [Flight]
-      summary: Get fare rules for a priced itinerary
-      operationId: flightFareRules
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                traking_id: 
-                    type: string
-                    example: 11177139202626194TS42Z
-                flight_key:
-                    type: string
-                    example: "F1RT00008-0"
-              additionalProperties: true
-            examples:
-              default:
-                value:
-                  tracking_id: 11170970096202719
-                  flight_key: F1RT00008-0
-      responses:
-        '200':
-          description: Detailed fare rules such as refund and change policies
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-        '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+ 
+        
   /flight/update-travellers:
     post:
-      tags: [Flight]
+      tags: 
+        - Passenger & Ancillaries
       summary: Update passenger details in a booking
       operationId: flightUpdateTravellers
       requestBody:
@@ -1244,51 +1211,52 @@ paths:
                 additionalProperties: true
               examples:
                 default:
-                 summary: Successful Search Response
-                value:
-                  value:
-                   status: "success"
-                   is_warning: false
-                   reason:
-                   reason_admin:
-                        "status": success
-                        reason: Passenger data has been successfully updated. 
-                        tracking_id: 11177139214226194U5TSM
-                        total_guest: 
-                        "Final_Supplier_Pax_Data": null,
-                        "price_status": 
-                            "status": "success"
-                            "price_change": "no-change"
-                            "search_price": null,
-                            "validation_price": null
-                            "data":
-                                      "tracking_id": "11177139214226194U5TSM"
-                                      "pax_id": "1"
-                                      "pax_type": "ADT"
-                                      "gender": "M"
-                                      "title": "MR"
-                                      "first_name": "JHON"
-                                      "last_name": "DOE"
-                                      "dob": "1998-10-24"
-                                      "pax_age": "27"
-                                      "doc_country": "BD"
-                                      "nationality": "BD"
-                                      "doc_no": "A1235121"
-                                      "doc_dateofexpiry": "2028-10-25"
-                                      "frequent_flyer_airlines": null,
-                                      "frequent_flyer": "21321313132"
-                                      "wheelchair_required": "no"
-                                      "isd_code": "880"
-                                      "contact_no": "0175565521"
-                                      "email_address": "iam@jhon.com"
-                                      "passport_copy": null,
-                                      "doc_pics": null
+                    summary: Successful Search Response
+                    value:
+                        {
+                            "status": "success",
+                            "reason": "Passenger data has been successfully updated. ",
+                            "tracking_id": "11177139214226194U5TSM",
+                            "total_guest": 1,
+                            "Final_Supplier_Pax_Data": null,
+                            "price_status": {
+                                "status": "success",
+                                "price_change": "no-change",
+                                "search_price": null,
+                                "validation_price": null
+                            },
+                            "data": [
+                                {
+                                    "tracking_id": "11177139214226194U5TSM",
+                                    "pax_id": "1",
+                                    "pax_type": "ADT",
+                                    "gender": "M",
+                                    "title": "MR",
+                                    "first_name": "JHON",
+                                    "last_name": "DOE",
+                                    "dob": "1998-10-24",
+                                    "pax_age": "27",
+                                    "doc_country": "BD",
+                                    "nationality": "BD",
+                                    "doc_no": "A1235121",
+                                    "doc_dateofexpiry": "2028-10-25",
+                                    "frequent_flyer_airlines": null,
+                                    "frequent_flyer": "21321313132",
+                                    "wheelchair_required": "no",
+                                    "isd_code": "880",
+                                    "contact_no": "0175565521",
+                                    "email_address": "iam@jhon.com",
+                                    "passport_copy": null,
+                                    "doc_pics": null
+                                }
+                            ]
+                        }
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   /flight/create-booking:
     post:
-      tags: [Flight]
+      tags: 
+        - Booking Management
       summary: Create a flight booking
       operationId: flightCreateBooking
       requestBody:
@@ -1357,364 +1325,851 @@ paths:
               examples:
                 default:
                  summary: Successful Search Response
-                value:
-                  value:
-                    status: success
-                    reason: "The booking has been successfully created, and it is associated with the Booking Id FL2317OCAA6P."
-                    "general": 
-                              "service_type": "FLIGHT"
-                              "service_details": "OneWay From DAC to LHR Departure date 2023-11-10"
-                              "booking_remarks": null,
-                              "generated_date": "2023-10-17"
-                              "partner_id": "1"
-                              "master_partner_id": null,
-                              "branch_id": null,
-                              "tracking_id": "1169751590226238FFXQU"
-                              "booking_id": "FL2317OCAA6P"
-                              "airlines_pnr": "2Q4JFZ"
-                              "supplier_confirmation_id": "ord_0000AaqjPgNUG2Pgt1KZeq"
-                              "supplier_others_id_a": null,
-                              "supplier_others_id_b": null,
-                              "member_id": null,
-                              "book_by": "NSN"
-                              "ip_address": "103.150.26.238"
-                              "timestamp": "1697515935"
-                              "last_update": "1697515935"
-                    "voucher":
-                              "link": "https://apps.gtrs.travel/voucher/flight-e-ticket?uid=eyJ0cmFja2luZ19pZCI6IjExNjk3NTE1OTAyMjYyMzhGRlhRVSIsImZ0bV9wYXJ0bmVyX2lkIjoiMSIsIm1hc3Rlcl9wYXJ0bmVyX2lkIjpudWxsLCJtZW1iZXJfaWQiOm51bGwsImxpbmtfZXhwaXJlIjoiMjAzMC0xMi0zMSJ9"
-                              "pdf": "https://apps.gtrs.travel/voucher/flight-booking-pdf?uid=eyJ0cmFja2luZ19pZCI6IjExNjk3NTE1OTAyMjYyMzhGRlhRVSIsImZ0bV9wYXJ0bmVyX2lkIjoiMSIsIm1hc3Rlcl9wYXJ0bmVyX2lkIjpudWxsLCJtZW1iZXJfaWQiOm51bGwsImxpbmtfZXhwaXJlIjoiMjAzMC0xMi0zMSJ9"
-                    "booking":
-                              "status": "success"
-                              "booking_status": "hold"
-                              "booking_supplier_status": "hold"
-                              "ticket_status": "queue"
-                              "payment_status": "pending"
-                              "auto_cancel_status": "pending"
-                              "auto_cancel": "2023-10-17 23:59:59"
-                              "auto_cancel_timestamp": "1697587199"
-                    "price": 
-                            "currency": "SGD"
-                            "total_amount": "505.62"
-                            "sell_total_price": "505.62"
-                            "sales_comission": null,
-                            "customer_markup_policy": "2"
-                    "flight":
-                    "modify":
-                            "baggage": "yes"
-                            "seat": "yes"
-                            "meal": "yes"
-                            "itinerary": "yes"
-                    "search_parameter":
-                            "member_id": "1"
-                            "journey_type": "OneWay"
-                            "preferred_carrier": ""
-                            "departure_airport": [
-                                "DAC"
-                            ]
-                            "arrival_airport": [
-                                "LHR"
-                            ]
-                            "departure_date": [
-                                "2023-11-10"
-                            ]
-                            "arrival_date": ""
-                            "travelers_adult": "1"
-                            "travelers_child": "0"
-                            "travelers_child_age": [
-                                "12"
-                            ]
-                            "travelers_infants": "0"
-                            "travelers_infants_age": [
-                                "1"
-                            ]
-                            "non_stop_flight": "any"
-                            "baggage_option": "any"
-                            "booking_class": "Economy"
-                            "supplier_code": "all"
-                            "language": "en"
-                            "departure": 
-                            "date": "2023-11-10"
-                            "time": "06:58"
-                            "arrival": 
-                             "date": "2023-11-10"
-                             "time": 12:14
-                             "departure_airport": DAC
-                             "arrival_airport": LHR
-                            "price" :   
-                                  "purchase":
-                                        "base_fare":      
-                                            "currency": "SGD"
-                                            "amount": 428.5
-                            "tax":
-                                 "currency": "SGD"
-                                 "amount": 77.12
-                            "total":
-                                  "currency": "SGD"
-                                  "amount": 505.62
-                            "price_breakdown": 
-                                            "passenger_id": "pas_0000AaqjIrZwDO29b8u2q5"
-                                            "passenger_type": "ADT"
-                                            "passenger_total": 1,
-                            "base_fare":
-                                      "currency": "SGD"
-                                      "amount": 429
-                            "customer_markup_policy":
-                                      "Id": 2,
-                                      "ftm_partner_id": "1"
-                                      "partner_name": "GTRSystem"
-                                      "supplier_type": "FLIGHT"
-                                      "on_base_fare_ratio_markup": "0.00"
-                                      "on_base_fare_ratio_discount": "0.00"
-                                      "on_base_fare_fixed_markup": "0.00"
-                                      "on_tax_ratio_markup": "0.00"
-                                      "on_tax_fixed_markup": "0.00"
-                                      "cancellation_buffer_days": "3"
-                                      "ssr_charge_ratio": "0.00"
-                                      "ssr_charge_markup": "0.00"
-                                      "timestamp": "1686324825"
-                                      "last_update": "1697112784"
-                                      "markup_min_active": "disable"
-                                      "markup_min": "0.00"
-                                      "markup_max_active": "disable"
-                                      "markup_max": "0.00"
-                                      "ticket_issue_charge": "0.00"
-                                      "penalty_markup": "0.00"
-                            "baggage":
-                                      "passenger_id": "pas_0000AaqjIrZwDO29b8u2q5"
-                                      "passenger_type": "ADT"
-                                      "origin": "DAC"
-                                      "destination": "LHR"
-                                      "baggage_type": "checked"
-                                      "pieceCount": 1,
-                                      "weight": null,
-                                      "unit": null
-                            "fare_rules":   
-                                      "refundable": "partially-refundable"
-                                      "change_before_departure": "charge applicable"
-                            "pax":  
-                                "primary":
-                                         "guest_name": "NAZMUS NAYEEM"
-                                         "guest_email": null,
-                                         "guest_isd_code": null,
-                                         "guest_contact_no": "1966330000"
-                                         "guest_nationality": "BD"  
-                            "data":
-                                  "Id": 14,
-                                  "timestamp": "1697515928"
-                                  "last_update": "1697515928"
-                                  "entry": ""
-                                  "entry_n": null,
-                                  "ftm_partner_id": "1"
-                                  "tracking_id": "1169751590226238FFXQU"
-                                  "service_type": "FLIGHT"
-                                  "room_number": "1"
-                                  "pax_id": "1"
-                                  "pax_type": "ADT"
-                                  "gender": "M"
-                                  "title": "MR"
-                                  "first_name": "NAZMUS"
-                                  "last_name": "NAYEEM"
-                                  "dob": "1985-10-24"
-                                  "pax_age": "38"
-                                  "doc_country": "BD"
-                                  "doc_no": "A1235121"
-                                  "doc_dateofexpiry": "2030-10-25"
-                                  "doc_dateofissue": null,
-                                  "frequent_flyer_airlines": "BG"
-                                  "frequent_flyer": "21321313132"
-                                  "wheelchair_required": "no"
-                                  "isd_code": "880"
-                                  "contact_no": "1966330000"
-                                  "email_address": "iam@saaqeb.com"
-                                  "doc_pics": null,
-                                  "seat_number": null,
-                                  "baggage_option": null,
-                                  "meal_option": null,
-                                  "booking_id": null,
-                                  "ticket_number": null
-                    "partner":
-                            "agency_isd_code": null,
-                            "agency_contact_no": null,
-                            "agency_email": null,
-                            "contact":
-                                  "person_name": "Zahidul"
-                                  "isd_code": "65"
-                                  "number": "31650588"
-                                  "email": "admin@GTRSystem.Com"
-                    "partner_id": "1"
-                    "master_partner_id": "1"
-                    "partner_type": "MAIN"
-                    "partner_profile_code": "GTRS"
-                    "branch_id": "SGHE002"
-                    "brand_name": "GTRSystem"
-                    "tag_line": "Next generation B2B travel reservation portal specially designed only for travel professionals"
-                    "legal_name": "GLOBAL TRAVEL RESERVATION SYSTEM"
-                    "city": "Singapore"
-                    "state": "Singapore"
-                    "postal_code": "049712"
-                    "address": "30 Cecil Street # 19-08 Prudential Tower"
-                    "country": "SG"
-                    "website": "https://gtrsystem.com/"
-                    "customer_hotline": ""
-                    "support_email": "operation@gtrsystem.com"
-                    "customer_support_email": "operation@gtrsystem.com"
-                    "priavcy_link": "https://gtrsystem.com/contact.php"
-                    "terms_link": "https://gtrsystem.com/contact.php"
-                    "logo_1440_448": "https://apps.gtrs.travel//partner_logos/b_rcs_large_image_111696658079262385FFHJ.png"
-                    "logo_224_224": "https://apps.gtrs.travel//partner_logos/b_rcs_small_logo_111696658079262385FFHJ.png"
-                    "logo_1024_1024": "https://apps.gtrs.travel//partner_logos/b_fb_app_icon_111696658079262385FFHJ.png"
-                    "logo_400_400": "https://apps.gtrs.travel//partner_logos/b_viber_account_image_111696658079262385FFHJ.png"
-                    "logo_512_512": "https://apps.gtrs.travel//partner_logos/b_apple_square_logo_111696658079262385FFHJ.png"
-                    "logo_1706_256": "https://apps.gtrs.travel//partner_logos/b_apple_wide_logo_111696658079262385FFHJ.png"
-                    "partner_from_email_address": "noreply@gtrsystem.com"
-                    "partner_from_email_full_name": "GTRSystem"
-                    "supplier": 
-                        "info":
-                              "supplier_type": "FLIGHT"
-                              "supplier_title": null,
-                              "supplier_code": "duffel"
-                              "supplier_uid": "FD00002"
-                              "supplier_partner_code": "duffel-1-003"
-                              "supplier_timezone": null,
-                              "currency": null,
-                              "notification_email": null,
-                              "supplier_fare_rules": null,
-                              "airlines_comission": null
-                        "price": 
-                              "supplier_currency": "USD"
-                              "flight_price": 377.45,
-                              "fmg_price": 377.45,
-                              "revenue": 0,
-                              "total_passenger": 1,
-                              "ticket_issue_charge": "0"
-                              "total_ticket_issue_charge": "0.00"
-                              "purchase": 
-                              "total": 
-                                    "currency": "USD"
-                                    "amount": "377.45"
-                              
-                              "tax": {
-                                    "currency": "USD",
-                                  "amount": "57.57"
-                              }
-                              "base_fare": {
-                                  "currency": "USD",
-                                  "amount": "319.88"
-                              }
-                        "fmg": 
-                              "base_fare": {
-                                  "currency": "USD",
-                                  "amount": 319.88
-                              }
-                              "tax": {
-                                  "currency": "USD",
-                                  "amount": 57.57
-                              }
-                              "total": {
-                                  "currency": "USD",
-                                  "amount": 377.45
-                              }
-                        "supplier_fare_policy":
-                              "ftm_partner_id": "1"
-                              "partner_name": "GTRSystem"
-                              "faregroup_id": "7"
-                              "supplier_type": "FLIGHT"
-                              "supplier_code": "duffel"
-                              "supplier_partner_code": "duffel-1-003"
-                              "title": "Default Fare Group For Duffel USA"
-                              "status": "active"
-                              "on_base_fare_ratio_markup": "0"
-                              "on_base_fare_ratio_discount": "0"
-                              "on_base_fare_fixed_markup": "0"
-                              "on_tax_ratio_markup": "0"
-                              "on_tax_fixed_markup": "0"
-                              "cancellation_buffer_days": "0"
-                              "ssr_charge_ratio": "0"
-                              "ssr_charge_markup": "0"
-                              "markup_min_active": "disable"
-                              "markup_min": "0"
-                              "markup_max_active": "disable"
-                              "markup_max": "0"
-                              "ticket_issue_charge": "0"
-                              "penalty_markup": "0"
-                    "currency_exchange_data":
-                              "agent_currency": "SGD"
-                              "partner_currency_data":
-                                      "from_currency_list":
-                                            
-                                                "0": "SGD"
-                                                "1": "USD"
-                                                "10": "BDT"
-                                                "18": "INR"
-                                                "23": "GBP"
-                                                "24": "AFN"
-                                                "25": "ARS"
-                                                "26": "AED"
-                                                "29": "JPY"
-                                                "34": "PKR"
-                                      "to_currency_list": 
-                                                "0": "BDT"
-                                                "2": "SGD"
-                                                "3": "USD"
-                                                "4": "INR"
-                                                "8": "PHP"
-                                                "15": "EUR"
-                                                "27": "AED"
-                                                "28": "PKR"
-                                      "filter_data":
-                                            "SGD":
-                                                  "from_currency": "SGD"
-                                                  "to_currency": "BDT"
-                                                  "exchange_rate": "80.37384009"
-                                                  "markup_percentage": "2.2"
-                                                  "markup_fixed": "5.00"
-                                                  "status": "active"
-                                            "USD":
-                                                  "from_currency": "USD"
-                                                  "to_currency": "BDT"
-                                                  "exchange_rate": "107.6523107"
-                                                  "markup_percentage": "3.7"
-                                                  "markup_fixed": "5.00"
-                                                  "status": "active"
-                                            "BDT":
-                                                  "from_currency": "BDT"
-                                                  "to_currency": "SGD"
-                                                  "exchange_rate": "0.012508372"
-                                                  "markup_percentage": "-1"
-                                                  "markup_fixed": "0.00"
-                                                  "status": "active"
-                                            "AED":
-                                                "from_currency": "AED"
-                                                "exchange_rate": "29.98674686"
-                                                "markup_percentage": "1"
-                                                "markup_fixed": "1"
-                                                "status": "active"
-                                            "all_currency":
-                                                     "Id": 1,
-                                                     "timestamp": "1673340816"
-                                                     "last_update": "1696519462"
-                                                     "entry": "2"
-                                                     "entry_n": "GTRSystem Admin Zahidul"
-                                                     "ip": "203.117.161.250"
-                                                     "ftm_partner_id": "1"
-                                                     "from_currency": "SGD"
-                                                     "to_currency": "BDT"
-                                                     "exchange_rate": "80.37384009"
-                                                     "last_day_exchange_rate": "79.59757888"
-                                                     "markup_percentage": "2.2"
-                                                     "markup_fixed": "5.00"
-                                                     "status": "active"
-                                                     "expire_timestamp": null,
-                                                     "api_last_update": null,                       
-                                                     "xe_data_json": null,
-                                                     "xe_rate_datetime": null,
+                 value:
+                        {
+                                "status": "success",
+                                "reason": "The booking has been successfully created, and it is associated with the Booking Id FL2317OCAA6P.",
+                                "general": {
+                                    "service_type": "FLIGHT",
+                                    "service_details": "OneWay From DAC to LHR Departure date 2023-11-10",
+                                    "booking_remarks": null,
+                                    "generated_date": "2023-10-17",
+                                    "partner_id": "1",
+                                    "master_partner_id": null,
+                                    "branch_id": null,
+                                    "tracking_id": "1169751590226238FFXQU",
+                                    "booking_id": "FL2317OCAA6P",
+                                    "airlines_pnr": "2Q4JFZ",
+                                    "supplier_confirmation_id": "ord_0000AaqjPgNUG2Pgt1KZeq",
+                                    "supplier_others_id_a": null,
+                                    "supplier_others_id_b": null,
+                                    "member_id": null,
+                                    "book_by": "NSN",
+                                    "ip_address": "103.150.26.238",
+                                    "timestamp": "1697515935",
+                                    "last_update": "1697515935"
+                                },
+                                "voucher": {
+                                    "link": "https://apps.gtrs.travel/voucher/flight-e-ticket?uid=eyJ0cmFja2luZ19pZCI6IjExNjk3NTE1OTAyMjYyMzhGRlhRVSIsImZ0bV9wYXJ0bmVyX2lkIjoiMSIsIm1hc3Rlcl9wYXJ0bmVyX2lkIjpudWxsLCJtZW1iZXJfaWQiOm51bGwsImxpbmtfZXhwaXJlIjoiMjAzMC0xMi0zMSJ9",
+                                    "pdf": "https://apps.gtrs.travel/voucher/flight-booking-pdf?uid=eyJ0cmFja2luZ19pZCI6IjExNjk3NTE1OTAyMjYyMzhGRlhRVSIsImZ0bV9wYXJ0bmVyX2lkIjoiMSIsIm1hc3Rlcl9wYXJ0bmVyX2lkIjpudWxsLCJtZW1iZXJfaWQiOm51bGwsImxpbmtfZXhwaXJlIjoiMjAzMC0xMi0zMSJ9"
+                                },
+                                "booking": {
+                                    "status": "success",
+                                    "booking_status": "hold",
+                                    "booking_supplier_status": "hold",
+                                    "ticket_status": "queue",
+                                    "payment_status": "pending",
+                                    "auto_cancel_status": "pending",
+                                    "auto_cancel": "2023-10-17 23:59:59",
+                                    "auto_cancel_timestamp": "1697587199"
+                                },
+                                "price": {
+                                    "currency": "SGD",
+                                    "total_amount": "505.62",
+                                    "sell_total_price": "505.62",
+                                    "sales_comission": null,
+                                    "customer_markup_policy": "2"
+                                },
+                                "flight": {
+                                    "modify": {
+                                        "baggage": "yes",
+                                        "seat": "yes",
+                                        "meal": "yes",
+                                        "itinerary": "yes"
+                                    },
+                                    "search_parameter": {
+                                        "member_id": "1",
+                                        "journey_type": "OneWay",
+                                        "preferred_carrier": "",
+                                        "departure_airport": [
+                                            "DAC"
+                                        ],
+                                        "arrival_airport": [
+                                            "LHR"
+                                        ],
+                                        "departure_date": [
+                                            "2023-11-10"
+                                        ],
+                                        "arrival_date": "",
+                                        "travelers_adult": "1",
+                                        "travelers_child": "0",
+                                        "travelers_child_age": [
+                                            "12"
+                                        ],
+                                        "travelers_infants": "0",
+                                        "travelers_infants_age": [
+                                            "1"
+                                        ],
+                                        "non_stop_flight": "any",
+                                        "baggage_option": "any",
+                                        "booking_class": "Economy",
+                                        "supplier_code": "all",
+                                        "language": "en"
+                                    },
+                                    "departure": {
+                                        "date": "2023-11-10",
+                                        "time": "06:58"
+                                    },
+                                    "arrival": {
+                                        "date": "2023-11-10",
+                                        "time": "12:14"
+                                    },
+                                    "departure_airport": "DAC",
+                                    "arrival_airport": "LHR",
+                                    "flight_group": [
+                                        {
+                                            "no_of_stops_title": "Direct Flight",
+                                            "no_of_stops": 0,
+                                            "flight_time": "PT11H16M",
+                                            "transit_time": null,
+                                            "routes": [
+                                                {
+                                                    "air_segment_key": "seg_0000AaqjIrpXHOViNWCV9c",
+                                                    "origin": "DAC",
+                                                    "departure_time": "2023-11-10T06:58:00",
+                                                    "origin_terminal": "2",
+                                                    "origin_airport": {
+                                                        "name": "Hazrat Shahjalal International Airport",
+                                                        "city": "Dhaka",
+                                                        "country": "Bangladesh",
+                                                        "timezone": "Asia/Dhaka"
+                                                    },
+                                                    "destination": "LHR",
+                                                    "arrival_time": "2023-11-10T12:14:00",
+                                                    "destination_terminal": "1",
+                                                    "destination_airport": {
+                                                        "name": "London Heathrow Airport",
+                                                        "city": "London",
+                                                        "country": "United Kingdom",
+                                                        "timezone": "Europe/London"
+                                                    },
+                                                    "flight_date": "2023-11-10",
+                                                    "flight_time": "PT11H16M",
+                                                    "distance": "8014.840227411304",
+                                                    "lay_over": "not-applicable",
+                                                    "lay_over_date": "not-applicable",
+                                                    "aircraft": {
+                                                        "code": "773",
+                                                        "name": "Boeing 777-300",
+                                                        "picture": "773.png"
+                                                    },
+                                                    "operating": {
+                                                        "carrier": "ZZ",
+                                                        "carrier_name": null,
+                                                        "carrier_logo": "ZZ.png",
+                                                        "flight_number": "2878"
+                                                    },
+                                                    "marketing": {
+                                                        "carrier": "ZZ",
+                                                        "carrier_name": null,
+                                                        "carrier_logo": "ZZ.png",
+                                                        "flight_number": "2878"
+                                                    },
+                                                    "booking_class": {
+                                                        "cabin_class": "economy",
+                                                        "cabin_code": "economy",
+                                                        "booking_code": "economy",
+                                                        "meal_code": "economy",
+                                                        "seat_available": "economy"
+                                                    },
+                                                    "baggages": {
+                                                        "checked": {
+                                                            "ADT": {
+                                                                "passenger_type": "ADT",
+                                                                "baggage_type": "checked",
+                                                                "pieceCount": 1,
+                                                                "weight": null,
+                                                                "unit": null,
+                                                                "title": "1 pieces"
+                                                            }
+                                                        },
+                                                        "carry_on": {
+                                                            "ADT": {
+                                                                "passenger_type": "ADT",
+                                                                "baggage_type": "carry_on",
+                                                                "pieceCount": 1,
+                                                                "weight": null,
+                                                                "unit": null,
+                                                                "title": "1 pieces"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "price": {
+                                        "purchase": {
+                                            "base_fare": {
+                                                "currency": "SGD",
+                                                "amount": 428.5
+                                            },
+                                            "tax": {
+                                                "currency": "SGD",
+                                                "amount": 77.12
+                                            },
+                                            "total": {
+                                                "currency": "SGD",
+                                                "amount": 505.62
+                                            },
+                                            "price_breakdown": [
+                                                {
+                                                    "passenger_id": "pas_0000AaqjIrZwDO29b8u2q5",
+                                                    "passenger_type": "ADT",
+                                                    "passenger_total": 1,
+                                                    "total": {
+                                                        "currency": "SGD",
+                                                        "amount": 506
+                                                    },
+                                                    "tax": {
+                                                        "currency": "SGD",
+                                                        "amount": 78
+                                                    },
+                                                    "base_fare": {
+                                                        "currency": "SGD",
+                                                        "amount": 429
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "sell": {
+                                            "base_fare": {
+                                                "currency": "SGD",
+                                                "amount": 428.5
+                                            },
+                                            "tax": {
+                                                "currency": "SGD",
+                                                "amount": 77.12
+                                            },
+                                            "total": {
+                                                "currency": "SGD",
+                                                "amount": 505.62
+                                            },
+                                            "price_breakdown": [
+                                                {
+                                                    "passenger_id": "pas_0000AaqjIrZwDO29b8u2q5",
+                                                    "passenger_type": "ADT",
+                                                    "passenger_total": 1,
+                                                    "total": {
+                                                        "currency": "SGD",
+                                                        "amount": 506
+                                                    },
+                                                    "tax": {
+                                                        "currency": "SGD",
+                                                        "amount": 78
+                                                    },
+                                                    "base_fare": {
+                                                        "currency": "SGD",
+                                                        "amount": 429
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "customer_markup_policy": {
+                                        "Id": 2,
+                                        "ftm_partner_id": "1",
+                                        "partner_name": "GTRSystem",
+                                        "supplier_type": "FLIGHT",
+                                        "on_base_fare_ratio_markup": "0.00",
+                                        "on_base_fare_ratio_discount": "0.00",
+                                        "on_base_fare_fixed_markup": "0.00",
+                                        "on_tax_ratio_markup": "0.00",
+                                        "on_tax_fixed_markup": "0.00",
+                                        "cancellation_buffer_days": "3",
+                                        "ssr_charge_ratio": "0.00",
+                                        "ssr_charge_markup": "0.00",
+                                        "timestamp": "1686324825",
+                                        "last_update": "1697112784",
+                                        "markup_min_active": "disable",
+                                        "markup_min": "0.00",
+                                        "markup_max_active": "disable",
+                                        "markup_max": "0.00",
+                                        "ticket_issue_charge": "0.00",
+                                        "penalty_markup": "0.00"
+                                    },
+                                    "baggage": [
+                                        {
+                                            "passenger_id": "pas_0000AaqjIrZwDO29b8u2q5",
+                                            "passenger_type": "ADT",
+                                            "origin": "DAC",
+                                            "destination": "LHR",
+                                            "baggage_type": "checked",
+                                            "pieceCount": 1,
+                                            "weight": null,
+                                            "unit": null
+                                        },
+                                        {
+                                            "passenger_id": "pas_0000AaqjIrZwDO29b8u2q5",
+                                            "passenger_type": "ADT",
+                                            "origin": "DAC",
+                                            "destination": "LHR",
+                                            "baggage_type": "carry_on",
+                                            "pieceCount": 1,
+                                            "weight": null,
+                                            "unit": null
+                                        }
+                                    ],
+                                    "fare_rules": {
+                                        "refundable": "partially-refundable",
+                                        "change_before_departure": "charge applicable"
+                                    }
+                                },
+                                "pax": {
+                                    "primary": {
+                                        "guest_name": "NAZMUS NAYEEM",
+                                        "guest_email": null,
+                                        "guest_isd_code": null,
+                                        "guest_contact_no": "1966330000",
+                                        "guest_nationality": "BD"
+                                    },
+                                    "data": [
+                                        {
+                                            "Id": 14,
+                                            "timestamp": "1697515928",
+                                            "last_update": "1697515928",
+                                            "entry": "",
+                                            "entry_n": null,
+                                            "ftm_partner_id": "1",
+                                            "tracking_id": "1169751590226238FFXQU",
+                                            "service_type": "FLIGHT",
+                                            "room_number": "1",
+                                            "pax_id": "1",
+                                            "pax_type": "ADT",
+                                            "gender": "M",
+                                            "title": "MR",
+                                            "first_name": "NAZMUS",
+                                            "last_name": "NAYEEM",
+                                            "dob": "1985-10-24",
+                                            "pax_age": "38",
+                                            "doc_country": "BD",
+                                            "doc_no": "A1235121",
+                                            "doc_dateofexpiry": "2030-10-25",
+                                            "doc_dateofissue": null,
+                                            "frequent_flyer_airlines": "BG",
+                                            "frequent_flyer": "21321313132",
+                                            "wheelchair_required": "no",
+                                            "isd_code": "880",
+                                            "contact_no": "1966330000",
+                                            "email_address": "iam@saaqeb.com",
+                                            "doc_pics": null,
+                                            "seat_number": null,
+                                            "baggage_option": null,
+                                            "meal_option": null,
+                                            "booking_id": null,
+                                            "ticket_number": null
+                                        }
+                                    ]
+                                },
+                                "partner": {
+                                    "agency_isd_code": null,
+                                    "agency_contact_no": null,
+                                    "agency_email": null,
+                                    "contact": {
+                                        "person_name": "Zahidul",
+                                        "isd_code": "65",
+                                        "number": "31650588",
+                                        "email": "admin@GTRSystem.Com"
+                                    },
+                                    "partner_id": "1",
+                                    "master_partner_id": "1",
+                                    "partner_type": "MAIN",
+                                    "partner_profile_code": "GTRS",
+                                    "branch_id": "SGHE002",
+                                    "brand_name": "GTRSystem",
+                                    "tag_line": "Next generation B2B travel reservation portal specially designed only for travel professionals",
+                                    "legal_name": "GLOBAL TRAVEL RESERVATION SYSTEM",
+                                    "city": "Singapore",
+                                    "state": "Singapore",
+                                    "postal_code": "049712",
+                                    "address": "30 Cecil Street # 19-08 Prudential Tower",
+                                    "country": "SG",
+                                    "website": "https://gtrsystem.com/",
+                                    "customer_hotline": "",
+                                    "support_email": "operation@gtrsystem.com",
+                                    "customer_support_email": "operation@gtrsystem.com",
+                                    "priavcy_link": "https://gtrsystem.com/contact.php",
+                                    "terms_link": "https://gtrsystem.com/contact.php",
+                                    "logo_1440_448": "https://apps.gtrs.travel//partner_logos/b_rcs_large_image_111696658079262385FFHJ.png",
+                                    "logo_224_224": "https://apps.gtrs.travel//partner_logos/b_rcs_small_logo_111696658079262385FFHJ.png",
+                                    "logo_1024_1024": "https://apps.gtrs.travel//partner_logos/b_fb_app_icon_111696658079262385FFHJ.png",
+                                    "logo_400_400": "https://apps.gtrs.travel//partner_logos/b_viber_account_image_111696658079262385FFHJ.png",
+                                    "logo_512_512": "https://apps.gtrs.travel//partner_logos/b_apple_square_logo_111696658079262385FFHJ.png",
+                                    "logo_1706_256": "https://apps.gtrs.travel//partner_logos/b_apple_wide_logo_111696658079262385FFHJ.png",
+                                    "partner_from_email_address": "noreply@gtrsystem.com",
+                                    "partner_from_email_full_name": "GTRSystem"
+                                },
+                                "supplier": {
+                                    "info": {
+                                        "supplier_type": "FLIGHT",
+                                        "supplier_title": null,
+                                        "supplier_code": "duffel",
+                                        "supplier_uid": "FD00002",
+                                        "supplier_partner_code": "duffel-1-003",
+                                        "supplier_timezone": null,
+                                        "currency": null,
+                                        "notification_email": null,
+                                        "supplier_fare_rules": null,
+                                        "airlines_comission": null
+                                    },
+                                    "price": {
+                                        "supplier_currency": "USD",
+                                        "flight_price": 377.45,
+                                        "fmg_price": 377.45,
+                                        "revenue": 0,
+                                        "total_passenger": 1,
+                                        "ticket_issue_charge": "0",
+                                        "total_ticket_issue_charge": "0.00",
+                                        "purchase": {
+                                            "total": {
+                                                "currency": "USD",
+                                                "amount": "377.45"
+                                            },
+                                            "tax": {
+                                                "currency": "USD",
+                                                "amount": "57.57"
+                                            },
+                                            "base_fare": {
+                                                "currency": "USD",
+                                                "amount": "319.88"
+                                            }
+                                        },
+                                        "fmg": {
+                                            "base_fare": {
+                                                "currency": "USD",
+                                                "amount": 319.88
+                                            },
+                                            "tax": {
+                                                "currency": "USD",
+                                                "amount": 57.57
+                                            },
+                                            "total": {
+                                                "currency": "USD",
+                                                "amount": 377.45
+                                            }
+                                        },
+                                        "supplier_fare_policy": {
+                                            "ftm_partner_id": "1",
+                                            "partner_name": "GTRSystem",
+                                            "faregroup_id": "7",
+                                            "supplier_type": "FLIGHT",
+                                            "supplier_code": "duffel",
+                                            "supplier_partner_code": "duffel-1-003",
+                                            "title": "Default Fare Group For Duffel USA",
+                                            "status": "active",
+                                            "on_base_fare_ratio_markup": "0",
+                                            "on_base_fare_ratio_discount": "0",
+                                            "on_base_fare_fixed_markup": "0",
+                                            "on_tax_ratio_markup": "0",
+                                            "on_tax_fixed_markup": "0",
+                                            "cancellation_buffer_days": "0",
+                                            "ssr_charge_ratio": "0",
+                                            "ssr_charge_markup": "0",
+                                            "markup_min_active": "disable",
+                                            "markup_min": "0",
+                                            "markup_max_active": "disable",
+                                            "markup_max": "0",
+                                            "ticket_issue_charge": "0",
+                                            "penalty_markup": "0"
+                                        },
+                                        "currency_exchange_data": {
+                                            "agent_currency": "SGD",
+                                            "partner_currency_data": {
+                                                "from_currency_list": {
+                                                    "0": "SGD",
+                                                    "1": "USD",
+                                                    "10": "BDT",
+                                                    "18": "INR",
+                                                    "23": "GBP",
+                                                    "24": "AFN",
+                                                    "25": "ARS",
+                                                    "26": "AED",
+                                                    "29": "JPY",
+                                                    "34": "PKR"
+                                                },
+                                                "to_currency_list": {
+                                                    "0": "BDT",
+                                                    "2": "SGD",
+                                                    "3": "USD",
+                                                    "4": "INR",
+                                                    "8": "PHP",
+                                                    "15": "EUR",
+                                                    "24": "AFN",
+                                                    "27": "AED",
+                                                    "28": "PKR"
+                                                },
+                                                "filter_data": {
+                                                    "SGD": [
+                                                        {
+                                                            "from_currency": "SGD",
+                                                            "to_currency": "BDT",
+                                                            "exchange_rate": "80.37384009",
+                                                            "markup_percentage": "2.2",
+                                                            "markup_fixed": "5.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "SGD",
+                                                            "to_currency": "USD",
+                                                            "exchange_rate": "0.746510285",
+                                                            "markup_percentage": "0.0",
+                                                            "markup_fixed": "0",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "SGD",
+                                                            "to_currency": "INR",
+                                                            "exchange_rate": "61.81884371",
+                                                            "markup_percentage": "1.00",
+                                                            "markup_fixed": "1.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "SGD",
+                                                            "to_currency": "SGD",
+                                                            "exchange_rate": "1.00",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "SGD",
+                                                            "to_currency": "PHP",
+                                                            "exchange_rate": "41.13256222",
+                                                            "markup_percentage": "1",
+                                                            "markup_fixed": "0.5",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "SGD",
+                                                            "to_currency": "EUR",
+                                                            "exchange_rate": "0.684041475",
+                                                            "markup_percentage": "0.5",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "SGD",
+                                                            "to_currency": "AED",
+                                                            "exchange_rate": "2.685512023",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "SGD",
+                                                            "to_currency": "PKR",
+                                                            "exchange_rate": "204.7417783",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "USD": [
+                                                        {
+                                                            "from_currency": "USD",
+                                                            "to_currency": "BDT",
+                                                            "exchange_rate": "107.6523107",
+                                                            "markup_percentage": "3.7",
+                                                            "markup_fixed": "5.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "USD",
+                                                            "to_currency": "SGD",
+                                                            "exchange_rate": "1.339566272",
+                                                            "markup_percentage": "0",
+                                                            "markup_fixed": "0",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "USD",
+                                                            "to_currency": "INR",
+                                                            "exchange_rate": "82.81043801",
+                                                            "markup_percentage": "1.00",
+                                                            "markup_fixed": "1.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "USD",
+                                                            "to_currency": "USD",
+                                                            "exchange_rate": "1.00",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "USD",
+                                                            "to_currency": "PHP",
+                                                            "exchange_rate": "55.09979303",
+                                                            "markup_percentage": "1",
+                                                            "markup_fixed": "0.5",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "USD",
+                                                            "to_currency": "EUR",
+                                                            "exchange_rate": "0.913346479",
+                                                            "markup_percentage": "0.5",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "USD",
+                                                            "to_currency": "AED",
+                                                            "exchange_rate": "3.6725",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "USD",
+                                                            "to_currency": "PKR",
+                                                            "exchange_rate": "283.9995431",
+                                                            "markup_percentage": "0.01",
+                                                            "markup_fixed": "0.01",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "BDT": [
+                                                        {
+                                                            "from_currency": "BDT",
+                                                            "to_currency": "SGD",
+                                                            "exchange_rate": "0.012508372",
+                                                            "markup_percentage": "-1",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "BDT",
+                                                            "to_currency": "USD",
+                                                            "exchange_rate": "0.009337628",
+                                                            "markup_percentage": "0.0",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "BDT",
+                                                            "to_currency": "BDT",
+                                                            "exchange_rate": "1",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "BDT",
+                                                            "to_currency": "INR",
+                                                            "exchange_rate": "0.773253130",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "BDT",
+                                                            "to_currency": "PHP",
+                                                            "exchange_rate": "0.514501413",
+                                                            "markup_percentage": "0.0",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "BDT",
+                                                            "to_currency": "EUR",
+                                                            "exchange_rate": "0.008601112",
+                                                            "markup_percentage": "-4",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "BDT",
+                                                            "to_currency": "AED",
+                                                            "exchange_rate": "0.033320962",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "INR": [
+                                                        {
+                                                            "from_currency": "INR",
+                                                            "to_currency": "SGD",
+                                                            "exchange_rate": "0.016424874",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "INR",
+                                                            "to_currency": "USD",
+                                                            "exchange_rate": "0.012102512",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "INR",
+                                                            "to_currency": "BDT",
+                                                            "exchange_rate": "1.37",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "INR",
+                                                            "to_currency": "PHP",
+                                                            "exchange_rate": "0.686940099",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "INR",
+                                                            "to_currency": "EUR",
+                                                            "exchange_rate": "0.011222473",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "GBP": [
+                                                        {
+                                                            "from_currency": "GBP",
+                                                            "to_currency": "SGD",
+                                                            "exchange_rate": "1.71",
+                                                            "markup_percentage": "0",
+                                                            "markup_fixed": "0",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "AFN": [
+                                                        {
+                                                            "from_currency": "AFN",
+                                                            "to_currency": "AFN",
+                                                            "exchange_rate": "10",
+                                                            "markup_percentage": "1",
+                                                            "markup_fixed": "1",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "ARS": [
+                                                        {
+                                                            "from_currency": "ARS",
+                                                            "to_currency": "AFN",
+                                                            "exchange_rate": "1",
+                                                            "markup_percentage": "1",
+                                                            "markup_fixed": "1",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "AED": [
+                                                        {
+                                                            "from_currency": "AED",
+                                                            "to_currency": "BDT",
+                                                            "exchange_rate": "29.98674686",
+                                                            "markup_percentage": "1",
+                                                            "markup_fixed": "1",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "AED",
+                                                            "to_currency": "USD",
+                                                            "exchange_rate": "0.272294077",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "AED",
+                                                            "to_currency": "SGD",
+                                                            "exchange_rate": "0.372368468",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "AED",
+                                                            "to_currency": "PKR",
+                                                            "exchange_rate": "75.84846048",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "JPY": [
+                                                        {
+                                                            "from_currency": "JPY",
+                                                            "to_currency": "USD",
+                                                            "exchange_rate": "0.006701243",
+                                                            "markup_percentage": "1.00",
+                                                            "markup_fixed": "0.25",
+                                                            "status": "active"
+                                                        }
+                                                    ],
+                                                    "PKR": [
+                                                        {
+                                                            "from_currency": "PKR",
+                                                            "to_currency": "SGD",
+                                                            "exchange_rate": "0.004884201",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "PKR",
+                                                            "to_currency": "USD",
+                                                            "exchange_rate": "0.003589975",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        },
+                                                        {
+                                                            "from_currency": "PKR",
+                                                            "to_currency": "AED",
+                                                            "exchange_rate": "0.013184183",
+                                                            "markup_percentage": "0.00",
+                                                            "markup_fixed": "0.00",
+                                                            "status": "active"
+                                                        }
+                                                    ]
+                                                },
+                                                "all_currency": [
+                                                    {
+                                                        "Id": 1,
+                                                        "timestamp": "1673340816",
+                                                        "last_update": "1696519462",
+                                                        "entry": "2",
+                                                        "entry_n": "GTRSystem Admin Zahidul",
+                                                        "ip": "203.117.161.250",
+                                                        "ftm_partner_id": "1",
+                                                        "from_currency": "SGD",
+                                                        "to_currency": "BDT",
+                                                        "exchange_rate": "80.37384009",
+                                                        "last_day_exchange_rate": "79.59757888",
+                                                        "markup_percentage": "2.2",
+                                                        "markup_fixed": "5.00",
+                                                        "status": "active",
+                                                        "expire_timestamp": null,
+                                                        "api_last_update": "2023-02-22T16:00:00Z",
+                                                        "xe_data_json": "{\"terms\":\"http:\\/\\/www.xe.com\\/legal\\/dfs.php\",\"privacy\":\"http:\\/\\/www.xe.com\\/privacy.php\",\"from\":\"SGD\",\"amount\":1,\"timestamp\":\"2023-02-22T16:00:00Z\",\"to\":[{\"quotecurrency\":\"BDT\",\"mid\":79.9464513095},{\"quotecurrency\":\"INR\",\"mid\":61.8188437193},{\"quotecurrency\":\"PHP\",\"mid\":41.1325622263},{\"quotecurrency\":\"USD\",\"mid\":0.7465102854}]}",
+                                                        "xe_rate_datetime": "2023-02-22T16:00:00Z"
+                                                    },
+                                                    
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                
+                
+                    
                               
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   /flight/get-baggage-option:
     post:
-      tags: [Flight]
+      tags: 
+        - Passenger & Ancillaries
       summary: Get available baggage options
       operationId: flightGetBaggageOption
       requestBody:
@@ -1757,15 +2212,244 @@ paths:
                 default:
                   summary: Successful Search Response
                   value:
+                        {
+                            "status": "success",
+                            "reason": "baggage option available.",
+                            "currency": "BDT",
+                            "Book_option": "Pre Booking available",
+                            "data": {
+                                "flight_group": [
+                                    {
+                                        "routes": [
+                                            {
+                                                "option": [
+                                                    {
+                                                        "flight_group": 0,
+                                                        "routes": 0,
+                                                        "select_code": 1,
+                                                        "booking_tracking_id": "11177304475068881NMEBB",
+                                                        "airline_code": "J9",
+                                                        "origin": "KWI",
+                                                        "destination": "ADJ",
+                                                        "flight_number": "257",
+                                                        "departure_time": "2026-03-26T00:00:00",
+                                                        "baggage_for": "FullJourney",
+                                                        "uid": 1,
+                                                        "baggage_key": "MSFNQ0ZCUkZRLSFYQjIwISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "code": "XB20",
+                                                        "title": "20kg excess weight ONLY",
+                                                        "baggage_option": "not-available",
+                                                        "max_quantity": 1,
+                                                        "weight": 20,
+                                                        "pieces": 0,
+                                                        "RPH": [
+                                                            {
+                                                                "key": "MCFBRFQ-",
+                                                                "ssrKey": "MSFNQ0ZCUkZRLSFYQjIwISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                                "price": 56
+                                                            }
+                                                        ],
+                                                        "optional_a": "MSFNQ0ZCUkZRLSFYQjIwISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "optional_b": "MCFBRFQ-",
+                                                        "optional_c": "XB20",
+                                                        "optional_d": "MSFNQ0ZCUkZRLSFYQjIwISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "price": {
+                                                            "total": 22428.29,
+                                                            "currency": "BDT",
+                                                            "partner": {
+                                                                "total": 22428.29,
+                                                                "currency": "BDT"
+                                                            },
+                                                            "fmg": {
+                                                                "total": 184.37,
+                                                                "currency": "USD",
+                                                                "ssr_charge": 0
+                                                            },
+                                                            "supplier": {
+                                                                "total": 184.37,
+                                                                "currency": "USD"
+                                                            }
+                                                        },
+                                                        "Segments_JSON": {
+                                                            "@attributes": {
+                                                                "ArrivalDateTime": null,
+                                                                "DepartureDateTime": "2026-03-26T00:00:00",
+                                                                "FlightNumber": "257",
+                                                                "RPH": "",
+                                                                "SegmentCode": "",
+                                                                "returnFlag": "false"
+                                                            },
+                                                            "DepartureAirport": {
+                                                                "@attributes": {
+                                                                    "LocationCode": "KWI",
+                                                                    "Terminal": ""
+                                                                }
+                                                            },
+                                                            "ArrivalAirport": {
+                                                                "@attributes": {
+                                                                    "LocationCode": "ADJ",
+                                                                    "Terminal": ""
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "flight_group": 0,
+                                                        "routes": 0,
+                                                        "select_code": 2,
+                                                        "booking_tracking_id": "11177304475068881NMEBB",
+                                                        "airline_code": "J9",
+                                                        "origin": "KWI",
+                                                        "destination": "ADJ",
+                                                        "flight_number": "257",
+                                                        "departure_time": "2026-03-26T00:00:00",
+                                                        "baggage_for": "FullJourney",
+                                                        "uid": 2,
+                                                        "baggage_key": "MSFNQ0ZCUkZRLSFYQjEwISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "code": "XB10",
+                                                        "title": "10kg excess weight ONLY",
+                                                        "baggage_option": "not-available",
+                                                        "max_quantity": 1,
+                                                        "weight": 10,
+                                                        "pieces": 0,
+                                                        "RPH": [
+                                                            {
+                                                                "key": "MCFBRFQ-",
+                                                                "ssrKey": "MSFNQ0ZCUkZRLSFYQjEwISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                                "price": 14
+                                                            }
+                                                        ],
+                                                        "optional_a": "MSFNQ0ZCUkZRLSFYQjEwISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "optional_b": "MCFBRFQ-",
+                                                        "optional_c": "XB10",
+                                                        "optional_d": "MSFNQ0ZCUkZRLSFYQjEwISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "price": {
+                                                            "total": 5606.77,
+                                                            "currency": "BDT",
+                                                            "partner": {
+                                                                "total": 5606.77,
+                                                                "currency": "BDT"
+                                                            },
+                                                            "fmg": {
+                                                                "total": 46.09,
+                                                                "currency": "USD",
+                                                                "ssr_charge": 0
+                                                            },
+                                                            "supplier": {
+                                                                "total": 46.09,
+                                                                "currency": "USD"
+                                                            }
+                                                        },
+                                                        "Segments_JSON": {
+                                                            "@attributes": {
+                                                                "ArrivalDateTime": null,
+                                                                "DepartureDateTime": "2026-03-26T00:00:00",
+                                                                "FlightNumber": "257",
+                                                                "RPH": "",
+                                                                "SegmentCode": "",
+                                                                "returnFlag": "false"
+                                                            },
+                                                            "DepartureAirport": {
+                                                                "@attributes": {
+                                                                    "LocationCode": "KWI",
+                                                                    "Terminal": ""
+                                                                }
+                                                            },
+                                                            "ArrivalAirport": {
+                                                                "@attributes": {
+                                                                    "LocationCode": "ADJ",
+                                                                    "Terminal": ""
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "flight_group": 0,
+                                                        "routes": 0,
+                                                        "select_code": 3,
+                                                        "booking_tracking_id": "11177304475068881NMEBB",
+                                                        "airline_code": "J9",
+                                                        "origin": "KWI",
+                                                        "destination": "ADJ",
+                                                        "flight_number": "257",
+                                                        "departure_time": "2026-03-26T00:00:00",
+                                                        "baggage_for": "FullJourney",
+                                                        "uid": 3,
+                                                        "baggage_key": "MSFNQ0ZCUkZRLSFYQjA1ISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "code": "XB05",
+                                                        "title": "5kg excess weight ONLY",
+                                                        "baggage_option": "not-available",
+                                                        "max_quantity": 1,
+                                                        "weight": 5,
+                                                        "pieces": 0,
+                                                        "RPH": [
+                                                            {
+                                                                "key": "MCFBRFQ-",
+                                                                "ssrKey": "MSFNQ0ZCUkZRLSFYQjA1ISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                                "price": 7
+                                                            }
+                                                        ],
+                                                        "optional_a": "MSFNQ0ZCUkZRLSFYQjA1ISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "optional_b": "MCFBRFQ-",
+                                                        "optional_c": "XB05",
+                                                        "optional_d": "MSFNQ0ZCUkZRLSFYQjA1ISFBREohSjkhNjM5MTAwODAwMDAwMDAwMDAwIUtXSSEyNTchIA--",
+                                                        "price": {
+                                                            "total": 2803.99,
+                                                            "currency": "BDT",
+                                                            "partner": {
+                                                                "total": 2803.99,
+                                                                "currency": "BDT"
+                                                            },
+                                                            "fmg": {
+                                                                "total": 23.05,
+                                                                "currency": "USD",
+                                                                "ssr_charge": 0
+                                                            },
+                                                            "supplier": {
+                                                                "total": 23.05,
+                                                                "currency": "USD"
+                                                            }
+                                                        },
+                                                        "Segments_JSON": {
+                                                            "@attributes": {
+                                                                "ArrivalDateTime": null,
+                                                                "DepartureDateTime": "2026-03-26T00:00:00",
+                                                                "FlightNumber": "257",
+                                                                "RPH": "",
+                                                                "SegmentCode": "",
+                                                                "returnFlag": "false"
+                                                            },
+                                                            "DepartureAirport": {
+                                                                "@attributes": {
+                                                                    "LocationCode": "KWI",
+                                                                    "Terminal": ""
+                                                                }
+                                                            },
+                                                            "ArrivalAirport": {
+                                                                "@attributes": {
+                                                                    "LocationCode": "ADJ",
+                                                                    "Terminal": ""
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "json_file": "/var/www/alif/logs_data/flight_logs/11177304475068881NMEBB/baggage_options_data.json"
+                        }
 
                       
 
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+     
   /flight/update-baggage:
     post:
-      tags: [Flight]
+      tags: 
+        - Passenger & Ancillaries
       summary: Add or update baggage selections
       operationId: flightUpdateBaggage
       requestBody:
@@ -2076,11 +2760,11 @@ paths:
                               }
                     
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /flight/get-seat-option:
     post:
-      tags: [Flight]
+      tags: 
+        - Passenger & Ancillaries
       summary: Get seat map and seat options
       operationId: flightGetSeatOption
       requestBody:
@@ -2188,11 +2872,11 @@ paths:
                         ]
                     }
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /flight/update-seat:
     post:
-      tags: [Flight]
+      tags: 
+        - Passenger & Ancillaries
       summary: Update seat selections
       operationId: flightUpdateSeat
       requestBody:
@@ -2320,11 +3004,11 @@ paths:
                 
     
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+    
   /flight/get-meal-option:
     post:
-      tags: [Flight]
+      tags: 
+        - Passenger & Ancillaries
       summary: Get available meal options
       operationId: flightGetMealOption
       requestBody:
@@ -2475,11 +3159,11 @@ paths:
                       "json_file": "/var/www/alif/logs_data/flight_logs/11177304475068881NMEBB/meal_options_data.json"
                   }
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /flight/update-meals:
     post:
-      tags: [Flight]
+      tags: 
+        - Passenger & Ancillaries
       summary: Update selected meals
       operationId: flightUpdateMeals
       requestBody:
@@ -2621,11 +3305,11 @@ paths:
                       ]
                   }
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+  
   /flight/Booking details:
     post:
-      tags:  [Flight]
+      tags:  
+        - Booking Management
       summary: Booking details
       operationId: Bookingdetails
       requestBody:
@@ -3479,12 +4163,12 @@ paths:
                             "special_notice": null
                         }
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+       
   
   /flight/issue-ticket:
     post:
-      tags: [Flight]
+      tags: 
+        - Booking Management
       summary: Issue tickets for a validated booking
       operationId: flightIssueTicket
       requestBody:
@@ -4473,11 +5157,11 @@ paths:
                       }
                   }
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   /flight/cancel-booking:
     post:
-      tags: [Flight]
+      tags: 
+        - Booking Management
       summary: Cancel a flight booking
       operationId: flightCancelBooking
       requestBody:
@@ -5016,9 +5700,10 @@ paths:
                           }
                       }
                   }
+
+                  
         '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '500': { $ref: '#/components/responses/ServerError' }
+        
   
 components:
   securitySchemes:

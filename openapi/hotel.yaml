@@ -25,10 +25,54 @@ security:
   - apiKeyAuth: []
     secretCodeAuth: []
 paths:
-  /hotel/search-Multiple Adult-Child:
+
+  /hotel/auto-suggetion:
     post:
       tags: [Hotel]
-      summary: General hotel search by location and occupancies
+      summary: Get auto-suggestions for hotel search locations
+      operationId: hotelAutoSuggestion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - location
+              properties:
+                location:
+                    type: string
+                    description: Location name or partial name for hotel autocomplete/search
+                    example: "paris"
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  location: paris
+      responses:
+        '200':
+          description: Suggested locations and entities for hotel search
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              examples:
+                default:
+                  summary: Successful Auto-suggestion Response
+                  value:
+                  - location: "Paris, France"
+                  - location: "Paris, TX, USA"
+                  - location: "Paris Expo Porte de Versailles, Place de la Porte de Versailles, Paris, France"
+                  - location: "Paris Las Vegas, South Las Vegas Boulevard, Las Vegas, NV, USA"
+                  - location: "Paris Orly Airport (ORY), Orly, France"
+
+        '400': { $ref: '#/components/responses/BadRequest' }
+        
+  /hotel/search:
+    post:
+      tags: [Hotel]
+      summary: hotel search by location and occupancies
       operationId: hotelSearchGeneral
       requestBody:
         required: true
@@ -279,152 +323,8 @@ paths:
 
                             
         '400': { $ref: '#/components/responses/BadRequest' }
-        
-  /hotel/auto-suggetion:
-    post:
-      tags: [Hotel]
-      summary: Get auto-suggestions for hotel search locations
-      operationId: hotelAutoSuggestion
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - location
-              properties:
-                location:
-                    type: string
-                    description: Location name or partial name for hotel autocomplete/search
-                    example: "paris"
-              additionalProperties: true
-            examples:
-              default:
-                value:
-                  location: paris
-      responses:
-        '200':
-          description: Suggested locations and entities for hotel search
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-              examples:
-                default:
-                  summary: Successful Auto-suggestion Response
-                  value:
-                  - location: "Paris, France"
-                  - location: "Paris, TX, USA"
-                  - location: "Paris Expo Porte de Versailles, Place de la Porte de Versailles, Paris, France"
-                  - location: "Paris Las Vegas, South Las Vegas Boulevard, Las Vegas, NV, USA"
-                  - location: "Paris Orly Airport (ORY), Orly, France"
 
-        '400': { $ref: '#/components/responses/BadRequest' }
-        
-  /hotel/search-Single Adult:
-    post:
-      tags: [Hotel]
-      summary: Search hotel availability
-      operationId: hotelSearch
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - hotel_id
-                - checkIn
-                - checkOut
-                - occupancies
-              properties:
-                 hotel_id:
-                   type: string
-                   description: Unique hotel identifier
-                   example: "H1EA00004#17350009"
-                 checkIn:
-                   type: string
-                   format: date
-                   description: Check-in date (YYYY-MM-DD)
-                   example: "2026-03-15"
-                 checkOut:
-                   type: string
-                   format: date
-                   description: Check-out date (YYYY-MM-DD)
-                   example: "2026-03-16"
-                 occupancies:
-                  type: array
-                  description: Room occupancies
-                  items:
-                    type: object
-                    required:
-                      - adult
-                    properties:
-                      adult:
-                        type: string
-                        description: Number of adults in the room
-                        example: "2"
-                      child:
-                        type: string
-                        description: Number of children (optional)
-                        example: "1"
-                      child_age:
-                        type: array
-                        description: Ages of children (if any)
-                      items:
-                        type: string
-                        example: "3"
-                 guest_nationality:
-                        type: string
-                        description: Nationality of the guest (ISO country code)
-                        example: "BD"
-              additionalProperties: true
-            examples:
-              oneRoom:
-                value:
-                  location: Dhaka, Bangladesh
-                  radius: auto
-                  checkIn: 2025-07-11
-                  checkOut: 2025-07-12
-                  occupancies:
-                    - adult: "2"
-                  guest_nationality: AE
-                  hotel_star_level: any
-                  supplier_uid: H1RL00028
-                  partner_id: "1"
-                  language: en
-              twoRooms:
-                value:
-                  location: dubai
-                  radius: auto
-                  checkIn: 2025-05-15
-                  checkOut: 2025-05-16
-                  occupancies:
-                    - adult: "2"
-                    - adult: "2"
-                  guest_nationality: BD
-                  hotel_star_level: any
-                  search_currency: any
-                  supplier_uid: H1RL00018
-                  partner_id: "1"
-                  language: en
-      responses:
-        '200':
-          description: Hotel availability results with mapped hotel inventory
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-              examples:
-               default:
-                summary: Successful Search Response
-                value:
-        '400': { $ref: '#/components/responses/BadRequest' }
-
-  /hotel/Single Hotel Availability:
+  /hotel/rooms:
     post:
       tags: [Hotel]
       summary: Single Hotel availability for a specific hotel and room.
@@ -508,58 +408,365 @@ paths:
                default:
                 summary: Successful Hotel Availability Search Response.
                 value:
-                      "status": "success"
-                      "tracking_id": "11177173361626194GBVQR"
-                      "search_parameter": 
-                          "hotel_id": "H1EA00004#17350009"
-                          "checkIn": "2026-03-15"
-                          "checkOut": "2026-03-16"
-                          "total_night": "1"
-                          "total_room": 2,
-                          "total_adult": 4,
-                          "total_child": 0,
-                          "occupancies": [
-                              {
-                                  "room": 1,
-                                  "adult": "2",
-                                  "child": ""
-                              },
-                              {
-                                  "room": 2,
-                                  "adult": "2",
-                                  "child": ""
-                              }
-                          ]
-                          "guest_nationality": "BD"
-                          "country_code": null
-                          "session_expire": 
-                                "timestamp": 1771735418,
-                                "datetime": "2026-02-22 10:43:38 +06"
-                                "message": "The booking process should be completed by no later than 2026-02-22 10:43:38 +06."
-                          "data": 
-                                "total_rooms": 0,
-                                "conncted_all_supplier": [
-                                      {
-                                          "VervotechId": 15712948,
-                                          "hotel_id": "17350009",
-                                          "supplier_code": "ean"
-                                      },
-                                      {
-                                          "VervotechId": "15712948",
-                                          "hotel_id": "1674896",
-                                          "supplier_code": "tbohotel"
-                                      }
-                                  ]
-                                "rooms": []
-                          "short_ref": "https://temp-logs.b2b.innovatedemo.com/hotel_logs/room_logs/.json"
+                      {
+                            "status": "success",
+                            "tracking_id": "11170398842026238CWCML",
+                            "search_parameter": {
+                                "hotel_id": "H10004#770081",
+                                "checkIn": "2024-02-11",
+                                "checkOut": "2024-02-12",
+                                "occupancies": [
+                                    {
+                                        "adult": "1"
+                                    }
+                                ],
+                                "guest_nationality": "SG",
+                                "total_night": "1"
+                            },
+                            "session_expire": {
+                                "timestamp": 1703990222,
+                                "datetime": "2023-12-31 10:37:02 +08",
+                                "message": "The booking process should be completed by no later than 2023-12-31 10:37:02 +08."
+                            },
+                            "response_data": [
+                                {
+                                    "tracking_id": "11170398842026238CWCML",
+                                    "room_tracking_id": "11170398842026238CWCML-hotelbeds-0",
+                                    "supplier_partner_code": "hotelbeds-1-0004",
+                                    "supplier_code": "hotelbeds",
+                                    "total_amount": 77.77,
+                                    "sell_total_price": 77.77,
+                                    "currency": "USD",
+                                    "sales_comission": null,
+                                    "customer_markup_policy": {
+                                        "Id": "2",
+                                        "ftm_partner_id": "1",
+                                        "partner_name": null,
+                                        "supplier_type": "HOTEL",
+                                        "on_base_fare_ratio_markup": "0.00",
+                                        "on_base_fare_ratio_discount": "0.00",
+                                        "on_base_fare_fixed_markup": "0.00",
+                                        "on_tax_ratio_markup": "0.00",
+                                        "on_tax_fixed_markup": "0.00",
+                                        "cancellation_buffer_days": "0",
+                                        "ssr_charge_ratio": "0.00",
+                                        "ssr_charge_markup": "0.00",
+                                        "timestamp": null,
+                                        "last_update": null,
+                                        "markup_min_active": "disable",
+                                        "markup_min": "0.00",
+                                        "markup_max_active": "disable",
+                                        "markup_max": "0.00",
+                                        "ticket_issue_charge": "0.00",
+                                        "penalty_markup": "0.00"
+                                    },
+                                    "data": [
+                                        {
+                                            "uid": 0,
+                                            "room_id": "SUI.DX-KG",
+                                            "room_name": "Deluxe King Suite",
+                                            "hotel_id": 770081,
+                                            "supplier": "hotelbeds",
+                                            "hold_possible": "yes",
+                                            "rate_id": "20240211|20240212|W|321|770081|SUI.DX-KG|GC-ALL|RO||1~1~0||N@06~~2226a~1868699188~N~~~NOR~BD45516EE9C545C170398842092100AASG000000100000000052226a",
+                                            "rate_code": "RO",
+                                            "rate_type": "ROOM ONLY",
+                                            "rate_class": "NOR",
+                                            "availability": "BOOKABLE",
+                                            "available_rooms": 2,
+                                            "refundable": null,
+                                            "occupancies": {
+                                                "total_room": 1,
+                                                "total_guest": 1,
+                                                "adults": 1,
+                                                "children": 0
+                                            },
+                                            "amenities": null,
+                                            "amenities_list": [
+                                                ""
+                                            ],
+                                            "price": 77.77,
+                                            "sell": 77.77,
+                                            "currency": "USD",
+                                            "price_breakdown": {
+                                                "total": {
+                                                    "purchase": {
+                                                        "price": 77.77,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 77.77,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": 106.34,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "supplier": {
+                                                        "price": "106.34",
+                                                        "currency": "SGD"
+                                                    }
+                                                },
+                                                "base_fare": {
+                                                    "purchase": {
+                                                        "price": 77.77,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 77.77,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": 106.34,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "supplier": {
+                                                        "price": "106.34",
+                                                        "currency": "SGD"
+                                                    }
+                                                },
+                                                "tax": {
+                                                    "purchase": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": 0,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "buy": {
+                                                        "price": 0,
+                                                        "currency": "SGD"
+                                                    }
+                                                },
+                                                "stay_tax": {
+                                                    "purchase": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": null,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "buy": {
+                                                        "price": null,
+                                                        "currency": "SGD"
+                                                    }
+                                                },
+                                                "extra_person_fee": {
+                                                    "purchase": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": 0,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "buy": {
+                                                        "price": 0,
+                                                        "currency": "SGD"
+                                                    }
+                                                }
+                                            },
+                                            "bed": {
+                                                "bed_type": "1 King Bed",
+                                                "bed_icon": "bed.svg",
+                                                "bed_type_guarantee": ""
+                                            },
+                                            "cancellation_policies": {
+                                                "auto_cancel": "2023-12-31T10:07:02+08:00",
+                                                "summery": "non refundable",
+                                                "cancellation_buffer_days": "0"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tracking_id": "11170398842026238CWCML",
+                                    "room_tracking_id": "11170398842026238CWCML-hotelbeds-1",
+                                    "supplier_partner_code": "hotelbeds-1-0004",
+                                    "supplier_code": "hotelbeds",
+                                    "total_amount": 83.75,
+                                    "sell_total_price": 83.75,
+                                    "currency": "USD",
+                                    "sales_comission": null,
+                                    "customer_markup_policy": {
+                                        "Id": "2",
+                                        "ftm_partner_id": "1",
+                                        "partner_name": null,
+                                        "supplier_type": "HOTEL",
+                                        "on_base_fare_ratio_markup": "0.00",
+                                        "on_base_fare_ratio_discount": "0.00",
+                                        "on_base_fare_fixed_markup": "0.00",
+                                        "on_tax_ratio_markup": "0.00",
+                                        "on_tax_fixed_markup": "0.00",
+                                        "cancellation_buffer_days": "0",
+                                        "ssr_charge_ratio": "0.00",
+                                        "ssr_charge_markup": "0.00",
+                                        "timestamp": null,
+                                        "last_update": null,
+                                        "markup_min_active": "disable",
+                                        "markup_min": "0.00",
+                                        "markup_max_active": "disable",
+                                        "markup_max": "0.00",
+                                        "ticket_issue_charge": "0.00",
+                                        "penalty_markup": "0.00"
+                                    },
+                                    "data": [
+                                        {
+                                            "uid": 1,
+                                            "room_id": "DBL.DX-GD",
+                                            "room_name": "Grand Deluxe King Suite",
+                                            "hotel_id": 770081,
+                                            "supplier": "hotelbeds",
+                                            "hold_possible": "yes",
+                                            "rate_id": "20240211|20240212|W|321|770081|DBL.DX-GD|GC-ALL|RO||1~1~0||N@06~~23472~-1518448322~N~~~NOR~BD45516EE9C545C170398842092100AASG0000001000000000523472",
+                                            "rate_code": "RO",
+                                            "rate_type": "ROOM ONLY",
+                                            "rate_class": "NOR",
+                                            "availability": "BOOKABLE",
+                                            "available_rooms": 2,
+                                            "refundable": null,
+                                            "occupancies": {
+                                                "total_room": 1,
+                                                "total_guest": 1,
+                                                "adults": 1,
+                                                "children": 0
+                                            },
+                                            "amenities": null,
+                                            "amenities_list": [
+                                                ""
+                                            ],
+                                            "price": 83.75,
+                                            "sell": 83.75,
+                                            "currency": "USD",
+                                            "price_breakdown": {
+                                                "total": {
+                                                    "purchase": {
+                                                        "price": 83.75,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 83.75,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": 114.52,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "supplier": {
+                                                        "price": "114.52",
+                                                        "currency": "SGD"
+                                                    }
+                                                },
+                                                "base_fare": {
+                                                    "purchase": {
+                                                        "price": 83.75,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 83.75,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": 114.52,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "supplier": {
+                                                        "price": "114.52",
+                                                        "currency": "SGD"
+                                                    }
+                                                },
+                                                "tax": {
+                                                    "purchase": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": 0,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "buy": {
+                                                        "price": 0,
+                                                        "currency": "SGD"
+                                                    }
+                                                },
+                                                "stay_tax": {
+                                                    "purchase": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": null,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "buy": {
+                                                        "price": null,
+                                                        "currency": "SGD"
+                                                    }
+                                                },
+                                                "extra_person_fee": {
+                                                    "purchase": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "sell": {
+                                                        "price": 0,
+                                                        "currency": "USD"
+                                                    },
+                                                    "fmg": {
+                                                        "price": 0,
+                                                        "currency": "SGD"
+                                                    },
+                                                    "buy": {
+                                                        "price": 0,
+                                                        "currency": "SGD"
+                                                    }
+                                                }
+                                            },
+                                            "bed": {
+                                                "bed_type": "1 King Bed",
+                                                "bed_icon": "bed.svg",
+                                                "bed_type_guarantee": ""
+                                            },
+                                            "cancellation_policies": {
+                                                "auto_cancel": "2023-12-31T10:07:02+08:00",
+                                                "summery": "non refundable",
+                                                "cancellation_buffer_days": "0"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
 
 
         '400': { $ref: '#/components/responses/BadRequest' }
        
-  /hotel/Single hotel Details Content:
+  /hotel/get-hotel-details:
     post:
       tags: [Hotel]
-      summary: Single hotel Details Content Check.
+      summary: Single hotel Details Content.
       operationId: hotel Details Content
       requestBody:
         required: true
@@ -783,10 +990,10 @@ paths:
                                   
         '400': { $ref: '#/components/responses/BadRequest' }
         
-  /hotel/Price and Policy validation:
+  /hotel/validate:
     post:
       tags: [Hotel]
-      summary: Get Price and Policy validation validation details
+      summary: Get Price and Policy validation validation details.
       operationId: hotelPricePolicyValidation
       requestBody:
         required: true
@@ -1087,7 +1294,7 @@ paths:
                                     book_now_pay_later: "no"
         '400': { $ref: '#/components/responses/BadRequest' }
        
-  /hotel/Get-Price-validation-detail:
+  /hotel/validation-price-get-detail:
     post:
       tags: [Hotel]
       summary: Get Get-Price validation details
@@ -1528,10 +1735,10 @@ paths:
                                                               
         '400': { $ref: '#/components/responses/BadRequest' }
        
-  /hotel/Update travellers info:
+  /hotel/update-travellers:
     post:
       tags: [Hotel]
-      summary: Update travellers info for a hotel booking
+      summary: Update travellers for a booking.
       operationId: hotelUpdateTravellersInfo
       requestBody:
         required: true
@@ -1710,10 +1917,10 @@ paths:
 
         '400': { $ref: '#/components/responses/BadRequest' }
        
-  /hotel/create Booking:
+  /hotel/create:
     post:
       tags: [Hotel]
-      summary: Validate hotel room price and policy
+      summary: Create booking.
       operationId: hotelValidate
       requestBody:
         required: true
@@ -2502,10 +2709,10 @@ paths:
                 additionalProperties: true
         '401': { $ref: '#/components/responses/Unauthorized' }
         
-  /hotel/Booking Details:
+  /hotel/booking-details:
     post:
       tags: [Hotel]
-      summary: Search hotel availability
+      summary: Get details of a specific booking.
       operationId: hotelSearch
       requestBody:
         required: true
@@ -2559,7 +2766,7 @@ paths:
   /hotel/issue-voucher:
     post:
       tags: [Hotel]
-      summary: issue-voucher for hotel booking.
+      summary: issue-voucher for booking.
       operationId: hotelIssueVoucher
       requestBody:
         required: true
@@ -2640,7 +2847,7 @@ paths:
                         }
         '400': { $ref: '#/components/responses/BadRequest' }
         
-  /hotel/Cancel Booking:
+  /hotel/cancel-booking:
     post:
       tags: [Hotel]
       summary: Cancel hotel booking.
