@@ -28,7 +28,8 @@ paths:
 
   /hotel/auto-suggetion:
     post:
-      tags: [Hotel]
+      tags: 
+      - Hotel Search & Pricing
       summary: Get auto-suggestions for hotel search locations
       operationId: hotelAutoSuggestion
       requestBody:
@@ -58,20 +59,27 @@ paths:
                 type: object
                 additionalProperties: true
               examples:
-                default:
+                successful_suggestion:
                   summary: Successful Auto-suggestion Response
                   value:
-                  - location: "Paris, France"
-                  - location: "Paris, TX, USA"
-                  - location: "Paris Expo Porte de Versailles, Place de la Porte de Versailles, Paris, France"
-                  - location: "Paris Las Vegas, South Las Vegas Boulevard, Las Vegas, NV, USA"
-                  - location: "Paris Orly Airport (ORY), Orly, France"
+                      - location: "Paris, France"
+                      - location: "Paris, TX, USA"
+                      - location: "Paris Expo Porte de Versailles, Place de la Porte de Versailles, Paris, France"
+                      - location: "Paris Las Vegas, South Las Vegas Boulevard, Las Vegas, NV, USA"
+                      - location: "Paris Orly Airport (ORY), Orly, France"
+
+                invalid_location_length:
+                  summary: Location name too short
+                  value:
+                    status: "failed"
+                    reason: "Location name must be more than 4 characters"
 
         
         
   /hotel/search:
     post:
-      tags: [Hotel]
+      tags: 
+      - Hotel Search & Pricing
       summary: hotel search by location and occupancies
       operationId: hotelSearchGeneral
       requestBody:
@@ -197,16 +205,17 @@ paths:
                   language: en
       responses:
         '200':
-          description: General hotel search results 
+          description: Hotel search results response
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties: true
+               type: object
+               additionalProperties: true
               examples:
-               default:
-                summary: Successful Search Response
-                value: 
+                successful_hotel_search:
+                  summary: Successful hotel search response
+                  value:
+              
                         "status": "success"
                         "reason": "Your destination search yielded results for 194 hotels."
                         "tracking_id": "11177173317126194WKNKI"
@@ -321,12 +330,27 @@ paths:
                               ]
                               "search_result_logs_url": "https://temp-logs.b2b.innovatedemo.com/hotel_logs/11177173317126194WKNKI/search_result.json"
 
+                invalid_checkin_date:
+                  summary: Invalid Check-In Date
+                  value:
+                    status: "failed"
+                    reason: "You need to provide a current or future Check-In Date"
+
+                authorization_failed:
+                  summary: Authorization Failed (Warning)
+                  value:
+                    status: "failed"
+                    is_warning: "yes"
+                    reason: "You do not have authorization to book through . Please reach out to the Support team for assistance."
+                    reason_admin: " Book Hotel is Disable"
+
                             
         
 
   /hotel/rooms:
     post:
-      tags: [Hotel]
+      tags: 
+      - Hotel Search & Pricing
       summary: Single Hotel availability for a specific hotel and room.
       operationId: hotelRooms
       requestBody:
@@ -405,10 +429,11 @@ paths:
                 type: object
                 additionalProperties: true
               examples:
-               default:
-                summary: Successful Hotel Availability Search Response.
-                value:
-                      {
+                successful_hotel_rooms:
+                  summary: Successful Hotel Availability Search Response.
+                  value:
+                    
+                            {
                             "status": "success",
                             "tracking_id": "11170398842026238CWCML",
                             "search_parameter": {
@@ -759,12 +784,24 @@ paths:
                                 }
                             ]
                         }
+                invalid_checkin_date:
+                  summary: Invalid Check-In Date
+                  value:
+                    status: "failed"
+                    reason: "You need to provide future or current Check-In Date"
+
+                partner_validation_failed:
+                  summary: Partner Search Target Validation Failed
+                  value:
+                    status: "failed"
+                    reason: "The validation for the source of the partner search target has failed. Please contact the administrator for assistance."
 
 
        
   /hotel/get-hotel-details:
     post:
-      tags: [Hotel]
+      tags: 
+      - Hotel Search & Pricing
       summary: Single hotel Details Content.
       operationId: hotel Details Content
       requestBody:
@@ -794,7 +831,7 @@ paths:
                 type: object
                 additionalProperties: true
               examples:
-               default: 
+                successful_hotel_details:
                   summary: Successful Hotel Details Content Response
                   value:
                         "status": "success"
@@ -982,7 +1019,17 @@ paths:
                                                         "code": null,
                                                         "name": "Bangladesh Army Stadium"
                                                     }
-                                                
+                hotel_id_required_error:
+                  summary: Hotel ID Required Error
+                  value:
+                    status: "failed"
+                    hotel_id: "HLMAD100"
+                    supplier_code: null
+                    travelgate_supplier_code: null
+                    last_update: null
+                    data:
+                      status: "failed"
+                      reason: "hotel_id data is required."
                                                   
                                           
 
@@ -991,7 +1038,8 @@ paths:
         
   /hotel/validate:
     post:
-      tags: [Hotel]
+      tags: 
+      - Hotel Search & Pricing
       summary: Get Price and Policy validation validation details.
       operationId: hotelPricePolicyValidation
       requestBody:
@@ -1291,11 +1339,19 @@ paths:
                                     policy_breakdown: []
                                     post_booking_process: "auto"
                                     book_now_pay_later: "no"
+                validation_expired_error:
+                  summary: Room Tracking ID Invalid or Expired
+                  value:
+                    status: "failed"
+                    reason: "Validation failed. The room tracking ID is either invalid or has expired."
+                    data: null
+
      
        
   /hotel/validation-price-get-detail:
     post:
-      tags: [Hotel]
+      tags: 
+      - Hotel Search & Pricing
       summary: Get Get-Price validation details
       operationId: Get-Price-validation-detail
       requestBody:
@@ -1326,16 +1382,17 @@ paths:
                   member_id: "1"
       responses:
         '200':
-          description: Validation details for selected hotel room
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-              examples:
-                default:
-                  summary: Successful Get-price Validation Detail Response.
-                  value:
+            description: Validation details for selected hotel room
+            content:
+              application/json:
+                schema:
+                  type: object
+                  additionalProperties: true
+                examples:
+                  successful_validation_detail:
+                    summary: Successful Get-price Validation Detail Response.
+                    value:
+
                          "status": "success"
                          "booking_tracking_id": "111771747633261941E6VT"
                          "tracking_id": "11177174741026194FHMV2"
@@ -1727,6 +1784,29 @@ paths:
                                       "train_stations": null,
                                       "connected_locations": null,
                                       "stadiums": null
+                  hotel_id_missing_error:
+                    summary: Hotel ID Missing in Validation Detail
+                    value:
+                      status: null
+                      booking_tracking_id: null
+                      tracking_id: null
+                      room_tracking_id: null
+                      price_change: null
+                      search_price: null
+                      validation_price: null
+                      session_expire: null
+                      search_parameter: null
+                      data: null
+                      guest_data: []
+                      hotel_contents:
+                        status: "failed"
+                        hotel_id: null
+                        supplier_code: null
+                        travelgate_supplier_code: null
+                        last_update: null
+                        data:
+                          status: "failed"
+                          reason: "hotel_id data is required."
                                   
           
                                     
@@ -1736,7 +1816,8 @@ paths:
        
   /hotel/update-travellers:
     post:
-      tags: [Hotel]
+      tags: 
+      - Guest & Information Updates
       summary: Update travellers for a booking.
       operationId: hotelUpdateTravellersInfo
       requestBody:
@@ -1868,14 +1949,14 @@ paths:
                           }
       responses:
         '200':
-          description: Hotel content including photos, facilities and policy text
+          description: Update hotel guest/traveller information
           content:
             application/json:
               schema:
                 type: object
                 additionalProperties: true
               examples:
-                default:
+                successful_traveller_update:
                   summary: Successful Update travellers info Response.
                   value:
                          "status": "success"
@@ -1912,12 +1993,21 @@ paths:
                                 "supplement_data": "{\"selected_date\":null,\"arrival_date\":null,\"arrival_time\":null,\"arrival_flight_no\":null,\"to_city_name\":null,\"departure_date\":null,\"departure_time\":null,\"departure_flight_no\":null,\"from_city_name\":null}"
                             },
                          ]
+                invalid_guest_quantity:
+                  summary: Invalid guest quantity error
+                  value:
+                    status: "failed"
+                    reason: "The guest quantity provided is not valid. You have submitted data for 4 guest, but the required guest data is for 0 individuals."
+                    tracking_id: "11176295152226194N5YLE"
+                    submitted_total_guest: 4
+                    required_total_guest: 0
 
 
        
   /hotel/create:
     post:
-      tags: [Hotel]
+      tags: 
+      - Booking Management
       summary: Create booking.
       operationId: hotelValidate
       requestBody:
@@ -2014,14 +2104,14 @@ paths:
                   "special_requests_notes": "n/a"
       responses:
         '200':
-          description: Validation result with updated price and cancellation rules
+          description: Response for final hotel booking creation and PNR generation.
           content:
             application/json:
               schema:
                 type: object
                 additionalProperties: true
               examples:
-                default:
+                successful_booking:
                   summary: Successful Create Booking Response.
                   value:
                         "status": "success"
@@ -2693,23 +2783,39 @@ paths:
                               "status": "disable",
                               "text": null
                           } 
+                price_validation_failed:
+                  summary: Price Validation Failed
+                  value:
+                    status: "failed"
+                    reason: "Price Validation is failed."
+
+                invalid_guest_quantity:
+                  summary: Invalid guest quantity error
+                  value:
+                    status: "failed"
+                    reason: "The guest quantity provided is not valid. You have submitted data for 4 guest, but the required guest data is for 0 individuals."
+                    tracking_id: "gdfgdfg"
+                    submitted_total_guest: 4
+                    required_total_guest: 0
+
+                authorization_failed:
+                  summary: Authorization Failed (Warning)
+                  value:
+                    status: "failed"
+                    is_warning: "yes"
+                    reason: "You do not have authorization to book through . Please reach out to the Support team for assistance."
+                    reason_admin: " Book Hotel is Disable"
                         
                                                                                                    
                                           
                                     
                                     
-        '400':
-          description: Validation failed or bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-        '401': { $ref: '#/components/responses/Unauthorized' }
+        
         
   /hotel/booking-details:
     post:
-      tags: [Hotel]
+      tags: 
+      - Booking Management
       summary: Get details of a specific booking.
       operationId: hotelSearch
       requestBody:
@@ -2749,21 +2855,131 @@ paths:
                  }
       responses:
         '200':
-          description: Hotel availability results with mapped hotel inventory
+          description: Detailed information about a specific hotel booking including voucher and hotel content.
           content:
             application/json:
               schema:
                 type: object
                 additionalProperties: true
               examples:
-               default:
-                summary: Successful Search Response
-                value:
+                successful_booking_details:
+                  summary: Successful Booking Details Response
+                  value:
+                      {
+                            "status": "string (success/failed)",
+                            "reason": "string",
+                            "tracking_id": "string",
+                            "booking_id": "string",
+                            "pay_tracking_id": "string or null",
+                            "sendGTMEvent": "boolean",
+                            "gateway_trx_id": "string or null",
+                            "general": {
+                                "service_type": "string",
+                                "service_details": "string",
+                                "booking_remarks": "string or null",
+                                "generated_date": "string (YYYY-MM-DD)",
+                                "partner_id": "string/int",
+                                "master_partner_id": "string/int",
+                                "branch_id": "string",
+                                "tracking_id": "string",
+                                "booking_id": "string",
+                                "hotel_ref_id": "string or null",
+                                "supplier_confirmation_id": "string",
+                                "supplier_others_id_a": "string (UUID)",
+                                "supplier_others_id_b": "null",
+                                "member_id": "string",
+                                "book_by": "string",
+                                "timestamp": "string (Unix Timestamp)",
+                                "last_update": "string (Unix Timestamp)",
+                                "voucher": {
+                                    "show_supplier_option": "string (yes/no)"
+                                }
+                            },
+                            "voucher": {
+                                "can_view_download": "string (yes/no)",
+                                "link": "string (URL)",
+                                "pdf": "string (URL)",
+                                "pdf_with_price": "string (URL)",
+                                "show_supplier_option": "string (yes/no)",
+                                "qr_code": "string (show/hide)"
+                            },
+                            "booking": {
+                                "status": "string",
+                                "booking_status": "string (confirm/pending/cancel)",
+                                "booking_supplier_status": "string",
+                                "voucher_status": "string (issued/pending)",
+                                "payment_status": "string",
+                                "auto_cancel": "string (ISO Date)",
+                                "auto_cancel_timestamp": "string (Unix Timestamp)"
+                            },
+                            "price": {
+                                "currency": "string (e.g., BDT)",
+                                "total_amount": "string/float",
+                                "sell_total_price": "string/float",
+                                "sales_comission": "string or null",
+                                "applied_comission_ratio": "string/int"
+                            },
+                            "hotel": {
+                                "search_parameter": {
+                                    "hotel_id": "string",
+                                    "checkIn": "string (YYYY-MM-DD)",
+                                    "checkOut": "string (YYYY-MM-DD)",
+                                    "total_night": "string/int",
+                                    "total_room": "integer",
+                                    "total_adult": "integer",
+                                    "total_child": "integer",
+                                    "occupancies": "array of objects",
+                                    "guest_nationality": "string (ISO Country Code)"
+                                },
+                                "room": {
+                                    "summery": {
+                                        "title": "string",
+                                        "room_category": "string",
+                                        "total_amount": "float/double",
+                                        "hold_possible": "string (yes/no)"
+                                    },
+                                    "data": "array of objects (Individual room details)",
+                                    "post_booking_process": "string (auto/manual)"
+                                },
+                                "hotel_contents": {
+                                    "hotel_id": "string",
+                                    "name": "string",
+                                    "star_rating": "integer",
+                                    "primary_photo": "string (URL)",
+                                    "address": {
+                                        "latitude": "float",
+                                        "longitude": "float",
+                                        "full_address": "string"
+                                    },
+                                    "contacts": {
+                                        "phone_numbers": "array of strings",
+                                        "email_address": "array of strings"
+                                    },
+                                    "facilities": "array of objects (icons and titles)",
+                                    "hotel_photo": "array of objects (URLs and titles)"
+                                }
+                            }
+                        }
+                no_booking_found:
+                  summary: No booking data found error
+                  value:
+                    status: "failed"
+                    reason: "no booking data found"
+                    reason_admin: "no booking data available in the table"
+
+                authorization_failed:
+                  summary: Authorization Failed (Warning)
+                  value:
+                    status: "failed"
+                    is_warning: "yes"
+                    reason: "You do not have authorization to view this booking. Please reach out to the Support team for assistance."
+                    reason_admin: "View Booking is Disable"
        
         
   /hotel/issue-voucher:
     post:
-      tags: [Hotel]
+      tags: 
+      - Booking Management
       summary: issue-voucher for booking.
       operationId: hotelIssueVoucher
       requestBody:
@@ -2810,44 +3026,60 @@ paths:
                   "notes": "not required"
       responses:
         '200':
-          description: Successfully issued voucher
+          description: Successfully issued voucher and generated PDF links.
           content:
             application/json:
               schema:
                 type: object
                 additionalProperties: true
               examples:
-               default:
-                summary: Successful Issue Voucher Response
-                value:
-                  "status": "success"
-                  "reason": "The booking has been successfully Issue voucher"
-                  "reason_admin": null,
-                  "tracking_id": "11177251811403210FPDT2"
-                  "booking_status": "confirm"
-                  "pax_ticket_data": null,
-                  "supplier_confirmation_id": null,
-                  "past_booking_details": 
-                      "last_update": "1772518220"
-                      "tracking_id": "11177251811403210FPDT2"
-                      "booking_id": "HO2603MA6SACYB"
-                      "supplier_confirmation_id": "370036221"
-                      "airlines_pnr": null,
-                      "service_type": "HOTEL"
-                      "status": "confirm"
-                      "booking_status": "confirm"
-                      "generated_date": "2026-03-03"
-                  "Execute_Data": {
-                      "status": "success",
-                      "booking_status": "confirm",
-                      "reason": "The booking has been successfully Issue voucher",
-                      "booking_supplier_status": "ok"
-                        }
-        
+                successful_issue_voucher:
+                  summary: Successful Issue Voucher Response
+                  value:
+                        "status": "success"
+                        "reason": "The booking has been successfully Issue voucher"
+                        "reason_admin": null,
+                        "tracking_id": "11177251811403210FPDT2"
+                        "booking_status": "confirm"
+                        "pax_ticket_data": null,
+                        "supplier_confirmation_id": null,
+                        "past_booking_details": 
+                            "last_update": "1772518220"
+                            "tracking_id": "11177251811403210FPDT2"
+                            "booking_id": "HO2603MA6SACYB"
+                            "supplier_confirmation_id": "370036221"
+                            "airlines_pnr": null,
+                            "service_type": "HOTEL"
+                            "status": "confirm"
+                            "booking_status": "confirm"
+                            "generated_date": "2026-03-03"
+                        "Execute_Data": {
+                            "status": "success",
+                            "booking_status": "confirm",
+                            "reason": "The booking has been successfully Issue voucher",
+                            "booking_supplier_status": "ok"
+                              }
+                no_booking_data_found:
+                  summary: No booking data found for issuance
+                  value:
+                    status: "failed"
+                    reason: "no booking data found for tracking_id 11174066310326193J17FV "
+                    reason_admin: "no booking data found for tracking_id 11174066310326193J17FV "
+                    tracking_id: "11174066310326193J17FV"
+
+                authorization_failed:
+                  summary: Authorization Failed (Warning)
+                  value:
+                    status: "failed"
+                    is_warning: "yes"
+                    reason: "You do not have authorization to issue voucher. Please reach out to the Support team for assistance."
+                    reason_admin: "Issue Voucher is Disable"
+              
         
   /hotel/cancel-booking:
     post:
-      tags: [Hotel]
+      tags: 
+      - Booking Management
       summary: Cancel hotel booking.
       operationId: hotelCancelBooking
       requestBody:
@@ -2914,6 +3146,21 @@ paths:
                       "booking_status": "cancel",
                       "generated_date": "2026-03-03"
                   } 
+               no_booking_data_found:
+                  summary: No booking data found for issuance
+                  value:
+                    status: "failed"
+                    reason: "no booking data found for tracking_id 11174066310326193J17FV "
+                    reason_admin: "no booking data found for tracking_id 11174066310326193J17FV "
+                    tracking_id: "11174066310326193J17FV"
+
+               authorization_failed:
+                  summary: Authorization Failed (Warning)
+                  value:
+                    status: "failed"
+                    is_warning: "yes"
+                    reason: "You do not have authorization to issue voucher. Please reach out to the Support team for assistance."
+                    reason_admin: "Issue Voucher is Disable"
         
         
 components:
