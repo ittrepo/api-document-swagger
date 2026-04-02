@@ -27,7 +27,8 @@ security:
 paths:
   /Transfer/Transfer Search:
     post:
-      tags: [Transfer]
+      tags: 
+        - Transfer Search
       summary: Search for transfers.
       operationId: TransferSearch
       requestBody:
@@ -407,9 +408,10 @@ paths:
 
         
       
-  /Transfeer/Single Transfer Search:
+  /Transfer/Single Transfer Search:
     post:
-      tags: [Transfer]
+      tags: 
+        - Transfer Search
       summary: Search for Single transfers.
       operationId: SingleTransferSearch
       requestBody:
@@ -668,7 +670,8 @@ paths:
 
   /Transfer/Update Traveler Info:
     post:
-      tags: [Transfer]
+      tags: 
+        - Transfer Search
       summary: Update traveler information for existing transfers.
       operationId: UpdateTravelerInfo
       requestBody:
@@ -838,9 +841,10 @@ paths:
                     }
        
         
-  /Transfeer/Create Booking:
+  /Transfer/Create Booking:
     post:
-      tags: [Transfer]
+      tags: 
+        - Transfer Booking
       summary: Search for Create Booking.
       operationId: CreatebookingSearch
       requestBody:
@@ -1596,7 +1600,8 @@ paths:
        
   /Transfer/Cancel Booking:
     post:
-      tags: [Transfer]
+      tags: 
+        - Transfer Management
       summary: Cancel Booking
       operationId: cancelbooking
       requestBody:
@@ -1765,7 +1770,8 @@ paths:
       
   /Transfer/Booking details:
     post:
-      tags:  [Transfer]
+      tags:  
+        - Transfer Management
       summary: Booking details
       operationId: Bookingdetails
       requestBody:

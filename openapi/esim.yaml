@@ -27,7 +27,8 @@ security:
 paths:
   /esim/search:
     post:
-      tags: [eSim]
+      tags: 
+        - eSIM Search & Inquiry
       summary: Search eSIM plans
       operationId: esimSearch
       requestBody:
@@ -327,7 +328,8 @@ paths:
        
   /esim/single-esim-package:
     post:
-      tags: [eSim]
+      tags: 
+        - eSIM Search & Inquiry
       summary: Get single eSIM package
       operationId: singleEsimPackage
       requestBody:
@@ -523,7 +525,8 @@ paths:
         
   /esim/update-customer:
     post:
-      tags: [eSim]
+      tags: 
+      - eSIM Booking
       summary: Update customer information
       operationId: updateCustomer
       requestBody:
@@ -659,7 +662,8 @@ paths:
         
   /esim/create-booking:
     post:
-      tags: [eSim]
+      tags: 
+      - eSIM Booking
       summary: Create eSIM booking
       operationId: createBooking
       requestBody:
@@ -1319,7 +1323,8 @@ paths:
        
   /esim/data-usage:
     post:
-      tags: [eSim]
+      tags: 
+        - eSIM Management
       summary: Get data usage
       operationId: dataUsage
       requestBody:
@@ -1391,7 +1396,8 @@ paths:
      
   /esim/booking-details:
     post:
-      tags: [eSim]
+      tags: 
+        - eSIM Management
       summary: Get booking details
       operationId: bookingDetails
       requestBody:
@@ -2255,7 +2261,8 @@ paths:
         
   /esim/installation-instructions:
     post:
-      tags: [eSim]
+      tags: 
+        - eSIM Booking
       summary: Get installation instructions
       operationId: installationInstructions
       requestBody:
@@ -2346,7 +2353,8 @@ paths:
        
   /esim/compatible-devices:
     post:
-      tags: [eSim]
+      tags: 
+        - eSIM Search & Inquiry
       summary: Get compatible devices
       operationId: compatibleDevices
       requestBody:
@@ -2392,7 +2400,8 @@ paths:
   
   /esim/topup-packages:
     post:
-      tags: [eSim]
+      tags: 
+        - Top-up Services
       summary: Get top-up packages
       operationId: topupPackages
       requestBody:
@@ -2571,7 +2580,8 @@ paths:
         
   /esim/topup-booking:
     post:
-      tags: [eSim]
+      tags: 
+        - Top-up Services
       summary: Create top-up booking
       operationId: topupBooking
       requestBody:
@@ -2664,7 +2674,8 @@ paths:
         
   /esim/topup-history:
     post:
-      tags: [eSim]
+      tags: 
+        - Top-up Services
       summary: Get top-up history
       operationId: topupHistory
       requestBody:
