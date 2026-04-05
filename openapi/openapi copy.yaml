@@ -370,6 +370,7 @@ paths:
                 value:
                   tracking_id: 11763299361URM1
                   package_id: X1AO00012||bangladesh||1067||fatafati-in-7days-1gb
+                
       responses:
         '200':
           description: Package details and pricing information.
@@ -695,8 +696,9 @@ paths:
                      value:
                         status: "failed"
                         reason: "No package data found for this tracking_id!"
+                  
 
-                654598498546594
+              
                         
        
         
