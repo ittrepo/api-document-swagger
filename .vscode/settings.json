@@ -5,5 +5,8 @@
         "titleBar.activeForeground": "#F2FBFF",
         "titleBar.inactiveBackground": "#013145",
         "titleBar.inactiveForeground": "#F2FBFF"
+    },
+    "yaml.schemas": {
+        "openapi:v3": "file:///d%3A/Project/api-document-swagger/openapi/esim.yaml"
     }
 }

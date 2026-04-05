@@ -207,204 +207,218 @@ paths:
                 type: object
                 additionalProperties: true
               examples:
-                default:
+                success:
                   summary: Successful Transfer Search Response.
                   value:
-                    "status": "success"
-                    "reason": "Your destination search yielded results for 15 transfers."
-                    "tracking_id": "117728706608V21"
-                    "search_parameter":
-                      "segment":
-                        "departure_type": "AIRPORT"
-                        "departure_code": "DXB"
-                        "departure": "Dubai International Airport, Dubai"
-                        "arrival_type": "LOC"
-                        "arrival_code": "Dubai Mall - Dubai - United Arab Emirates"
-                        "arrival": "Dubai Mall - Dubai - United Arab Emirates"
-                        "outbound_date": "2026-03-30T00:00:00"
-                        "arrival_lat": 25.1972295,
-                        "arrival_long": 55.279747,
-                        "arrival_city": "Dubai"
-                        "arrival_country": "AE"
-                        "departure_lat": 25.2515401,
-                        "departure_long": 55.3683066,
-                        "departure_city": "Dubai"
-                        "departure_country": "AE"
-                      "journey_type": "OneWay"
-                      "travelers_adult": 2,
-                      "travelers_adult_types": [""]
-                      "travelers_child": 0,
-                      "travelers_child_types": []
-                      "travelers_child_age": []
-                      "travelers_infants": 0,
-                      "travelers_infants_age": []
-                      "travelers_infants_types": []
-                      "guest_nationality": "BD"
-                      "transfer_type": "private"
-                      "supplier_uid": "all"
-                      "partner_id": ""
-                      "short_ref": "xxxx111"
-                      "language": "en"
-                      "service_type": "regular"
-                      "country_code": "AE"
-                      "tracking_id": "117728706608V21"
-                      "total_transfer": 15,
-                      "transfer_data":
-                        "transfer_id": "T1HS00025#0-43"
-                        "transfer_supplier": "hotelbeds"
-                        "sell_total": 3252.73,
-                        "sell_currency": "BDT"
-                        "transfer_type": "PRIVATE"
-                        "transfer_vehicle": "Car"
-                        "transfer_category": "Standard"
-                        "transfer_baggage": "3 suitcases permitted"
-                        "data":
-                          "direction": "ARRIVAL"
-                          "supplier_key": "ARRIVAL|IATA|DXB|ATLAS~GPS|573142~25.1972295,55.279747|2026-03-30|00:00|2026-03-30|00:00|2~0~0||3|||||148|PRVT||CR|STND|22.88||||43|573142|SIMPLE|789325ca9e5ba1ab8ee691d3df19626b|1441780|T|6318c3706227910444154663bded6327|2026-03-07|09:04"
-                          "sell_price": 3252.73,
-                          "platform_fees_or_extra_tax": 0,
-                          "transfer_duration": "40 min. Estimated journey time"
-                          "transfer_distance": null,
-                          "pickup":
-                            "location": "DXB"
-                            "location_type": "IATA"
-                            "dateTime": "2026-03-30T00:00:00"
-                            "address":
-                              {
-                                "line": "Dubai Airport",
-                                "zip": null,
-                                "city": null,
-                                "country_code": null,
-                                "geoCode": "25.248664,55.352916",
-                              }
-                        "dropoff":
-                          "location": "573142"
-                          "location_type": "ATLAS"
-                          "dateTime": "2026-03-30T00:40:00"
-                          "address":
-                            "line": "Dream Inn - Trident Grand Marina 2BR Apartment"
-                            "zip": null,
-                            "city": null,
-                            "country_code": null,
-                            "geoCode": null
-                        "vehicle":
-                          "type": "Car"
-                          "category": "Standard"
-                          "description": null,
-                          "imageUrl": "https://assets.htxstaging.com/imgs/default/vehicle_set/private.jpg"
-                          "capacity":
-                            {
-                              "minPassengers": 1,
-                              "maxPassengers": 3,
-                              "bags": "3 suitcases permitted",
-                            }
-                        "price":
-                          "promo_tag": null,
-                          "purchase":
-                            "total":
-                              {
-                                "currency": "BDT",
-                                "amount": 3252.73,
-                                "before_discount": 3252.73,
-                                "discount": 0,
-                                "point": 0,
-                              }
-                            "price_breakdown":
-                              {
-                                "currency": "BDT",
-                                "total": 3252.73,
-                                "base_fare": 3252.73,
-                                "tax": 0,
-                                "extra_person_fee": 0,
-                                "supplier_sales_comission": null,
-                                "payable_at_property": [],
-                              }
-                            "sell":
-                              {
-                                "total":
+                          "status": "success"
+                          "reason": "Your destination search yielded results for 15 transfers."
+                          "tracking_id": "117728706608V21"
+                          "search_parameter":
+                            "segment":
+                              "departure_type": "AIRPORT"
+                              "departure_code": "DXB"
+                              "departure": "Dubai International Airport, Dubai"
+                              "arrival_type": "LOC"
+                              "arrival_code": "Dubai Mall - Dubai - United Arab Emirates"
+                              "arrival": "Dubai Mall - Dubai - United Arab Emirates"
+                              "outbound_date": "2026-03-30T00:00:00"
+                              "arrival_lat": 25.1972295,
+                              "arrival_long": 55.279747,
+                              "arrival_city": "Dubai"
+                              "arrival_country": "AE"
+                              "departure_lat": 25.2515401,
+                              "departure_long": 55.3683066,
+                              "departure_city": "Dubai"
+                              "departure_country": "AE"
+                            "journey_type": "OneWay"
+                            "travelers_adult": 2,
+                            "travelers_adult_types": [""]
+                            "travelers_child": 0,
+                            "travelers_child_types": []
+                            "travelers_child_age": []
+                            "travelers_infants": 0,
+                            "travelers_infants_age": []
+                            "travelers_infants_types": []
+                            "guest_nationality": "BD"
+                            "transfer_type": "private"
+                            "supplier_uid": "all"
+                            "partner_id": ""
+                            "short_ref": "xxxx111"
+                            "language": "en"
+                            "service_type": "regular"
+                            "country_code": "AE"
+                            "tracking_id": "117728706608V21"
+                            "total_transfer": 15,
+                            "transfer_data":
+                              "transfer_id": "T1HS00025#0-43"
+                              "transfer_supplier": "hotelbeds"
+                              "sell_total": 3252.73,
+                              "sell_currency": "BDT"
+                              "transfer_type": "PRIVATE"
+                              "transfer_vehicle": "Car"
+                              "transfer_category": "Standard"
+                              "transfer_baggage": "3 suitcases permitted"
+                              "data":
+                                "direction": "ARRIVAL"
+                                "supplier_key": "ARRIVAL|IATA|DXB|ATLAS~GPS|573142~25.1972295,55.279747|2026-03-30|00:00|2026-03-30|00:00|2~0~0||3|||||148|PRVT||CR|STND|22.88||||43|573142|SIMPLE|789325ca9e5ba1ab8ee691d3df19626b|1441780|T|6318c3706227910444154663bded6327|2026-03-07|09:04"
+                                "sell_price": 3252.73,
+                                "platform_fees_or_extra_tax": 0,
+                                "transfer_duration": "40 min. Estimated journey time"
+                                "transfer_distance": null,
+                                "pickup":
+                                  "location": "DXB"
+                                  "location_type": "IATA"
+                                  "dateTime": "2026-03-30T00:00:00"
+                                  "address":
+                                    {
+                                      "line": "Dubai Airport",
+                                      "zip": null,
+                                      "city": null,
+                                      "country_code": null,
+                                      "geoCode": "25.248664,55.352916",
+                                    }
+                              "dropoff":
+                                "location": "573142"
+                                "location_type": "ATLAS"
+                                "dateTime": "2026-03-30T00:40:00"
+                                "address":
+                                  "line": "Dream Inn - Trident Grand Marina 2BR Apartment"
+                                  "zip": null,
+                                  "city": null,
+                                  "country_code": null,
+                                  "geoCode": null
+                              "vehicle":
+                                "type": "Car"
+                                "category": "Standard"
+                                "description": null,
+                                "imageUrl": "https://assets.htxstaging.com/imgs/default/vehicle_set/private.jpg"
+                                "capacity":
                                   {
-                                    "currency": "BDT",
-                                    "amount": 3252.73,
-                                    "gross_price": 3252.73,
-                                    "platform_fees_or_extra_tax": 0,
-                                    "point": 0,
-                                  },
-                                "price_breakdown":
-                                  {
-                                    "currency": "BDT",
-                                    "total": 3252.73,
-                                    "base_fare": 3252.73,
-                                    "tax": 0,
-                                    "platform_fees_or_extra_tax": 0,
-                                    "extra_person_fee": 0,
-                                    "supplier_sales_comission": null,
-                                    "payable_at_property": [],
-                                  },
-                              }
-                            "fmg":
-                              {
-                                "total": { "currency": "EUR", "amount": 22.88 },
-                                "price_breakdown":
-                                  {
-                                    "currency": "EUR",
-                                    "total": 22.88,
-                                    "base_fare": 22.88,
-                                    "tax": 0,
-                                    "extra_person_fee": 0,
-                                    "supplier_sales_comission": null,
-                                    "base_fare_fmg_charge": 0,
-                                    "membership_discount_percentige": 0,
-                                    "membership_discount_amount": 0,
-                                    "final_base_fare_fmg_charge": 0,
-                                    "payable_at_property": [],
-                                  },
-                              }
-                            "supplier":
-                              "total": { "currency": "EUR", "amount": 22.88 }
-                              "price_breakdown":
-                                "currency": "EUR"
-                                "total": 22.88,
-                                "base_fare": 22.88,
-                                "tax": 0,
-                                "sales_tax": 0,
-                                "property_fees": 0,
-                                "surcharges": 0,
-                                "service_charge": 0,
-                                "extra_person_fee": 0,
-                                "supplier_sales_comission": null,
-                                "payable_at_property": []
-                            "payment_method": null,
-                            "cancellationPolicy":
-                              "hold_possible": "yes"
-                              "summery": "refundable"
-                              "auto_cancel": "2026-03-07T14:04:22"
-                              "auto_cancel_timestamp": "1772870662"
-                              "policy_breakdown":
-                                "from": "2026-03-07T14:04:22"
-                                "from_timestamp": "1772870662"
-                                "to": "2026-03-28T23:59:00"
-                                "to_timestamp": 1774720740
-                                "currency": "BDT"
-                                "amount": 0,
-                                "partner": { "currency": "BDT", "amount": 0 }
-                                "fmg": { "currency": "EUR", "amount": 0 }
-                                "supplier": { "currency": "EUR", "amount": 0 }
-                                "additional_services":
-                                  "id": 7823,
-                                  "additional_service_id": 2,
-                                  "price": 1223.19,
-                                  "name": "Infant seat (few months old)"
-                                  "description": null,
-                                  "uid": "5d3da41a-fe59-11eb-a2d6-e992f37ca87f"
-                                  "slug": "trans.additional_services.infant_seat.name"
-                                  "default_include": false,
-                                  "currency": "USD"
-                                  "category": "baby_seat"
-                                  "type": "infant_seat"
-                                  "service_provider_id": 1,
-                                  "is_special": false,
-                                  "price_rub": 665,
-                                  "alternative_price": 10
+                                    "minPassengers": 1,
+                                    "maxPassengers": 3,
+                                    "bags": "3 suitcases permitted",
+                                  }
+                              "price":
+                                "promo_tag": null,
+                                "purchase":
+                                  "total":
+                                    {
+                                      "currency": "BDT",
+                                      "amount": 3252.73,
+                                      "before_discount": 3252.73,
+                                      "discount": 0,
+                                      "point": 0,
+                                    }
+                                  "price_breakdown":
+                                    {
+                                      "currency": "BDT",
+                                      "total": 3252.73,
+                                      "base_fare": 3252.73,
+                                      "tax": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "payable_at_property": [],
+                                    }
+                                  "sell":
+                                    {
+                                      "total":
+                                        {
+                                          "currency": "BDT",
+                                          "amount": 3252.73,
+                                          "gross_price": 3252.73,
+                                          "platform_fees_or_extra_tax": 0,
+                                          "point": 0,
+                                        },
+                                      "price_breakdown":
+                                        {
+                                          "currency": "BDT",
+                                          "total": 3252.73,
+                                          "base_fare": 3252.73,
+                                          "tax": 0,
+                                          "platform_fees_or_extra_tax": 0,
+                                          "extra_person_fee": 0,
+                                          "supplier_sales_comission": null,
+                                          "payable_at_property": [],
+                                        },
+                                    }
+                                  "fmg":
+                                    {
+                                      "total": { "currency": "EUR", "amount": 22.88 },
+                                      "price_breakdown":
+                                        {
+                                          "currency": "EUR",
+                                          "total": 22.88,
+                                          "base_fare": 22.88,
+                                          "tax": 0,
+                                          "extra_person_fee": 0,
+                                          "supplier_sales_comission": null,
+                                          "base_fare_fmg_charge": 0,
+                                          "membership_discount_percentige": 0,
+                                          "membership_discount_amount": 0,
+                                          "final_base_fare_fmg_charge": 0,
+                                          "payable_at_property": [],
+                                        },
+                                    }
+                                  "supplier":
+                                    "total": { "currency": "EUR", "amount": 22.88 }
+                                    "price_breakdown":
+                                      "currency": "EUR"
+                                      "total": 22.88,
+                                      "base_fare": 22.88,
+                                      "tax": 0,
+                                      "sales_tax": 0,
+                                      "property_fees": 0,
+                                      "surcharges": 0,
+                                      "service_charge": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "payable_at_property": []
+                                  "payment_method": null,
+                                  "cancellationPolicy":
+                                    "hold_possible": "yes"
+                                    "summery": "refundable"
+                                    "auto_cancel": "2026-03-07T14:04:22"
+                                    "auto_cancel_timestamp": "1772870662"
+                                    "policy_breakdown":
+                                      "from": "2026-03-07T14:04:22"
+                                      "from_timestamp": "1772870662"
+                                      "to": "2026-03-28T23:59:00"
+                                      "to_timestamp": 1774720740
+                                      "currency": "BDT"
+                                      "amount": 0,
+                                      "partner": { "currency": "BDT", "amount": 0 }
+                                      "fmg": { "currency": "EUR", "amount": 0 }
+                                      "supplier": { "currency": "EUR", "amount": 0 }
+                                      "additional_services":
+                                        "id": 7823,
+                                        "additional_service_id": 2,
+                                        "price": 1223.19,
+                                        "name": "Infant seat (few months old)"
+                                        "description": null,
+                                        "uid": "5d3da41a-fe59-11eb-a2d6-e992f37ca87f"
+                                        "slug": "trans.additional_services.infant_seat.name"
+                                        "default_include": false,
+                                        "currency": "USD"
+                                        "category": "baby_seat"
+                                        "type": "infant_seat"
+                                        "service_provider_id": 1,
+                                        "is_special": false,
+                                        "price_rub": 665,
+                                        "alternative_price": 10
+                authorization_failed:
+                  summary: Authorization Failed (Warning)
+                  value:
+                    status: "failed"
+                    is_warning: "yes"
+                    reason: "You do not have authorization to issue voucher. Please reach out to the Support team for assistance."
+                    reason_admin: "Issue Voucher is Disable"
+                
+                invalid_departure_date:
+                  summary: Departure Date in the Past
+                  value:
+                    status: "failed"
+                    reason: "Departure date must be a current or future date"
+                
 
         
       
@@ -444,7 +458,7 @@ paths:
                     "transfer_id": "T1HS00025#0-43",
                   }
       responses:
-        "200":
+        '200':
           description: Successfully Transfer Search Response
           content:
             application/json:
@@ -452,7 +466,7 @@ paths:
                 type: object
                 additionalProperties: true
               examples:
-                default:
+                successful_transfer_search:
                   summary: Successful Transfer Search Response.
                   value:
                     "status": "success"
@@ -664,6 +678,25 @@ paths:
                                 "remarks":
                                   "type": "CONTRACT"
                                   "description": "FINDING YOUR DRIVER\n\nTerminal 1:  Exit INTO the arrivals hall in the designated waiting area where a representative will be waiting, holding a sign with “KOI” on it. You will be escorted to your car at the parking pickup point (approx. 3-5 min walk). Please be advised there may be a short wait before the escort.\n\nTerminal 2: Exit INTO the arrivals hall in the designated waiting area where a representative will be waiting, holding a sign with your name on it.\n\nTerminal 3: Exit INTO the arrivals hall and proceed to the greeting area near Boots Pharmacy, where your representative will be waiting holding a sign with “KOI” on it. You will be escorted to the car at the parking pickup point (approx. 3-5 min walk). A short wait may be required.\n\nIdentify yourself by showing this confirmation to your Supplier, for whom we act as a booking agent.\n\nImportant Note: Your driver will arrive at the airport 30 minutes AFTER the flight has landed, this is to allow for the lengthy process of reaching the arrivals hall. Your driver will then wait for a maximum of a further 60 minutes upon their arrival if you have booked a Standard Service, and 75 min if you have booked a Premium Service. If you arrive before the 30 minutes, please contact the supplier on their office or emergency number below, advise that you are ready to be transferred and wait for the driver in the arrivals hall.\n\nIn the event of delays over 60 minutes on arrival you must call the supplier. There are 60 minutes wait time included from your flight landing/cruise disembarkation time/train arrival time.\n\nIF YOU CAN'T LOCATE YOUR DRIVER, please contact them directly by clicking on this link https://hbd.htxstaging.com.\nYou will need an internet or mobile phone connection to be able to call/message your driver.\n\nPlease don't attempt to contact your driver until you are at the agreed meeting point as, with the best intentions of providing you with the most efficient service, driver information is subject to change. If you are unable to locate your driver using CheckPickup, contact your supplier for assistance. Do not leave without having contacted your supplier using the details below first.\n\nDISCLAIMER HolidayTaxis Group Limited (part of HBX Group) processes your personal data for the purpose of providing you with contracted travel services. For more information about how we process your personal data, please refer to the Privacy Policy.You have the right to access, rectify, delete, and restrict the processing of your data, as well as other rights recognized by applicable law. You can exercise these rights by contacting us at dataprotection@holidaytaxis.com"
+                  
+
+                null_data_response:
+                  summary: Transfer Search with Null Parameters
+                  value:
+                    status: null
+                    tracking_id: "311177511256426194UC4PV"
+                    search_parameter:
+                      travelers_adult: null
+                      travelers_child: null
+                      travelers_infants: null
+                      supplier_type: null
+                      supplier_code: null
+                      supplier_uid: null
+                      supplier_partner_code: null
+                    session_expire: null
+                    transfer_data:
+                      tracking_id: "311177511256426194UC4PV"
+                      transfer_tracking_id: "311177511256426194UC4PV||0-43"
 
       
       
@@ -793,7 +826,7 @@ paths:
                       ],
                   }
       responses:
-        "200":
+        '200':
           description: Successfully Transfer Search Response
           content:
             application/json:
@@ -801,7 +834,7 @@ paths:
                 type: object
                 additionalProperties: true
               examples:
-                default:
+                successful_transfer_search:
                   summary: Successful Transfer Search Response.
                   value:
                     {
@@ -839,6 +872,17 @@ paths:
                           },
                         ],
                     }
+                missing_parameters_error:
+                  summary: Missing Required Parameters
+                  value:
+                    status: "failed"
+                    reason: "Missing Required Parameters"
+
+                invalid_guest_quantity:
+                  summary: Guest Quantity Mismatch Error
+                  value:
+                    status: "failed"
+                    reason: "The guest quantity provided is not valid. You have submitted data for 2 guest, but the required guest data is for 0 individuals."
        
         
   /Transfer/Create Booking:
@@ -968,7 +1012,7 @@ paths:
                       ],
                   }
       responses:
-        "200":
+        '200':
           description: Successfully Create Booking Response
           content:
             application/json:
@@ -976,7 +1020,7 @@ paths:
                 type: object
                 additionalProperties: true
               examples:
-                default:
+                successful_transfer_booking:
                   summary: Successfully Create Booking Response.
                   value:
                     "status": "success"
@@ -1596,8 +1640,18 @@ paths:
                                                     "href": "/booking/en/reference/148-6021065",
                                                     "method": "GET"
                                                 }
-       
-       
+                missing_pax_data_error:
+                  summary: Booking Pax Data Missing Error
+                  value:
+                    status: "failed"
+                    reason: "Booking pax data is missing!"
+
+                invalid_guest_quantity:
+                  summary: Invalid Guest Quantity Error
+                  value:
+                    status: "failed"
+                    reason: "The guest quantity provided is not valid. You have submitted data for 2 guest, but the required guest data is for 0 individuals."
+              
   /Transfer/Cancel Booking:
     post:
       tags: 
@@ -1765,6 +1819,13 @@ paths:
                             ]
                         }
                     }
+                no_booking_data_to_cancel:
+                    summary: No booking data found for cancellation
+                    value:
+                        status: "failed"
+                        reason: "no booking data found for tracking_id 11173813474126193F9NJX"
+                        reason_admin: "no booking data found for tracking_id 11173813474126193F9NJX"
+                        tracking_id: "11173813474126193F9NJX"
 
        
       
@@ -1815,8 +1876,11 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-              example:
-                 {
+              examples:
+                successful_booking_details_response:
+                  summary: Successful Booking details response
+                  value:
+                        {
                             "status": "success",
                             "reason": "Booking Details For Tracking Id 119177311942703210WDEPJ",
                             "tracking_id": "119177311942703210WDEPJ",
@@ -2629,6 +2693,14 @@ paths:
                             "special_notice_status": "disable",
                             "special_notice": null
                         }
+                no_booking_found:
+                        summary: No booking data found
+                        value:
+                            status: "failed"
+                            reason: "no booking data found"
+                            reason_admin: "no booking data available in the table"
+
+            
         
         
 
