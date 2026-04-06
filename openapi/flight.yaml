@@ -5562,7 +5562,7 @@ paths:
                             status: "failed"
                             reason: "no booking data found"
                             reason_admin: "no booking data available in the table"
-       
+                  
        
   
   /flight/issue-ticket:
