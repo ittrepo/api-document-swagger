@@ -988,7 +988,8 @@ paths:
 
   /esim/booking-details:
     post:
-      tags: [eSim]
+      tags: 
+        - Visa Service
       summary: Get booking details
       operationId: bookingDetails
       requestBody:
