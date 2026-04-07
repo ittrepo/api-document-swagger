@@ -25,6 +25,967 @@ security:
   - apiKeyAuth: []
     secretCodeAuth: []
 paths:
+  /visa/search:
+   post:
+    tags:
+      - Visa Service
+    summary: Search for available visa packages
+    description: Get a list of available visas based on destination, category, and guest nationality.
+    operationId: searchVisa
+    requestBody:
+      description: Visa search parameters
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - country_code
+              - visa_category
+              - guest_nationality
+            properties:
+              country_code:
+                type: string
+                example: "TH"
+                description: "Destination country code (e.g., TH, AE, BD). Set null to search all."
+              visa_category:
+                type: string
+                example: "business-visa"
+                description: "Type of visa (e.g., tourist-visa, business-visa). Set null for all."
+              guest_nationality:
+                type: string
+                example: "BD"
+                description: "The nationality of the traveler (e.g., BD, IN)."
+    responses:
+      '200':
+        description: Successfully fetched visa search results
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_visa_search:
+                summary: Successful Visa Search Response
+                value:
+                  {
+                      "status": "success",
+                      "reason": "1 category visa service available",
+                      "data": [
+                          {
+                              "visa_seo_code": "medical-visa",
+                              "visa_title": "Medical Visa",
+                              "primary_photo": "https://cdn.innovategrid.com/innovatesolution/visa/121772527373686170.png",
+                              "country_name": "Bangladesh",
+                              "country_code": "BD",
+                              "visa_category": "business-visa",
+                              "visa_category_title": "Business Visa",
+                              "basic_info": "<p>none</p>\n\n<p>none</p>\n",
+                              "last_update": "Tuesday, 2026-03-03 2:43 PM +06:00",
+                              "starting_price": {
+                                  "sale": {
+                                      "amount": 9000,
+                                      "currency": "BDT"
+                                  },
+                                  "purchase": {
+                                      "amount": 9000,
+                                      "currency": "BDT"
+                                  },
+                                  "fmg": {
+                                      "amount": 9000,
+                                      "currency": "BDT"
+                                  },
+                                  "supplier": {
+                                      "amount": 9000,
+                                      "currency": "BDT"
+                                  }
+                              }
+                          }
+                      ]
+                  }
+
+              no_visa_found:
+                summary: No Visa Found for Criteria
+                value:
+                  status: "failed"
+                  reason: "No visa packages found for the selected country and category!"
+
+              invalid_nationality:
+                summary: Invalid Nationality Error
+                value:
+                  status: "failed"
+                  reason: "Visa services are currently unavailable for the provided guest nationality."
+
+              authorization_failed:
+                summary: Authorization Failed (Warning)
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "You do not have authorization to access Visa services. Please reach out to the Support team."
+                  reason_admin: "Visa Module is Disable"
+  /visa/details:
+   post:
+    tags:
+      - Visa Service
+    summary: Get specific visa details by SEO code
+    description: Fetch all information about a specific visa category and country using its unique SEO code.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - visa_seo_code
+            properties:
+              visa_seo_code:
+                type: string
+                example: "medical-visa"
+                description: "The unique SEO friendly slug for the visa type."
+    responses:
+      '200':
+        description: Successfully fetched visa details
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_visa_details:
+                summary: Successful Visa Details Response
+                value:
+                      {
+                          "status": "success",
+                          "reason": "1 category visa service available",
+                          "summery": {
+                              "visa_seo_code": "medical-visa",
+                              "visa_title": "Medical Visa",
+                              "primary_photo": "https://cdn.innovategrid.com/innovatesolution/visa/121772527373686170.png",
+                              "country_name": "Bangladesh",
+                              "country_code": "BD",
+                              "visa_category": "business-visa",
+                              "visa_category_title": "Business Visa",
+                              "basic_info": "<p>none</p>\n\n<p>none</p>\n",
+                              "last_update": "Tuesday, 2026-03-03 2:43 PM +06:00",
+                              "meta_title": "",
+                              "meta_description": "",
+                              "meta_keywords": "",
+                              "meta_robots": "index,follow",
+                              "meta_googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+                              "meta_canonical_link": "",
+                              "meta_og_title": "",
+                              "meta_ogurl": "",
+                              "meta_ogdescription": "",
+                              "meta_ogimage": "https://cdn.innovategrid.com/innovatesolution/visa/121772527373686170.png",
+                              "starting_price": {
+                                  "sale": {
+                                      "amount": 9000,
+                                      "currency": "BDT"
+                                  },
+                                  "purchase": {
+                                      "amount": 9000,
+                                      "currency": "BDT"
+                                  },
+                                  "fmg": {
+                                      "amount": 9000,
+                                      "currency": "BDT"
+                                  },
+                                  "supplier": {
+                                      "amount": 9000,
+                                      "currency": "BDT"
+                                  }
+                              }
+                          },
+                          "visa_options": [
+                              {
+                                  "visa_option_title": "Business Visa",
+                                  "visa_option_code": "business-visa",
+                                  "validation_doc": [],
+                                  "required_doc": [
+                                      {
+                                          "title": "Passport",
+                                          "code": "passport",
+                                          "data": [
+                                              "none"
+                                          ]
+                                      },
+                                      {
+                                          "title": "Photo",
+                                          "code": "photo",
+                                          "data": [
+                                              "none"
+                                          ]
+                                      }
+                                  ],
+                                  "processing_time": {
+                                      "title": "Visa Processing Time",
+                                      "notes": "Visa processing time refers to the duration required for authorities to review and make a decision on a visa application. This period can vary depending on several factors, including the type of visa, the applicant's nationality, and the efficiency of the processing country's immigration department. Generally, processing times can range from a few days to several weeks or even months. It is advisable for applicants to apply well in advance of their intended travel date to accommodate any potential delays. During this time, applicants may be required to attend interviews, submit additional documentation, or undergo background checks.",
+                                      "duration": "7",
+                                      "type": "Days"
+                                  },
+                                  "visa_validity": {
+                                      "title": "Visa Validity",
+                                      "notes": "Visa valid from the date of issue. You must enter within the validity of visa",
+                                      "duration": "90",
+                                      "type": "Days"
+                                  },
+                                  "visa_validity_arrival": {
+                                      "title": "Visa Validity From Arrival Date",
+                                      "notes": "Visa valid from the date of arrival, the permitted length of stay",
+                                      "duration": "60",
+                                      "type": "Days"
+                                  },
+                                  "contacts": {
+                                      "email": null,
+                                      "number": null
+                                  },
+                                  "age": {
+                                      "adult_min": "25",
+                                      "child_min": "12"
+                                  },
+                                  "fees": {
+                                      "sell": {
+                                          "total": 10500,
+                                          "currency": "BDT",
+                                          "service_charge": 1500,
+                                          "visa_fees": 9000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "purchase": {
+                                          "total": 10500,
+                                          "currency": "BDT",
+                                          "service_charge": 1500,
+                                          "visa_fees": 9000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "fmg": {
+                                          "total": 10500,
+                                          "currency": "BDT",
+                                          "service_charge": 1500,
+                                          "visa_fee": 9000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "supplier": {
+                                          "total": 10500,
+                                          "currency": "BDT",
+                                          "service_charge": 1500,
+                                          "visa_fee": 9000,
+                                          "service_charge_currency": "BDT"
+                                      }
+                                  },
+                                  "adult": {
+                                      "sell": {
+                                          "total": 6000,
+                                          "currency": "BDT",
+                                          "service_charge": 1000,
+                                          "visa_fees": 5000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "purchase": {
+                                          "total": 6000,
+                                          "currency": "BDT",
+                                          "service_charge": 1000,
+                                          "visa_fees": 5000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "fmg": {
+                                          "total": 6000,
+                                          "currency": "BDT",
+                                          "service_charge": 1000,
+                                          "visa_fee": 5000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "supplier": {
+                                          "total": 6000,
+                                          "currency": "BDT",
+                                          "service_charge": 1000,
+                                          "visa_fee": 5000,
+                                          "service_charge_currency": "BDT"
+                                      }
+                                  },
+                                  "child": {
+                                      "sell": {
+                                          "total": 4500,
+                                          "currency": "BDT",
+                                          "service_charge": 500,
+                                          "visa_fees": 4000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "purchase": {
+                                          "total": 4500,
+                                          "currency": "BDT",
+                                          "service_charge": 500,
+                                          "visa_fees": 4000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "fmg": {
+                                          "total": 4500,
+                                          "currency": "BDT",
+                                          "service_charge": 500,
+                                          "visa_fee": 4000,
+                                          "service_charge_currency": "BDT"
+                                      },
+                                      "supplier": {
+                                          "total": 4500,
+                                          "currency": "BDT",
+                                          "service_charge": 500,
+                                          "visa_fee": 4000,
+                                          "service_charge_currency": "BDT"
+                                      }
+                                  }
+                              }
+                          ],
+                          "holiday_data": {
+                              "weekend_days": [
+                                  "Fri",
+                                  "Sat"
+                              ],
+                              "public_holidays": []
+                          },
+                          "visa_faq": [],
+                          "country_profile": {
+                              "country_code": "BD",
+                              "country_name": "Bangladesh",
+                              "country_flags": null,
+                              "phoneCode": "880",
+                              "map_photo": null,
+                              "google_map_url": "http://maps.google.com/maps?q=Bangladesh",
+                              "capital": "Dhaka",
+                              "currency": "Bangladeshi taka (BDT)",
+                              "language": "Bengali",
+                              "religion": "Islam, Hinduism",
+                              "weather": "Bangladesh has a tropical monsoon climate with three distinct seasons: a hot, humid summer, a cool, dry winter, and a rainy monsoon season.",
+                              "major_cities": "Dhaka, Chittagong, Khulna, Rajshahi",
+                              "about_country": "Bangladesh is a country in South Asia. It is known for its lush green landscapes, a vast network of rivers, and rich cultural heritage. The country is one of the most densely populated in the world.",
+                              "available_timezone": [
+                                  {
+                                      "timezone_name": "Asia/Dhaka"
+                                  }
+                              ]
+                          },
+                          "airport_list": [
+                              {
+                                  "IataCode": "LLJ",
+                                  "AirportName": "Lalmonirhat Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Indonesia",
+                                  "CityName": "Lalmonirhat",
+                                  "CityCode": "LLJ"
+                              },
+                              {
+                                  "IataCode": "ZYL",
+                                  "AirportName": "Osmani International Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Sylhet",
+                                  "CityCode": "ZYL"
+                              },
+                              {
+                                  "IataCode": "ZHM",
+                                  "AirportName": "Shamshernagar Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Shamshernagar",
+                                  "CityCode": "ZHM"
+                              },
+                              {
+                                  "IataCode": "TKR",
+                                  "AirportName": "Thakurgaon Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Thakurgaon",
+                                  "CityCode": "TKR"
+                              },
+                              {
+                                  "IataCode": "SPD",
+                                  "AirportName": "Saidpur Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Saidpur",
+                                  "CityCode": "SPD"
+                              },
+                              {
+                                  "IataCode": "SDW",
+                                  "AirportName": "Sandwip Airport",
+                                  "airport_timezone": null,
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Sandwip",
+                                  "CityCode": ""
+                              },
+                              {
+                                  "IataCode": "SAJ",
+                                  "AirportName": "Sirajganj Airport",
+                                  "airport_timezone": null,
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Sirajganj",
+                                  "CityCode": ""
+                              },
+                              {
+                                  "IataCode": "RJH",
+                                  "AirportName": "Shah Makhdum Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Rajshahi",
+                                  "CityCode": "RJH"
+                              },
+                              {
+                                  "IataCode": "RAU",
+                                  "AirportName": "Rangpur Airport",
+                                  "airport_timezone": null,
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Rangpur",
+                                  "CityCode": ""
+                              },
+                              {
+                                  "IataCode": "BZL",
+                                  "AirportName": "Barisal Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Barisal",
+                                  "CityCode": "BZL"
+                              },
+                              {
+                                  "IataCode": "KHL",
+                                  "AirportName": "Khulna Khan Jahan Ali Airport",
+                                  "airport_timezone": null,
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Khulna",
+                                  "CityCode": ""
+                              },
+                              {
+                                  "IataCode": "JSR",
+                                  "AirportName": "Jessore Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Jashore (Jessore)",
+                                  "CityCode": "JSR"
+                              },
+                              {
+                                  "IataCode": "IRD",
+                                  "AirportName": "Ishurdi Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Ishurdi",
+                                  "CityCode": "IRD"
+                              },
+                              {
+                                  "IataCode": "DAC",
+                                  "AirportName": "Hazrat Shahjalal International Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Dhaka",
+                                  "CityCode": "DAC"
+                              },
+                              {
+                                  "IataCode": "CXB",
+                                  "AirportName": "Cox's Bazar Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Cox's Bazar",
+                                  "CityCode": "CXB"
+                              },
+                              {
+                                  "IataCode": "CLA",
+                                  "AirportName": "Comilla Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Comilla",
+                                  "CityCode": "CLA"
+                              },
+                              {
+                                  "IataCode": "CGP",
+                                  "AirportName": "Shah Amanat International Airport",
+                                  "airport_timezone": "Asia/Dhaka",
+                                  "CountryCode": "BD",
+                                  "CountryName": "Bangladesh",
+                                  "CityName": "Chattogram (Chittagong)",
+                                  "CityCode": "CGP"
+                              }
+                          ]
+                      }
+              no_visa_data_found:
+                summary: No Visa Data Found Error
+                value:
+                  status: "failed"
+                  reason: "No visa data found for the provided visa_seo_code!"
+                  tracking_id: "VISA-DET-445566"
+
+              authorization_failed:
+                summary: Authorization Failed (Warning)
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "You do not have authorization to view visa details. Please contact Support."
+                  reason_admin: "Visa Details Access is Disabled"
+
+  
+  /visa/validate-details:
+   post:
+    tags:
+      - Visa Service
+    summary: Validate visa selection before booking
+    description: This API validates the visa availability, guest eligibility, and travel dates based on the selected SEO and option codes.
+    operationId: validateVisaDetails
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object 
+            required:
+              - visa_seo_code
+              - visa_option_code
+              - guest_nationality
+              - guest_visite
+              - checkIn
+              - total_adult
+            properties:
+              visa_seo_code:
+                type: string
+                example: "test-category-visa"
+                description: "The unique SEO code for the visa category."
+              visa_option_code:
+                type: string
+                example: "visit-visa"
+                description: "Specific option/type code for the selected visa."
+              guest_nationality:
+                type: string
+                example: "BD"
+                description: "ISO code of the guest's nationality."
+              guest_visite:
+                type: string
+                example: "IQ"
+                description: "ISO code of the destination country (e.g., Iraq)."
+              checkIn:
+                type: string
+                format: date
+                example: "2026-03-10"
+                description: "Expected travel/check-in date."
+              total_adult:
+                type: integer
+                example: 2
+                description: "Number of adult travelers."
+              total_child:
+                type: integer
+                example: 0
+                description: "Number of child travelers."
+    responses:
+      '200':
+        description: Validation Successful
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              validation_success:
+                summary: Successful Validation Response
+                value:
+                  {
+                        "status": "success",
+                        "reason": "Validation create successfully.",
+                        "tracking_id": "31177468832226194WXVDD",
+                        "session_expire": {
+                            "timestamp": 1774690122,
+                            "datetime": "2026-03-28 15:28:42 +06",
+                            "message": "The booking process should be completed by no later than 2026-03-28 15:28:42 +06."
+                        },
+                        "search_parameter": {
+                            "visa_seo_code": "medical-visa",
+                            "visa_option_code": "business-visa",
+                            "guest_nationality": "BD",
+                            "guest_visite": "BD",
+                            "checkIn": "2026-04-30",
+                            "total_adult": 2,
+                            "total_child": 0
+                        },
+                        "data": {
+                            "summery": {
+                                "visa_seo_code": "medical-visa",
+                                "visa_title": "Medical Visa",
+                                "primary_photo": "https://cdn.innovategrid.com/innovatesolution/visa/121772527373686170.png",
+                                "country_name": "Bangladesh",
+                                "country_code": "BD",
+                                "visa_category": "business-visa",
+                                "visa_category_title": "Business Visa",
+                                "basic_info": "<p>none</p>\n\n<p>none</p>\n",
+                                "last_update": "Tuesday, 2026-03-03 2:43 PM +06:00",
+                                "meta_title": "",
+                                "meta_description": "",
+                                "meta_keywords": "",
+                                "meta_robots": "index,follow",
+                                "meta_googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+                                "meta_canonical_link": "",
+                                "meta_og_title": "",
+                                "meta_ogurl": "",
+                                "meta_ogdescription": "",
+                                "meta_ogimage": "https://cdn.innovategrid.com/innovatesolution/visa/121772527373686170.png"
+                            },
+                            "applicant": {
+                                "total": 2,
+                                "adult": 2,
+                                "child": 0
+                            },
+                            "visa_options": {
+                                "visa_option_title": "Business Visa",
+                                "visa_option_code": "business-visa",
+                                "validating_doc": [],
+                                "required_doc": [
+                                    {
+                                        "title": "Passport",
+                                        "code": "passport",
+                                        "data": [
+                                            "none"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Photo",
+                                        "code": "photo",
+                                        "data": [
+                                            "none"
+                                        ]
+                                    }
+                                ],
+                                "processing_time": {
+                                    "title": "Visa Processing Time",
+                                    "notes": "Visa processing time refers to the duration required for authorities to review and make a decision on a visa application. This period can vary depending on several factors, including the type of visa, the applicant's nationality, and the efficiency of the processing country's immigration department. Generally, processing times can range from a few days to several weeks or even months. It is advisable for applicants to apply well in advance of their intended travel date to accommodate any potential delays. During this time, applicants may be required to attend interviews, submit additional documentation, or undergo background checks.",
+                                    "duration": "7",
+                                    "type": "Days"
+                                },
+                                "visa_validity": {
+                                    "title": "Visa Validity",
+                                    "notes": "Visa valid from the date of issue. You must enter within the validity of visa",
+                                    "duration": "90",
+                                    "type": "Days"
+                                },
+                                "visa_validity_arrival": {
+                                    "title": "Visa Validity From Arrival Date",
+                                    "notes": "Visa valid from the date of arrival, the permitted length of stay",
+                                    "duration": "60",
+                                    "type": "Days"
+                                },
+                                "contacts": {
+                                    "email": null,
+                                    "number": null
+                                },
+                                "age": {
+                                    "adult_min": "25",
+                                    "child_min": "12"
+                                },
+                                "fees": {
+                                    "sell": {
+                                        "total": 12000,
+                                        "currency": "BDT",
+                                        "visa_fees": 10000,
+                                        "service_charge": 2000,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "total": 10500,
+                                        "currency": "BDT",
+                                        "visa_fees": 9000,
+                                        "service_charge": 1500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "total": 10500,
+                                        "currency": "BDT",
+                                        "visa_fees": 9000,
+                                        "service_charge": 1500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "total": 10500,
+                                        "currency": "BDT",
+                                        "visa_fees": 9000,
+                                        "service_charge": 1500,
+                                        "service_charge_currency": "BDT"
+                                    }
+                                },
+                                "adult": {
+                                    "sell": {
+                                        "total": 6000,
+                                        "currency": "BDT",
+                                        "visa_fees": 5000,
+                                        "service_charge": 1000,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "total": 6000,
+                                        "currency": "BDT",
+                                        "visa_fees": 5000,
+                                        "service_charge": 1000,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "total": 6000,
+                                        "currency": "BDT",
+                                        "visa_fee": 5000,
+                                        "service_charge": 1000,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "total": 6000,
+                                        "currency": "BDT",
+                                        "visa_fee": 5000,
+                                        "service_charge": 1000,
+                                        "service_charge_currency": "BDT"
+                                    }
+                                },
+                                "child": {
+                                    "sell": {
+                                        "total": 4500,
+                                        "currency": "BDT",
+                                        "visa_fees": 4000,
+                                        "service_charge": 500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "total": 4500,
+                                        "currency": "BDT",
+                                        "visa_fees": 4000,
+                                        "service_charge": 500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "total": 4500,
+                                        "currency": "BDT",
+                                        "visa_fee": 4000,
+                                        "service_charge": 500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "total": 4500,
+                                        "currency": "BDT",
+                                        "visa_fee": 4000,
+                                        "service_charge": 500,
+                                        "service_charge_currency": "BDT"
+                                    }
+                                }
+                            },
+                            "visa_faq": [],
+                            "holiday_data": {
+                                "weekend_days": [
+                                    "Fri",
+                                    "Sat"
+                                ],
+                                "public_holidays": []
+                            }
+                        },
+                        "country_profile": {
+                            "country_code": "BD",
+                            "country_name": "Bangladesh",
+                            "country_flags": null,
+                            "phoneCode": "880",
+                            "map_photo": null,
+                            "google_map_url": "http://maps.google.com/maps?q=Bangladesh",
+                            "capital": "Dhaka",
+                            "currency": "Bangladeshi taka (BDT)",
+                            "language": "Bengali",
+                            "religion": "Islam, Hinduism",
+                            "weather": "Bangladesh has a tropical monsoon climate with three distinct seasons: a hot, humid summer, a cool, dry winter, and a rainy monsoon season.",
+                            "major_cities": "Dhaka, Chittagong, Khulna, Rajshahi",
+                            "about_country": "Bangladesh is a country in South Asia. It is known for its lush green landscapes, a vast network of rivers, and rich cultural heritage. The country is one of the most densely populated in the world.",
+                            "available_timezone": [
+                                {
+                                    "timezone_name": "Asia/Dhaka"
+                                }
+                            ]
+                        },
+                        "airport_list": [
+                            {
+                                "IataCode": "LLJ",
+                                "AirportName": "Lalmonirhat Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Indonesia",
+                                "CityName": "Lalmonirhat",
+                                "CityCode": "LLJ"
+                            },
+                            {
+                                "IataCode": "ZYL",
+                                "AirportName": "Osmani International Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Sylhet",
+                                "CityCode": "ZYL"
+                            },
+                            {
+                                "IataCode": "ZHM",
+                                "AirportName": "Shamshernagar Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Shamshernagar",
+                                "CityCode": "ZHM"
+                            },
+                            {
+                                "IataCode": "TKR",
+                                "AirportName": "Thakurgaon Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Thakurgaon",
+                                "CityCode": "TKR"
+                            },
+                            {
+                                "IataCode": "SPD",
+                                "AirportName": "Saidpur Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Saidpur",
+                                "CityCode": "SPD"
+                            },
+                            {
+                                "IataCode": "SDW",
+                                "AirportName": "Sandwip Airport",
+                                "airport_timezone": null,
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Sandwip",
+                                "CityCode": ""
+                            },
+                            {
+                                "IataCode": "SAJ",
+                                "AirportName": "Sirajganj Airport",
+                                "airport_timezone": null,
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Sirajganj",
+                                "CityCode": ""
+                            },
+                            {
+                                "IataCode": "RJH",
+                                "AirportName": "Shah Makhdum Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Rajshahi",
+                                "CityCode": "RJH"
+                            },
+                            {
+                                "IataCode": "RAU",
+                                "AirportName": "Rangpur Airport",
+                                "airport_timezone": null,
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Rangpur",
+                                "CityCode": ""
+                            },
+                            {
+                                "IataCode": "BZL",
+                                "AirportName": "Barisal Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Barisal",
+                                "CityCode": "BZL"
+                            },
+                            {
+                                "IataCode": "KHL",
+                                "AirportName": "Khulna Khan Jahan Ali Airport",
+                                "airport_timezone": null,
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Khulna",
+                                "CityCode": ""
+                            },
+                            {
+                                "IataCode": "JSR",
+                                "AirportName": "Jessore Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Jashore (Jessore)",
+                                "CityCode": "JSR"
+                            },
+                            {
+                                "IataCode": "IRD",
+                                "AirportName": "Ishurdi Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Ishurdi",
+                                "CityCode": "IRD"
+                            },
+                            {
+                                "IataCode": "DAC",
+                                "AirportName": "Hazrat Shahjalal International Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Dhaka",
+                                "CityCode": "DAC"
+                            },
+                            {
+                                "IataCode": "CXB",
+                                "AirportName": "Cox's Bazar Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Cox's Bazar",
+                                "CityCode": "CXB"
+                            },
+                            {
+                                "IataCode": "CLA",
+                                "AirportName": "Comilla Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Comilla",
+                                "CityCode": "CLA"
+                            },
+                            {
+                                "IataCode": "CGP",
+                                "AirportName": "Shah Amanat International Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Chattogram (Chittagong)",
+                                "CityCode": "CGP"
+                            }
+                        ]
+                    }
+
+              validation_failed_date:
+                summary: Invalid Travel Date Error
+                value:
+                  status: "failed"
+                  reason: "Check-in date must be a future date."
+
+              visa_not_available:
+                summary: Visa Not Available Error
+                value:
+                  status: "failed"
+                  reason: "The selected visa option is currently unavailable for your nationality."
+                  tracking_id: "VISA-VAL-ERR-01"
+
+              authorization_failed:
+                summary: Authorization Failed (Warning)
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "You do not have authorization to validate visa details. Please contact Support."
+                  reason_admin: "Visa Validation Access is Disabled"
+
   /esim/booking-details:
     post:
       tags: [eSim]
