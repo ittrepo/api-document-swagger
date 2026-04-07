@@ -25,7 +25,7 @@ security:
   - apiKeyAuth: []
     secretCodeAuth: []
 paths:
-  
+
   /flight/search:
    post:
     tags:
