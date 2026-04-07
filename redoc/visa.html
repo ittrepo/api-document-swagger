@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf8" />
   <title>ITT visa.html API</title>
+  <link rel="icon" type="image/x-icon" href="./public/favicon.ico">
   <!-- needed for adaptive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
@@ -419,6 +420,63 @@ data-styled.g138[id="sc-iJQrDi"]{content:"gtHWGb,"}/*!sc*/
       Redoc.hydrate(__redoc_state, container);
 
       </script>
-</body>
+<style>
+    .itt-top-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 60px;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 10000;
+        border-bottom: 1px solid #e2e8f0;
+        box-sizing: border-box;
+    }
+    .back-btn {
+        color: #334155;
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+        transform: translateX(-5px);
+        color: #0f172a;
+    }
+    .back-btn .arrow {
+        font-size: 18px;
+    }
+    /* Only push the sidebar menu down */
+    .menu-content, [data-role='redoc-menu'] {
+        margin-top: 60px !important;
+    }
+    .menu-content {
+        top: 60px !important;
+        height: calc(100vh - 60px) !important;
+    }
+    @media (max-width: 768px) {
+        .itt-top-header {
+            width: 100%;
+            padding: 0 16px;
+        }
+        .redoc-container {
+            margin-top: 60px !important;
+        }
+    }
+</style>
+<div class='itt-top-header'>
+    <a href='index.html' class='back-btn' title='Back to Portal'>
+        <span class='arrow'>&larr;</span>
+        <span class='text'>Back to Portal</span>
+    </a>
+</div>
+  </body>
 
 </html>

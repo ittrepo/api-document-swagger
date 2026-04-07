@@ -15,14 +15,69 @@ echo "🚀 Generating documentation... This may take a moment."
 # Function to inject Home and Back buttons into generated HTML
 inject_nav_buttons() {
     local file="$REDOC_DIR/$1"
-    local nav_html='<div style="position: fixed; bottom: 30px; left: 30px; z-index: 9999; display: flex; gap: 10px;">
-    <a href="index.html" style="background: #0f172a; color: #38bdf8; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4); border: 1px solid rgba(56, 189, 248, 0.2); text-decoration: none; font-size: 20px; transition: all 0.3s ease; box-sizing: border-box;" onmouseover="this.style.transform=\'scale(1.1)\';this.style.background=\'#1e293b\'" onmouseout="this.style.transform=\'scale(1)\';this.style.background=\'#0f172a\'" title="Go to Home Portal">🏠</a>
-    <button onclick="window.history.back()" style="background: #0f172a; color: #38bdf8; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4); border: 1px solid rgba(56, 189, 248, 0.2); cursor: pointer; font-size: 20px; transition: all 0.3s ease; box-sizing: border-box;" onmouseover="this.style.transform=\'scale(1.1)\';this.style.background=\'#1e293b\'" onmouseout="this.style.transform=\'scale(1)\';this.style.background=\'#0f172a\'" title="Go Back">🔙</button>
+    local nav_html='<style>
+    .itt-top-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 60px;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 10000;
+        border-bottom: 1px solid #e2e8f0;
+        box-sizing: border-box;
+    }
+    .back-btn {
+        color: #334155;
+        text-decoration: none;
+        font-family: '\''Inter'\'', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+        transform: translateX(-5px);
+        color: #0f172a;
+    }
+    .back-btn .arrow {
+        font-size: 18px;
+    }
+    /* Only push the sidebar menu down */
+    .menu-content, [data-role='\''redoc-menu'\''] {
+        margin-top: 60px !important;
+    }
+    .menu-content {
+        top: 60px !important;
+        height: calc(100vh - 60px) !important;
+    }
+    @media (max-width: 768px) {
+        .itt-top-header {
+            width: 100%;
+            padding: 0 16px;
+        }
+        .redoc-container {
+            margin-top: 60px !important;
+        }
+    }
+</style>
+<div class='\''itt-top-header'\''>
+    <a href='\''index.html'\'' class='\''back-btn'\'' title='\''Back to Portal'\''>
+        <span class='\''arrow'\''>&larr;</span>
+        <span class='\''text'\''>Back to Portal</span>
+    </a>
 </div>'
     
     # Use a temporary file for cross-platform compatibility
     if [ -f "$file" ]; then
-        sed "s|</body>|$nav_html</body>|g" "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+        # More robust sed replacement that handles leading whitespace
+        sed -i.bak "s|[[:space:]]*</body>|$nav_html</body>|g" "$file"
+        rm -f "$file.bak"
         echo "   🧭 Navigation buttons injected."
     fi
 }

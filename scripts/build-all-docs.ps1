@@ -11,25 +11,82 @@ if (-not (Test-Path $RedocDir)) {
     New-Item -ItemType Directory -Path $RedocDir | Out-Null
 }
 
-$NavHtml = '<div style="position: fixed; bottom: 30px; left: 30px; z-index: 9999; display: flex; gap: 10px;">
-    <a href="index.html" style="background: #0f172a; color: #38bdf8; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4); border: 1px solid rgba(56, 189, 248, 0.2); text-decoration: none; font-size: 20px; transition: all 0.3s ease; box-sizing: border-box;" onmouseover="this.style.transform=''scale(1.1)'';this.style.background=''#1e293b''" onmouseout="this.style.transform=''scale(1)'';this.style.background=''#0f172a''" title="Go to Home Portal">🏠</a>
-    <button onclick="window.history.back()" style="background: #0f172a; color: #38bdf8; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4); border: 1px solid rgba(56, 189, 248, 0.2); cursor: pointer; font-size: 20px; transition: all 0.3s ease; box-sizing: border-box;" onmouseover="this.style.transform=''scale(1.1)'';this.style.background=''#1e293b''" onmouseout="this.style.transform=''scale(1)'';this.style.background=''#0f172a''" title="Go Back">🔙</button>
-</div>'
+$NavHtml = "
+<style>
+    .itt-top-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 60px;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 10000;
+        border-bottom: 1px solid #e2e8f0;
+        box-sizing: border-box;
+    }
+    .back-btn {
+        color: #334155;
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+        transform: translateX(-5px);
+        color: #0f172a;
+    }
+    .back-btn .arrow {
+        font-size: 18px;
+    }
+    /* Only push the sidebar menu down */
+    .menu-content, [data-role='redoc-menu'] {
+        margin-top: 60px !important;
+    }
+    .menu-content {
+        top: 60px !important;
+        height: calc(100vh - 60px) !important;
+    }
+    @media (max-width: 768px) {
+        .itt-top-header {
+            width: 100%;
+            padding: 0 16px;
+        }
+        .redoc-container {
+            margin-top: 60px !important;
+        }
+    }
+</style>
+<div class='itt-top-header'>
+    <a href='index.html' class='back-btn' title='Back to Portal'>
+        <span class='arrow'>&larr;</span>
+        <span class='text'>Back to Portal</span>
+    </a>
+</div>"
 
 function Inject-NavButtons {
     param([string]$FileName)
     $FilePath = Join-Path $RedocDir $FileName
     if (Test-Path $FilePath) {
-        $Content = Get-Content $FilePath -Raw
-        $NewContent = $Content -replace '</body>', "$NavHtml</body>"
-        $NewContent | Set-Content $FilePath
-        Write-Host "   🧭 Navigation buttons injected." -ForegroundColor Cyan
+        $Content = [System.IO.File]::ReadAllText($FilePath)
+        # Robust regex for </body> with leading whitespace
+        $Pattern = '(?i)\s*</body>'
+        $Replacement = $NavHtml + "`n  </body>"
+        $NewContent = [regex]::Replace($Content, $Pattern, $Replacement)
+        [System.IO.File]::WriteAllText($FilePath, $NewContent, [System.Text.Encoding]::UTF8)
+        Write-Host "   -> Navigation buttons injected." -ForegroundColor Cyan
     }
 }
 
 function Build-Service {
     param([string]$InputFile, [string]$OutputName)
-    Write-Host "📦 Building $OutputName..." -ForegroundColor Yellow
+    Write-Host "--- Building $OutputName ---" -ForegroundColor Yellow
     $InputPath = Join-Path $OpenapiDir $InputFile
     $OutputPath = Join-Path $RedocDir $OutputName
     
@@ -39,7 +96,7 @@ function Build-Service {
     Inject-NavButtons -FileName $OutputName
 }
 
-Write-Host "🚀 Generating documentation... This may take a moment." -ForegroundColor Green
+Write-Host "Starting documentation generation..." -ForegroundColor Green
 
 # Run generation for each YAML file
 Build-Service "openapi.yaml" "openapi.html"
@@ -51,7 +108,5 @@ Build-Service "Train.yaml" "train.html"
 Build-Service "Transfer.yaml" "transfer.html"
 Build-Service "Tour-Packege.yaml" "tour-package.html"
 
-Write-Host "`n✅ All documentation generated successfully in the /redoc directory!" -ForegroundColor Green
-Write-Host "`n🌐 To view the documentation, open this file in your browser:"
-Write-Host "   $RedocDir\index.html"
-Write-Host "`n🚀 Pro tip: Right-click 'redoc\index.html' and select 'Open in Default Browser'."
+Write-Host "All documentation generated successfully!" -ForegroundColor Green
+Write-Host "View it at: $RedocDir\index.html"
