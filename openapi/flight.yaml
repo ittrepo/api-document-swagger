@@ -756,6 +756,9 @@ paths:
     tags:
       - "Flight Search & Pricing"
     summary: Get branded fare options for a flight
+    description: If the get_branded_fare value is yes. You need to call branded fare api for RoundTrip both flight and pass the value in array from all flight options. If the get_branded_fare value is no. You need to call branded fare api for RoundTrip only selected flight and pass the value in array from selected flight options.
+
+
     operationId: flightBrandedFare
 
     requestBody:

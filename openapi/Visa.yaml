@@ -985,8 +985,766 @@ paths:
                   is_warning: "yes"
                   reason: "You do not have authorization to validate visa details. Please contact Support."
                   reason_admin: "Visa Validation Access is Disabled"
+  /visa/get-validate-details:
+   post:
+    tags:
+      - Visa Service
+    summary: Get validated visa details using tracking ID
+    description: Retrieve the previously validated visa information, pricing, and guest selection using the unique tracking ID.
+    operationId: getVisaValidateDetails
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+            properties:
+              tracking_id:
+                type: string
+                example: "1177235201788128GTBLA"
+                description: "The unique tracking ID received from the validate-details API."
+    responses:
+      '200':
+        description: Successfully retrieved validated details
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_get_validation:
+                summary: Successful Data Retrieval
+                value:
+                  {
+                        "status": "success",
+                        "tracking_id": "31177468832226194WXVDD",
+                        "session_expire": {
+                            "timestamp": 1774690122,
+                            "datetime": "2026-03-28 15:28:42 +06",
+                            "message": "The booking process should be completed by no later than 2026-03-28 15:28:42 +06."
+                        },
+                        "search_parameter": {
+                            "visa_seo_code": "medical-visa",
+                            "visa_option_code": "business-visa",
+                            "guest_nationality": "BD",
+                            "guest_visite": "BD",
+                            "checkIn": "2026-04-30",
+                            "total_adult": 2,
+                            "total_child": 0
+                        },
+                        "data": {
+                            "summery": {
+                                "visa_seo_code": "medical-visa",
+                                "visa_title": "Medical Visa",
+                                "primary_photo": "https://cdn.innovategrid.com/innovatesolution/visa/121772527373686170.png",
+                                "country_name": "Bangladesh",
+                                "country_code": "BD",
+                                "visa_category": "business-visa",
+                                "visa_category_title": "Business Visa",
+                                "basic_info": "<p>none</p>\n\n<p>none</p>\n",
+                                "last_update": "Tuesday, 2026-03-03 2:43 PM +06:00",
+                                "meta_title": "",
+                                "meta_description": "",
+                                "meta_keywords": "",
+                                "meta_robots": "index,follow",
+                                "meta_googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+                                "meta_canonical_link": "",
+                                "meta_og_title": "",
+                                "meta_ogurl": "",
+                                "meta_ogdescription": "",
+                                "meta_ogimage": "https://cdn.innovategrid.com/innovatesolution/visa/121772527373686170.png"
+                            },
+                            "applicant": {
+                                "total": 2,
+                                "adult": 2,
+                                "child": 0
+                            },
+                            "visa_options": {
+                                "visa_option_title": "Business Visa",
+                                "visa_option_code": "business-visa",
+                                "validating_doc": [],
+                                "required_doc": [
+                                    {
+                                        "title": "Passport",
+                                        "code": "passport",
+                                        "data": [
+                                            "none"
+                                        ]
+                                    },
+                                    {
+                                        "title": "Photo",
+                                        "code": "photo",
+                                        "data": [
+                                            "none"
+                                        ]
+                                    }
+                                ],
+                                "processing_time": {
+                                    "title": "Visa Processing Time",
+                                    "notes": "Visa processing time refers to the duration required for authorities to review and make a decision on a visa application. This period can vary depending on several factors, including the type of visa, the applicant's nationality, and the efficiency of the processing country's immigration department. Generally, processing times can range from a few days to several weeks or even months. It is advisable for applicants to apply well in advance of their intended travel date to accommodate any potential delays. During this time, applicants may be required to attend interviews, submit additional documentation, or undergo background checks.",
+                                    "duration": "7",
+                                    "type": "Days"
+                                },
+                                "visa_validity": {
+                                    "title": "Visa Validity",
+                                    "notes": "Visa valid from the date of issue. You must enter within the validity of visa",
+                                    "duration": "90",
+                                    "type": "Days"
+                                },
+                                "visa_validity_arrival": {
+                                    "title": "Visa Validity From Arrival Date",
+                                    "notes": "Visa valid from the date of arrival, the permitted length of stay",
+                                    "duration": "60",
+                                    "type": "Days"
+                                },
+                                "contacts": {
+                                    "email": null,
+                                    "number": null
+                                },
+                                "age": {
+                                    "adult_min": "25",
+                                    "child_min": "12"
+                                },
+                                "fees": {
+                                    "sell": {
+                                        "total": 12000,
+                                        "currency": "BDT",
+                                        "visa_fees": 10000,
+                                        "service_charge": 2000,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "total": 10500,
+                                        "currency": "BDT",
+                                        "visa_fees": 9000,
+                                        "service_charge": 1500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "total": 10500,
+                                        "currency": "BDT",
+                                        "visa_fees": 9000,
+                                        "service_charge": 1500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "total": 10500,
+                                        "currency": "BDT",
+                                        "visa_fees": 9000,
+                                        "service_charge": 1500,
+                                        "service_charge_currency": "BDT"
+                                    }
+                                },
+                                "adult": {
+                                    "sell": {
+                                        "total": 6000,
+                                        "currency": "BDT",
+                                        "visa_fees": 5000,
+                                        "service_charge": 1000,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "total": 6000,
+                                        "currency": "BDT",
+                                        "visa_fees": 5000,
+                                        "service_charge": 1000,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "total": 6000,
+                                        "currency": "BDT",
+                                        "visa_fee": 5000,
+                                        "service_charge": 1000,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "total": 6000,
+                                        "currency": "BDT",
+                                        "visa_fee": 5000,
+                                        "service_charge": 1000,
+                                        "service_charge_currency": "BDT"
+                                    }
+                                },
+                                "child": {
+                                    "sell": {
+                                        "total": 4500,
+                                        "currency": "BDT",
+                                        "visa_fees": 4000,
+                                        "service_charge": 500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "total": 4500,
+                                        "currency": "BDT",
+                                        "visa_fees": 4000,
+                                        "service_charge": 500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "total": 4500,
+                                        "currency": "BDT",
+                                        "visa_fee": 4000,
+                                        "service_charge": 500,
+                                        "service_charge_currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "total": 4500,
+                                        "currency": "BDT",
+                                        "visa_fee": 4000,
+                                        "service_charge": 500,
+                                        "service_charge_currency": "BDT"
+                                    }
+                                }
+                            },
+                            "visa_faq": [],
+                            "holiday_data": {
+                                "weekend_days": [
+                                    "Fri",
+                                    "Sat"
+                                ],
+                                "public_holidays": []
+                            }
+                        },
+                        "country_profile": {
+                            "country_code": "BD",
+                            "country_name": "Bangladesh",
+                            "country_flags": null,
+                            "phoneCode": "880",
+                            "map_photo": null,
+                            "google_map_url": "http://maps.google.com/maps?q=Bangladesh",
+                            "capital": "Dhaka",
+                            "currency": "Bangladeshi taka (BDT)",
+                            "language": "Bengali",
+                            "religion": "Islam, Hinduism",
+                            "weather": "Bangladesh has a tropical monsoon climate with three distinct seasons: a hot, humid summer, a cool, dry winter, and a rainy monsoon season.",
+                            "major_cities": "Dhaka, Chittagong, Khulna, Rajshahi",
+                            "about_country": "Bangladesh is a country in South Asia. It is known for its lush green landscapes, a vast network of rivers, and rich cultural heritage. The country is one of the most densely populated in the world.",
+                            "available_timezone": [
+                                {
+                                    "timezone_name": "Asia/Dhaka"
+                                }
+                            ]
+                        },
+                        "airport_list": [
+                            {
+                                "IataCode": "LLJ",
+                                "AirportName": "Lalmonirhat Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Indonesia",
+                                "CityName": "Lalmonirhat",
+                                "CityCode": "LLJ"
+                            },
+                            {
+                                "IataCode": "ZYL",
+                                "AirportName": "Osmani International Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Sylhet",
+                                "CityCode": "ZYL"
+                            },
+                            {
+                                "IataCode": "ZHM",
+                                "AirportName": "Shamshernagar Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Shamshernagar",
+                                "CityCode": "ZHM"
+                            },
+                            {
+                                "IataCode": "TKR",
+                                "AirportName": "Thakurgaon Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Thakurgaon",
+                                "CityCode": "TKR"
+                            },
+                            {
+                                "IataCode": "SPD",
+                                "AirportName": "Saidpur Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Saidpur",
+                                "CityCode": "SPD"
+                            },
+                            {
+                                "IataCode": "SDW",
+                                "AirportName": "Sandwip Airport",
+                                "airport_timezone": null,
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Sandwip",
+                                "CityCode": ""
+                            },
+                            {
+                                "IataCode": "SAJ",
+                                "AirportName": "Sirajganj Airport",
+                                "airport_timezone": null,
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Sirajganj",
+                                "CityCode": ""
+                            },
+                            {
+                                "IataCode": "RJH",
+                                "AirportName": "Shah Makhdum Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Rajshahi",
+                                "CityCode": "RJH"
+                            },
+                            {
+                                "IataCode": "RAU",
+                                "AirportName": "Rangpur Airport",
+                                "airport_timezone": null,
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Rangpur",
+                                "CityCode": ""
+                            },
+                            {
+                                "IataCode": "BZL",
+                                "AirportName": "Barisal Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Barisal",
+                                "CityCode": "BZL"
+                            },
+                            {
+                                "IataCode": "KHL",
+                                "AirportName": "Khulna Khan Jahan Ali Airport",
+                                "airport_timezone": null,
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Khulna",
+                                "CityCode": ""
+                            },
+                            {
+                                "IataCode": "JSR",
+                                "AirportName": "Jessore Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Jashore (Jessore)",
+                                "CityCode": "JSR"
+                            },
+                            {
+                                "IataCode": "IRD",
+                                "AirportName": "Ishurdi Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Ishurdi",
+                                "CityCode": "IRD"
+                            },
+                            {
+                                "IataCode": "DAC",
+                                "AirportName": "Hazrat Shahjalal International Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Dhaka",
+                                "CityCode": "DAC"
+                            },
+                            {
+                                "IataCode": "CXB",
+                                "AirportName": "Cox's Bazar Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Cox's Bazar",
+                                "CityCode": "CXB"
+                            },
+                            {
+                                "IataCode": "CLA",
+                                "AirportName": "Comilla Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Comilla",
+                                "CityCode": "CLA"
+                            },
+                            {
+                                "IataCode": "CGP",
+                                "AirportName": "Shah Amanat International Airport",
+                                "airport_timezone": "Asia/Dhaka",
+                                "CountryCode": "BD",
+                                "CountryName": "Bangladesh",
+                                "CityName": "Chattogram (Chittagong)",
+                                "CityCode": "CGP"
+                            }
+                        ]
+                    }
 
-  /esim/booking-details:
+              invalid_tracking_id:
+                summary: Tracking ID Not Found
+                value:
+                  status: "failed"
+                  reason: "No validation data found for the provided tracking_id!"
+
+              session_expired:
+                summary: Validation Session Expired
+                value:
+                  status: "failed"
+                  reason: "The validation session has expired. Please validate the details again."
+
+              authorization_failed:
+                summary: Authorization Failed (Warning)
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "You do not have authorization to access these details. Please contact Support."
+                  reason_admin: "Get Validate Details Access is Disabled"
+  /visa/create-order:
+   post:
+    tags:
+      - Visa Service
+    summary: Create a new visa application order
+    description: Submit applicant details, passport information, and documents to create a visa booking for one or multiple travelers.
+    operationId: createVisaOrder
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - member_id
+              - tracking_id
+              - payment_type
+              - visa_applicant
+            properties:
+              member_id:
+                type: string
+                description: "The unique ID of the agency or member placing the order."
+                example: "1"
+              tracking_id:
+                type: string
+                description: "The unique tracking ID obtained from the 'validate-details' step."
+                example: "1177468979868881A2U8M"
+              payment_type:
+                type: string
+                enum: [account_balance, card]
+                description: "Mode of payment. Choose 'account_balance' for instant deduction or 'card' for gateway payment."
+                example: "account_balance"
+              redirect_url:
+                type: string
+                description: "The URL where the user will be redirected after a successful card payment."
+                example: "https://agent.sabbir.lan/booking_details/"
+              visa_applicant:
+                type: array
+                description: "A list of one or more applicants applying for the visa."
+                items:
+                  type: object
+                  required:
+                    - visa_option_code
+                    - pax_id
+                    - first_name
+                    - last_name
+                    - doc_no
+                    - attachment
+                  properties:
+                    visa_option_code:
+                      type: string
+                      description: "The specific option code for the visa (e.g., medical-visa, tourist-visa)."
+                      example: "medical-visa"
+                    pax_id:
+                      type: string
+                      description: "Unique identifier for the passenger within this order (e.g., 1, 2)."
+                      example: "1"
+                    gender:
+                      type: string
+                      description: "Gender of the applicant (M/F)."
+                      example: "M"
+                    title:
+                      type: string
+                      description: "Salutation of the applicant (e.g., Mr, Ms, Mrs)."
+                      example: "Mr"
+                    first_name:
+                      type: string
+                      description: "First name of the applicant as per passport."
+                      example: "Showkat"
+                    last_name:
+                      type: string
+                      description: "Last name of the applicant as per passport."
+                      example: "Ali"
+                    dob:
+                      type: string
+                      format: date
+                      description: "Date of birth in YYYY-MM-DD format."
+                      example: "1995-10-24"
+                    doc_country:
+                      type: string
+                      description: "The 2-letter ISO code of the document issuing country."
+                      example: "BD"
+                    doc_no:
+                      type: string
+                      description: "The passport or travel document number."
+                      example: "ER1212121"
+                    doc_dateofexpiry:
+                      type: string
+                      format: date
+                      description: "The expiration date of the travel document (YYYY-MM-DD)."
+                      example: "2030-04-25"
+                    isd_code:
+                      type: string
+                      description: "International dial code without the plus sign (e.g., 880 for BD)."
+                      example: "880"
+                    contact_no:
+                      type: string
+                      description: "The mobile number of the applicant."
+                      example: "1966330000"
+                    email_address:
+                      type: string
+                      format: email
+                      description: "The email address for sending booking notifications."
+                      example: "sabbir@innovatesolution.com"
+                    attachment:
+                      type: array
+                      description: "List of digital documents required for the visa application."
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: "The label for the attachment (e.g., passport, photo, medical-report)."
+                            example: "passport"
+                          url:
+                            type: string
+                            description: "The public URL where the document is hosted (S3/Cloud storage)."
+                            example: "https://enterpise.s3.amazonaws.com/passport.jpg"
+          examples:
+            visa_order_request:
+              summary: Successful Visa Order Creation Request.
+              value:
+                member_id: "1"
+                tracking_id: "1177468979868881A2U8M"
+                payment_type: "account_balance"
+                redirect_url: "https://agent.sabbir.lan/booking_details/"
+                visa_applicant:
+                  - visa_option_code: "medical-visa"
+                    pax_id: "1"
+                    gender: "M"
+                    title: "Mr"
+                    first_name: "Showkat"
+                    last_name: "Ali"
+                    dob: "1995-10-24"
+                    doc_country: "BD"
+                    doc_no: "ER1212121"
+                    doc_dateofexpiry: "2030-04-25"
+                    isd_code: "880"
+                    contact_no: "1966330000"
+                    email_address: "sabbir@innovatesolution.com"
+                    attachment:
+                      - name: "passport"
+                        url: "https://enterpise.s3.ap-southeast-1.amazonaws.com/profile_picture/profile_picture-1-3-1721194599-90880.jpg"
+                      - name: "photo"
+                        url: "https://enterpise.s3.ap-southeast-1.amazonaws.com/profile_picture/profile_picture-1-3-1721194599-90880.jpg"
+                  - visa_option_code: "medical-visa"
+                    pax_id: "2"
+                    gender: "M"
+                    title: "Mr"
+                    first_name: "Mahade Hasan"
+                    last_name: "Sabbir"
+                    dob: "2001-07-11"
+                    doc_country: "BD"
+                    doc_no: "AE12525090"
+                    doc_dateofexpiry: "2030-01-25"
+                    isd_code: "880"
+                    contact_no: "1966330000"
+                    email_address: "mahadehasanbd00@gmail.com"
+                    attachment:
+                      - name: "passport"
+                        url: "https://hoteljson.gtrsystem.com/testpdf/test_03_voucher_supplier.pdf"
+                      - name: "photo"
+                        url: "https://enterpise.s3.ap-southeast-1.amazonaws.com/profile_picture/profile_picture-1-3-1721194599-90880.jpg"
+    responses:
+      '200':
+        description: Visa Order Successfully Created
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              order_success:
+                summary: Success Response
+                value:
+                  {
+                        "status": "success",
+                        "result": "Application successfully created with application ID VISA111260328152418",
+                        "reason": "The application has been successfully recorded, and it is associated with the Application Id VISA111260328152418.",
+                        "tracking_id": "1177468979868881A2U8M",
+                        "application_id": "VISA111260328152418",
+                        "data": [
+                            {
+                            "Id": "393",
+                            "timestamp": "1774689858",
+                            "last_update": "1774689858",
+                            "entry": "1",
+                            "entry_n": "Innovate Sabbir Admin",
+                            "last_modify_member_id": null,
+                            "ip": "192.168.88.1",
+                            "ftm_partner_id": "1",
+                            "master_partner_id": "1",
+                            "zone_id": "1",
+                            "zone_title": "Headquarter",
+                            "tracking_id": "1177468979868881A2U8M",
+                            "flight_key": null,
+                            "isImportPNR": "0",
+                            "booking_platform": "B2B",
+                            "booking_id": "VISA111260328152418",
+                            "supplier_confirmation_id": "VISA111260328152418",
+                            "splitPNRref": null,
+                            "order_id_ndc": null,
+                            "order_id_Farelogix": null,
+                            "supplier_others_id_a": null,
+                            "supplier_others_id_b": null,
+                            "supplier_booking_pcc": null,
+                            "supplier_ticketing_pcc": null,
+                            "supplier_provider_code": null,
+                            "airlines_pnr": null,
+                            "supplier_voucher_link": null,
+                            "service_type": "VISA",
+                            "status": "success",
+                            "booking_status": "applied",
+                            "booking_supplier_status": "confirm",
+                            "booking_supplier_set_status": "initiated",
+                            "payment_status": "pending",
+                            "pay_tracking_id": null,
+                            "ticket_status": "issued",
+                            "supplier_timezone": null,
+                            "partner_timezone": null,
+                            "ticket_issue_date": null,
+                            "ticket_issue_timestamp": null,
+                            "ticket_issue_delay_alert": "pending",
+                            "auto_cancel_status": "pending",
+                            "auto_cancel": null,
+                            "auto_cancel_timestamp": null,
+                            "syncTimeLimit": "1",
+                            "supplierTimeLimit": null,
+                            "supplierTimeLimitTimezone": null,
+                            "manualActionRequired": "no",
+                            "manualActionRequiredCategory": "",
+                            "manualActionRequiredNotes": "",
+                            "reason": null,
+                            "reason_admin": null,
+                            "generated_date": "2026-03-28",
+                            "checkin_departure_date": "2026-04-30",
+                            "checkout_arrival_date": "2026-04-30",
+                            "primary_guest_nationality": "BD",
+                            "primary_guest_name": "Showkat Ali",
+                            "primary_guest_email": "sabbir@innovatesolution.com",
+                            "primary_guest_isd_code": null,
+                            "primary_guest_contact_no": "8801966330000",
+                            "carrier_hotel": "India",
+                            "departure_airport": null,
+                            "arrival_airport": null,
+                            "journey_type": "medical-visa",
+                            "totalPax": "0",
+                            "travelers_adult": "0",
+                            "travelers_child": "0",
+                            "travelers_infants": "0",
+                            "TotalSegment": "0",
+                            "flightSegment": null,
+                            "journeyStartTime": null,
+                            "journeyEndTime": null,
+                            "bookingSource": "{\"platform\":\"B2B\",\"domain\":\"postman\",\"user_os\":null,\"browser_name\":null,\"browser_version\":null}",
+                            "isDomestic_Flight": "0",
+                            "cabinPriceClass": null,
+                            "cabinCode": null,
+                            "bookingCode": null,
+                            "supplier_code": null,
+                            "supplier_uid": null,
+                            "supplier_partner_code": null,
+                            "currency": "BDT",
+                            "total_amount": "5000",
+                            "sell_total_price": "5000",
+                            "sell_margin": "5000",
+                            "sell_paid_amount": "0.00",
+                            "sell_paid_status": "Unpaid",
+                            "sell_invoice_due_date": null,
+                            "supplier_currency": "BDT",
+                            "supplier_cost": "0",
+                            "supplier_validation_price": "0.00",
+                            "supplier_validation_price_currency": null,
+                            "fmg_price": "0",
+                            "discount_comission_ratio": "0",
+                            "discount_comission_type": "general",
+                            "discountPromoCode": null,
+                            "discountPromoCodeApplied": "pending",
+                            "margin": "0.00",
+                            "payment_type": "account_balance",
+                            "isPartialPay": "no",
+                            "isPartialPayPossible": "no",
+                            "isPartialDuePaid": "no",
+                            "partial_pay_now": "0.00",
+                            "partial_rest_payment_amount": "0.00",
+                            "partial_rest_payment_date": null,
+                            "partial_rest_payment_timestamp": null,
+                            "partial_pay_now_supplier": null,
+                            "partial_pay_now_supplier_currency": null,
+                            "partial_pay_now_charges": null,
+                            "penalty_info_data": null,
+                            "redirect_url": "https://agent.sabbir.lan/booking_details/",
+                            "hotel_flight_confirmation_status": "pending",
+                            "ticket_numbers": null,
+                            "fmg_id": null,
+                            "customer_markup_policy": null,
+                            "branch_id": "BDHE001",
+                            "service_details": "medical-visa visa application from Showkat Ali for country India",
+                            "booking_remarks": null,
+                            "special_requests_data": null,
+                            "email_send": "pending",
+                            "email_send_timestamp": null,
+                            "email_meta_title": null,
+                            "supplier_price_validation": "pending",
+                            "sales_closed": "pending",
+                            "agency_isd_code": "88",
+                            "agency_contact_no": "01901402814",
+                            "agency_email": "sabbir@innovatesolution.com",
+                            "partner_name": "Innovate Sabbir Admin",
+                            "flight_group_json": null,
+                            "search_parameter_json": null,
+                            "supplier_invoice_company": null,
+                            "supplier_invoice_number": null,
+                            "IsCardPayBooking": "no",
+                            "CardPayBookingJSON": null,
+                            "CardPayStatus": "pending",
+                            "CardPayBookingStatus": "processing",
+                            "CardPayBookingStatusExecute": "pending",
+                            "isAnyIssueTicket": "0",
+                            "discountPromoAmount": "0",
+                            "postBookingProcess": "auto",
+                            "book_now_pay_later": "0",
+                            "OnlineCheckIn": null,
+                            "OnlineCheckInText": null
+                            }
+                        ]
+                        }
+
+              insufficient_balance:
+                summary: Payment Failed Error
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "Insufficient balance in your account. Please top up."
+                  reason_admin: "Account Balance Low"
+              validation_failed:
+                summary: Visa Validation Failed Error
+                value:
+                  status: "failed"
+                  reason: "Visa information Validation is failed."
+
+  /visa/booking-details:
     post:
       tags: 
         - Visa Service
@@ -1033,7 +1791,7 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
 
 
 components:

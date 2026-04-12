@@ -1,0 +1,274 @@
+openapi: 3.0.3
+info:
+  title: ITT Activity API
+  version: 1.0.0
+  description: Activity API endpoints converted from Postman collection.
+
+servers:
+  - url: "{protocol}://{fullUrl}"
+    description: Dynamic Server Selection
+    variables:
+      protocol:
+        enum:
+          - https
+          - http
+        default: https
+      fullUrl:
+        default: serviceapi.b2b.innovatedemo.com
+        description: Full URL of the server, e.g., serviceapi.b2b.innovatedemo.com or localhost:8080
+
+tags:
+  - name: Activity
+    description: Activity search, pricing, booking, ancillaries and post-booking flows.
+
+security:
+  - apiKeyAuth: []
+    secretCodeAuth: []
+paths:
+  /activity/search:
+   post:
+    tags:
+      - Activity Service
+    summary: Search for sightseeing and activities
+    description: Search for available tours, sightseeing activities, and experiences based on location, dates, and traveler information.
+    operationId: searchActivity
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - segment
+              - travelers_adult
+              - from
+              - to
+              - language
+            properties:
+              segment:
+                type: array
+                description: "Search locations. Multiple locations can be sent for complex searches."
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: "LOC"
+                      description: "Type of search identifier (e.g., LOC for Location)."
+                    value:
+                      type: string
+                      example: "Agra"
+                      description: "City or location name."
+              travelers_adult:
+                type: integer
+                example: 1
+                description: "Number of adult travelers."
+              travelers_child:
+                type: integer
+                example: 0
+                description: "Number of child travelers."
+              travelers_child_age:
+                type: array
+                items:
+                  type: integer
+                example: []
+                description: "Ages of child travelers."
+              travelers_infants:
+                type: integer
+                example: 0
+              travelers_infants_age:
+                type: array
+                items:
+                  type: integer
+                example: []
+              from:
+                type: string
+                format: date
+                example: "2025-05-28"
+                description: "Activity start date (YYYY-MM-DD)."
+              to:
+                type: string
+                format: date
+                example: "2025-05-30"
+                description: "Activity end date (YYYY-MM-DD)."
+              supplier_uid:
+                type: string
+                example: "X1HS00024"
+                description: "Unique ID of the supplier. Use 'all' or specific ID."
+              partner_id:
+                type: string
+                example: ""
+                description: "Partner identifier, can be left blank if not applicable."
+              short_ref:
+                type: string
+                example: "xxxx111"
+                description: "Reference for stream search tracking."
+              order:
+                type: string
+                enum: [DEFAULT, PRICE, NAME]
+                example: "DEFAULT"
+                description: "Sorting order of the search results."
+              language:
+                type: string
+                example: "en"
+                description: "Preferred language for results (e.g., en, bn)."
+    responses:
+      '200':
+        description: Activity search results retrieved
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_search:
+                summary: Successful Search Response
+                value:
+                  status: "success"
+                  tracking_id: "311775969024TFJ1"
+                  data:
+                    - activity_id: "ACT-12345"
+                      title: "Taj Mahal Guided Sunrise Tour"
+                      location: "Agra, India"
+                      price: 2500.00
+                      currency: "BDT"
+                      rating: 4.8
+                      thumbnail: "https://example.com/images/taj.jpg"
+                  filter:
+                    categories: ["Sightseeing", "Historical"]
+                    price_range: { min: 1000, max: 10000 }
+
+              no_activity_found:
+                summary: Activity Not Found Error
+                value:
+                  status: "failed"
+                  reason: "Currently, there are no activity found for your location."
+                  tracking_id: "311775969024TFJ1"
+                  search_parameter:
+                    segment:
+                      - type: "LOC"
+                        value: "dubai"
+                        lat: 25.2048493
+                        long: 55.2707828
+                        country_name: "United Arab Emirates"
+                        country_code: "AE"
+                        city_name: "Dubai"
+                    travelers_adult: 1
+                    travelers_child: 0
+                    travelers_infants: 0
+                    travelers_child_age: []
+                    travelers_infants_age: []
+                    from: "2026-05-28"
+                    to: "2026-07-01"
+                    supplier_uid: "X1TY00043"
+                    partner_id: ""
+                    short_ref: "xxxx111"
+                    order: "DEFAULT"
+                    language: "en"
+                  data: null
+                  filter: null
+
+              authorization_failed:
+                summary: Authorization Error
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "Unauthorized access to activity module."
+                  reason_admin: "Supplier credential expired"
+  /activity/booking-details:
+    post:
+      tags: [Activity]
+      summary: Get booking details
+      operationId: bookingDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - member_id
+                - tracking_id
+                - booking_id
+              properties:
+
+                member_id:
+                  type: string
+                  description: Logged-in user member ID
+                  example: "2"
+
+                tracking_id:
+                  type: string
+                  description: eSIM or booking tracking ID
+                  example: "11177260822126194QDWJV"
+
+                booking_id:
+                  type: string
+                  description: Booking ID for the eSIM package
+                  example: "ES2604MAYVA3A8"
+              additionalProperties: true
+            examples:
+              default:
+                value:
+                  member_id: "2"
+                  tracking_id: 11176276126126194RHSGI
+                  booking_id: ES2510NOKJAAFK
+      responses:
+        '200':
+          description: Booking info
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        
+
+
+
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apikey
+    secretCodeAuth:
+      type: apiKey
+      in: header
+      name: secretecode
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    ServerError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
