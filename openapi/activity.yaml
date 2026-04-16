@@ -124,19 +124,90 @@ paths:
               successful_search:
                 summary: Successful Search Response
                 value:
-                  status: "success"
-                  tracking_id: "311775969024TFJ1"
-                  data:
-                    - activity_id: "ACT-12345"
-                      title: "Taj Mahal Guided Sunrise Tour"
-                      location: "Agra, India"
-                      price: 2500.00
-                      currency: "BDT"
-                      rating: 4.8
-                      thumbnail: "https://example.com/images/taj.jpg"
-                  filter:
-                    categories: ["Sightseeing", "Historical"]
-                    price_range: { min: 1000, max: 10000 }
+                  {
+                        "status": "success",
+                        "total_transfer_found": 12,
+                        "data": [
+                            {
+                                "uid": 0,
+                                "activity_id": "X1HS00024#E-E10-IN-AGBHARA",
+                                "supplier": "activity-hotelbeds",
+                                "type": "TICKET",
+                                "name": "Excursion to Bharatpur (54 Kms) - Private Tour",
+                                "sell_price": 66.36,
+                                "duration": "1 days",
+                                "is_free_cancellation": false,
+                                "ratings": {
+                                    "average": null,
+                                    "total": null
+                                },
+                                "amenities": [
+                                    "Tickets",
+                                    "Guide",
+                                    "Hotel pick-up and drop-off"
+                                ],
+                                "location": {
+                                    "start": {
+                                        "type": "HOTEL_PICKUP",
+                                        "description": "Hotel pick-up available. </br> Please call 24 hours in advance to confirm the pick-up time and location.</br> Please ensure you arrive at the pick-up location at least 15 minutes in advance."
+                                    },
+                                    "end": {
+                                        "type": "Same",
+                                        "description": "Same as Starting Point"
+                                    }
+                                },
+                                "country": {
+                                    "code": "IN",
+                                    "name": "India",
+                                    "destinations": [
+                                        {
+                                            "name": "Agra"
+                                        }
+                                    ]
+                                },
+                                "image": "https://media.activitiesbank.com/29582/ENG/LPP/29582_1.jpg"
+                            },
+                            {
+                                "uid": 1,
+                                "activity_id": "X1HS00024#E-E10-IN-AGAGAR",
+                                "supplier": "activity-hotelbeds",
+                                "type": "TICKET",
+                                "name": "Agra City Tour with Taj Mahal, Itmad-ud-daulah and Agra Fort - Private Tour",
+                                "sell_price": 85.5,
+                                "duration": "1 days",
+                                "is_free_cancellation": false,
+                                "ratings": {
+                                    "average": null,
+                                    "total": null
+                                },
+                                "amenities": [
+                                    "Tickets",
+                                    "Guide",
+                                    "Hotel pick-up and drop-off"
+                                ],
+                                "location": {
+                                    "start": {
+                                        "type": "HOTEL_PICKUP",
+                                        "description": "Hotel pick-up available. </br> Please call 24 hours in advance to confirm the pick-up time and location.</br> Please ensure you arrive at the pick-up location at least 15 minutes in advance."
+                                    },
+                                    "end": {
+                                        "type": "Same",
+                                        "description": "Same as Starting Point"
+                                    }
+                                },
+                                "country": {
+                                    "code": "IN",
+                                    "name": "India",
+                                    "destinations": [
+                                        {
+                                            "name": "Agra"
+                                        }
+                                    ]
+                                },
+                                "image": "https://media.activitiesbank.com/16443/ENG/LPP/16443_5.jpg"
+                            }, 
+                        ]
+                    }
 
               no_activity_found:
                 summary: Activity Not Found Error
@@ -175,9 +246,1676 @@ paths:
                   is_warning: "yes"
                   reason: "Unauthorized access to activity module."
                   reason_admin: "Supplier credential expired"
+  /activity/search-single:
+   post:
+    tags:
+      - Activity Service
+    summary: Search for a single specific activity details
+    description: Retrieve detailed availability and pricing for a specific activity using its unique activity ID.
+    operationId: searchSingleActivity
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - activity_id
+              - travelers_adult
+              - from
+              - to
+              - language
+              - guest_nationality
+            properties:
+              activity_id:
+                type: string
+                description: "The unique identifier for the activity (includes supplier and hash data)."
+                example: "X1TY00043#T66-1205-22924#614b68c0-d862-422f-a6ca-7dd3ad15c84d"
+              travelers_adult:
+                type: integer
+                description: "Total number of adult travelers."
+                example: 3
+              travelers_child:
+                type: integer
+                description: "Total number of child travelers."
+                example: 1
+              travelers_infants:
+                type: integer
+                description: "Total number of infant travelers."
+                example: 0
+              travelers_child_age:
+                type: array
+                items:
+                  type: integer
+                description: "Ages of child travelers in an array."
+                example: [5]
+              travelers_infants_age:
+                type: array
+                items:
+                  type: integer
+                description: "Ages of infant travelers in an array."
+                example: []
+              from:
+                type: string
+                format: date
+                description: "Start date of the activity (YYYY-MM-DD)."
+                example: "2026-02-28"
+              to:
+                type: string
+                format: date
+                description: "End date of the activity (YYYY-MM-DD)."
+                example: "2026-03-01"
+              order:
+                type: string
+                enum: [DEFAULT, PRICE, NAME]
+                description: "Sorting preference for the response."
+                example: "DEFAULT"
+              language:
+                type: string
+                description: "Response language code (e.g., en, fr)."
+                example: "en"
+              guest_nationality:
+                type: string
+                description: "ISO 2-letter country code of the guest's nationality."
+                example: "BD"
+    responses:
+      '200':
+        description: Specific activity data retrieved successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_single_activity:
+                summary: Successful Single Activity Response
+                value:
+                  {
+                      "status": "success",
+                      "tracking_id": "11174210385626193VXCML",
+                      "search_parameter": {
+                          "activity_id": "X1HS00278#E-E10-A0PPNO0027",
+                          "travelers_adult": 4,
+                          "travelers_child": 2,
+                          "travelers_child_age": [
+                              5,
+                              4
+                          ],
+                          "travelers_infants": 0,
+                          "travelers_infants_age": [],
+                          "from": "2025-05-28",
+                          "to": "2025-05-29",
+                          "order": "DEFAULT",
+                          "language": "en",
+                          "activity_code": "E-E10-A0PPNO0027",
+                          "supplier_title": "Activity HotelBeds",
+                          "supplier_type": "ACTIVITY",
+                          "supplier_code": "activity-hotelbeds",
+                          "supplier_uid": "X1HS00278",
+                          "supplier_partner_code": "activity-hotelbeds-1-00278"
+                      },
+                      "session_expire": {
+                          "timestamp": 1742104397,
+                          "datetime": "2025-03-16 11:53:17 +06",
+                          "message": "The booking process should be completed by no later than 2025-03-16 11:53:17 +06."
+                      },
+                      "data": {
+                          "total_packages": 3,
+                          "connected_all_supplier": "",
+                          "create_connected_supplier": "",
+                          "activity": {
+                              "tracking_id": "11174210385626193VXCML",
+                              "name": "Island Tour: Soller by Vintage Train, Port de Soller by Tram, Sa Calobra by Boat and Return by Bus",
+                              "activity_code": "E-E10-A0PPNO0027",
+                              "location": {
+                                  "start": {
+                                      "type": "HOTEL_PICKUP",
+                                      "description": "Hotel pick-up available. </br> East Area: Cala Mesquida, Cala Ratjada, Font de Sa Cala, Canyamel, Cala Bona, Cala Millor, Sa Coma and S'Illot.</br> Eastern Calas Area: Porto Cristo, Cala Mandia, Punta Reina, Calas de Mallorca, Porto Colom, Cala Ferrera, Cala D'Or, Cala Egos, Porto Petro and Cala Barca.</br> Eastern Colonia Sant Jordi Area: Cala Figuera, Cala Santanyi and Colonia de Sant Jordi.</br> North Area: Cala San Vicente, Puerto Pollensa, Puerto Alcudia and Can Picafort.</br> South Area: From Arenal to Calvia or Palma city Center (From Escollera, in front of the Cathedral). Buses are not allowed to pick up into the city centre.</br> You must call at least 24 hours before in order to arrange a meeting/pick-up point and time. "
+                                  },
+                                  "end": {
+                                      "type": "Same",
+                                      "description": "Same as Starting Point"
+                                  }
+                              },
+                              "country": {
+                                  "code": "ES",
+                                  "name": "Spain",
+                                  "destinations": [
+                                      {
+                                          "name": "Majorca"
+                                      }
+                                  ]
+                              },
+                              "operation_days": [
+                                  "Tuesday",
+                                  "Thursday",
+                                  "Saturday"
+                              ],
+                              "images": [
+                                  "https://media.activitiesbank.com/53104/ENG/LPP/catedralvista3.jpg",
+                                  "https://media.activitiesbank.com/53104/ENG/LPP/valldemossa_mallorca3.jpg",
+                                  "https://media.activitiesbank.com/53104/ENG/LPP/tramuntana_2.jpg",
+                                  "https://media.activitiesbank.com/53104/ENG/LPP/SerraTramuntana.jpg",
+                                  "https://media.activitiesbank.com/53104/ENG/LPP/Cliffs.jpg",
+                                  "https://media.activitiesbank.com/53104/ENG/LPP/Formentor_Xp_bus.jpg"
+                              ],
+                              "description": "Discover the Majorcan Northern West Coast, its mountains, cliffs, and coastal treasures. A 9-hour panoramic tour combining stretches by bus, train, tram, and boat. Land and sea to enjoy some of the most emblematic landscapes of the island.<br />\n<br />\nStarting from the north, east, or south of Mallorca, the bus will take you to Palma to take the train to Sóller. Then you will go on board the vintage Train of Sóller, its wooden wagons, pampered with care and its rattle will return you to 1912, the year that was created this railway line, a fantastic trip through the Valley of Sóller between olive and orange trees, passing the natural barriers of the Alfábia Mountains, through 13 tunnels, several bridges, and a famous viaduct, to reach the city of Palma and end our tour.<br />\n<br />\nDepending on the schedule you will have free time to have lunch in Sóller or La Calobra, you will take a local tram that will bring you to Soller Harbor allowing you to admire the coast of this marvelous town.<br />\n<br />\nAfterward, you will enjoy a nice boat tour to admire from the sea one of the best Majorcan coastal landscapes, with wonderful views of the port and its cliffs mottled with elegant houses and famous villas surrounded by pine and olive trees reaching La Calobra, with free time to visit Torrent de Pareis.<br />\n<br />\nAfter admiring this natural wonder, the bus will bring you back to your original departure point.<br />\n<br />\n<strong>Options</strong><br />\n<strong>- Pick-up from the North and the East Areas: </strong>Cala Mesquida,Cala Ratjada,Font de Sa Cala,Canyamel,Cala Bona,Cala Millor, Sa Coma and S'Illot, Porto Cristo,Cala Mandia,Punta Reina, Calas de Mallorca, Porto Colom,Cala Ferrera, Cala D'Or, Cala Egos, Porto Petro, Cala Barca, Cala Figuera, Cala Santanyi,Colonia de Sant Jordi, Cala San Vicente,Puerto Pollensa,Puerto Alcudia,Can Picafort.<br />\n- <strong>Pick-up from the South Area:</strong> From Arenal to Calvia or Palma city Center (From Escollera, in front of the Cathedral).",
+                              "amenities": {
+                                  "included": [
+                                      "Guide",
+                                      "Train tickets",
+                                      "Hotel pick-up and drop-off",
+                                      "Boat Ride",
+                                      "Tram ticket"
+                                  ],
+                                  "excluded": [
+                                      "Drinks",
+                                      "Meal"
+                                  ]
+                              },
+                              "meeting_point": {
+                                  "address": "Majorca,Spain",
+                                  "destinations": "Island Tour: Soller by Vintage Train, Port de Soller by Tram, Sa Calobra by Boat and Return by Bus"
+                              },
+                              "cancellation_policy": [],
+                              "similar_activity": [],
+                              "ratings": [],
+                              "packages": [
+                                  {
+                                      "name": "Pick-up from East Levant Area (From Cala Mesquida to S'Illot)",
+                                      "duration": "1 DAYS",
+                                      "total_pax": 6,
+                                      "total_amount": 582,
+                                      "questions": [
+                                          {
+                                              "code": "EMAIL",
+                                              "text": "Please, provide the email address",
+                                              "required": true
+                                          },
+                                          {
+                                              "code": "HOTEL",
+                                              "text": "Please advise the name of your hotel",
+                                              "required": true
+                                          },
+                                          {
+                                              "code": "PHONENUMBER",
+                                              "text": "Please provide a contact number for the guests to be reached in case of emergency (including international code)",
+                                              "required": true
+                                          }
+                                      ],
+                                      "comments": [
+                                          "Meeting point: We have pick-up service included from: ***South Area: From Arenal to Calvia or Palma city Center (From Escollera, in front of the Cathedral). Buses are not allowed to pick up into the city centre.. ***Eastern area: Cala Mesquida,Cala Ratjada,Font de Sa Cala,Canyamel,Cala Bona,Cala Millor, Sa Coma and S'Illot. *Eastern Calas Area: Porto Cristo,Cala Mandia,Punta Reina, Calas de Mallorca, Porto Colom,Cala Ferrera, Cala D'Or, Cala Egos, Porto Petro, Cala Barca. *Eastern Colonia Sant Jordi Area: Cala Figuera, Cala Santanyi,Colonia de Sant Jordi. ***Northern Area: Cala San Vicente,Puerto Pollensa,Puerto Alcudia,Can Picafort. The pick-up timetable range between 8 and 9:15am, depending of the meeting point assigned // Meeting point instructions: Please call the supplier to confirm the pick-up time and location at least 48 hours prior to the activity on +34 971 072 073 or +34 672 351 726 // End point: Same as the meeting point // Duration: 9 hours // Included: Return transfer. Train ticket  Sóller-Palma. Tram Ticket from the Sóller Harbor to the town. Boat tour // Not included: Lunch // Mandatory instructions: Please ensure you have answered the mandatory questions during the booking process to ensure the correct provision of service // Recommendations: Bring comfortable clothes and shoes // Voucher type: E-voucher. Show the voucher on your mobile device to enjoy the activity // Supplier name: Tour2b DMC // Supplier emergency phone: +34 971 072 073 or +34 672 351 726 (also WhatsApp)."
+                                      ],
+                                      "rate_variation": [
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "Italian",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "prc2pmnekq3o2grq6uri3edbo80644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "German",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "qljssoheb7l5k2pni3up0diieh0644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "Spanish",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "3roe53l9885j2jjo8dpdr2c8ql0644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "English",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "ie03rfs8ge1v87a1f9jc0f8tk70644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "French",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "7t1dgs4jkak4u9mikfffs72d3p0644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "name": "Pick-up from the North Area",
+                                      "duration": "1 DAYS",
+                                      "total_pax": 6,
+                                      "total_amount": 582,
+                                      "questions": [
+                                          {
+                                              "code": "EMAIL",
+                                              "text": "Please, provide the email address",
+                                              "required": true
+                                          },
+                                          {
+                                              "code": "HOTEL",
+                                              "text": "Please advise the name of your hotel",
+                                              "required": true
+                                          },
+                                          {
+                                              "code": "PHONENUMBER",
+                                              "text": "Please provide a contact number for the guests to be reached in case of emergency (including international code)",
+                                              "required": true
+                                          }
+                                      ],
+                                      "comments": [
+                                          "Meeting point: We have pick-up service included from: ***South Area: From Arenal to Calvia or Palma city Center (From Escollera, in front of the Cathedral). Buses are not allowed to pick up into the city centre.. ***Eastern area: Cala Mesquida,Cala Ratjada,Font de Sa Cala,Canyamel,Cala Bona,Cala Millor, Sa Coma and S'Illot. *Eastern Calas Area: Porto Cristo,Cala Mandia,Punta Reina, Calas de Mallorca, Porto Colom,Cala Ferrera, Cala D'Or, Cala Egos, Porto Petro, Cala Barca. *Eastern Colonia Sant Jordi Area: Cala Figuera, Cala Santanyi,Colonia de Sant Jordi. ***Northern Area: Cala San Vicente,Puerto Pollensa,Puerto Alcudia,Can Picafort. The pick-up timetable range between 8 and 9:15am, depending of the meeting point assigned // Meeting point instructions: Please call the supplier to confirm the pick-up time and location at least 48 hours prior to the activity on +34 971 072 073 or +34 672 351 726 // End point: Same as the meeting point // Duration: 9 hours // Included: Return transfer. Train ticket  Sóller-Palma. Tram Ticket from the Sóller Harbor to the town. Boat tour // Not included: Lunch // Mandatory instructions: Please ensure you have answered the mandatory questions during the booking process to ensure the correct provision of service // Recommendations: Bring comfortable clothes and shoes // Voucher type: E-voucher. Show the voucher on your mobile device to enjoy the activity // Supplier name: Tour2b DMC // Supplier emergency phone: +34 971 072 073 or +34 672 351 726 (also WhatsApp)."
+                                      ],
+                                      "rate_variation": [
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "Italian",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "ou1197dtq40afaej7g1thphuik0644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "English",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "dmb9p947oa448lcep4pii51oqc0644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "French",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "ippn7cielluqmeak7mre2755410644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "German",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "efja1gs0nnkq5h28gghes5ikl40644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "Spanish",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "kclu0hikou1ao89qr30269ug5p0644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 582,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 65.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 95.02
+                                                  }
+                                              ]
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "name": "Pick-up from the South Area",
+                                      "duration": "1 DAYS",
+                                      "total_pax": 6,
+                                      "total_amount": 500,
+                                      "questions": [
+                                          {
+                                              "code": "EMAIL",
+                                              "text": "Please, provide the email address",
+                                              "required": true
+                                          },
+                                          {
+                                              "code": "HOTEL",
+                                              "text": "Please advise the name of your hotel",
+                                              "required": true
+                                          },
+                                          {
+                                              "code": "PHONENUMBER",
+                                              "text": "Please provide a contact number for the guests to be reached in case of emergency (including international code)",
+                                              "required": true
+                                          }
+                                      ],
+                                      "comments": [
+                                          "Meeting point: We have pick-up service included from: ***South Area: From Arenal to Calvia or Palma city Center (From Escollera, in front of the Cathedral). Buses are not allowed to pick up into the city centre.. ***Eastern area: Cala Mesquida,Cala Ratjada,Font de Sa Cala,Canyamel,Cala Bona,Cala Millor, Sa Coma and S'Illot. *Eastern Calas Area: Porto Cristo,Cala Mandia,Punta Reina, Calas de Mallorca, Porto Colom,Cala Ferrera, Cala D'Or, Cala Egos, Porto Petro, Cala Barca. *Eastern Colonia Sant Jordi Area: Cala Figuera, Cala Santanyi,Colonia de Sant Jordi. ***Northern Area: Cala San Vicente,Puerto Pollensa,Puerto Alcudia,Can Picafort. The pick-up timetable range between 8 and 9:15am, depending of the meeting point assigned // Meeting point instructions: Please call the supplier to confirm the pick-up time and location at least 48 hours prior to the activity on +34 971 072 073 or +34 672 351 726 // End point: Same as the meeting point // Duration: 9 hours // Included: Return transfer. Train ticket  Sóller-Palma. Tram Ticket from the Sóller Harbor to the town. Boat tour // Not included: Lunch // Mandatory instructions: Please ensure you have answered the mandatory questions during the booking process to ensure the correct provision of service // Recommendations: Bring comfortable clothes and shoes // Voucher type: E-voucher. Show the voucher on your mobile device to enjoy the activity // Supplier name: Tour2b DMC // Supplier emergency phone: +34 971 072 073 or +34 672 351 726 (also WhatsApp)."
+                                      ],
+                                      "rate_variation": [
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "French",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "fetng4922n61ohjhq8vse7jt940644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 500,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 43.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 87.98
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "Italian",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "kl1v3h501mbpkc5v5htofsqot20644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 500,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 43.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 87.98
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "English",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "eshmnokvg37pnsmrt6vv2f38ra0644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 500,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 43.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 87.98
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "Spanish",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "235oh1dl3int65bj96lr5cphp70644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 500,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 43.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 87.98
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "rate_code": "STANDARD",
+                                              "languages": "German",
+                                              "is_free_cancellation": false,
+                                              "rate_key": "ijloei6hck33r2123idrq1tupu0644",
+                                              "operation_dates": {
+                                                  "from": "2025-05-29",
+                                                  "to": "2025-05-29"
+                                              },
+                                              "rate_sessions": "09:00",
+                                              "minimum_duration": "1 days",
+                                              "maximum_duration": "1 days",
+                                              "total_amount": 500,
+                                              "is_mandatory_amount ": true,
+                                              "amount_per_pax": [
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 0,
+                                                      "ageTo": 2,
+                                                      "amount": 0
+                                                  },
+                                                  {
+                                                      "paxType": "CHILD",
+                                                      "ageFrom": 3,
+                                                      "ageTo": 12,
+                                                      "amount": 43.99
+                                                  },
+                                                  {
+                                                      "paxType": "ADULT",
+                                                      "ageFrom": 13,
+                                                      "ageTo": 999,
+                                                      "amount": 87.98
+                                                  }
+                                              ]
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
+                      }
+                  }
+
+              past_date_error:
+                summary: Date Validation Error
+                value:
+                  status: "failed"
+                  reason: "From Date cannot be in the past"
+                  requested_data:
+                    activity_id: "X1TY00043#T66-1205-22924#614b68c0-d862-422f-a6ca-7dd3ad15c84d"
+                    travelers_adult: 3
+                    travelers_child: 1
+                    travelers_infants: 0
+                    travelers_child_age: [5]
+                    travelers_infants_age: []
+                    from: "2026-02-28"
+                    to: "2026-03-01"
+                    order: "DEFAULT"
+                    language: "en"
+                    guest_nationality: "BD"
+
+              authorization_failed:
+                summary: Authorization Failed (Warning)
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "Access denied to this specific activity provider."
+                  reason_admin: "Supplier credential disabled for this partner"
+  /activity/validation-get-details:
+   post:
+    tags:
+      - Activity Service
+    summary: Get validated activity details
+    description: Retrieve information about a previously validated activity using the tracking IDs and member identifier.
+    operationId: getActivityValidationDetails
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - package_tracking_id
+              - member_id
+            properties:
+              tracking_id:
+                type: string
+                description: "The main search tracking ID."
+                example: "311177598415126194HNY4Y"
+              package_tracking_id:
+                type: string
+                description: "The specific rate UID or package tracking ID for the selected activity."
+                example: "311177598415126194HNY4Y||E-E10-A9SUNO0012||X1HS00024||0"
+              member_id:
+                type: string
+                description: "Unique ID of the member. For B2C, this is mandatory."
+                example: "1"
+    responses:
+      '200':
+        description: Successfully retrieved validated activity details
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              validation_details_success:
+                summary: Successful Validation Details Retrieval
+                value:
+                  {
+                      "status": "success",
+                      "tracking_id": "311177598415126194HNY4Y",
+                      "search_parameter": {
+                          "activity_id": "X1HS00024#E-E10-A9SUNO0012",
+                          "travelers_adult": 1,
+                          "travelers_child": 1,
+                          "travelers_infants": 0,
+                          "travelers_child_age": [
+                              5
+                          ],
+                          "travelers_infants_age": [],
+                          "from": "2026-04-28",
+                          "to": "2026-05-10",
+                          "order": "DEFAULT",
+                          "language": "en",
+                          "guest_nationality": "BD",
+                          "activity_code": "E-E10-A9SUNO0012",
+                          "result_token": null,
+                          "supplier_title": "HotelBeds Activity",
+                          "supplier_type": "ACTIVITY",
+                          "supplier_code": "activity-hotelbeds",
+                          "supplier_uid": "X1HS00024",
+                          "supplier_partner_code": "activity-hotelbeds-1-00024",
+                          "package_tracking_id": "311177598415126194HNY4Y||E-E10-A9SUNO0012||X1HS00024||0"
+                      },
+                      "session_expire": {
+                          "timestamp": 1775984693,
+                          "datetime": "2026-04-12 15:04:53 +06",
+                          "message": "The booking process should be completed by no later than 2026-04-12 15:04:53 +06."
+                      },
+                      "data": {
+                          "package_tracking_id": "311177598415126194HNY4Y||E-E10-A9SUNO0012||X1HS00024||0",
+                          "name": "Dubai Helicopter Private Tour with Return Transfers",
+                          "package_name": "Iconic Tour - 12 Minutes",
+                          "duration": "1 DAYS",
+                          "total_pax": 2,
+                          "total_amount": 202406.92,
+                          "platform_fees_or_extra_tax": 0,
+                          "amount_currency": "BDT",
+                          "price": {
+                              "promo_tag": null,
+                              "purchase": {
+                                  "total": {
+                                      "currency": "BDT",
+                                      "amount": 202406.92,
+                                      "before_discount": 202406.92,
+                                      "discount": 0,
+                                      "point": 0
+                                  },
+                                  "price_breakdown": {
+                                      "currency": "BDT",
+                                      "total": 202406.92,
+                                      "base_fare": 202406.92,
+                                      "tax": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "payable_at_property": []
+                                  }
+                              },
+                              "sell": {
+                                  "total": {
+                                      "currency": "BDT",
+                                      "amount": 202406.92,
+                                      "gross_price": 202406.92,
+                                      "platform_fees_or_extra_tax": 0,
+                                      "point": 0
+                                  },
+                                  "price_breakdown": {
+                                      "currency": "BDT",
+                                      "total": 202406.92,
+                                      "base_fare": 202406.92,
+                                      "tax": 0,
+                                      "platform_fees_or_extra_tax": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "payable_at_property": []
+                                  }
+                              },
+                              "fmg": {
+                                  "total": {
+                                      "currency": "EUR",
+                                      "amount": 1407.06
+                                  },
+                                  "price_breakdown": {
+                                      "currency": "EUR",
+                                      "total": 1407.06,
+                                      "base_fare": 1407.06,
+                                      "tax": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "base_fare_fmg_charge": 0,
+                                      "membership_discount_percentige": 0,
+                                      "membership_discount_amount": 0,
+                                      "final_base_fare_fmg_charge": 0,
+                                      "payable_at_property": []
+                                  }
+                              },
+                              "supplier": {
+                                  "total": {
+                                      "currency": "EUR",
+                                      "amount": 1407.06
+                                  },
+                                  "price_breakdown": {
+                                      "currency": "EUR",
+                                      "total": 1407.06,
+                                      "base_fare": 1407.06,
+                                      "tax": 0,
+                                      "sales_tax": 0,
+                                      "property_fees": 0,
+                                      "surcharges": 0,
+                                      "service_charge": 0,
+                                      "extra_person_fee": 0,
+                                      "supplier_sales_comission": null,
+                                      "payable_at_property": []
+                                  }
+                              }
+                          },
+                          "questions": [
+                              {
+                                  "code": "HOTEL",
+                                  "text": "Please provide the name of your hotel",
+                                  "required": true
+                              },
+                              {
+                                  "code": "PAX NAME",
+                                  "text": "Please provide the full names of all passengers",
+                                  "required": true
+                              },
+                              {
+                                  "code": "PAX_PASSPORT",
+                                  "text": "Please provide the passport numbers of all passengers travelling",
+                                  "required": true
+                              },
+                              {
+                                  "code": "PHONENUMBER",
+                                  "text": "Guests telephone with international code required",
+                                  "required": true
+                              },
+                              {
+                                  "code": "WEIGHT",
+                                  "text": "Please advise the weights of guests travelling",
+                                  "required": true
+                              }
+                          ],
+                          "comments": [
+                              "Meeting point: At your hotel // Meeting point instructions: Pick-up service is available for Dubai city hotels only. Please confirm your pick-up time or location by calling HeliDubai 48 hours prior to the service date on +971 420 814 55, +971 506 892 153 or Toll Free: 800 359 (FLY). Please ensure you arrive at the meeting point at least 15 minutes prior to the pick-up time // Opening time: 9am // Closing time: 5pm // End point: Same as the meeting point // Duration: Depending on the selected option // Included: Hotel transfers from Dubai city // Mandatory instructions: Please ensure you have answered the mandatory questions during the booking process to ensure the correct provision of the service. A choice of flight time is required to enable HeliDubai to arrange the booking. Please advise on the weight of the passengers. MAX 130kg.  Please bring your passport. For each 2 adults, there can be a maximum of 2 children on the flight // Voucher type: Printed voucher. Print and bring the voucher to enjoy the activity // Voucher validity: 1 day // Recommendations: Casual dress code// Supplier name: Helidubai  // Supplier emergency phone: +971 420 814 55, +971 506 892 153 or Toll Free: 800 359 (FLY).  "
+                          ],
+                          "rate_variation": [],
+                          "supplier_name": "HOTELBEDS SPAIN, S.L.U",
+                          "supplier_vat_number": "ESB28916765",
+                          "provider_name": "HELIDUBAI"
+                      }
+                  }
+
+              data_not_found:
+                summary: Invalid Tracking ID Error
+                value:
+                  status: "failed"
+                  reason: "No validation data found for the provided tracking IDs."
+                  tracking_id: "311177598415126194HNY4Y"
+
+              session_expired:
+                summary: Session Expired Error
+                value:
+                  status: "failed"
+                  reason: "The validation session has expired. Please re-validate the activity."
+
+              authorization_failed:
+                summary: Authorization Error
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "Member ID is missing or invalid for this B2C session."
+                  reason_admin: "Member verification failed"
+  /activity/update-traveler:
+   post:
+    tags:
+      - Activity Service
+    summary: Update traveler information for an activity booking
+    description: This endpoint allows updating the details of passengers (travelers) associated with a specific activity tracking ID before final confirmation.
+    operationId: updateActivityTraveler
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - member_id
+              - passenger
+            properties:
+              tracking_id:
+                type: string
+                description: "The booking tracking ID received from the Validation step."
+                example: "311177598415126194HNY4Y"
+              member_id:
+                type: string
+                description: "The unique ID of the logged-in member/user."
+                example: "1"
+              save_pax:
+                type: string
+                enum: [yes, no]
+                description: "Option to save passenger data for future use. Default is 'no'."
+                example: "no"
+              passenger:
+                type: array
+                description: "List of passengers/travelers details."
+                items:
+                  type: object
+                  required:
+                    - pax_id
+                    - first_name
+                    - last_name
+                    - pax_type
+                    - doc_no
+                  properties:
+                    pax_id:
+                      type: string
+                      example: "1"
+                    room_number:
+                      type: string
+                      example: "1"
+                    pax_type:
+                      type: string
+                      description: "Passenger type (e.g., ADT for Adult, CHD for Child)."
+                      example: "ADT"
+                    title:
+                      type: string
+                      example: "MR"
+                    first_name:
+                      type: string
+                      example: "Mahade"
+                    last_name:
+                      type: string
+                      example: "Hasan"
+                    age:
+                      type: string
+                      example: "30"
+                    isd_code:
+                      type: string
+                      example: "880"
+                    contact_no:
+                      type: string
+                      example: "1966330000"
+                    email_address:
+                      type: string
+                      format: email
+                      example: "sabbir@innovatesolution.com"
+                    doc_country:
+                      type: string
+                      description: "ISO country code of the document issuing country."
+                      example: "BD"
+                    doc_no:
+                      type: string
+                      description: "Passport or ID number."
+                      example: "A1235121"
+                    doc_dateofexpiry:
+                      type: string
+                      format: date
+                      example: "2030-04-25"
+                    doc_type:
+                      type: string
+                      example: "passport"
+    responses:
+      '200':
+        description: Traveler information updated successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              update_success:
+                summary: Successful Update
+                value:
+                  {
+                      "status": "success",
+                      "reason": "Passenger data has been successfully updated.",
+                      "tracking_id": "311177598415126194HNY4Y",
+                      "total_guest": 1,
+                      "data": [
+                          {
+                              "tracking_id": "311177598415126194HNY4Y", 
+                              "pax_id": "1",
+                              "pax_type": "ADT",
+                              "gender": null,
+                              "title": "MR",
+                              "first_name": "MAHADE",
+                              "last_name": "HASAN",
+                              "pax_age": "30",
+                              "isd_code": "880",
+                              "contact_no": "1966330000",
+                              "email_address": "sabbir@innovatesolution.com"
+                          },
+                          
+                      ]
+                  }
+
+              invalid_tracking_id:
+                summary: Invalid Tracking ID Error
+                value:
+                  status: "failed"
+                  reason: "No active booking found for the provided tracking ID!"
+
+              authorization_failed:
+                summary: Authorization Error
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "You are not authorized to update this traveler data."
+                  reason_admin: "Member ID mismatch with booking owner"
+  /activity/create-booking:
+   post:
+    tags:
+      - Activity Service
+    summary: Create a final activity booking
+    description: This endpoint confirms the booking for the selected activity and processes the payment.
+    operationId: createActivityBooking
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - package_tracking_id
+              - member_id
+              - payment_type
+              - isPartialPay
+              - email_address
+            properties:
+              tracking_id:
+                type: string
+                description: "The unique search tracking ID."
+                example: "11177012245288128VWKDN"
+              package_tracking_id:
+                type: string
+                description: "The specific rate or package tracking ID (Rate UID)."
+                example: "11177012245288128VWKDN||T66-1198-14856||X1TY00043||0||HcO7DYAwDAXAhbDkX5xkASagRwFMhWho3_AIdLolgkR6I_FWAlDWYGUDT_jqyiv4lzfmcT1JAKoVPg-rlGZKXninbT-Fhg3N5i4lA-r9BQ"
+              rate_key:
+                type: string
+                description: "Unique rate key provided by some suppliers (Optional)."
+                example: "ud3v6vpg4hmsrgvsl56btfd5av0819"
+              member_id:
+                type: string
+                description: "The unique ID of the logged-in member/user."
+                example: "1"
+              isd_code:
+                type: string
+                description: "Country dial code without the plus sign."
+                example: "880"
+              nationality:
+                type: string
+                description: "ISO 2-letter country code of the lead guest."
+                example: "BD"
+              contact_no:
+                type: string
+                description: "Contact mobile number."
+                example: "1966330000"
+              email_address:
+                type: string
+                format: email
+                description: "Email address for booking confirmation and vouchers."
+                example: "sabbir@innovatesolution.com"
+              payment_type:
+                type: string
+                enum: [account_balance, card, onlinepayment]
+                description: "Method of payment."
+                example: "account_balance"
+              isPartialPay:
+                type: string
+                enum: [yes, no]
+                description: "Whether the user is opting for partial payment."
+                example: "no"
+              redirect_url:
+                type: string
+                description: "URL to redirect the user after successful payment (Mandatory for card/onlinepayment)."
+                example: "https://ittsabbir.innotraveltech.com/booking-details/activities"
+              questions:
+                type: array
+                description: "Additional questions required by the activity supplier (if any)."
+                items:
+                  type: object
+                  properties:
+                    question_id:
+                      type: string
+                    answer:
+                      type: string
+                example: []
+    responses:
+      '200':
+        description: Activity Booking Created Successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              booking_success_balance:
+                summary: Successful Booking response with Account Balance Payment.                                
+                value:
+                 {
+                      "operationId": "8dd4d02ec8ca5931",
+                      "auditData": {
+                          "processTime": 1.099,
+                          "time": "2025-03-17T09:35:25.196Z",
+                          "serverId": "blank",
+                          "environment": "blank"
+                      },
+                      "booking": {
+                          "reference": "1-7897553",
+                          "status": "CONFIRMED",
+                          "currency": "EUR",
+                          "pendingAmount": 190.04,
+                          "agency": {
+                              "code": 99994,
+                              "branch": 1,
+                              "comments": "",
+                              "sucursal": {
+                                  "name": "HOTELBEDS SPAIN - PRUEBAS",
+                                  "street": "PEREZ GALDOS 32",
+                                  "zip": "07006",
+                                  "city": "PALMA DE MALLORCA",
+                                  "phone": "971771700",
+                                  "region": "BALEARES"
+                              }
+                          },
+                          "creationDate": "2025-03-17T10:35:24.000Z",
+                          "paymentData": {
+                              "paymentType": {
+                                  "code": "C"
+                              },
+                              "invoicingCompany": {
+                                  "code": "E14",
+                                  "name": "HOTELBEDS S.L.U.",
+                                  "registrationNumber": "ESB57218372"
+                              }
+                          },
+                          "extraData": [
+                              {
+                                  "id": "WEBIP",
+                                  "value": "20.47.98.12, 130.176.187.75, 10.214.141.252, 10.214.137.168"
+                              }
+                          ],
+                          "clientReference": "NS2517MAAA32",
+                          "holder": {
+                              "name": "JASIM",
+                              "title": "",
+                              "email": "iam@saaqeb.com",
+                              "mailing": false,
+                              "surname": "KALAM",
+                              "telephones": [
+                                  "1966330000"
+                              ]
+                          },
+                          "total": 190.04,
+                          "totalNet": 190.04,
+                          "activities": [
+                              {
+                                  "status": "CONFIRMED",
+                                  "supplier": {
+                                      "name": "HOTELBEDS SPAIN, S.L.U",
+                                      "vatNumber": "ESB28916765"
+                                  },
+                                  "comments": [
+                                      {
+                                          "type": "CONTRACT_REMARKS",
+                                          "text": "Meeting point: We have pick-up service included from: ***South Area: From Arenal to Calvia or Palma city Center (From Escollera, in front of the Cathedral). Buses are not allowed to pick up into the city centre.. ***Eastern area: Cala Mesquida,Cala Ratjada,Font de Sa Cala,Canyamel,Cala Bona,Cala Millor, Sa Coma and S'Illot. *Eastern Calas Area: Porto Cristo,Cala Mandia,Punta Reina, Calas de Mallorca, Porto Colom,Cala Ferrera, Cala D'Or, Cala Egos, Porto Petro, Cala Barca. *Eastern Colonia Sant Jordi Area: Cala Figuera, Cala Santanyi,Colonia de Sant Jordi. ***Northern Area: Cala San Vicente,Puerto Pollensa,Puerto Alcudia,Can Picafort. The pick-up timetable range between 8 and 9:15am, depending of the meeting point assigned // Meeting point instructions: Please call the supplier to confirm the pick-up time and location at least 48 hours prior to the activity on +34 971 072 073 or +34 672 351 726 // End point: Same as the meeting point // Duration: 9 hours // Included: Return transfer. Train ticket  Sóller-Palma. Tram Ticket from the Sóller Harbor to the town. Boat tour // Not included: Lunch // Mandatory instructions: Please ensure you have answered the mandatory questions during the booking process to ensure the correct provision of service // Recommendations: Bring comfortable clothes and shoes // Voucher type: E-voucher. Show the voucher on your mobile device to enjoy the activity // Supplier name: Tour2b DMC // Supplier emergency phone: +34 971 072 073 or +34 672 351 726 (also WhatsApp)."
+                                      }
+                                  ],
+                                  "type": "TICKET",
+                                  "vouchers": [],
+                                  "activityReference": "1-7897553",
+                                  "code": "E-E10-A0PPNO0027",
+                                  "name": "13227 Island Tour Xperience",
+                                  "modality": {
+                                      "code": "EASTLEVANT@STANDARD|FRA|09:00",
+                                      "name": "Pick up from Cala Mesquida a S'illot french 09:00",
+                                      "rates": [
+                                          {
+                                              "freeCancellation": false,
+                                              "rateDetails": [
+                                                  {
+                                                      "languages": [
+                                                          {
+                                                              "code": "fr"
+                                                          }
+                                                      ]
+                                                  }
+                                              ]
+                                          }
+                                      ],
+                                      "amountUnitType": "PAX"
+                                  },
+                                  "dateFrom": "2025-05-29",
+                                  "dateTo": "2025-05-29",
+                                  "cancellationPolicies": [
+                                      {
+                                          "dateFrom": "2025-05-28T00:00:00.000Z",
+                                          "amount": 190.04
+                                      }
+                                  ],
+                                  "paxes": [
+                                      {
+                                          "name": "",
+                                          "mailing": false,
+                                          "surname": "",
+                                          "customerId": "2",
+                                          "age": 30,
+                                          "paxType": "AD",
+                                          "passport": ""
+                                      },
+                                      {
+                                          "name": "",
+                                          "mailing": false,
+                                          "surname": "",
+                                          "customerId": "1",
+                                          "age": 30,
+                                          "paxType": "AD",
+                                          "passport": ""
+                                      }
+                                  ],
+                                  "questions": [
+                                      {
+                                          "question": {
+                                              "code": "EMAIL",
+                                              "required": true
+                                          },
+                                          "answer": "roman@gmail.com"
+                                      },
+                                      
+                                  ],
+                                  "id": "1#O#1",
+                                  "agencyCommission": {
+                                      "percentage": 0,
+                                      "amount": 0,
+                                      "vatAmount": 0
+                                  },
+                                  "contactInfo": {
+                                      "country": []
+                                  },
+                                  "amountDetail": {
+                                      "paxAmounts": [
+                                          {
+                                              "paxType": "ADULT",
+                                              "amount": 95.02
+                                          }
+                                      ],
+                                      "totalAmount": {
+                                          "amount": 190.04
+                                      }
+                                  },
+                                  "extraData": [
+                                      {
+                                          "id": "INFO_TTOO_BEARING_AMOUNT",
+                                          "value": "190.040"
+                                      },
+                                      {
+                                          "id": "INFO_TTOO_BEARING_AMOUNT_CURRENCY",
+                                          "value": "EUR"
+                                      },
+                                      {
+                                          "id": "INFO_TTOO_SERVICE_AMOUNT",
+                                          "value": "0.00"
+                                      }
+                                  ],
+                                  "providerInformation": {
+                                      "name": "TOURADVISOR DMC SLU"
+                                  },
+                                  "content": {
+                                      "name": "Island Tour: Soller by Vintage Train, Port de Soller by Tram, Sa Calobra by Boat and Return by Bus",
+                                      "detailedInfo": [],
+                                      "featureGroups": [
+                                          {
+                                              "groupCode": "UNKNOWN",
+                                              "included": [
+                                                  {
+                                                      "featureType": "OTHERINCL",
+                                                      "description": "Guide"
+                                                  }
+                                              ]
+                                          },
+                                          
+                                          {
+                                              "groupCode": "TRANSPORT",
+                                              "included": [
+                                                  {
+                                                      "featureType": "TRANSPORTINCL",
+                                                      "description": "Train tickets"
+                                                  },
+                                              ]
+                                          }
+                                      ],
+                                      "guidingOptions": {
+                                          "guideType": "TOURGUIDE",
+                                          "included": true
+                                      },
+                                      "importantInfo": [
+                                          "We suggest you wear comfortable clothes and shoes for the time of the year. "
+                                      ],
+                                      "location": {
+                                          "endPoints": [
+                                              {
+                                                  "type": "Same",
+                                                  "description": "Same as Starting Point"
+                                              }
+                                          ],
+                                          "startingPoints": [
+                                              {
+                                                  "type": "HOTEL_PICKUP",
+                                                  "meetingPoint": {
+                                                      "type": "ADDRESS",
+                                                      "country": {
+                                                          "code": "ES",
+                                                          "name": "Spain",
+                                                          "destinations": [
+                                                              {
+                                                                  "code": "PMI",
+                                                                  "name": "Majorca"
+                                                              }
+                                                          ]
+                                                      },
+                                                      "description": "Island Tour: Soller by Vintage Train, Port de Soller by Tram, Sa Calobra by Boat and Return by Bus"
+                                                  },
+                                                  "pickupInstructions": [
+                                                      {
+                                                          "description": "Hotel pick-up available. </br> East Area: Cala Mesquida, Cala Ratjada, Font de Sa Cala, Canyamel, Cala Bona, Cala Millor, Sa Coma and S'Illot.</br> Eastern Calas Area: Porto Cristo, Cala Mandia, Punta Reina, Calas de Mallorca, Porto Colom, Cala Ferrera, Cala D'Or, Cala Egos, Porto Petro and Cala Barca.</br> Eastern Colonia Sant Jordi Area: Cala Figuera, Cala Santanyi and Colonia de Sant Jordi.</br> North Area: Cala San Vicente, Puerto Pollensa, Puerto Alcudia and Can Picafort.</br> South Area: From Arenal to Calvia or Palma city Center (From Escollera, in front of the Cathedral). Buses are not allowed to pick up into the city centre.</br> You must call at least 24 hours before in order to arrange a meeting/pick-up point and time. "
+                                                      }
+                                                  ]
+                                              }
+                                          ]
+                                      },
+                                      "media": {
+                                          "images": [
+                                              {
+                                                  "visualizationOrder": 1,
+                                                  "mimeType": "image/jpeg",
+                                                  "language": "ENG",
+                                                  "urls": [
+                                                      {
+                                                          "dpi": 72,
+                                                          "height": 75,
+                                                          "width": 100,
+                                                          "resource": "https://media.activitiesbank.com/53104/ENG/S/catedralvista3.jpg",
+                                                          "sizeType": "SMALL"
+                                                      },
+                                                      
+                                                  ]
+                                              },
+                                              
+                                                      
+                                                  ]
+                                          
+                                      },
+                                      "redeemInfo": {
+                                          "type": "EVOUCHER",
+                                          "directEntrance": false,
+                                          "comments": [
+                                              {
+                                                  "description": "E-voucher. Show the voucher on your mobile device to enjoy the activity."
+                                              }
+                                          ]
+                                      },
+                                      "scheduling": {
+                                          "duration": {
+                                              "value": 9,
+                                              "metric": "HOURS",
+                                              "type": "AFTER"
+                                          }
+                                      },
+                                      "segmentationGroups": [
+                                          {
+                                              "code": 2,
+                                              "name": "Daytime",
+                                              "segments": [
+                                                  {
+                                                      "code": 772,
+                                                      "name": "Full day"
+                                                  }
+                                              ]
+                                          },
+                                          {
+                                              "code": 1,
+                                              "name": "Categories",
+                                              "segments": [
+                                                  {
+                                                      "code": 8,
+                                                      "name": "Day Trips & Excursions"
+                                                  },
+                                                  {
+                                                      "code": 4,
+                                                      "name": "Art & culture"
+                                                  }
+                                              ]
+                                          }
+                                      ],
+                                      "activityFactsheetType": "ACTIVITIES",
+                                      "activityCode": "E-E10-A0PPNO0027",
+                                      "contentId": "53104",
+                                      "description": "Discover the Majorcan Northern West Coast, its mountains, cliffs, and coastal treasures. A 9-hour panoramic tour combining stretches by bus, train, tram, and boat. Land and sea to enjoy some of the most emblematic landscapes of the island.<br />\n<br />\nStarting from the north, east, or south of Mallorca, the bus will take you to Palma to take the train to Sóller. Then you will go on board the vintage Train of Sóller, its wooden wagons, pampered with care and its rattle will return you to 1912, the year that was created this railway line, a fantastic trip through the Valley of Sóller between olive and orange trees, passing the natural barriers of the Alfábia Mountains, through 13 tunnels, several bridges, and a famous viaduct, to reach the city of Palma and end our tour.<br />\n<br />\nDepending on the schedule you will have free time to have lunch in Sóller or La Calobra, you will take a local tram that will bring you to Soller Harbor allowing you to admire the coast of this marvelous town.<br />\n<br />\nAfterward, you will enjoy a nice boat tour to admire from the sea one of the best Majorcan coastal landscapes, with wonderful views of the port and its cliffs mottled with elegant houses and famous villas surrounded by pine and olive trees reaching La Calobra, with free time to visit Torrent de Pareis.<br />\n<br />\nAfter admiring this natural wonder, the bus will bring you back to your original departure point.<br />\n<br />\n<strong>Options</strong><br />\n<strong>- Pick-up from the North and the East Areas: </strong>Cala Mesquida,Cala Ratjada,Font de Sa Cala,Canyamel,Cala Bona,Cala Millor, Sa Coma and S'Illot, Porto Cristo,Cala Mandia,Punta Reina, Calas de Mallorca, Porto Colom,Cala Ferrera, Cala D'Or, Cala Egos, Porto Petro, Cala Barca, Cala Figuera, Cala Santanyi,Colonia de Sant Jordi, Cala San Vicente,Puerto Pollensa,Puerto Alcudia,Can Picafort.<br />\n- <strong>Pick-up from the South Area:</strong> From Arenal to Calvia or Palma city Center (From Escollera, in front of the Cathedral).",
+                                      "lastUpdate": "2025-02-27",
+                                      "advancedTips": [],
+                                      "countries": [
+                                          {
+                                              "code": "ES",
+                                              "name": "Spain",
+                                              "destinations": [
+                                                  {
+                                                      "code": "PMI",
+                                                      "name": "Majorca"
+                                                  }
+                                              ]
+                                          }
+                                      ],
+                                      "highligths": [],
+                                      "language": "en"
+                                  }
+                              }
+                          ]
+                      }
+                  }
+
+              payment_redirect:
+                summary: Payment Redirect (Card/Online)
+                value:
+                  status: "success"
+                  message: "Booking initiated. Redirecting to payment gateway."
+                  booking_id: "ACT-BK-2026-9913"
+                  payment_status: "Pending"
+                  redirect_url: "https://gateway.payment.com/pay/v123456"
+
+              insufficient_balance:
+                summary: Payment Failed Error
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "Insufficient balance in your account to complete this booking."
+                  reason_admin: "Account Balance Low"
+
+              validation_error:
+                summary: Validation Error
+                value:
+                  status: "failed"
+                  reason: "The selected rate is no longer available. Please search again."
+  /activity/cancel-booking:
+   post:
+    tags:
+      - Activity Service
+    summary: Cancel an existing activity booking
+    description: This endpoint allows users to cancel a booked activity using the tracking ID and providing a specific reason.
+    operationId: cancelActivityBooking
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - member_id
+              - tracking_id
+              - reason
+            properties:
+              member_id:
+                type: string
+                description: "The unique ID of the member who made the booking."
+                example: "1"
+              tracking_id:
+                type: string
+                description: "The unique tracking ID or booking reference ID of the activity."
+                example: "11176171377026194RX2KZ"
+              reason:
+                type: string
+                description: "Brief explanation for the cancellation."
+                example: "not required"
+    responses:
+      '200':
+        description: Cancellation request processed successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              cancel_success:
+                summary: Successful Cancellation
+                value:
+                  status: "success"
+                  message: "Your cancellation request has been processed successfully."
+                  refund_amount: 12000.00
+                  currency: "BDT"
+                  cancellation_charge: 500.00
+                  tracking_id: "11176171377026194RX2KZ"
+
+              non_cancellable:
+                summary: Non-refundable Booking Error
+                value:
+                  status: "failed"
+                  reason: "This activity is non-refundable and cannot be cancelled."
+                  tracking_id: "11176171377026194RX2KZ"
+
+              authorization_failed:
+                summary: Authorization Error
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "You do not have permission to cancel this booking."
+                  reason_admin: "Member ID mismatch with booking record"
   /activity/booking-details:
     post:
-      tags: [Activity]
+      tags: 
+        - Activity Service
       summary: Get booking details
       operationId: bookingDetails
       requestBody:
