@@ -15,6 +15,12 @@ echo "🚀 Generating documentation... This may take a moment."
 # Function to inject Home and Back buttons into generated HTML
 inject_nav_buttons() {
     local file="$REDOC_DIR/$1"
+    
+    local head_links='<link rel="icon" type="image/x-icon" href="./public/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">'
+
     local nav_html='<style>
     .itt-top-header {
         position: fixed;
@@ -22,31 +28,39 @@ inject_nav_buttons() {
         left: 0;
         width: 260px;
         height: 60px;
-        background: #ffffff;
+        background: rgba(15, 23, 42, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         display: flex;
         align-items: center;
         padding: 0 20px;
         z-index: 10000;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         box-sizing: border-box;
     }
     .back-btn {
-        color: #334155;
+        color: #f8fafc;
         text-decoration: none;
         font-family: '\''Inter'\'', sans-serif;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 13px;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .back-btn:hover {
-        transform: translateX(-5px);
-        color: #0f172a;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(-3px);
+        border-color: #38bdf8;
+        color: #38bdf8;
     }
     .back-btn .arrow {
-        font-size: 18px;
+        font-size: 16px;
     }
     /* Only push the sidebar menu down */
     .menu-content, [data-role='\''redoc-menu'\''] {
@@ -75,10 +89,12 @@ inject_nav_buttons() {
     
     # Use a temporary file for cross-platform compatibility
     if [ -f "$file" ]; then
-        # More robust sed replacement that handles leading whitespace
+        # Inject Head Links
+        sed -i.bak "s|</head>|$head_links</head>|g" "$file"
+        # Inject Nav Buttons
         sed -i.bak "s|[[:space:]]*</body>|$nav_html</body>|g" "$file"
         rm -f "$file.bak"
-        echo "   🧭 Navigation buttons injected."
+        echo "   🧭 Navigation and Fonts injected into $1"
     fi
 }
 
@@ -96,6 +112,7 @@ build_service "openapi.yaml" "openapi.html"
 build_service "flight.yaml" "generated-flight.html"
 build_service "hotel.yaml" "generated-hotel.html"
 build_service "esim.yaml" "esim.html"
+build_service "activity.yaml" "activity.html"
 build_service "Visa.yaml" "visa.html"
 build_service "Train.yaml" "train.html"
 build_service "Transfer.yaml" "transfer.html"
