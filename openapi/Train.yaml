@@ -25,6 +25,136 @@ security:
   - apiKeyAuth: []
     secretCodeAuth: []
 paths:
+  /train/search:
+   post:
+    tags:
+      - Train Service
+    summary: Search for available train journeys
+    description: Search for train tickets based on journey type (OneWay/RoundTrip), departure/arrival stations, and traveler details.
+    operationId: searchTrain
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - journey_type
+              - segment
+              - travelers_adult
+              - language
+              - guest_nationality
+            properties:
+              journey_type:
+                type: string
+                enum: [OneWay, RoundTrip]
+                description: "Type of the journey."
+                example: "OneWay"
+              segment:
+                type: array
+                description: "Travel segments containing station codes and dates."
+                items:
+                  type: object
+                  required:
+                    - departure_code
+                    - arrival_code
+                    - outbound_date
+                  properties:
+                    departure_code:
+                      type: string
+                      description: "IATA or Station code for departure (e.g., MKX)."
+                      example: "MKX"
+                    arrival_code:
+                      type: string
+                      description: "IATA or Station code for arrival (e.g., JXD)."
+                      example: "JXD"
+                    outbound_date:
+                      type: string
+                      format: date
+                      description: "Journey start date (YYYY-MM-DD)."
+                      example: "2026-04-19"
+                    return_date:
+                      type: string
+                      format: date
+                      description: "Return date (YYYY-MM-DD). Mandatory only for RoundTrip."
+                      example: "2026-04-25"
+              travelers_adult:
+                type: integer
+                description: "Number of adult passengers."
+                example: 1
+              travelers_child:
+                type: integer
+                description: "Number of child passengers."
+                example: 0
+              travelers_infants:
+                type: integer
+                description: "Number of infant passengers."
+                example: 0
+              supplier_uid:
+                type: string
+                description: "Unique ID of the train supplier. Use 'all' for all available suppliers or specific ID like 'T1MO00001' (Haramain)."
+                example: "all"
+              partner_id:
+                type: string
+                description: "Partner identifier, can be left blank."
+                example: ""
+              short_ref:
+                type: string
+                description: "Optional reference for stream search tracking."
+                example: "xxxx111"
+              language:
+                type: string
+                description: "Response language code."
+                example: "en"
+              guest_nationality:
+                type: string
+                description: "ISO 2-letter country code of the guests."
+                example: "BD"
+    responses:
+      '200':
+        description: Train search results retrieved successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_train_search:
+                summary: Successful Search Response
+                value:
+                  status: "success"
+                  tracking_id: "TRN-SH-2026-X881"
+                  data:
+                    - train_number: "HHR-442"
+                      train_name: "Haramain High Speed Railway"
+                      departure_station: "Makkah (MKX)"
+                      arrival_station: "Jeddah (JXD)"
+                      departure_time: "2026-04-19T10:00:00Z"
+                      arrival_time: "2026-04-19T10:35:00Z"
+                      duration: "35 mins"
+                      classes:
+                        - class_type: "Economy"
+                          available_seats: 45
+                          price: 4500.00
+                        - class_type: "Business"
+                          available_seats: 12
+                          price: 8500.00
+                      currency: "SAR"
+
+              no_trains_found:
+                summary: No Trains Available
+                value:
+                  status: "failed"
+                  reason: "No train services available for the selected route and date."
+                  tracking_id: "TRN-SH-2026-X882"
+
+              authorization_failed:
+                summary: Authorization Error
+                value:
+                  status: "failed"
+                  is_warning: "yes"
+                  reason: "You do not have access to the Train module."
+                  reason_admin: "Supplier T1MO00001 credential expired."
   /esim/booking-details:
     post:
       tags: [eSim]
