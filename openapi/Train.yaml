@@ -122,24 +122,355 @@ paths:
               successful_train_search:
                 summary: Successful Search Response
                 value:
-                  status: "success"
-                  tracking_id: "TRN-SH-2026-X881"
-                  data:
-                    - train_number: "HHR-442"
-                      train_name: "Haramain High Speed Railway"
-                      departure_station: "Makkah (MKX)"
-                      arrival_station: "Jeddah (JXD)"
-                      departure_time: "2026-04-19T10:00:00Z"
-                      arrival_time: "2026-04-19T10:35:00Z"
-                      duration: "35 mins"
-                      classes:
-                        - class_type: "Economy"
-                          available_seats: 45
-                          price: 4500.00
-                        - class_type: "Business"
-                          available_seats: 12
-                          price: 8500.00
-                      currency: "SAR"
+                  {
+                        "status": "success",
+                        "train_data": {
+                            "Context": {
+                                "TimeStamp": 1752553734924,
+                                "TransactionId": "60a6e7db6301c17a",
+                                "StatusCode": 200,
+                                "Message": "Success"
+                            },
+                            "Response": {
+                                "SearchKey": "O:MKX:DMX:25:09:20",
+                                "TypeOfJourney": "Oneway",
+                                "DepartureStationCity": "Makkah",
+                                "ArrivaleStationCity": "Madinah",
+                                "TrainInfo": [
+                                    {
+                                        "TrainKey": "MKX_DMX_2151_2025-09-20T08:00:00",
+                                        "Supplier": "HARAMAIN",
+                                        "Provider": "Go7",
+                                        "DepartureStationCode": "MKX",
+                                        "ArrivalStationCode": "DMX",
+                                        "TotalDuration": 180,
+                                        "Segments": [
+                                            {
+                                                "TrainName": "HHR",
+                                                "TrainNo": "2151",
+                                                "DepartureStation": {
+                                                    "Code": "MKX",
+                                                    "Name": "Makkah Al-Mukarramah",
+                                                    "City": "Makkah"
+                                                },
+                                                "ArrivalStation": {
+                                                    "Code": "DMX",
+                                                    "Name": "Madinah Al-Munawarah",
+                                                    "City": "Madinah"
+                                                },
+                                                "DepartureDate": "2025-09-20T08:00:00",
+                                                "ArrivalDate": "2025-09-20T11:00:00",
+                                                "LayoverTime": 0,
+                                                "Duration": 180,
+                                                "NextDayArrival": false
+                                            }
+                                        ],
+                                        "Fare": [
+                                            {
+                                                "FareClass": "C",
+                                                "FareClassName": "Business",
+                                                "AvailableSeats": 109,
+                                                "SellingPrice": 202.9861803,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 101.49309015,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            },
+                                            {
+                                                "FareClass": "Y",
+                                                "FareClassName": "Economy",
+                                                "AvailableSeats": 304,
+                                                "SellingPrice": 91.987695,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 45.9938475,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            }
+                                        ],
+                                        "RedEyeTrain": false
+                                    },
+                                    {
+                                        "TrainKey": "MKX_DMX_9090_2025-09-20T09:35:00",
+                                        "Supplier": "HARAMAIN",
+                                        "Provider": "Go7",
+                                        "DepartureStationCode": "MKX",
+                                        "ArrivalStationCode": "DMX",
+                                        "TotalDuration": 189,
+                                        "Segments": [
+                                            {
+                                                "TrainName": "HHR",
+                                                "TrainNo": "9090",
+                                                "DepartureStation": {
+                                                    "Code": "MKX",
+                                                    "Name": "Makkah Al-Mukarramah",
+                                                    "City": "Makkah"
+                                                },
+                                                "ArrivalStation": {
+                                                    "Code": "DMX",
+                                                    "Name": "Madinah Al-Munawarah",
+                                                    "City": "Madinah"
+                                                },
+                                                "DepartureDate": "2025-09-20T09:35:00",
+                                                "ArrivalDate": "2025-09-20T12:44:00",
+                                                "LayoverTime": 0,
+                                                "Duration": 189,
+                                                "NextDayArrival": false
+                                            }
+                                        ],
+                                        "Fare": [
+                                            {
+                                                "FareClass": "C",
+                                                "FareClassName": "Business",
+                                                "AvailableSeats": 12,
+                                                "SellingPrice": 202.9861803,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 101.49309015,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            },
+                                            {
+                                                "FareClass": "Y",
+                                                "FareClassName": "Economy",
+                                                "AvailableSeats": 25,
+                                                "SellingPrice": 91.987695,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 45.9938475,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            }
+                                        ],
+                                        "RedEyeTrain": false
+                                    },
+                                    {
+                                        "TrainKey": "MKX_DMX_1120_2025-09-20T12:00:00",
+                                        "Supplier": "HARAMAIN",
+                                        "Provider": "Go7",
+                                        "DepartureStationCode": "MKX",
+                                        "ArrivalStationCode": "DMX",
+                                        "TotalDuration": 140,
+                                        "Segments": [
+                                            {
+                                                "TrainName": "HHR",
+                                                "TrainNo": "1120",
+                                                "DepartureStation": {
+                                                    "Code": "MKX",
+                                                    "Name": "Makkah Al-Mukarramah",
+                                                    "City": "Makkah"
+                                                },
+                                                "ArrivalStation": {
+                                                    "Code": "DMX",
+                                                    "Name": "Madinah Al-Munawarah",
+                                                    "City": "Madinah"
+                                                },
+                                                "DepartureDate": "2025-09-20T12:00:00",
+                                                "ArrivalDate": "2025-09-20T14:20:00",
+                                                "LayoverTime": 0,
+                                                "Duration": 140,
+                                                "NextDayArrival": false
+                                            }
+                                        ],
+                                        "Fare": [
+                                            {
+                                                "FareClass": "C",
+                                                "FareClassName": "Business",
+                                                "AvailableSeats": 77,
+                                                "SellingPrice": 202.9861803,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 101.49309015,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            },
+                                            {
+                                                "FareClass": "Y",
+                                                "FareClassName": "Economy",
+                                                "AvailableSeats": 183,
+                                                "SellingPrice": 91.987695,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 45.9938475,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            }
+                                        ],
+                                        "RedEyeTrain": false
+                                    },
+                                    {
+                                        "TrainKey": "MKX_DMX_1122_2025-09-20T12:20:00",
+                                        "Supplier": "HARAMAIN",
+                                        "Provider": "Go7",
+                                        "DepartureStationCode": "MKX",
+                                        "ArrivalStationCode": "DMX",
+                                        "TotalDuration": 140,
+                                        "Segments": [
+                                            {
+                                                "TrainName": "HHR",
+                                                "TrainNo": "1122",
+                                                "DepartureStation": {
+                                                    "Code": "MKX",
+                                                    "Name": "Makkah Al-Mukarramah",
+                                                    "City": "Makkah"
+                                                },
+                                                "ArrivalStation": {
+                                                    "Code": "DMX",
+                                                    "Name": "Madinah Al-Munawarah",
+                                                    "City": "Madinah"
+                                                },
+                                                "DepartureDate": "2025-09-20T12:20:00",
+                                                "ArrivalDate": "2025-09-20T14:40:00",
+                                                "LayoverTime": 0,
+                                                "Duration": 140,
+                                                "NextDayArrival": false
+                                            }
+                                        ],
+                                        "Fare": [
+                                            {
+                                                "FareClass": "C",
+                                                "FareClassName": "Business",
+                                                "AvailableSeats": 77,
+                                                "SellingPrice": 202.9861803,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 101.49309015,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            },
+                                            {
+                                                "FareClass": "Y",
+                                                "FareClassName": "Economy",
+                                                "AvailableSeats": 244,
+                                                "SellingPrice": 91.987695,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 45.9938475,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            }
+                                        ],
+                                        "RedEyeTrain": false
+                                    },
+                                    {
+                                        "TrainKey": "MKX_DMX_1130_2025-09-20T13:00:00",
+                                        "Supplier": "HARAMAIN",
+                                        "Provider": "Go7",
+                                        "DepartureStationCode": "MKX",
+                                        "ArrivalStationCode": "DMX",
+                                        "TotalDuration": 140,
+                                        "Segments": [
+                                            {
+                                                "TrainName": "HHR",
+                                                "TrainNo": "1130",
+                                                "DepartureStation": {
+                                                    "Code": "MKX",
+                                                    "Name": "Makkah Al-Mukarramah",
+                                                    "City": "Makkah"
+                                                },
+                                                "ArrivalStation": {
+                                                    "Code": "DMX",
+                                                    "Name": "Madinah Al-Munawarah",
+                                                    "City": "Madinah"
+                                                },
+                                                "DepartureDate": "2025-09-20T13:00:00",
+                                                "ArrivalDate": "2025-09-20T15:20:00",
+                                                "LayoverTime": 0,
+                                                "Duration": 140,
+                                                "NextDayArrival": false
+                                            }
+                                        ],
+                                        
+                                        "Fare": [
+                                            {
+                                                "FareClass": "C",
+                                                "FareClassName": "Business",
+                                                "AvailableSeats": 109,
+                                                "SellingPrice": 202.9861803,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 101.49309015,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            },
+                                            {
+                                                "FareClass": "Y",
+                                                "FareClassName": "Economy",
+                                                "AvailableSeats": 304,
+                                                "SellingPrice": 91.987695,
+                                                "SellingCurrency": "USD",
+                                                "AdultSellingPrice": 45.9938475,
+                                                "ChildSellingPrice": 0,
+                                                "InfantSellingPrice": 0,
+                                                "IsRefundable": false
+                                            }
+                                        ],
+                                        "RedEyeTrain": true
+                                    }
+                                ],
+                                "Trains": [
+                                    "MKX_DMX_2151_2025-09-20T08:00:00",
+                                    "MKX_DMX_9090_2025-09-20T09:35:00",
+                                    "MKX_DMX_1120_2025-09-20T12:00:00",
+                                    "MKX_DMX_1122_2025-09-20T12:20:00",
+                                    "MKX_DMX_1130_2025-09-20T13:00:00",
+                                    "MKX_DMX_1132_2025-09-20T13:20:00",
+                                    "MKX_DMX_3140_2025-09-20T14:00:00",
+                                    "MKX_DMX_0142_2025-09-20T14:20:00",
+                                    "MKX_DMX_3150_2025-09-20T15:00:00",
+                                    "MKX_DMX_1152_2025-09-20T15:20:00",
+                                    "MKX_DMX_3160_2025-09-20T16:00:00",
+                                    "MKX_DMX_0162_2025-09-20T16:20:00",
+                                    "MKX_DMX_1170_2025-09-20T17:00:00",
+                                    "MKX_DMX_9170_2025-09-20T17:35:00",
+                                    "MKX_DMX_1180_2025-09-20T18:00:00",
+                                    "MKX_DMX_0190_2025-09-20T19:00:00",
+                                    "MKX_DMX_1192_2025-09-20T19:20:00",
+                                    "MKX_DMX_1200_2025-09-20T20:00:00",
+                                    "MKX_DMX_0001_2025-09-20T23:10:00"
+                                ],
+                                "Filters": {
+                                    "MinPrice": 91.987695,
+                                    "MaxPrice": 202.9861803,
+                                    "MinDuration": 100,
+                                    "MaxDuration": 189,
+                                    "DepartureTimeSlots": [
+                                        {
+                                            "Id": 2,
+                                            "Name": "Morning"
+                                        },
+                                        {
+                                            "Id": 3,
+                                            "Name": "Afternoon"
+                                        },
+                                        {
+                                            "Id": 4,
+                                            "Name": "Night"
+                                        }
+                                    ],
+                                    "ArrivalTimeSlots": [
+                                        {
+                                            "Id": 2,
+                                            "Name": "Morning"
+                                        },
+                                        {
+                                            "Id": 3,
+                                            "Name": "Afternoon"
+                                        },
+                                        {
+                                            "Id": 4,
+                                            "Name": "Night"
+                                        },
+                                        {
+                                            "Id": 1,
+                                            "Name": "EarlyMorning"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
 
               no_trains_found:
                 summary: No Trains Available
@@ -155,9 +486,1495 @@ paths:
                   is_warning: "yes"
                   reason: "You do not have access to the Train module."
                   reason_admin: "Supplier T1MO00001 credential expired."
-  /esim/booking-details:
+  /train/single-train:
+   post:
+    tags:
+        - Train Service
+    summary: Get details for a specific train
+    description: Returns availability and pricing for a single train using the tracking ID and train ID obtained from the search results.
+    operationId: getSingleTrain
+    requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tracking_id
+                - train_id
+              properties:
+                tracking_id:
+                  type: string
+                  description: "The unique tracking ID returned from the /train/search response."
+                  example: "11774948590VTY1"
+                train_id:
+                  type: string
+                  description: "The unique identifier for the specific train."
+                  example: "JXD_DMX_0080_2026-04-05T08:32:00"
+    responses:
+      '200':
+          description: Successfully Create Booking Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              examples:
+                successful_transfer_booking:
+                  summary: Successfully Create Booking Response.
+                  value:
+                    {
+                          "status": "success",
+                          "tracking_id": "311775724441OH91",
+                          "train_id": "MKX_JXD_0080_2026-04-19T08:00:00",
+                          "search_parameter": {
+                              "tracking_id": "311775724441OH91",
+                              "train_id": "MKX_JXD_0080_2026-04-19T08:00:00",
+                              "travelers_adult": 1,
+                              "travelers_child": 0,
+                              "travelers_infants": 0
+                          },
+                          "data": {
+                              "train_supplier": "Haramine",
+                              "start_from_price": 1881.77,
+                              "sell_currency": "BDT",
+                              "train_info": {
+                                  "train_key": "MKX_JXD_0080_2026-04-19T08:00:00",
+                                  "provider": "Go7",
+                                  "supplier": "HHR_B2C",
+                                  "route": [
+                                      {
+                                          "train_name": "HHR",
+                                          "train_no": "0080",
+                                          "departure_station": {
+                                              "code": "MKX",
+                                              "name": "Makkah Al-Mukarramah",
+                                              "city": "Makkah"
+                                          },
+                                          "arrival_station": {
+                                              "code": "JXD",
+                                              "name": "Al-Sulimaniyah",
+                                              "city": "Jeddah"
+                                          },
+                                          "departure_date": "2026-04-19T08:00:00",
+                                          "arrival_date": "2026-04-19T08:28:00",
+                                          "layover_time": 0,
+                                          "duration": 28,
+                                          "next_day_arrival": false
+                                      }
+                                  ],
+                                  "duration_minutes": 28,
+                                  "fare_options": [
+                                      {
+                                          "class_code": "C",
+                                          "class_name": "Business",
+                                          "price": {
+                                              "promo_tag": null,
+                                              "purchase": {
+                                                  "total": {
+                                                      "currency": "BDT",
+                                                      "amount": 4215.17,
+                                                      "before_discount": 4215.17,
+                                                      "discount": 0,
+                                                      "point": 0
+                                                  },
+                                                  "price_breakdown": {
+                                                      "currency": "BDT",
+                                                      "total": 4215.17,
+                                                      "base_fare": 4215.17,
+                                                      "tax": 0,
+                                                      "extra_person_fee": 0,
+                                                      "supplier_sales_comission": null,
+                                                      "payable_at_property": []
+                                                  }
+                                              },
+                                              "sell": {
+                                                  "total": {
+                                                      "currency": "BDT",
+                                                      "amount": 4215.17,
+                                                      "gross_price": 4215.17,
+                                                      "platform_fees_or_extra_tax": 0,
+                                                      "point": 0
+                                                  },
+                                                  "price_breakdown": {
+                                                      "currency": "BDT",
+                                                      "total": 4215.17,
+                                                      "base_fare": 4215.17,
+                                                      "tax": 0,
+                                                      "platform_fees_or_extra_tax": 0,
+                                                      "extra_person_fee": 0,
+                                                      "supplier_sales_comission": null,
+                                                      "payable_at_property": []
+                                                  }
+                                              },
+                                              "fmg": {
+                                                  "total": {
+                                                      "currency": "SAR",
+                                                      "amount": 128.8
+                                                  },
+                                                  "price_breakdown": {
+                                                      "currency": "SAR",
+                                                      "total": 128.8,
+                                                      "base_fare": 128.8,
+                                                      "tax": 0,
+                                                      "extra_person_fee": 0,
+                                                      "supplier_sales_comission": null,
+                                                      "base_fare_fmg_charge": 0,
+                                                      "membership_discount_percentige": 0,
+                                                      "membership_discount_amount": 0,
+                                                      "final_base_fare_fmg_charge": 0,
+                                                      "payable_at_property": []
+                                                  }
+                                              },
+                                              "supplier": {
+                                                  "total": {
+                                                      "currency": "SAR",
+                                                      "amount": 128.8
+                                                  },
+                                                  "price_breakdown": {
+                                                      "currency": "SAR",
+                                                      "total": 128.8,
+                                                      "base_fare": 128.8,
+                                                      "tax": 0,
+                                                      "sales_tax": 0,
+                                                      "property_fees": 0,
+                                                      "surcharges": 0,
+                                                      "service_charge": 0,
+                                                      "extra_person_fee": 0,
+                                                      "supplier_sales_comission": null,
+                                                      "payable_at_property": []
+                                                  }
+                                              }
+                                          },
+                                          "currency": "SAR",
+                                          "seats": 28,
+                                          "is_refundable": true,
+                                          "cancellation_policy": {
+                                              "hold_possible": "yes",
+                                              "summery": "partially refundable",
+                                              "auto_cancel": "2026-04-09T14:47:28",
+                                              "auto_cancel_timestamp": 1775724448,
+                                              "policy_breakdown": [
+                                                  {
+                                                      "from": "2026-04-09T14:47:28",
+                                                      "from_timestamp": 1775724448,
+                                                      "to": "2026-04-18T08:00:00",
+                                                      "to_timestamp": 1776477600,
+                                                      "currency": "BDT",
+                                                      "amount": 421.52,
+                                                      "partner": {
+                                                          "currency": "BDT",
+                                                          "amount": 421.52
+                                                      },
+                                                      "fmg": {
+                                                          "currency": "SAR",
+                                                          "amount": 12.88
+                                                      },
+                                                      "supplier": {
+                                                          "currency": "SAR",
+                                                          "amount": 12.88
+                                                      }
+                                                  },
+                                                  {
+                                                      "from": "2026-04-18T08:00:00",
+                                                      "from_timestamp": 1776477600,
+                                                      "to": "2026-04-19T07:40:00",
+                                                      "to_timestamp": 1776562800,
+                                                      "currency": "BDT",
+                                                      "amount": 1896.83,
+                                                      "partner": {
+                                                          "currency": "BDT",
+                                                          "amount": 1896.83
+                                                      },
+                                                      "fmg": {
+                                                          "currency": "SAR",
+                                                          "amount": 57.96
+                                                      },
+                                                      "supplier": {
+                                                          "currency": "SAR",
+                                                          "amount": 57.96
+                                                      }
+                                                  },
+                                                  {
+                                                      "from": "2026-04-19T07:40:00",
+                                                      "from_timestamp": 1776562800,
+                                                      "to": "2026-04-19T08:00:00",
+                                                      "to_timestamp": 1776564000,
+                                                      "currency": "BDT",
+                                                      "amount": 4215.17,
+                                                      "partner": {
+                                                          "currency": "BDT",
+                                                          "amount": 4215.17
+                                                      },
+                                                      "fmg": {
+                                                          "currency": "SAR",
+                                                          "amount": 128.8
+                                                      },
+                                                      "supplier": {
+                                                          "currency": "SAR",
+                                                          "amount": 128.8
+                                                      }
+                                                  }
+                                              ]
+                                          }
+                                      },
+                                      {
+                                          "class_code": "Y",
+                                          "class_name": "Economy",
+                                          "price": {
+                                              "promo_tag": null,
+                                              "purchase": {
+                                                  "total": {
+                                                      "currency": "BDT",
+                                                      "amount": 1881.77,
+                                                      "before_discount": 1881.77,
+                                                      "discount": 0,
+                                                      "point": 0
+                                                  },
+                                                  "price_breakdown": {
+                                                      "currency": "BDT",
+                                                      "total": 1881.77,
+                                                      "base_fare": 1881.77,
+                                                      "tax": 0,
+                                                      "extra_person_fee": 0,
+                                                      "supplier_sales_comission": null,
+                                                      "payable_at_property": []
+                                                  }
+                                              },
+                                              "sell": {
+                                                  "total": {
+                                                      "currency": "BDT",
+                                                      "amount": 1881.77,
+                                                      "gross_price": 1881.77,
+                                                      "platform_fees_or_extra_tax": 0,
+                                                      "point": 0
+                                                  },
+                                                  "price_breakdown": {
+                                                      "currency": "BDT",
+                                                      "total": 1881.77,
+                                                      "base_fare": 1881.77,
+                                                      "tax": 0,
+                                                      "platform_fees_or_extra_tax": 0,
+                                                      "extra_person_fee": 0,
+                                                      "supplier_sales_comission": null,
+                                                      "payable_at_property": []
+                                                  }
+                                              },
+                                              "fmg": {
+                                                  "total": {
+                                                      "currency": "SAR",
+                                                      "amount": 57.5
+                                                  },
+                                                  "price_breakdown": {
+                                                      "currency": "SAR",
+                                                      "total": 57.5,
+                                                      "base_fare": 57.5,
+                                                      "tax": 0,
+                                                      "extra_person_fee": 0,
+                                                      "supplier_sales_comission": null,
+                                                      "base_fare_fmg_charge": 0,
+                                                      "membership_discount_percentige": 0,
+                                                      "membership_discount_amount": 0,
+                                                      "final_base_fare_fmg_charge": 0,
+                                                      "payable_at_property": []
+                                                  }
+                                              },
+                                              "supplier": {
+                                                  "total": {
+                                                      "currency": "SAR",
+                                                      "amount": 57.5
+                                                  },
+                                                  "price_breakdown": {
+                                                      "currency": "SAR",
+                                                      "total": 57.5,
+                                                      "base_fare": 57.5,
+                                                      "tax": 0,
+                                                      "sales_tax": 0,
+                                                      "property_fees": 0,
+                                                      "surcharges": 0,
+                                                      "service_charge": 0,
+                                                      "extra_person_fee": 0,
+                                                      "supplier_sales_comission": null,
+                                                      "payable_at_property": []
+                                                  }
+                                              }
+                                          },
+                                          "currency": "SAR",
+                                          "seats": 110,
+                                          "is_refundable": true,
+                                          "cancellation_policy": {
+                                              "hold_possible": "yes",
+                                              "summery": "partially refundable",
+                                              "auto_cancel": "2026-04-09T14:47:28",
+                                              "auto_cancel_timestamp": 1775724448,
+                                              "policy_breakdown": [
+                                                  {
+                                                      "from": "2026-04-09T14:47:28",
+                                                      "from_timestamp": 1775724448,
+                                                      "to": "2026-04-18T08:00:00",
+                                                      "to_timestamp": 1776477600,
+                                                      "currency": "BDT",
+                                                      "amount": 564.53,
+                                                      "partner": {
+                                                          "currency": "BDT",
+                                                          "amount": 564.53
+                                                      },
+                                                      "fmg": {
+                                                          "currency": "SAR",
+                                                          "amount": 17.25
+                                                      },
+                                                      "supplier": {
+                                                          "currency": "SAR",
+                                                          "amount": 17.25
+                                                      }
+                                                  },
+                                                  {
+                                                      "from": "2026-04-18T08:00:00",
+                                                      "from_timestamp": 1776477600,
+                                                      "to": "2026-04-19T07:40:00",
+                                                      "to_timestamp": 1776562800,
+                                                      "currency": "BDT",
+                                                      "amount": 1129.06,
+                                                      "partner": {
+                                                          "currency": "BDT",
+                                                          "amount": 1129.06
+                                                      },
+                                                      "fmg": {
+                                                          "currency": "SAR",
+                                                          "amount": 34.5
+                                                      },
+                                                      "supplier": {
+                                                          "currency": "SAR",
+                                                          "amount": 34.5
+                                                      }
+                                                  },
+                                                  {
+                                                      "from": "2026-04-19T07:40:00",
+                                                      "from_timestamp": 1776562800,
+                                                      "to": "2026-04-19T08:00:00",
+                                                      "to_timestamp": 1776564000,
+                                                      "currency": "BDT",
+                                                      "amount": 1881.77,
+                                                      "partner": {
+                                                          "currency": "BDT",
+                                                          "amount": 1881.77
+                                                      },
+                                                      "fmg": {
+                                                          "currency": "SAR",
+                                                          "amount": 57.5
+                                                      },
+                                                      "supplier": {
+                                                          "currency": "SAR",
+                                                          "amount": 57.5
+                                                      }
+                                                  }
+                                              ]
+                                          }
+                                      }
+                                  ],
+                                  "red_eye": false
+                              }
+                          }
+                      }
+                authorization_failed:
+                 summary: Authorization Error
+                 value:
+                    status: "failed"
+                    is_warning: "yes"
+                    reason: "You do not have access to the Train module."
+                    reason_admin: "Supplier T1MO00001 credential expired."
+
+                train_unavailable:
+                 summary: Train Unavailable
+                 value:
+                    status: "failed"
+                    reason: "Train is not Available"
+  /train/validate:
+   post:
+    tags:
+      - Train Service
+    summary: Validate train selection and fare
+    description: Validates the selected train, fare class, and passenger nationality before proceeding to booking. Supports both One-Way and Round-Trip validation.
+    operationId: validateTrain
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - guest_nationality
+              - outbound_train_id
+              - outbound_fare_class
+            properties:
+              tracking_id:
+                type: string
+                description: "The unique tracking ID returned from the search results."
+                example: "3117757287332YW1"
+              guest_nationality:
+                type: string
+                description: "ISO country code of the passenger."
+                example: "BD"
+              outbound_train_id:
+                type: string
+                description: "The unique identifier for the outbound train."
+                example: "MKX_JXD_0080_2026-04-19T08:00:00"
+              outbound_fare_class:
+                type: string
+                description: "The class of service for the outbound journey (e.g., Y for Economy, B for Business)."
+                example: "Y"
+              return_train_id:
+                type: string
+                description: "The unique identifier for the return train (Required for RoundTrip)."
+                example: "JED_JXD_5061_2025-08-18T06:35:00"
+              return_fare_class:
+                type: string
+                description: "The class of service for the return journey (Required for RoundTrip)."
+                example: "Y"
+          examples:
+            one_way_request:
+              summary: One-Way Validation Request
+              value:
+                tracking_id: "3117757287332YW1"
+                guest_nationality: "BD"
+                outbound_train_id: "MKX_JXD_0080_2026-04-19T08:00:00"
+                outbound_fare_class: "Y"
+            round_trip_request:
+              summary: Round-Trip Validation Request
+              value:
+                tracking_id: "3117757287332YW1"
+                guest_nationality: "BD"
+                outbound_train_id: "MKX_JXD_0080_2026-04-19T08:00:00"
+                outbound_fare_class: "Y"
+                return_train_id: "JED_JXD_5061_2025-08-18T06:35:00"
+                return_fare_class: "Y"
+    responses:
+      '200':
+        description: Validation Successful
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_validation:
+                summary: Successful Validation Response
+                value:
+                  {
+                        "status": "success",
+                        "tracking_id": "3117757287332YW1",
+                        "booking_tracking_id": "311177572884426194QMRVJ",
+                        "supplier_tracking_id": 1775728847222,
+                        "sold_out": false,
+                        "price_change": false,
+                        "search_price": {
+                            "currency": "BDT",
+                            "amount": 1881.83
+                        },
+                        "validation_price": {
+                            "currency": "BDT",
+                            "amount": 1881.83
+                        },
+                        "session_expire": {
+                            "timestamp": 1775729758,
+                            "datetime": "2026-04-09 16:15:58 +06",
+                            "message": "The booking process should be completed by no later than 2026-04-09 16:15:58 +06."
+                        },
+                        "search_parameter": {
+                            "journey_type": "OneWay",
+                            "segment": [
+                                {
+                                    "departure_code": "MKX",
+                                    "arrival_code": "JXD",
+                                    "outbound_date": "2026-04-19"
+                                }
+                            ],
+                            "travelers_adult": 1,
+                            "travelers_child": 0,
+                            "travelers_infants": 0,
+                            "supplier_uid": "all",
+                            "partner_id": "",
+                            "short_ref": "xxxx111",
+                            "language": "en",
+                            "guest_nationality": "BD",
+                            "tracking_id": "3117757287332YW1"
+                        },
+                        "data": {
+                            "summery": {
+                                "tracking_id": "3117757287332YW1",
+                                "supplier_tracking_id": 1775728847222,
+                                "service_type": "TRAIN",
+                                "language": "en",
+                                "market": "SA",
+                                "departureDate": "2026-04-19T08:00:00",
+                                "arrivalDate": "2026-04-19T08:28:00",
+                                "search_key": "O:MKX:JXD:26:04:19",
+                                "train_key": "MKX_JXD_0080_2026-04-19T08:00:00",
+                                "trip_type": "O",
+                                "booking_status": "NEW",
+                                "provider_name": "HARAMAIN",
+                                "short_content": "Haramain Train: Makkah-Jeddah",
+                                "guest_nationality": "BD",
+                                "country_of_residence": "BD",
+                                "image": [
+                                    "https://media.umrahme.com/qa/saas/assets/media/bg/train-service-1.jpg"
+                                ],
+                                "retry_count": 0,
+                                "group_booking": false
+                            },
+                            "route": [
+                                {
+                                    "departure_station_code": "MKX",
+                                    "arrival_station_code": "JXD",
+                                    "total_duration": 28,
+                                    "segments": [
+                                        {
+                                            "train_name": "HHR",
+                                            "train_number": "0080",
+                                            "departure_station_code": "MKX",
+                                            "arrival_station_code": "JXD",
+                                            "departure_date": "2026-04-19T08:00:00",
+                                            "arrival_date": "2026-04-19T08:28:00",
+                                            "fare_class": "Y",
+                                            "layover_time": 0,
+                                            "duration": 28,
+                                            "content": {
+                                                "departure_station_name": "Makkah Al-Mukarramah",
+                                                "arrival_station_name": "Al-Sulimaniyah",
+                                                "departure_station_city": "Makkah",
+                                                "arrival_station_city": "Jeddah",
+                                                "fare_class_name": "Economy"
+                                            },
+                                            "fare_basis_code": "NOTCANCEL"
+                                        }
+                                    ],
+                                    "total_supplier_price": 57.5,
+                                    "total_selling_price": 57.5
+                                }
+                            ],
+                            "price_details": {
+                                "promo_tag": null,
+                                "purchase": {
+                                    "total": {
+                                        "currency": "BDT",
+                                        "amount": 1881.83,
+                                        "before_discount": 1881.83,
+                                        "discount": 0,
+                                        "point": 0
+                                    },
+                                    "price_breakdown": {
+                                        "currency": "BDT",
+                                        "total": 1881.83,
+                                        "base_fare": 1636.37,
+                                        "tax": 245.46,
+                                        "extra_person_fee": 0,
+                                        "supplier_sales_comission": null,
+                                        "payable_at_property": []
+                                    }
+                                },
+                                "sell": {
+                                    "total": {
+                                        "currency": "BDT",
+                                        "amount": 1881.83,
+                                        "gross_price": 1881.83,
+                                        "platform_fees_or_extra_tax": 0,
+                                        "point": 0
+                                    },
+                                    "price_breakdown": {
+                                        "currency": "BDT",
+                                        "total": 1881.83,
+                                        "base_fare": 1636.37,
+                                        "tax": 245.46,
+                                        "platform_fees_or_extra_tax": 0,
+                                        "extra_person_fee": 0,
+                                        "supplier_sales_comission": null,
+                                        "payable_at_property": []
+                                    }
+                                },
+                                "fmg": {
+                                    "total": {
+                                        "currency": "SAR",
+                                        "amount": 57.5
+                                    },
+                                    "price_breakdown": {
+                                        "currency": "SAR",
+                                        "total": 57.5,
+                                        "base_fare": 50,
+                                        "tax": 7.5,
+                                        "extra_person_fee": 0,
+                                        "supplier_sales_comission": null,
+                                        "base_fare_fmg_charge": 0,
+                                        "membership_discount_percentige": 0,
+                                        "membership_discount_amount": 0,
+                                        "final_base_fare_fmg_charge": 0,
+                                        "payable_at_property": []
+                                    }
+                                },
+                                "supplier": {
+                                    "total": {
+                                        "currency": "SAR",
+                                        "amount": 57.5
+                                    },
+                                    "price_breakdown": {
+                                        "currency": "SAR",
+                                        "total": 57.5,
+                                        "base_fare": 50,
+                                        "tax": 7.5,
+                                        "sales_tax": 0,
+                                        "property_fees": 0,
+                                        "surcharges": 0,
+                                        "service_charge": 0,
+                                        "extra_person_fee": 0,
+                                        "supplier_sales_comission": null,
+                                        "payable_at_property": []
+                                    }
+                                }
+                            },
+                            "cancellation_policy": {
+                                "hold_possible": "yes",
+                                "summery": "partially refundable",
+                                "auto_cancel": "2026-04-09T16:00:58",
+                                "auto_cancel_timestamp": 1775728858,
+                                "policy_breakdown": [
+                                    {
+                                        "from": "2026-04-09T16:00:58",
+                                        "from_timestamp": 1775728858,
+                                        "to": "2026-04-18T08:00:00",
+                                        "to_timestamp": 1776477600,
+                                        "currency": "BDT",
+                                        "amount": 564.55,
+                                        "partner": {
+                                            "currency": "BDT",
+                                            "amount": 564.55
+                                        },
+                                        "fmg": {
+                                            "currency": "SAR",
+                                            "amount": 17.25
+                                        },
+                                        "supplier": {
+                                            "currency": "SAR",
+                                            "amount": 17.25
+                                        }
+                                    },
+                                    {
+                                        "from": "2026-04-18T08:00:00",
+                                        "from_timestamp": 1776477600,
+                                        "to": "2026-04-19T07:40:00",
+                                        "to_timestamp": 1776562800,
+                                        "currency": "BDT",
+                                        "amount": 1129.1,
+                                        "partner": {
+                                            "currency": "BDT",
+                                            "amount": 1129.1
+                                        },
+                                        "fmg": {
+                                            "currency": "SAR",
+                                            "amount": 34.5
+                                        },
+                                        "supplier": {
+                                            "currency": "SAR",
+                                            "amount": 34.5
+                                        }
+                                    },
+                                    {
+                                        "from": "2026-04-19T07:40:00",
+                                        "from_timestamp": 1776562800,
+                                        "to": "2026-04-19T08:00:00",
+                                        "to_timestamp": 1776564000,
+                                        "currency": "BDT",
+                                        "amount": 1881.83,
+                                        "partner": {
+                                            "currency": "BDT",
+                                            "amount": 1881.83
+                                        },
+                                        "fmg": {
+                                            "currency": "SAR",
+                                            "amount": 57.5
+                                        },
+                                        "supplier": {
+                                            "currency": "SAR",
+                                            "amount": 57.5
+                                        }
+                                    }
+                                ]
+                            },
+                            "occupancies": [
+                                {
+                                    "adults": 1,
+                                    "children": 0,
+                                    "infants": 0
+                                }
+                            ],
+                            "buyer_info": {
+                                "user_id": "klidwga0lmbj50shmv64yvkee7qzu6yb",
+                                "agency_id": "67cfdb887b7c46fe3c03ca5f"
+                            },
+                            "travelers": null
+                        }
+                    }
+              validation_failed:
+               summary: Validation Failed
+               value:
+                status: "failed"
+                tracking_id: "3117757287332YW1"
+                reason: "Validation has failed. Please attempt with different train."
+              authorization_failed:
+                  summary: Authorization Error
+                  value:
+                    status: "failed"
+                    is_warning: "yes"
+                    reason: "You do not have access to the Train module."
+                    reason_admin: "Supplier T1MO00001 credential expired."
+              train_unavailable:
+                  summary: Train Unavailable
+                  value:
+                    status: "failed"
+                    reason: "Train is not Available"
+  /train/validation-details:
+   post:
+    tags:
+      - Train Service
+    summary: Get validation details for a specific tracking ID
+    description: Retrieves detailed validation information using the tracking ID and member ID.
+    operationId: getValidationDetails
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+            properties:
+              tracking_id:
+                type: string
+                description: "The unique tracking ID returned from previous steps."
+                example: "311177572884426194QMRVJ"
+              member_id:
+                type: string
+                description: "The unique ID of the logged-in member/user."
+                example: "1"
+    responses:
+      '200':
+        description: Successful Retrieval of Validation Details
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_validation_details:
+               summary: Successful Validation Details Response
+               value:
+                    {
+                          "status": "success",
+                          "tracking_id": "3117757287332YW1",
+                          "booking_tracking_id": "311177572884426194QMRVJ",
+                          "supplier_tracking_id": 1775728847222,
+                          "sold_out": false,
+                          "price_change": false,
+                          "search_price": {
+                              "currency": "BDT",
+                              "amount": 1881.83
+                          },
+                          "validation_price": {
+                              "currency": "BDT",
+                              "amount": 1881.83
+                          },
+                          "session_expire": {
+                              "timestamp": 1775729758,
+                              "datetime": "2026-04-09 16:15:58 +06",
+                              "message": "The booking process should be completed by no later than 2026-04-09 16:15:58 +06."
+                          },
+                          "search_parameter": {
+                              "journey_type": "OneWay",
+                              "segment": [
+                                  {
+                                      "departure_code": "MKX",
+                                      "arrival_code": "JXD",
+                                      "outbound_date": "2026-04-19"
+                                  }
+                              ],
+                              "travelers_adult": 1,
+                              "travelers_child": 0,
+                              "travelers_infants": 0,
+                              "supplier_uid": "all",
+                              "partner_id": "",
+                              "short_ref": "xxxx111",
+                              "language": "en",
+                              "guest_nationality": "BD",
+                              "tracking_id": "3117757287332YW1"
+                          },
+                          "data": {
+                              "summery": {
+                                  "tracking_id": "3117757287332YW1",
+                                  "supplier_tracking_id": 1775728847222,
+                                  "service_type": "TRAIN",
+                                  "language": "en",
+                                  "market": "SA",
+                                  "departureDate": "2026-04-19T08:00:00",
+                                  "arrivalDate": "2026-04-19T08:28:00",
+                                  "search_key": "O:MKX:JXD:26:04:19",
+                                  "train_key": "MKX_JXD_0080_2026-04-19T08:00:00",
+                                  "trip_type": "O",
+                                  "booking_status": "NEW",
+                                  "provider_name": "HARAMAIN",
+                                  "short_content": "Haramain Train: Makkah-Jeddah",
+                                  "guest_nationality": "BD",
+                                  "country_of_residence": "BD",
+                                  "image": [
+                                      "https://media.umrahme.com/qa/saas/assets/media/bg/train-service-1.jpg"
+                                  ],
+                                  "retry_count": 0,
+                                  "group_booking": false
+                              },
+                              "route": [
+                                  {
+                                      "departure_station_code": "MKX",
+                                      "arrival_station_code": "JXD",
+                                      "total_duration": 28,
+                                      "segments": [
+                                          {
+                                              "train_name": "HHR",
+                                              "train_number": "0080",
+                                              "departure_station_code": "MKX",
+                                              "arrival_station_code": "JXD",
+                                              "departure_date": "2026-04-19T08:00:00",
+                                              "arrival_date": "2026-04-19T08:28:00",
+                                              "fare_class": "Y",
+                                              "layover_time": 0,
+                                              "duration": 28,
+                                              "content": {
+                                                  "departure_station_name": "Makkah Al-Mukarramah",
+                                                  "arrival_station_name": "Al-Sulimaniyah",
+                                                  "departure_station_city": "Makkah",
+                                                  "arrival_station_city": "Jeddah",
+                                                  "fare_class_name": "Economy"
+                                              },
+                                              "fare_basis_code": "NOTCANCEL"
+                                          }
+                                      ],
+                                      "total_supplier_price": 57.5,
+                                      "total_selling_price": 57.5
+                                  }
+                              ],
+                              "price_details": {
+                                  "promo_tag": null,
+                                  "purchase": {
+                                      "total": {
+                                          "currency": "BDT",
+                                          "amount": 1881.83,
+                                          "before_discount": 1881.83,
+                                          "discount": 0,
+                                          "point": 0
+                                      },
+                                      "price_breakdown": {
+                                          "currency": "BDT",
+                                          "total": 1881.83,
+                                          "base_fare": 1636.37,
+                                          "tax": 245.46,
+                                          "extra_person_fee": 0,
+                                          "supplier_sales_comission": null,
+                                          "payable_at_property": []
+                                      }
+                                  },
+                                  "sell": {
+                                      "total": {
+                                          "currency": "BDT",
+                                          "amount": 1881.83,
+                                          "gross_price": 1881.83,
+                                          "platform_fees_or_extra_tax": 0,
+                                          "point": 0
+                                      },
+                                      "price_breakdown": {
+                                          "currency": "BDT",
+                                          "total": 1881.83,
+                                          "base_fare": 1636.37,
+                                          "tax": 245.46,
+                                          "platform_fees_or_extra_tax": 0,
+                                          "extra_person_fee": 0,
+                                          "supplier_sales_comission": null,
+                                          "payable_at_property": []
+                                      }
+                                  },
+                                  "fmg": {
+                                      "total": {
+                                          "currency": "SAR",
+                                          "amount": 57.5
+                                      },
+                                      "price_breakdown": {
+                                          "currency": "SAR",
+                                          "total": 57.5,
+                                          "base_fare": 50,
+                                          "tax": 7.5,
+                                          "extra_person_fee": 0,
+                                          "supplier_sales_comission": null,
+                                          "base_fare_fmg_charge": 0,
+                                          "membership_discount_percentige": 0,
+                                          "membership_discount_amount": 0,
+                                          "final_base_fare_fmg_charge": 0,
+                                          "payable_at_property": []
+                                      }
+                                  },
+                                  "supplier": {
+                                      "total": {
+                                          "currency": "SAR",
+                                          "amount": 57.5
+                                      },
+                                      "price_breakdown": {
+                                          "currency": "SAR",
+                                          "total": 57.5,
+                                          "base_fare": 50,
+                                          "tax": 7.5,
+                                          "sales_tax": 0,
+                                          "property_fees": 0,
+                                          "surcharges": 0,
+                                          "service_charge": 0,
+                                          "extra_person_fee": 0,
+                                          "supplier_sales_comission": null,
+                                          "payable_at_property": []
+                                      }
+                                  }
+                              },
+                              "cancellation_policy": {
+                                  "hold_possible": "yes",
+                                  "summery": "partially refundable",
+                                  "auto_cancel": "2026-04-09T16:00:58",
+                                  "auto_cancel_timestamp": 1775728858,
+                                  "policy_breakdown": [
+                                      {
+                                          "from": "2026-04-09T16:00:58",
+                                          "from_timestamp": 1775728858,
+                                          "to": "2026-04-18T08:00:00",
+                                          "to_timestamp": 1776477600,
+                                          "currency": "BDT",
+                                          "amount": 564.55,
+                                          "partner": {
+                                              "currency": "BDT",
+                                              "amount": 564.55
+                                          },
+                                          "fmg": {
+                                              "currency": "SAR",
+                                              "amount": 17.25
+                                          },
+                                          "supplier": {
+                                              "currency": "SAR",
+                                              "amount": 17.25
+                                          }
+                                      },
+                                      {
+                                          "from": "2026-04-18T08:00:00",
+                                          "from_timestamp": 1776477600,
+                                          "to": "2026-04-19T07:40:00",
+                                          "to_timestamp": 1776562800,
+                                          "currency": "BDT",
+                                          "amount": 1129.1,
+                                          "partner": {
+                                              "currency": "BDT",
+                                              "amount": 1129.1
+                                          },
+                                          "fmg": {
+                                              "currency": "SAR",
+                                              "amount": 34.5
+                                          },
+                                          "supplier": {
+                                              "currency": "SAR",
+                                              "amount": 34.5
+                                          }
+                                      },
+                                      {
+                                          "from": "2026-04-19T07:40:00",
+                                          "from_timestamp": 1776562800,
+                                          "to": "2026-04-19T08:00:00",
+                                          "to_timestamp": 1776564000,
+                                          "currency": "BDT",
+                                          "amount": 1881.83,
+                                          "partner": {
+                                              "currency": "BDT",
+                                              "amount": 1881.83
+                                          },
+                                          "fmg": {
+                                              "currency": "SAR",
+                                              "amount": 57.5
+                                          },
+                                          "supplier": {
+                                              "currency": "SAR",
+                                              "amount": 57.5
+                                          }
+                                      }
+                                  ]
+                              },
+                              "occupancies": [
+                                  {
+                                      "adults": 1,
+                                      "children": 0,
+                                      "infants": 0
+                                  }
+                              ],
+                              "buyer_info": {
+                                  "user_id": "klidwga0lmbj50shmv64yvkee7qzu6yb",
+                                  "agency_id": "67cfdb887b7c46fe3c03ca5f"
+                              },
+                              "travelers": null
+                          }
+                      }
+              validation_data_missing:
+                summary: Validation Data Not Available
+                value:
+                  status: "failed"
+                  reason: "Booking validation data is not available for this tracking ID."
+              
+
+              authorization_failed:
+                summary: Authorization Error
+                value:
+                  status: "failed"
+                  reason: "You do not have permission to access these details."
+  /train/update-traveller:
+   post:
+    tags:
+      - Train Service
+    summary: Update traveller information
+    description: Updates passenger details for a specific booking tracking ID.
+    operationId: updateTraveller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - passenger
+            properties:
+              tracking_id:
+                type: string
+                example: "311177572884426194QMRVJ"
+              member_id:
+                type: string
+                example: "1"
+              save_pax:
+                type: string
+                enum: [yes, no]
+                example: "no"
+              additional_request:
+                type: string
+                example: "n/a"
+              passenger:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    pax_title: { type: string, example: "Adult 1" }
+                    pax_id: { type: string, example: "1" }
+                    pax_type: { type: string, example: "ADT" }
+                    title: { type: string, example: "MR" }
+                    first_name: { type: string, example: "Mahade" }
+                    last_name: { type: string, example: "Sabbir" }
+                    age: { type: string, example: "24" }
+                    isd_code: { type: string, example: "880" }
+                    contact_no: { type: string, example: "1901402814" }
+                    email_address: { type: string, example: "sabbir@innovatesolution.com" }
+                    gender: { type: string, example: "male" }
+                    dob: { type: string, example: "2001-07-11" }
+                    nationality: { type: string, example: "BD" }
+                    passport_no: { type: string, example: "AE12519590" }
+                    passport_issue_date: { type: string, example: "2022-09-01" }
+                    doc_country: { type: string, example: "BD" }
+    responses:
+        '200':
+          description: Successful Update of Traveller Information
+          content:
+           application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+                successful_traveller_update:
+                 summary: Successful Traveller Update Response
+                 value:
+                       {
+                                "status": "success",
+                                "reason": "Passenger data has been successfully updated.",
+                                "tracking_id": "311177572884426194QMRVJ",
+                                "total_guest": 1,
+                                "data": [
+                                    {
+                                        "tracking_id": "311177572884426194QMRVJ",
+                                        "pax_id": "1",
+                                        "pax_type": "ADT",
+                                        "gender": "male",
+                                        "title": "MR",
+                                        "first_name": "MAHADE",
+                                        "last_name": "SABBIR",
+                                        "pax_age": "24",
+                                        "isd_code": "880",
+                                        "contact_no": "1901402814",
+                                        "email_address": "sabbir@innovatesolution.com",
+                                        "doc_no": "AE12519590",
+                                        "doc_dateofissue": "2022-09-01",
+                                        "doc_dateofexpiry": "2027-04-09",
+                                        "nationality": "BD",
+                                        "doc_country": "BD",
+                                        "dob": "2001-07-11"
+                                    }
+                                ],
+                                "validate_data": {
+                                    "status": "success",
+                                    "supplier_uid": "X1HE00028",
+                                    "supplier_tracking_id": 1775728847222,
+                                    "service_type": "TRAIN",
+                                    "booking_status": "AVAILABILITY",
+                                    "sold_out": false,
+                                    "price_change": false,
+                                    "price_change_amount": 0,
+                                    "old_currency": "BDT",
+                                    "old_price": 1881.83,
+                                    "sell_currency": "BDT",
+                                    "sell_price": 1881.83,
+                                    "search_parameter": {
+                                        "journey_type": "OneWay",
+                                        "segment": [
+                                            {
+                                                "departure_code": "MKX",
+                                                "arrival_code": "JXD",
+                                                "outbound_date": "2026-04-19"
+                                            }
+                                        ],
+                                        "travelers_adult": 1,
+                                        "travelers_child": 0,
+                                        "travelers_infants": 0,
+                                        "supplier_uid": "all",
+                                        "partner_id": "",
+                                        "short_ref": "xxxx111",
+                                        "language": "en",
+                                        "guest_nationality": "BD",
+                                        "tracking_id": "3117757287332YW1"
+                                    },
+                                    "data": {
+                                        "summery": {
+                                            "tracking_id": "311177572884426194QMRVJ",
+                                            "supplier_tracking_id": 1775728847222,
+                                            "service_type": "TRAIN",
+                                            "language": "en",
+                                            "market": "SA",
+                                            "departureDate": "2026-04-19T08:00:00",
+                                            "arrivalDate": "2026-04-19T08:28:00",
+                                            "search_key": "O:MKX:JXD:26:04:19",
+                                            "train_key": "MKX_JXD_0080_2026-04-19T08:00:00",
+                                            "trip_type": "O",
+                                            "booking_status": "AVAILABILITY",
+                                            "provider_name": "HARAMAIN",
+                                            "short_content": "Haramain Train: Makkah-Jeddah",
+                                            "guest_nationality": "BD",
+                                            "country_of_residence": "BD",
+                                            "image": [
+                                                "https://media.umrahme.com/qa/saas/assets/media/bg/train-service-1.jpg"
+                                            ],
+                                            "retry_count": 0,
+                                            "group_booking": false
+                                        },
+                                        "route": [
+                                            {
+                                                "departure_station_code": "MKX",
+                                                "arrival_station_code": "JXD",
+                                                "total_duration": 28,
+                                                "segments": [
+                                                    {
+                                                        "train_name": "HHR",
+                                                        "train_number": "0080",
+                                                        "departure_station_code": "MKX",
+                                                        "arrival_station_code": "JXD",
+                                                        "departure_date": "2026-04-19T08:00:00",
+                                                        "arrival_date": "2026-04-19T08:28:00",
+                                                        "fare_class": "Y",
+                                                        "layover_time": 0,
+                                                        "duration": 28,
+                                                        "content": {
+                                                            "departure_station_name": "Makkah Al-Mukarramah",
+                                                            "arrival_station_name": "Al-Sulimaniyah",
+                                                            "departure_station_city": "Makkah",
+                                                            "arrival_station_city": "Jeddah",
+                                                            "fare_class_name": "Economy"
+                                                        },
+                                                        "fare_basis_code": "NOTCANCEL"
+                                                    }
+                                                ],
+                                                "total_supplier_price": 57.5,
+                                                "total_selling_price": 57.5
+                                            }
+                                        ],
+                                        "price_details": {
+                                            "promo_tag": null,
+                                            "purchase": {
+                                                "total": {
+                                                    "currency": "BDT",
+                                                    "amount": 1881.83,
+                                                    "before_discount": 1881.83,
+                                                    "discount": 0,
+                                                    "point": 0
+                                                },
+                                                "price_breakdown": {
+                                                    "currency": "BDT",
+                                                    "total": 1881.83,
+                                                    "base_fare": 1636.37,
+                                                    "tax": 245.46,
+                                                    "extra_person_fee": 0,
+                                                    "supplier_sales_comission": null,
+                                                    "payable_at_property": []
+                                                }
+                                            },
+                                            "sell": {
+                                                "total": {
+                                                    "currency": "BDT",
+                                                    "amount": 1881.83,
+                                                    "gross_price": 1881.83,
+                                                    "platform_fees_or_extra_tax": 0,
+                                                    "point": 0
+                                                },
+                                                "price_breakdown": {
+                                                    "currency": "BDT",
+                                                    "total": 1881.83,
+                                                    "base_fare": 1636.37,
+                                                    "tax": 245.46,
+                                                    "platform_fees_or_extra_tax": 0,
+                                                    "extra_person_fee": 0,
+                                                    "supplier_sales_comission": null,
+                                                    "payable_at_property": []
+                                                }
+                                            },
+                                            "fmg": {
+                                                "total": {
+                                                    "currency": "SAR",
+                                                    "amount": 57.5
+                                                },
+                                                "price_breakdown": {
+                                                    "currency": "SAR",
+                                                    "total": 57.5,
+                                                    "base_fare": 50,
+                                                    "tax": 7.5,
+                                                    "extra_person_fee": 0,
+                                                    "supplier_sales_comission": null,
+                                                    "base_fare_fmg_charge": 0,
+                                                    "membership_discount_percentige": 0,
+                                                    "membership_discount_amount": 0,
+                                                    "final_base_fare_fmg_charge": 0,
+                                                    "payable_at_property": []
+                                                }
+                                            },
+                                            "supplier": {
+                                                "total": {
+                                                    "currency": "SAR",
+                                                    "amount": 57.5
+                                                },
+                                                "price_breakdown": {
+                                                    "currency": "SAR",
+                                                    "total": 57.5,
+                                                    "base_fare": 50,
+                                                    "tax": 7.5,
+                                                    "sales_tax": 0,
+                                                    "property_fees": 0,
+                                                    "surcharges": 0,
+                                                    "service_charge": 0,
+                                                    "extra_person_fee": 0,
+                                                    "supplier_sales_comission": null,
+                                                    "payable_at_property": []
+                                                }
+                                            }
+                                        },
+                                        "cancellation_policy": {
+                                            "hold_possible": "yes",
+                                            "summery": "partially refundable",
+                                            "auto_cancel": "2026-04-09T16:20:51",
+                                            "auto_cancel_timestamp": 1775730051,
+                                            "policy_breakdown": [
+                                                {
+                                                    "from": "2026-04-09T16:20:51",
+                                                    "from_timestamp": 1775730051,
+                                                    "to": "2026-04-18T08:00:00",
+                                                    "to_timestamp": 1776477600,
+                                                    "currency": "BDT",
+                                                    "amount": 564.55,
+                                                    "partner": {
+                                                        "currency": "BDT",
+                                                        "amount": 564.55
+                                                    },
+                                                    "fmg": {
+                                                        "currency": "SAR",
+                                                        "amount": 17.25
+                                                    },
+                                                    "supplier": {
+                                                        "currency": "SAR",
+                                                        "amount": 17.25
+                                                    }
+                                                },
+                                                {
+                                                    "from": "2026-04-18T08:00:00",
+                                                    "from_timestamp": 1776477600,
+                                                    "to": "2026-04-19T07:40:00",
+                                                    "to_timestamp": 1776562800,
+                                                    "currency": "BDT",
+                                                    "amount": 1129.1,
+                                                    "partner": {
+                                                        "currency": "BDT",
+                                                        "amount": 1129.1
+                                                    },
+                                                    "fmg": {
+                                                        "currency": "SAR",
+                                                        "amount": 34.5
+                                                    },
+                                                    "supplier": {
+                                                        "currency": "SAR",
+                                                        "amount": 34.5
+                                                    }
+                                                },
+                                                {
+                                                    "from": "2026-04-19T07:40:00",
+                                                    "from_timestamp": 1776562800,
+                                                    "to": "2026-04-19T08:00:00",
+                                                    "to_timestamp": 1776564000,
+                                                    "currency": "BDT",
+                                                    "amount": 1881.83,
+                                                    "partner": {
+                                                        "currency": "BDT",
+                                                        "amount": 1881.83
+                                                    },
+                                                    "fmg": {
+                                                        "currency": "SAR",
+                                                        "amount": 57.5
+                                                    },
+                                                    "supplier": {
+                                                        "currency": "SAR",
+                                                        "amount": 57.5
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "occupancies": [
+                                            {
+                                                "adults": 1,
+                                                "children": 0,
+                                                "infants": 0
+                                            }
+                                        ],
+                                        "buyer_info": {
+                                            "user_id": "klidwga0lmbj50shmv64yvkee7qzu6yb",
+                                            "name_prefix": "MR",
+                                            "given_name": "MAHADE",
+                                            "sur_name": "SABBIR",
+                                            "agency_id": "67cfdb887b7c46fe3c03ca5f",
+                                            "email_id": "sabbir@innovatesolution.com",
+                                            "phone_no": "1901402814",
+                                            "isd_code": "880"
+                                        },
+                                        "travelers": [
+                                            {
+                                                "traveler_index": 0,
+                                                "pax_type": "ADULT",
+                                                "name_prefix": "Mr",
+                                                "given_name": "MAHADE",
+                                                "middle_name": "",
+                                                "sur_name": "SABBIR",
+                                                "gender": "MALE",
+                                                "country_of_residence": "BD",
+                                                "nationality": "BD",
+                                                "birth_date": "2001-07-11",
+                                                "passport_no": "AE12519590",
+                                                "passport_type": "PASSPORT",
+                                                "passport_issue_country_code": "BD",
+                                                "passport_issue_date": "2022-09-01",
+                                                "passport_expiry_date": "2027-04-09",
+                                                "is_lead": true
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                invalid_guest_quantity:
+                    summary: Guest Quantity Mismatch
+                    value:
+                        status: "failed"
+                        reason: "The guest quantity provided is not valid. You have submitted data for 2 guest, but the required guest data is for 1 individuals."
+                        tracking_id: "311177572884426194QMRVJ"
+                        submitted_total_guest: 2
+                        required_total_guest: 1
+
+                partial_success_availability_failed:
+                    summary: Update Success but Route Unavailable
+                    value:
+                        status: "failed"
+                        reason: "Passenger data has been successfully updated but Train Availability: Train Route Is Not Available Now Try Again Later"
+  /train/create-booking:
+   post:
+    tags:
+      - Train Service
+    summary: Create a train booking
+    description: Finalizes the booking process by processing payment through the selected payment method.
+    operationId: createTrainBooking
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - payment_type
+              - redirect_url
+            properties:
+              tracking_id:
+                type: string
+                description: "The unique tracking ID for the booking."
+                example: "311177572884426194QMRVJ"
+              member_id:
+                type: string
+                description: "ID of the logged-in member."
+                example: "1"
+              isd_code:
+                type: string
+                example: "880"
+              contact_no:
+                type: string
+                example: "1966330000"
+              email_address:
+                type: string
+                format: email
+                example: "sabbir@innovatesolution.com"
+              payment_type:
+                type: string
+                enum: [account_balance, card, onlinepayment]
+                description: "Method of payment for the booking."
+                example: "account_balance"
+              redirect_url:
+                type: string
+                format: uri
+                description: "URL to redirect after payment processing."
+                example: "https://agent.sabbir.lan/booking-details/train"
+    responses:
+        '200':
+          description: Booking created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+              examples:
+                 successful_booking_creation:
+                  summary: Successful Booking Creation Response
+                  value:
+                    {
+                        "status": "success",
+                        "reason": "Booking has been successfully created.",
+                        "tracking_id": "311177572884426194QMRVJ",
+                        "booking_id": "ES2510NOKJAAFK",
+                        "payment_status": "pending",
+                        "redirect_url": "https://agent.sabbir.lan/booking-details/train"
+                    }
+                                      
+  /train/booking-details:
     post:
-      tags: [eSim]
+      tags: [Train Service]
       summary: Get booking details
       operationId: bookingDetails
       requestBody:
@@ -201,7 +2018,43 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-        '400': { $ref: '#/components/responses/BadRequest' }
+              examples:
+                successful_booking_details:
+                  summary: Successful Booking Details Response
+                  value:
+                    {
+                        "status": "success",
+                        "booking_details": {
+                            "Context": {
+                                "TimeStamp": 1752553734924,
+                                "TransactionId": "60a6e7db6301c17a",
+                                "StatusCode": 200,
+                                "Message": "Success"
+                            },
+                            "Response": {
+                                "BookingId": "ES2510NOKJAAFK",
+                                "TrackingId": "11176276126126194RHSGI",
+                                "MemberId": "2",
+                                "TrainKey": "MKX_DMX_2151_2025-09-20T08:00:00",
+                                "FareClass": "C",
+                                "FareClassName": "Business",
+                                "SellingPrice": 202.9861803,
+                                "SellingCurrency": "USD",
+                                "DepartureStationCode": "MKX",
+                                "ArrivalStationCode": "DMX",
+                                "DepartureDate": "2025-09-20T08:00:00",
+                                "ArrivalDate": "2025-09-20T11:00:00",
+                                "PassengerDetails": [
+                                    {
+                                        "FirstName": "John",
+                                        "LastName": "Doe",
+                                        "PassengerType": "Adult"
+                                    }
+                                ],
+                                "BookingStatus": "Confirmed"
+                            }
+                        }
+                    }
 
 
 
