@@ -1964,13 +1964,77 @@ paths:
                   summary: Successful Booking Creation Response
                   value:
                     {
-                        "status": "success",
-                        "reason": "Booking has been successfully created.",
-                        "tracking_id": "311177572884426194QMRVJ",
-                        "booking_id": "ES2510NOKJAAFK",
-                        "payment_status": "pending",
-                        "redirect_url": "https://agent.sabbir.lan/booking-details/train"
+                        "Context": {
+                            "TimeStamp": 1776838694938,
+                            "TransactionId": "47016237b5f1ec6f",
+                            "StatusCode": 200
+                        },
+                        "Response": {
+                            "QuickBookId": 1776838544149,
+                            "Online": {
+                                "PaymentToken": "",
+                                "PaymentUrl": ""
+                            },
+                            "TzyRewards": false,
+                            "TzyWallet": true,
+                            "IsPaymentCompleted": false
+                        }
                     }
+                 
+                 insufficient_balance:
+                    summary: Insufficient Account Balance
+                    value:
+                        status: "failed"
+                        available_balance: "-10002.00"
+                        flight_partner_cost: 1881.83
+                        reason: "The available balance -10002.00 in your account is insufficient to cover the booking amount 1881.83 using the account balance"
+  /train/cancel-booking:
+   post:
+    tags:
+      - Train Service
+    summary: Cancel a train booking
+    description: Requests a cancellation for an existing booking using the tracking ID and a reason for cancellation.
+    operationId: cancelBooking
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - member_id
+              - reason
+            properties:
+              member_id:
+                type: string
+                description: "The unique ID of the logged-in user."
+                example: "1"
+              tracking_id:
+                type: string
+                description: "The unique tracking ID of the booking to be cancelled."
+                example: "111775111387888638XGGS"
+              reason:
+                type: string
+                description: "The reason for requesting cancellation."
+                example: "I selected wrong date"
+    responses:
+        '200':
+            description: Booking cancelled successfully
+            content:
+                application/json:
+                  schema:
+                    type: object
+                    additionalProperties: true
+                  examples:
+                    successful_cancellation:
+                      summary: Successful Cancellation Response
+                      value:
+                        {
+                            "status": "success",
+                            "reason": "Your booking has been successfully cancelled.",
+                            "tracking_id": "111775111387888638XGGS"
+                        }
                                       
   /train/booking-details:
     post:
