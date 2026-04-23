@@ -12,7 +12,7 @@ On your VPS, create a dedicated directory for the project. This ensures isolatio
 # Recommended path
 /var/www/api-docs/
 ├── openapi/          # Contains YAML files
-├── redoc/            # Contains generated HTML
+├── doc/              # Contains generated HTML
 ├── services/         # Contains index.html
 └── .htaccess         # Optional: for specific rules
 ```
@@ -41,10 +41,10 @@ This serves the API documentation as a subpath (e.g., `api.innotraveltech.com/do
     DocumentRoot /var/www/api-docs
 
     # Serve the Documentation Portal (Index) at /docs
-    Alias /docs /var/www/api-docs/redoc/index.html
+    Alias /docs /var/www/api-docs/doc/index.html
 
     # Serve the individual service docs
-    <Directory "/var/www/api-docs/redoc">
+    <Directory "/var/www/api-docs/doc">
         Options FollowSymLinks
         AllowOverride None
         Require all granted
@@ -70,11 +70,11 @@ Useful if you want a cleaner separation of documentation from the actual API gat
 ```apache
 <VirtualHost *:80>
     ServerName docs.api.innotraveltech.com
-    DocumentRoot /var/www/api-docs/redoc
+    DocumentRoot /var/www/api-docs/doc
 
     DirectoryIndex generated-docs.html
 
-    <Directory "/var/www/api-docs/redoc">
+    <Directory "/var/www/api-docs/doc">
         AllowOverride All
         Require all granted
     </Directory>

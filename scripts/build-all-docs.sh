@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 OPENAPI_DIR="$ROOT_DIR/openapi"
-REDOC_DIR="$ROOT_DIR/redoc"
+REDOC_DIR="$ROOT_DIR/doc"
 
 mkdir -p "$REDOC_DIR"
 
@@ -118,9 +118,9 @@ build_service "Train.yaml" "train.html"
 build_service "Transfer.yaml" "transfer.html"
 build_service "Tour-Packege.yaml" "tour-package.html"
 
-echo "✅ All documentation generated successfully in the /redoc directory!"
+echo "✅ All documentation generated successfully in the /doc directory!"
 echo ""
 echo "🌐 To view the documentation, open this file in your browser:"
 echo "   $REDOC_DIR/index.html"
 echo ""
-echo "🚀 Pro tip: If you are using VS Code, right-click 'redoc/index.html' and select 'Open in Default Browser'."
+echo "🚀 Pro tip: If you are using VS Code, right-click 'doc/index.html' and select 'Open in Default Browser'."

@@ -17,7 +17,7 @@ project-root/
 │   └── openapi.yaml
 ├── swagger/
 │   └── docker-compose.yml
-├── redoc/
+├── doc/
 │   └── generated-docs.html
 ├── scripts/
 │   └── build-redoc.sh
@@ -51,17 +51,17 @@ docker compose up -d
 sh scripts/build-redoc.sh
 ```
 
-- Output: `redoc/generated-docs.html` (single HTML file). Re-run this when `openapi/openapi.yaml` changes.
+- Output: `doc/generated-docs.html` (single HTML file). Re-run this when `openapi/openapi.yaml` changes.
 - Alternative without the script:
 
 ```
-npx @redocly/cli build-docs openapi/openapi.yaml -o redoc/generated-docs.html
+npx @redocly/cli build-docs openapi/openapi.yaml -o doc/generated-docs.html
 ```
 
 ## Deployment
 
 - Copy these items to your web root:
-  - `redoc/generated-docs.html`
+  - `doc/generated-docs.html`
   - `openapi/openapi.yaml`
 
 - Example Nginx snippet:
@@ -73,7 +73,7 @@ server {
   root /var/www/api-docs;
 
   location /docs {
-    alias /var/www/api-docs/redoc;
+    alias /var/www/api-docs/doc;
     index generated-docs.html;
   }
 

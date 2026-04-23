@@ -8,11 +8,11 @@ Your current [build-redoc.sh](file:///c:/Users/mdmah/Downloads/api-document-swag
 
 ### How it works:
 ```bash
-npx --yes @redocly/cli build-docs openapi/openapi.yaml -o redoc/generated-docs.html
+npx --yes @redocly/cli build-docs openapi/openapi.yaml -o doc/generated-docs.html
 ```
 - **`npx @redocly/cli build-docs`**: This command downloads and runs the latest Redocly tool.
 - **[openapi/openapi.yaml](file:///c:/Users/mdmah/Downloads/api-document-swagger/openapi/openapi.yaml)**: This is the INPUT (your API specification).
-- **`-o redoc/generated-docs.html`**: This specifies the OUTPUT file name.
+- **`-o doc/generated-docs.html`**: This specifies the OUTPUT file name.
 
 ## 2. Generating Documentation for Other Services
 
@@ -21,11 +21,11 @@ Since you have multiple services (Flight, Hotel, eSIM, etc.), you can run the sa
 ### Commands for each service:
 | Service | Command |
 | :--- | :--- |
-| **Combined** | `npx @redocly/cli build-docs openapi/openapi.yaml -o redoc/openapi.html` |
-| **Flight** | `npx @redocly/cli build-docs openapi/flight.yaml -o redoc/flight-redoc.html` |
-| **Hotel** | `npx @redocly/cli build-docs openapi/hotel.yaml -o redoc/hotel-redoc.html` |
-| **eSIM** | `npx @redocly/cli build-docs openapi/esim.yaml -o redoc/esim.html` |
-| **Visa** | `npx @redocly/cli build-docs openapi/Visa.yaml -o redoc/visa.html` |
+| **Combined** | `npx @redocly/cli build-docs openapi/openapi.yaml -o doc/openapi.html` |
+| **Flight** | `npx @redocly/cli build-docs openapi/flight.yaml -o doc/flight-redoc.html` |
+| **Hotel** | `npx @redocly/cli build-docs openapi/hotel.yaml -o doc/hotel-redoc.html` |
+| **eSIM** | `npx @redocly/cli build-docs openapi/esim.yaml -o doc/esim.html` |
+| **Visa** | `npx @redocly/cli build-docs openapi/Visa.yaml -o doc/visa.html` |
 
 > [!TIP]
 > **Why use the CLI?**
@@ -42,7 +42,7 @@ sh scripts/build-all-docs.sh
 ### What this script does:
 1.  **Builds 8 Services**: Generates HTML for Flight, Hotel, eSIM, Visa, etc.
 2.  **Instruments UI**: Automatically injects a **"Back to Home"** button into every generated page.
-3.  **Updates Portal**: Ensures the `redoc/index.html` portal is ready for viewing.
+3.  **Updates Portal**: Ensures the `doc/index.html` portal is ready for viewing.
 
 ## 4. Production Deployment
 
@@ -50,6 +50,6 @@ When deploying to production (e.g., `api.innotraveltech.com`), follow these step
 
 1.  Pull the latest changes on your VPS.
 2.  Run `sh scripts/build-all-docs.sh`.
-3.  Ensure your Apache/Nginx configuration points to `redoc/index.html` as the main entry point.
+3.  Ensure your Apache/Nginx configuration points to `doc/index.html` as the main entry point.
 
 Refer to [PRODUCTION.md](PRODUCTION.md) for detailed server configuration.

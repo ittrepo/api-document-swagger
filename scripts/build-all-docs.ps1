@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 
 $RootDir = Get-Location
 $OpenapiDir = Join-Path $RootDir "openapi"
-$RedocDir = Join-Path $RootDir "redoc"
+$RedocDir = Join-Path $RootDir "doc"
 
 if (-not (Test-Path $RedocDir)) {
     New-Item -ItemType Directory -Path $RedocDir | Out-Null
