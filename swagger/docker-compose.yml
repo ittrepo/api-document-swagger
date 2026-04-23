@@ -4,7 +4,7 @@ services:
     image: swaggerapi/swagger-ui:latest
     container_name: travel-api-swagger
     environment:
-      URLS: '[{"url":"/openapi/flight.yaml","name":"FlightAPI"},{"url":"/openapi/hotel.yaml","name":"HotelAPI"},{"url":"/openapi/Transfer.yaml","name":"TransferAPI"},{"url":"/openapi/esim.yaml","name":"esimAPI"},{"url":"/openapi/Visa.yaml","name":"VisaAPI"},{"url":"/openapi/activity.yaml","name":"activityAPI"},{"url":"/openapi/Train.yaml","name":"TrainAPI"}]'
+      URLS: '[{"url":"/openapi/Flight.yaml","name":"Flight"},{"url":"/openapi/Hotel.yaml","name":"Hotel"},{"url":"/openapi/Transfer.yaml","name":"Transfer"},{"url":"/openapi/eSim.yaml","name":"eSim"},{"url":"/openapi/Visa.yaml","name":"Visa"},{"url":"/openapi/Activity.yaml","name":"Activity"},{"url":"/openapi/Train.yaml","name":"Train"}]'
     ports:
       - "8080:8080"
     volumes: 
