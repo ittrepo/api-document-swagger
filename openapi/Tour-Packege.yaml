@@ -25,9 +25,46 @@ security:
   - apiKeyAuth: []
     secretCodeAuth: []
 paths:
+  /service-tour/city-suggestion:
+   post:
+    tags:
+      - Tour Service
+    summary: Get city suggestions for tours
+    description: Retrieves a list of cities based on the country code. If the country_code is left empty (null/empty string), it returns suggestions for all available countries.
+    operationId: getCitySuggestions
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              country_code:
+                type: string
+                description: "ISO country code (e.g., 'TH', 'AE'). Set as an empty string to get suggestions for all countries."
+                example: ""
+    responses:
+      '200':
+        description: Successful Retrieval of City Suggestions
+        content:
+          application/json:
+            examples:
+              invalid_country:
+                summary: Invalid Country Code
+                value:
+                  status: "failed"
+                  reason: "The provided country code is invalid or not supported."
+              
+              no_cities_found:
+                summary: No Data Found
+                value:
+                  status: "failed"
+                  reason: "No cities found for the selected country."
+      
+             
   /esim/booking-details:
     post:
-      tags: [eSim]
+      tags: [Tour Package]
       summary: Get booking details
       operationId: bookingDetails
       requestBody:
@@ -71,7 +108,8 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
-        '400': { $ref: '#/components/responses/BadRequest' }
+        
+        
 
 
 
