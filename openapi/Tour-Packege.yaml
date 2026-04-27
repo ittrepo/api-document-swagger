@@ -18,8 +18,8 @@ servers:
         description: Full URL of the server, e.g., serviceapi.b2b.innovatedemo.com or localhost:8080
 
 tags:
-  - name: Visa
-    description: Visa search, pricing, booking, ancillaries and post-booking flows.
+  - name: Tour Service
+    description: Tour search, pricing, booking, ancillaries and post-booking flows.
 
 security:
   - apiKeyAuth: []
@@ -48,7 +48,80 @@ paths:
         description: Successful Retrieval of City Suggestions
         content:
           application/json:
+            schema:
+              type: object
+              additionalProperties: true
             examples:
+              all_countries:
+                summary: All Countries
+                value:
+                  {
+                        "status": "success",
+                        "reason": "10 city available",
+                        "data": [
+                            {
+                                "city_code": "MV-AVA",
+                                "city_name": "Aarah Vaavu Atoll",
+                                "country_code": "MV",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "TR-ABT",
+                                "city_name": "Abant",
+                                "country_code": "TR",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "AE-JBA",
+                                "city_name": "Abu Dhabi",
+                                "country_code": "AE",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "TH-ANN",
+                                "city_name": "Amnat Charoen",
+                                "country_code": "TH",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "BD-BDN",
+                                "city_name": "Bandarban",
+                                "country_code": "BD",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "BD-CXB",
+                                "city_name": "Cox S Bazar",
+                                "country_code": "BD",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "BD-DAC",
+                                "city_name": "Dhaka",
+                                "country_code": "BD",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "SA-MCA",
+                                "city_name": "Mecca",
+                                "country_code": "SA",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "BD-RJH",
+                                "city_name": "Rajshahi",
+                                "country_code": "BD",
+                                "city_pic": null
+                            },
+                            {
+                                "city_code": "JP-HND",
+                                "city_name": "Tokyo",
+                                "country_code": "JP",
+                                "city_pic": null
+                            }
+                        ]
+                    }
+
               invalid_country:
                 summary: Invalid Country Code
                 value:
@@ -60,11 +133,1287 @@ paths:
                 value:
                   status: "failed"
                   reason: "No cities found for the selected country."
-      
+  /service-tour/search:
+   post:
+    tags:
+      - Tour Service
+    summary: Search for available tours
+    description: Search for tours based on country, city, category, or specific tour name. Leave fields empty (null string) to broaden the search results.
+    operationId: searchTours
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tour_date
+            properties:
+              country_code:
+                type: string
+                description: "ISO country code (e.g., TH, AE). Set empty for all countries."
+                example: ""
+              city_code:
+                type: string
+                description: "City name or code (e.g., Dubai, Dhaka). Set empty for all cities."
+                example: ""
+              tour_category_code:
+                type: string
+                description: "Category of the tour (e.g., luxury, family). Set empty for all categories."
+                example: ""
+              tour_name:
+                type: string
+                description: "Specific name of the tour or service. Set empty for all."
+                example: ""
+              tour_date:
+                type: string
+                format: date
+                description: "The date of the tour (YYYY-MM-DD)."
+                example: "2026-06-20"
+    responses:
+      '200':
+        description: Search Error Responses
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              Successful_search:
+                summary: Successful Search
+                value:
+                  {
+                        "status": "success",
+                        "reason": "3 tour service available",
+                        "search_date": "2026-02-20",
+                        "data": [
+                            {
+                                "seo_code": "dubai-3-nights-4-days-tour-package",
+                                "title": "Dubai 3 Nights 4 Days Tour Package",
+                                "docket_code": null,
+                                "primary_photo": "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp",
+                                "country_name": "United Arab Emirates",
+                                "country_code": "AE",
+                                "city_code": "AE-JBA",
+                                "city_name": "Abu Dhabi",
+                                "city_pic": null,
+                                "min_pax": 1,
+                                "max_pax": 5,
+                                "child_permission": 0,
+                                "category_code": "luxury",
+                                "category_title": "Luxury",
+                                "tour_duration": "3 day",
+                                "basic_info": "Dubai is a vibrant city known for its luxurious lifestyle, iconic landmarks like the Burj Khalifa and Palm Jumeirah, and diverse cultural experiences. It's famous for high-end shopping, innovative attractions, and stunning architecture. With beautiful beaches, exciting adventures, and world-class dining, Dubai offers a unique blend of modernity and tradition.\n",
+                                "last_update": "Sunday, 2025-12-28 1:15 PM +06:00",
+                                "min_price": {
+                                    "amount": 100000,
+                                    "currency": "BDT"
+                                },
+                                "starting_price": {
+                                    "sale": {
+                                        "amount": 100000,
+                                        "currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "amount": 100000,
+                                        "currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "amount": 100000,
+                                        "currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "amount": 100000,
+                                        "currency": "BDT"
+                                    }
+                                },
+                                "facilities": [
+                                    {
+                                        "text": "hotel"
+                                    }
+                                ]
+                            },
+                            {
+                                "seo_code": "harmony-in-thailand",
+                                "title": "Harmony in Thailand",
+                                "docket_code": null,
+                                "primary_photo": "https://cdn.innovategrid.com/innotraveltech/tour/151753206363643120.webp",
+                                "country_name": "Thailand",
+                                "country_code": "TH",
+                                "city_code": "TH-ANN",
+                                "city_name": "Amnat Charoen",
+                                "city_pic": null,
+                                "min_pax": 1,
+                                "max_pax": 5,
+                                "child_permission": 0,
+                                "category_code": "beach",
+                                "category_title": "Beach",
+                                "tour_duration": "0 day",
+                                "basic_info": "The Bangkok-Phuket-Krabi Tour Package with Inno Travel Tech is a comprehensive travel experience designed to showcase the best of Thailand's famous destinations: Bangkok, Phuket, and Krabi. This package typically includes a combination of flights, accommodation, transportation, and sometimes guided tours.",
+                                "last_update": "Tuesday, 2026-01-13 12:10 PM +06:00",
+                                "min_price": {
+                                    "amount": 48000,
+                                    "currency": "BDT"
+                                },
+                                "starting_price": {
+                                    "sale": {
+                                        "amount": 48000,
+                                        "currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "amount": 48000,
+                                        "currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "amount": 48000,
+                                        "currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "amount": 48000,
+                                        "currency": "BDT"
+                                    }
+                                },
+                                "facilities": []
+                            },
+                            {
+                                "seo_code": "maldives-dhiffushi-3-nights-4-days-tour",
+                                "title": "Maldives-Dhiffushi 3 Nights 4 Days Tour",
+                                "docket_code": null,
+                                "primary_photo": "https://cdn.innovategrid.com/innotraveltech/tour/151753292802451822.webp",
+                                "country_name": "Maldives",
+                                "country_code": "MV",
+                                "city_code": "MV-AVA",
+                                "city_name": "Aarah Vaavu Atoll",
+                                "city_pic": null,
+                                "min_pax": 1,
+                                "max_pax": 5,
+                                "child_permission": 0,
+                                "category_code": "beach",
+                                "category_title": "Beach",
+                                "tour_duration": "4 day",
+                                "basic_info": "Join our unforgettable Maldives tour for a perfect getaway! Start with a warm welcome and transfer to your luxurious resort. Spend your days soaking up the sun on pristine beaches, snorkeling in crystal-clear waters, and exploring vibrant coral reefs. Enjoy a sunset dolphin cruise and indulge in delicious local cuisine. Discover the charm of local islands and unwind with spa treatments. Experience the magic of the Maldives and create memories that last a lifetime! Book your paradise escape today!",
+                                "last_update": "Tuesday, 2026-01-06 6:53 PM +06:00",
+                                "min_price": {
+                                    "amount": 42000,
+                                    "currency": "BDT"
+                                },
+                                "starting_price": {
+                                    "sale": {
+                                        "amount": 42000,
+                                        "currency": "BDT"
+                                    },
+                                    "purchase": {
+                                        "amount": 42000,
+                                        "currency": "BDT"
+                                    },
+                                    "fmg": {
+                                        "amount": 42000,
+                                        "currency": "BDT"
+                                    },
+                                    "supplier": {
+                                        "amount": 42000,
+                                        "currency": "BDT"
+                                    }
+                                },
+                                "facilities": [
+                                    {
+                                        "text": "hotel"
+                                    },
+                                    {
+                                        "text": "transfer"
+                                    },
+                                    {
+                                        "text": "activity"
+                                    },
+                                    {
+                                        "text": "flight"
+                                    }
+                                ]
+                            }
+                        ],
+                        "offers": []
+                    }
+              no_tours_found:
+                summary: No Tours Found
+                value:
+                  status: "failed"
+                  reason: "No tours are available for the selected date and criteria."
+                  search_date: "2026-06-20"
+
+              invalid_date:
+                summary: Invalid Tour Date
+                value:
+                  status: "failed"
+                  reason: "The tour_date must be a future date and in YYYY-MM-DD format."
+
+              location_mismatch:
+                summary: Location Not Found
+                value:
+                  status: "failed"
+                  reason: "The provided city_code does not match the selected country_code."
+
+              authorization_failed:
+                summary: Authorization Error
+                value:
+                  status: "failed"
+                  reason: "You do not have access to the Tour module."
+  /service-tour/details:
+   post:
+    tags:
+      - Tour Service
+    summary: Get tour details
+    description: Retrieves comprehensive information about a specific tour package using its SEO-friendly code.
+    operationId: getTourDetails
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tour_seo_code
+            properties:
+              tour_seo_code:
+                type: string
+                description: "The SEO-friendly unique string identifier for the tour."
+                example: "dubai-3-nights-4-days-tour-package"
+    responses:
+      '200':
+        description: Successful Retrieval of Tour Details
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_retrieval:
+                summary: Successful Retrieval
+                value:
+                  {
+                        "status": "success",
+                        "reason": "Selected tour service available",
+                        "data": {
+                            "service_id": 12,
+                            "created": "Thursday, 2025-07-24 1:31 AM",
+                            "last_update": "Sunday, 2025-12-28 1:15 PM",
+                            "partner_name": "Innovate Solution",
+                            "country_code": "AE",
+                            "country_name": "United Arab Emirates",
+                            "city_code": "AE-JBA",
+                            "city_name": "Abu Dhabi",
+                            "city_pic": "",
+                            "min_pax": 1,
+                            "max_pax": 5,
+                            "min_price": {
+                                "amount": 100000,
+                                "currency": "BDT"
+                            },
+                            "child_permission": "0",
+                            "age_limit_adult": "15-45",
+                            "age_limit_child": "0-0",
+                            "can_book_status": "confirm",
+                            "category_code": "luxury",
+                            "category_title": "Luxury",
+                            "seo_code": "dubai-3-nights-4-days-tour-package",
+                            "docket_code": "",
+                            "primary_photo": "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp",
+                            "tour_photo": [
+                                "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp"
+                            ],
+                            "title": "Dubai 3 Nights 4 Days Tour Package",
+                            "basic_info": "Dubai is a vibrant city known for its luxurious lifestyle, iconic landmarks like the Burj Khalifa and Palm Jumeirah, and diverse cultural experiences. It's famous for high-end shopping, innovative attractions, and stunning architecture. With beautiful beaches, exciting adventures, and world-class dining, Dubai offers a unique blend of modernity and tradition.\n",
+                            "tour_start_date": "2025-09-10",
+                            "tour_duration": "3 Day",
+                            "tour_end_date": "2027-11-30",
+                            "inclusions_info": "<ul>\n\t<li>03 Nights hotel accommodation.</li>\n\t<li>Daily buffet breakfast at the hotel.</li>\n\t<li>Airport assistance at Dubai airport.</li>\n\t<li>Airport &ndash; Hotel &ndash; Airport transportation.</li>\n\t<li>English-speaking guide on tour period.</li>\n\t<li>All entrance fees &amp; taxes.</li>\n\t<li>Half-Day Dubai City Tour.</li>\n\t<li>Desert Safari with BBQ Dinner.</li>\n\t<li>Creek Cruise dinner &amp; live entertainment.</li>\n\t<li>Miracle Garden + Global Village tour.</li>\n</ul>\n",
+                            "exclusions_info": "<ul>\n\t<li>International Air Ticket.</li>\n\t<li>Dubai visa fee</li>\n\t<li>Any kinds of personal cost or others which are not mentioned above</li>\n\t<li>Dubai Tourism Dirham Fee (City Tax / per room per night basis): 3 Star = AED 10, 4 Star = AED 15, 5 Star = AED 20</li>\n\t<li>Hotel weekend charge will be applicable if the stay is on Saturday or Sunday</li>\n\t<li>Lunch / Dinner Coupon (Walking distance) - TK. 1,000/per meal.</li>\n\t<li>Early check-in and late check-out.</li>\n</ul>\n",
+                            "policy_info": "<ul>\n\t<li>Tour package confirmation always depends on availability at the time of booking</li>\n\t<li>Package itinerary can be changed which will be informed to travelers before travel</li>\n\t<li>All tours and sightseeing are based on SIC</li>\n\t<li>No refund in case of unused services or lesser duration of stay</li>\n\t<li>Children (2-11) must share a room with two adults and will not be considered for extra bed requests, and will occupy a seat on the coach</li>\n\t<li>Child prices only apply if there are 2 adults. In the case of 1 adult and 1 child you will need to book for 2 adults</li>\n\t<li>Not wheelchair accessible</li>\n\t<li>We only provide consultancy service, and don&#39;t provide any guarantee for visas</li>\n\t<li>File processing for visa will start only after receiving all necessary documents</li>\n\t<li>Visa Processing time, requirements and fees are subject to change by the Embassy without any prior notice</li>\n</ul>\n",
+                            "payment_terms_info": "<p><strong>Phase-1:</strong> 80% of the total package amount at the time of booking.&nbsp;</p>\n\n<p><strong>Phase-2:</strong> 20% of the total package amount before seven days of travel date.</p>\n\n<p><strong>Phase-3:</strong> Payments can be made via bank transfer, credit card, or other accepted methods.</p>\n\n<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Bank Details</strong></p>\n\n<table cellspacing=\"0\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Bank Name&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Account Title&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Account Number&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Branch Name&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Routing Number</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Islami Bank Bangladesh PLC</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>876543654365454&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Head Office</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>76543345667</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Dutch bangla Bank PLC&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>34567876546543&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Gulshan-1</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>44345544343</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Brac Bank&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>87654654354343&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Avenue</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>2345654345</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>The City Bank PLC&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>8765436543543&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Avenue</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>76543432322</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n",
+                            "tour_visa_info": "<p>Please click on the given link for Dubai Visa details:<a href=\"http://akijair.com/visa?country_code=AE&amp;visa_category=all\"><u>http://a</u></a>gent.innovatesolution.com</p>\n",
+                            "tour_additional_info": "<p>To book a tour, a reservation request must be submitted through the Inno Travel Tech website or directly via contact.</p>\n\n<ul>\n\t<li>Contact:<a href=\"tel:09613500850\"> 09613500850</a> or<a href=\"tel: 01332500868\"> 01332500868</a></li>\n\t<li>Email: <a href=\"mailto:tourism.support@akijair.com\">support@innovatesolution.com</a></li>\n\t<li>Website:<a href=\"http://akijair.com\">http://agent.innovatesolution.com</a><br />\n\t&nbsp;</li>\n</ul>\n\n<p><strong>Financial Details</strong></p>\n\n<ul>\n\t<li>Adults on double &nbsp;share Basis TK. 100,000BDT(as of now)</li>\n\t<li>Children (05-11 yrs) 25% less.</li>\n\t<li>Children (02-05 yrs) 50% less.</li>\n\t<li>Infant (0- below 02) free.</li>\n</ul>\n\n<p>Your con&iuml;&not;rmation of the Holiday will ensure that you have read the Cancellation Policy thoroughly and accepted it</p>\n\n<ul>\n\t<li>15 days prior to the travel date - 50 % of total holiday cost.</li>\n\t<li>10 days prior to the travel date - 75 % of total holiday cost.</li>\n\t<li>05 days prior to the travel date - 100% of holiday cost.</li>\n</ul>\n",
+                            "price_breakdown": {
+                                "starting_price": {
+                                    "amount": 100000,
+                                    "currency": "BDT"
+                                },
+                                "additional_bed_price": {
+                                    "amount": 0,
+                                    "currency": "BDT"
+                                },
+                                "per_pax_price": {
+                                    "adult_price": {
+                                        "amount": 80000,
+                                        "currency": "BDT"
+                                    }
+                                }
+                            },
+                            "meta_title": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_description": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_keywords": "",
+                            "meta_robots": "index,follow",
+                            "meta_googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+                            "meta_canonical_link": "",
+                            "meta_og_title": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_ogurl": "",
+                            "meta_ogdescription": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_ogimage": "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp",
+                            "contact": {
+                                "number": "",
+                                "number_text_info": "",
+                                "email": "",
+                                "email_text_info": ""
+                            }
+                        },
+                        "itinerary_data": [
+                            {
+                                "service_type": "itinerary",
+                                "uid": "138",
+                                "service_id": "12",
+                                "last_update": "Thursday, 2025-07-24 1:33 AM",
+                                "update_by": "emon",
+                                "sequence": "1",
+                                "title": "Arrival at Dubai International Airport.",
+                                "itinerary_notes": "<p>After arriving at Dubai International Airport you will be transferred to the Dubai Hotel . Check into the hotel and enjoy your day.There is no service included, you may spend time, as per your interests.</p>"
+                            },
+                            {
+                                "service_type": "itinerary",
+                                "uid": "139",
+                                "service_id": "12",
+                                "last_update": "Thursday, 2025-07-24 1:34 AM",
+                                "update_by": "emon",
+                                "sequence": "2",
+                                "title": "City Tour",
+                                "itinerary_notes": "<p>Start your day with breakfast at the hotel and embark on a Half Day Dubai City Tour. In the afternoon, experience the thrilling Desert Safari with a BBQ Dinner. Enjoy an overnight stay at your hotel.</p>"
+                            },
+                            {
+                                "service_type": "itinerary",
+                                "uid": "140",
+                                "service_id": "12",
+                                "last_update": "Thursday, 2025-07-24 1:34 AM",
+                                "update_by": "emon",
+                                "sequence": "3",
+                                "title": "Exploring the Miracle Garden and Global Village",
+                                "itinerary_notes": "<p>Relish breakfast at the hotel, and then spend the full day exploring the Miracle Garden and Global Village. Return to your hotel for a restful overnight stay.</p>"
+                            },
+                            {
+                                "service_type": "itinerary",
+                                "uid": "141",
+                                "service_id": "12",
+                                "last_update": "Thursday, 2025-07-24 1:34 AM",
+                                "update_by": "emon",
+                                "sequence": "4",
+                                "title": "Departure from Dubai International Airport",
+                                "itinerary_notes": "<p>After Breakfast, you will be transferred to Dubai International Airport. End of the tour.</p>"
+                            }
+                        ],
+                        "hotel_data": [
+                            {
+                                "service_type": "hotel",
+                                "uid": "252",
+                                "service_id": "12",
+                                "last_update": "Saturday, 2026-02-21 12:08 PM",
+                                "update_by": "Showkat",
+                                "include_package": "included",
+                                "purchase": {
+                                    "amount": 0,
+                                    "currency": "BDT"
+                                },
+                                "hotel_name": "abc hotel",
+                                "hotel_star_level": "0",
+                                "room_title": "abc",
+                                "hotel_address": "adfsf",
+                                "hotel_lat": "24",
+                                "hotel_long": "12",
+                                "hotel_facility": "adfdf fsdfsdf"
+                            },
+                            {
+                                "service_type": "hotel",
+                                "uid": "253",
+                                "service_id": "12",
+                                "last_update": "Saturday, 2026-02-21 12:08 PM",
+                                "update_by": "Showkat",
+                                "include_package": "included",
+                                "purchase": {
+                                    "amount": 0,
+                                    "currency": "BDT"
+                                },
+                                "hotel_name": "def",
+                                "hotel_star_level": "0",
+                                "room_title": "efef",
+                                "hotel_address": "sdf sdfsdfa",
+                                "hotel_lat": "12",
+                                "hotel_long": "12",
+                                "hotel_facility": "dgdfgdfg"
+                            }
+                        ],
+                        "transfer_data": null,
+                        "flight_data": null,
+                        "activity_data": null,
+                        "insurance_data": null,
+                        "meal_data": null,
+                        "guide_data": null,
+                        "offers": []
+                    }
+
+                  
+              no_tours_found:
+                summary: No Tours Found
+                value:
+                  status: "failed"
+                  reason: "No tours are available for the selected date and criteria."
+                  search_date: "2026-06-20"
+
+              invalid_date:
+                summary: Invalid Tour Date
+                value:
+                  status: "failed"
+                  reason: "The tour_date must be a future date and in YYYY-MM-DD format."
+
+              location_mismatch:
+                summary: Location Not Found
+                value:
+                  status: "failed"
+                  reason: "The provided city_code does not match the selected country_code."
+
+              authorization_failed:
+                summary: Authorization Error
+                value:
+                  status: "failed"
+                  reason: "You do not have access to the Tour module."
+  /service-tour/validate:
+   post:
+    tags:
+      - Tour Service
+    summary: Validate tour selection and options
+    description: Validates the selected tour package along with its components like hotels, transfers, flights, and other add-ons for a specific date and passenger count.
+    operationId: validateTour
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tour_seo_code
+              - adult
+              - checkIn
+              - extra_bed
+            properties:
+              tour_seo_code:
+                type: string
+                example: "dubai-3-nights-4-days-tour-package"
+              adult:
+                type: string
+                example: "2"
+              child:
+                type: string
+                example: "0"
+              infant:
+                type: string
+                example: "0"
+              hotel_data:
+                type: array
+                items: { type: string }
+                example: ["290"]
+              transfer_data:
+                type: array
+                items: { type: string }
+                example: ["349"]
+              flight_data:
+                type: array
+                items: { type: string }
+                example: ["293"]
+              insurance_data:
+                type: array
+                items: { type: string }
+                example: ["330"]
+              activity_data:
+                type: array
+                items: { type: string }
+                example: ["294"]
+              meal_data:
+                type: array
+                items: { type: string }
+                example: ["297"]
+              guide:
+                type: array
+                items: { type: string }
+                example: ["331"]
+              checkIn:
+                type: string
+                format: date
+                example: "2026-06-09"
+              extra_bed:
+                type: string
+                enum: [yes, no]
+                description: "Specify if an extra bed is required."
+                example: "no"
+              extra_bed_amount:
+                type: string
+                description: "The number of extra beds (Required if extra_bed is 'yes')."
+                example: "2"
+    responses:
+      '200':
+        description: Validation Error
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              Successful_validation:
+                summary: Successful Validation
+                value:
+                  {
+                        "status": "success",
+                        "tracking_id": "31177718803526194Z77UX",
+                        "session_expire": {
+                            "timestamp": 1777188935,
+                            "datetime": "2026-04-26 13:35:35 +06",
+                            "message": "The booking process should be completed by no later than 2026-04-26 13:35:35 +06."
+                        },
+                        "search_parameter": {
+                            "tour_seo_code": "dubai-3-nights-4-days-tour-package",
+                            "adult": "2",
+                            "child": "0",
+                            "infant": "0",
+                            "hotel_data": [
+                                "290"
+                            ],
+                            "transfer_data": [
+                                "349"
+                            ],
+                            "flight_data": [
+                                "293"
+                            ],
+                            "insurance_data": [
+                                "330"
+                            ],
+                            "activity_data": [
+                                "294"
+                            ],
+                            "meal_data": [
+                                "297"
+                            ],
+                            "guide": [
+                                "331"
+                            ],
+                            "checkIn": "2026-06-09",
+                            "extra_bed": "no",
+                            "extra_bed_amount": "2",
+                            "checkOut": "2026-06-11",
+                            "total_night": 2
+                        },
+                        "data": {
+                            "service_id": 12,
+                            "created": "Thursday, 2025-07-24 1:31 AM",
+                            "last_update": "Sunday, 2025-12-28 1:15 PM",
+                            "partner_name": "Innovate Solution",
+                            "country_code": "AE",
+                            "country_name": "United Arab Emirates",
+                            "city_code": "AE-JBA",
+                            "city_name": "Abu Dhabi",
+                            "city_pic": "",
+                            "min_pax": 1,
+                            "max_pax": 5,
+                            "min_price": {
+                                "amount": 100000,
+                                "currency": "BDT"
+                            },
+                            "child_permission": "0",
+                            "age_limit_adult": "15-45",
+                            "age_limit_child": "0-0",
+                            "can_book_status": "confirm",
+                            "category_code": "luxury",
+                            "category_title": "Luxury",
+                            "seo_code": "dubai-3-nights-4-days-tour-package",
+                            "docket_code": "",
+                            "primary_photo": "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp",
+                            "tour_photo": [
+                                "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp"
+                            ],
+                            "title": "Dubai 3 Nights 4 Days Tour Package",
+                            "basic_info": "Dubai is a vibrant city known for its luxurious lifestyle, iconic landmarks like the Burj Khalifa and Palm Jumeirah, and diverse cultural experiences. It's famous for high-end shopping, innovative attractions, and stunning architecture. With beautiful beaches, exciting adventures, and world-class dining, Dubai offers a unique blend of modernity and tradition.\n",
+                            "tour_start_date": "2025-09-10",
+                            "tour_duration": "3 Day",
+                            "tour_end_date": "2027-11-30",
+                            "inclusions_info": "<ul>\n\t<li>03 Nights hotel accommodation.</li>\n\t<li>Daily buffet breakfast at the hotel.</li>\n\t<li>Airport assistance at Dubai airport.</li>\n\t<li>Airport &ndash; Hotel &ndash; Airport transportation.</li>\n\t<li>English-speaking guide on tour period.</li>\n\t<li>All entrance fees &amp; taxes.</li>\n\t<li>Half-Day Dubai City Tour.</li>\n\t<li>Desert Safari with BBQ Dinner.</li>\n\t<li>Creek Cruise dinner &amp; live entertainment.</li>\n\t<li>Miracle Garden + Global Village tour.</li>\n</ul>\n",
+                            "exclusions_info": "<ul>\n\t<li>International Air Ticket.</li>\n\t<li>Dubai visa fee</li>\n\t<li>Any kinds of personal cost or others which are not mentioned above</li>\n\t<li>Dubai Tourism Dirham Fee (City Tax / per room per night basis): 3 Star = AED 10, 4 Star = AED 15, 5 Star = AED 20</li>\n\t<li>Hotel weekend charge will be applicable if the stay is on Saturday or Sunday</li>\n\t<li>Lunch / Dinner Coupon (Walking distance) - TK. 1,000/per meal.</li>\n\t<li>Early check-in and late check-out.</li>\n</ul>\n",
+                            "policy_info": "<ul>\n\t<li>Tour package confirmation always depends on availability at the time of booking</li>\n\t<li>Package itinerary can be changed which will be informed to travelers before travel</li>\n\t<li>All tours and sightseeing are based on SIC</li>\n\t<li>No refund in case of unused services or lesser duration of stay</li>\n\t<li>Children (2-11) must share a room with two adults and will not be considered for extra bed requests, and will occupy a seat on the coach</li>\n\t<li>Child prices only apply if there are 2 adults. In the case of 1 adult and 1 child you will need to book for 2 adults</li>\n\t<li>Not wheelchair accessible</li>\n\t<li>We only provide consultancy service, and don&#39;t provide any guarantee for visas</li>\n\t<li>File processing for visa will start only after receiving all necessary documents</li>\n\t<li>Visa Processing time, requirements and fees are subject to change by the Embassy without any prior notice</li>\n</ul>\n",
+                            "payment_terms_info": "<p><strong>Phase-1:</strong> 80% of the total package amount at the time of booking.&nbsp;</p>\n\n<p><strong>Phase-2:</strong> 20% of the total package amount before seven days of travel date.</p>\n\n<p><strong>Phase-3:</strong> Payments can be made via bank transfer, credit card, or other accepted methods.</p>\n\n<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Bank Details</strong></p>\n\n<table cellspacing=\"0\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Bank Name&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Account Title&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Account Number&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Branch Name&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Routing Number</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Islami Bank Bangladesh PLC</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>876543654365454&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Head Office</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>76543345667</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Dutch bangla Bank PLC&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>34567876546543&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Gulshan-1</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>44345544343</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Brac Bank&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>87654654354343&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Avenue</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>2345654345</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>The City Bank PLC&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>8765436543543&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Avenue</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>76543432322</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n",
+                            "tour_visa_info": "<p>Please click on the given link for Dubai Visa details:<a href=\"http://akijair.com/visa?country_code=AE&amp;visa_category=all\"><u>http://a</u></a>gent.innovatesolution.com</p>\n",
+                            "tour_additional_info": "<p>To book a tour, a reservation request must be submitted through the Inno Travel Tech website or directly via contact.</p>\n\n<ul>\n\t<li>Contact:<a href=\"tel:09613500850\"> 09613500850</a> or<a href=\"tel: 01332500868\"> 01332500868</a></li>\n\t<li>Email: <a href=\"mailto:tourism.support@akijair.com\">support@innovatesolution.com</a></li>\n\t<li>Website:<a href=\"http://akijair.com\">http://agent.innovatesolution.com</a><br />\n\t&nbsp;</li>\n</ul>\n\n<p><strong>Financial Details</strong></p>\n\n<ul>\n\t<li>Adults on double &nbsp;share Basis TK. 100,000BDT(as of now)</li>\n\t<li>Children (05-11 yrs) 25% less.</li>\n\t<li>Children (02-05 yrs) 50% less.</li>\n\t<li>Infant (0- below 02) free.</li>\n</ul>\n\n<p>Your con&iuml;&not;rmation of the Holiday will ensure that you have read the Cancellation Policy thoroughly and accepted it</p>\n\n<ul>\n\t<li>15 days prior to the travel date - 50 % of total holiday cost.</li>\n\t<li>10 days prior to the travel date - 75 % of total holiday cost.</li>\n\t<li>05 days prior to the travel date - 100% of holiday cost.</li>\n</ul>\n",
+                            "price_breakdown": {
+                                "currency": "BDT",
+                                "total_amount": 180000,
+                                "starting_price": 100000,
+                                "starting_pax": 1,
+                                "selected_service_amount": 0,
+                                "additional_amount": {
+                                    "bed": {
+                                        "count": 2,
+                                        "amount": 0
+                                    },
+                                    "adult": {
+                                        "count": 1,
+                                        "amount": 80000
+                                    },
+                                    "child": {
+                                        "count": 0,
+                                        "amount": 0
+                                    },
+                                    "infant": {
+                                        "count": 0,
+                                        "amount": 0
+                                    }
+                                }
+                            },
+                            "meta_title": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_description": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_keywords": "",
+                            "meta_robots": "index,follow",
+                            "meta_googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+                            "meta_canonical_link": "",
+                            "meta_og_title": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_ogurl": "",
+                            "meta_ogdescription": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_ogimage": "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp",
+                            "contact": {
+                                "number": "",
+                                "number_text_info": "",
+                                "email": "",
+                                "email_text_info": ""
+                            },
+                            "selected_service_info": {
+                                "hotel": [
+                                    {
+                                        "Id": "252",
+                                        "service_type": "hotel",
+                                        "service_title": "abc hotel",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "unknown",
+                                        "supplier_expense": 12222,
+                                        "supplier_currency": "BDT"
+                                    },
+                                    {
+                                        "Id": "253",
+                                        "service_type": "hotel",
+                                        "service_title": "def",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "unknown",
+                                        "supplier_expense": 546565,
+                                        "supplier_currency": "BDT"
+                                    }
+                                ],
+                                "itinerary": [
+                                    {
+                                        "Id": "138",
+                                        "service_type": "itinerary",
+                                        "service_title": "Arrival at Dubai International Airport.",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "",
+                                        "supplier_expense": 0,
+                                        "supplier_currency": ""
+                                    },
+                                    {
+                                        "Id": "139",
+                                        "service_type": "itinerary",
+                                        "service_title": "City Tour",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "",
+                                        "supplier_expense": 0,
+                                        "supplier_currency": ""
+                                    },
+                                    {
+                                        "Id": "140",
+                                        "service_type": "itinerary",
+                                        "service_title": "Exploring the Miracle Garden and Global Village",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "",
+                                        "supplier_expense": 0,
+                                        "supplier_currency": ""
+                                    },
+                                    {
+                                        "Id": "141",
+                                        "service_type": "itinerary",
+                                        "service_title": "Departure from Dubai International Airport",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "",
+                                        "supplier_expense": 0,
+                                        "supplier_currency": ""
+                                    }
+                                ]
+                            },
+                            "expense_price": {
+                                "amount": 558787,
+                                "currency": "BDT"
+                            }
+                        },
+                        "offers": []
+                    }
+
+              invalid_selection:
+                summary: Component Unavailable
+                value:
+                  status: "failed"
+                  reason: "The selected hotel or transfer option is no longer available for this date."
+              
+              date_expired:
+                summary: Invalid Check-in Date
+                value:
+                  status: "failed"
+                  reason: "The check-in date must be at least 7 days in advance for this package."
+
+              insufficient_pax:
+                summary: Guest Count Error
+                value:
+                  status: "failed"
+                  reason: "This tour package requires a minimum of 2 adults."
+
+              extra_bed_missing:
+                summary: Extra Bed Logic Error
+                value:
+                  status: "failed"
+                  reason: "extra_bed_amount is required when extra_bed is set to yes."
+  
+  /service-tour/validation-details:
+   post:
+    tags:
+      - Tour Service
+    summary: Get tour validation details
+    description: Retrieves the detailed summary of the validated tour package using the tracking ID.
+    operationId: getTourValidationDetails
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+            properties:
+              tracking_id:
+                type: string
+                description: "The unique tracking ID obtained from the /tour/validate response."
+                example: "31177718803526194Z77UX"
+    responses:
+      '200':
+        description: Successful Validation Details
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_validation_details:
+                summary: Successful Validation Details
+                value:
+                  {
+                        "status": "success",
+                        "tracking_id": "31177718803526194Z77UX",
+                        "session_expire": {
+                            "timestamp": 1777188935,
+                            "datetime": "2026-04-26 13:35:35 +06",
+                            "message": "The booking process should be completed by no later than 2026-04-26 13:35:35 +06."
+                        },
+                        "search_parameter": {
+                            "tour_seo_code": "dubai-3-nights-4-days-tour-package",
+                            "adult": "2",
+                            "child": "0",
+                            "infant": "0",
+                            "hotel_data": [
+                                "290"
+                            ],
+                            "transfer_data": [
+                                "349"
+                            ],
+                            "flight_data": [
+                                "293"
+                            ],
+                            "insurance_data": [
+                                "330"
+                            ],
+                            "activity_data": [
+                                "294"
+                            ],
+                            "meal_data": [
+                                "297"
+                            ],
+                            "guide": [
+                                "331"
+                            ],
+                            "checkIn": "2026-06-09",
+                            "extra_bed": "no",
+                            "extra_bed_amount": "2",
+                            "checkOut": "2026-06-11",
+                            "total_night": 2
+                        },
+                        "data": {
+                            "service_id": 12,
+                            "created": "Thursday, 2025-07-24 1:31 AM",
+                            "last_update": "Sunday, 2025-12-28 1:15 PM",
+                            "partner_name": "Innovate Solution",
+                            "country_code": "AE",
+                            "country_name": "United Arab Emirates",
+                            "city_code": "AE-JBA",
+                            "city_name": "Abu Dhabi",
+                            "city_pic": "",
+                            "min_pax": 1,
+                            "max_pax": 5,
+                            "min_price": {
+                                "amount": 100000,
+                                "currency": "BDT"
+                            },
+                            "child_permission": "0",
+                            "age_limit_adult": "15-45",
+                            "age_limit_child": "0-0",
+                            "can_book_status": "confirm",
+                            "category_code": "luxury",
+                            "category_title": "Luxury",
+                            "seo_code": "dubai-3-nights-4-days-tour-package",
+                            "docket_code": "",
+                            "primary_photo": "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp",
+                            "tour_photo": [
+                                "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp"
+                            ],
+                            "title": "Dubai 3 Nights 4 Days Tour Package",
+                            "basic_info": "Dubai is a vibrant city known for its luxurious lifestyle, iconic landmarks like the Burj Khalifa and Palm Jumeirah, and diverse cultural experiences. It's famous for high-end shopping, innovative attractions, and stunning architecture. With beautiful beaches, exciting adventures, and world-class dining, Dubai offers a unique blend of modernity and tradition.\n",
+                            "tour_start_date": "2025-09-10",
+                            "tour_duration": "3 Day",
+                            "tour_end_date": "2027-11-30",
+                            "inclusions_info": "<ul>\n\t<li>03 Nights hotel accommodation.</li>\n\t<li>Daily buffet breakfast at the hotel.</li>\n\t<li>Airport assistance at Dubai airport.</li>\n\t<li>Airport &ndash; Hotel &ndash; Airport transportation.</li>\n\t<li>English-speaking guide on tour period.</li>\n\t<li>All entrance fees &amp; taxes.</li>\n\t<li>Half-Day Dubai City Tour.</li>\n\t<li>Desert Safari with BBQ Dinner.</li>\n\t<li>Creek Cruise dinner &amp; live entertainment.</li>\n\t<li>Miracle Garden + Global Village tour.</li>\n</ul>\n",
+                            "exclusions_info": "<ul>\n\t<li>International Air Ticket.</li>\n\t<li>Dubai visa fee</li>\n\t<li>Any kinds of personal cost or others which are not mentioned above</li>\n\t<li>Dubai Tourism Dirham Fee (City Tax / per room per night basis): 3 Star = AED 10, 4 Star = AED 15, 5 Star = AED 20</li>\n\t<li>Hotel weekend charge will be applicable if the stay is on Saturday or Sunday</li>\n\t<li>Lunch / Dinner Coupon (Walking distance) - TK. 1,000/per meal.</li>\n\t<li>Early check-in and late check-out.</li>\n</ul>\n",
+                            "policy_info": "<ul>\n\t<li>Tour package confirmation always depends on availability at the time of booking</li>\n\t<li>Package itinerary can be changed which will be informed to travelers before travel</li>\n\t<li>All tours and sightseeing are based on SIC</li>\n\t<li>No refund in case of unused services or lesser duration of stay</li>\n\t<li>Children (2-11) must share a room with two adults and will not be considered for extra bed requests, and will occupy a seat on the coach</li>\n\t<li>Child prices only apply if there are 2 adults. In the case of 1 adult and 1 child you will need to book for 2 adults</li>\n\t<li>Not wheelchair accessible</li>\n\t<li>We only provide consultancy service, and don&#39;t provide any guarantee for visas</li>\n\t<li>File processing for visa will start only after receiving all necessary documents</li>\n\t<li>Visa Processing time, requirements and fees are subject to change by the Embassy without any prior notice</li>\n</ul>\n",
+                            "payment_terms_info": "<p><strong>Phase-1:</strong> 80% of the total package amount at the time of booking.&nbsp;</p>\n\n<p><strong>Phase-2:</strong> 20% of the total package amount before seven days of travel date.</p>\n\n<p><strong>Phase-3:</strong> Payments can be made via bank transfer, credit card, or other accepted methods.</p>\n\n<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Bank Details</strong></p>\n\n<table cellspacing=\"0\">\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Bank Name&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Account Title&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Account Number&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Branch Name&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Routing Number</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Islami Bank Bangladesh PLC</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>876543654365454&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Head Office</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>76543345667</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Dutch bangla Bank PLC&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>34567876546543&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Gulshan-1</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>44345544343</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>Brac Bank&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>87654654354343&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Avenue</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>2345654345</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t<p><strong>The City Bank PLC&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Inno Travel Tech</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>8765436543543&nbsp;</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>Avenue</strong></p>\n\t\t\t</td>\n\t\t\t<td>\n\t\t\t<p><strong>76543432322</strong></p>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n",
+                            "tour_visa_info": "<p>Please click on the given link for Dubai Visa details:<a href=\"http://akijair.com/visa?country_code=AE&amp;visa_category=all\"><u>http://a</u></a>gent.innovatesolution.com</p>\n",
+                            "tour_additional_info": "<p>To book a tour, a reservation request must be submitted through the Inno Travel Tech website or directly via contact.</p>\n\n<ul>\n\t<li>Contact:<a href=\"tel:09613500850\"> 09613500850</a> or<a href=\"tel: 01332500868\"> 01332500868</a></li>\n\t<li>Email: <a href=\"mailto:tourism.support@akijair.com\">support@innovatesolution.com</a></li>\n\t<li>Website:<a href=\"http://akijair.com\">http://agent.innovatesolution.com</a><br />\n\t&nbsp;</li>\n</ul>\n\n<p><strong>Financial Details</strong></p>\n\n<ul>\n\t<li>Adults on double &nbsp;share Basis TK. 100,000BDT(as of now)</li>\n\t<li>Children (05-11 yrs) 25% less.</li>\n\t<li>Children (02-05 yrs) 50% less.</li>\n\t<li>Infant (0- below 02) free.</li>\n</ul>\n\n<p>Your con&iuml;&not;rmation of the Holiday will ensure that you have read the Cancellation Policy thoroughly and accepted it</p>\n\n<ul>\n\t<li>15 days prior to the travel date - 50 % of total holiday cost.</li>\n\t<li>10 days prior to the travel date - 75 % of total holiday cost.</li>\n\t<li>05 days prior to the travel date - 100% of holiday cost.</li>\n</ul>\n",
+                            "price_breakdown": {
+                                "currency": "BDT",
+                                "total_amount": 180000,
+                                "starting_price": 100000,
+                                "starting_pax": 1,
+                                "selected_service_amount": 0,
+                                "additional_amount": {
+                                    "bed": {
+                                        "count": 2,
+                                        "amount": 0
+                                    },
+                                    "adult": {
+                                        "count": 1,
+                                        "amount": 80000
+                                    },
+                                    "child": {
+                                        "count": 0,
+                                        "amount": 0
+                                    },
+                                    "infant": {
+                                        "count": 0,
+                                        "amount": 0
+                                    }
+                                }
+                            },
+                            "meta_title": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_description": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_keywords": "",
+                            "meta_robots": "index,follow",
+                            "meta_googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+                            "meta_canonical_link": "",
+                            "meta_og_title": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_ogurl": "",
+                            "meta_ogdescription": "Dubai 3 Nights 4 Days Tour Package",
+                            "meta_ogimage": "https://cdn.innovategrid.com/innotraveltech/tour/151753299725339573.webp",
+                            "contact": {
+                                "number": "",
+                                "number_text_info": "",
+                                "email": "",
+                                "email_text_info": ""
+                            },
+                            "selected_service_info": {
+                                "hotel": [
+                                    {
+                                        "Id": "252",
+                                        "service_type": "hotel",
+                                        "service_title": "abc hotel",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "unknown",
+                                        "supplier_expense": 12222,
+                                        "supplier_currency": "BDT"
+                                    },
+                                    {
+                                        "Id": "253",
+                                        "service_type": "hotel",
+                                        "service_title": "def",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "unknown",
+                                        "supplier_expense": 546565,
+                                        "supplier_currency": "BDT"
+                                    }
+                                ],
+                                "itinerary": [
+                                    {
+                                        "Id": "138",
+                                        "service_type": "itinerary",
+                                        "service_title": "Arrival at Dubai International Airport.",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "",
+                                        "supplier_expense": 0,
+                                        "supplier_currency": ""
+                                    },
+                                    {
+                                        "Id": "139",
+                                        "service_type": "itinerary",
+                                        "service_title": "City Tour",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "",
+                                        "supplier_expense": 0,
+                                        "supplier_currency": ""
+                                    },
+                                    {
+                                        "Id": "140",
+                                        "service_type": "itinerary",
+                                        "service_title": "Exploring the Miracle Garden and Global Village",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "",
+                                        "supplier_expense": 0,
+                                        "supplier_currency": ""
+                                    },
+                                    {
+                                        "Id": "141",
+                                        "service_type": "itinerary",
+                                        "service_title": "Departure from Dubai International Airport",
+                                        "service_included": "included",
+                                        "exclude_combined_charge": 0,
+                                        "per_pax_price_adult": 0,
+                                        "per_pax_price_child": 0,
+                                        "per_pax_price_infant": 0,
+                                        "currency": "",
+                                        "supplier_name": "",
+                                        "supplier_expense": 0,
+                                        "supplier_currency": ""
+                                    }
+                                ]
+                            },
+                            "expense_price": {
+                                "amount": 558787,
+                                "currency": "BDT"
+                            }
+                        },
+                        "offers": [],
+                        "guest_data": []
+                    }
+
+              tracking_id_missing:
+                summary: Missing Tracking ID
+                value:
+                  status: "failed"
+                  reason: "The tracking_id field is required."
+
+              invalid_tracking_id:
+                summary: Invalid Tracking ID
+                value:
+                  status: "failed"
+                  reason: "No validation data found for this tracking ID. It may have expired."
+                  tracking_id: "31177718803526194Z77UX"
+  /service-tour/update-traveller:
+   post:
+    tags:
+      - Tour Service
+    summary: Update traveller information for tour
+    description: Updates the passenger details for a tour booking using the tracking ID.
+    operationId: updateTourTraveller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - passenger
+            properties:
+              tracking_id:
+                type: string
+                description: "The unique tracking ID from the validation step."
+                example: "31177718803526194Z77UX"
+              member_id:
+                type: string
+                description: "ID of the logged-in member."
+                example: "1"
+              save_pax:
+                type: string
+                enum: [yes, no]
+                description: "Whether to save the passenger data for future use."
+                example: "no"
+              passenger:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - pax_id
+                    - first_name
+                    - last_name
+                  properties:
+                    pax_id:
+                      type: string
+                      example: "1"
+                    pax_type:
+                      type: string
+                      description: "ADT, CHN, or INF"
+                      example: "ADT"
+                    gender:
+                      type: string
+                      example: "M"
+                    title:
+                      type: string
+                      example: "Mr"
+                    first_name:
+                      type: string
+                      example: "Mahade Hasan"
+                    last_name:
+                      type: string
+                      example: "Ali"
+                    dob:
+                      type: string
+                      format: date
+                      example: "1993-10-24"
+                    isd_code:
+                      type: string
+                      example: "880"
+                    contact_no:
+                      type: string
+                      example: "1966330000"
+                    email_address:
+                      type: string
+                      format: email
+                      example: "test@test.com"
+    responses:
+       '200':
+        description: Traveller Update Error
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              Successful_update_Traveller:
+                summary: Successful Update Traveller.
+                value:
+                        {
+                            "status": "success",
+                            "reason": "Passenger data has been successfully updated.",
+                            "tracking_id": "31177718803526194Z77UX",
+                            "total_guest": 2,
+                            "data": [
+                                {
+                                    "tracking_id": "31177718803526194Z77UX",
+                                    "pax_id": "1",
+                                    "pax_type": "ADT",
+                                    "gender": "M",
+                                    "title": "MR",
+                                    "first_name": "MAHADE HASAN",
+                                    "last_name": "ALI",
+                                    "pax_age": "32",
+                                    "isd_code": "880",
+                                    "contact_no": "1966330000",
+                                    "email_address": "test@test.com"
+                                },
+                                {
+                                    "tracking_id": "31177718803526194Z77UX",
+                                    "pax_id": "2",
+                                    "pax_type": "ADT",
+                                    "gender": "M",
+                                    "title": "MR",
+                                    "first_name": "SHOWKAT",
+                                    "last_name": "ALI",
+                                    "pax_age": "32",
+                                    "isd_code": "880",
+                                    "contact_no": "1966330000",
+                                    "email_address": "test@test.com"
+                                }
+                            ]
+                        }
+
+              pax_count_mismatch:
+                summary: Passenger Count Mismatch
+                value:
+                  status: "failed"
+                  reason: "The number of passengers submitted does not match the validated search criteria (2 Adults required)."
+              
+              invalid_dob:
+                summary: Invalid Date of Birth
+                value:
+                  status: "failed"
+                  reason: "Passenger Date of Birth (DOB) is not valid for the selected pax_type (ADT)."
+
+              validation_expired:
+                summary: Session Expired
+                value:
+                  status: "failed"
+                  reason: "The tracking ID has expired. Please validate the tour again."
+  /service-tour/order:
+   post:
+    tags:
+      - Tour Service
+    summary: Confirm tour booking and place order
+    description: Finalizes the tour booking process. If the payment_type is 'card', the redirect_url is used for payment processing.
+    operationId: createTourOrder
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - payment_type
+              - redirect_url
+            properties:
+              tracking_id:
+                type: string
+                description: "The unique tracking ID for the booking."
+                example: "1176243236526194WVF8W"
+              member_id:
+                type: string
+                description: "ID of the logged-in member."
+                example: "1"
+              isd_code:
+                type: string
+                example: "880"
+              contact_no:
+                type: string
+                example: "1966330000"
+              email_address:
+                type: string
+                format: email
+                example: "sabbir@innovatesolution.com"
+              payment_type:
+                type: string
+                enum: [account_balance, card]
+                description: "Payment method (account_balance or card)."
+                example: "account_balance"
+              redirect_url:
+                type: string
+                format: uri
+                description: "Required if payment_type is 'card'."
+                example: "https://ittsabbir.innotraveltech.com/booking-details/tour"
+              special_requests_notes:
+                type: string
+                example: "n/a"
+              agency_isd_code:
+                type: string
+                example: "880"
+              agency_contact_no:
+                type: string
+                example: "1966330000"
+              agency_email:
+                type: string
+                format: email
+                example: "sabbir@innovatesolution.com"
+    responses:
+       '200':
+        description: Booking Confirmation
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              successful_booking:
+                summary: Successful Booking Confirmation
+                value:
+                  status: "success"
+                  reason: "Your tour booking has been successfully confirmed."
+                  tracking_id: "1176243236526194WVF8W"
+                  order_id: "ORD123456789"
+                  payment_status: "paid"
+                  
+            
+
+
+
+
+              insufficient_balance:
+                summary: Insufficient Account Balance
+                value:
+                  status: "failed"
+                  available_balance: "500.00"
+                  required_balance: "25000.00"
+                  reason: "Your account balance is insufficient to complete this tour booking."
+
+              payment_failed:
+                summary: Payment Processing Failed
+                value:
+                  status: "failed"
+                  reason: "The payment could not be processed. Please try again or use a different method."
+
+              order_expired:
+                summary: Booking Session Expired
+                value:
+                  status: "failed"
+                  reason: "The tracking ID has expired or the tour package is no longer available."
+                  tracking_id: "1176243236526194WVF8W"
+
+
              
   /esim/booking-details:
     post:
-      tags: [Tour Package]
+      tags: 
+        - Tour Service
       summary: Get booking details
       operationId: bookingDetails
       requestBody:
