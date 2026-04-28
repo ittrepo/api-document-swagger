@@ -123,10 +123,10 @@ Write-Host "Starting documentation generation..." -ForegroundColor Green
 
 # Run generation for each YAML file
 Build-Service "openapi.yaml" "openapi.html"
-Build-Service "flight.yaml" "generated-flight.html"
-Build-Service "hotel.yaml" "generated-hotel.html"
-Build-Service "esim.yaml" "esim.html"
-Build-Service "activity.yaml" "activity.html"
+Build-Service "Flight.yaml" "generated-flight.html"
+Build-Service "Hotel.yaml" "generated-hotel.html"
+Build-Service "eSim.yaml" "esim.html"
+Build-Service "Activity.yaml" "activity.html"
 Build-Service "Visa.yaml" "visa.html"
 Build-Service "Train.yaml" "train.html"
 Build-Service "Transfer.yaml" "transfer.html"

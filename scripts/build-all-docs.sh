@@ -109,10 +109,10 @@ build_service() {
 
 # Run generation for each YAML file
 build_service "openapi.yaml" "openapi.html"
-build_service "flight.yaml" "generated-flight.html"
-build_service "hotel.yaml" "generated-hotel.html"
-build_service "esim.yaml" "esim.html"
-build_service "activity.yaml" "activity.html"
+build_service "Flight.yaml" "generated-flight.html"
+build_service "Hotel.yaml" "generated-hotel.html"
+build_service "eSim.yaml" "esim.html"
+build_service "Activity.yaml" "activity.html"
 build_service "Visa.yaml" "visa.html"
 build_service "Train.yaml" "train.html"
 build_service "Transfer.yaml" "transfer.html"
