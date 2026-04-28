@@ -1376,11 +1376,416 @@ paths:
               successful_booking:
                 summary: Successful Booking Confirmation
                 value:
-                  status: "success"
-                  reason: "Your tour booking has been successfully confirmed."
-                  tracking_id: "1176243236526194WVF8W"
-                  order_id: "ORD123456789"
-                  payment_status: "paid"
+                      {
+                          "status": "success",
+                          "result": "OK",
+                          "reason": "Order created successfully. Please contact the agency for service",
+                          "tracking_id": "1177728730503210LCAKM",
+                          "booking_id": "TO2627APVEA3PP",
+                          "data": {
+                              "tracking_id": "1177728730503210LCAKM",
+                              "supplier_code": "ITT",
+                              "supplier_uid": "itt00001",
+                              "supplier_partner_code": "Inno Travel Tech-1",
+                              "booking_id": "TO2627APVEA3PP",
+                              "agent_currency": "BDT",
+                              "tour_data": {
+                                  "service_id": 26,
+                                  "created": "Tuesday, 2025-12-23 11:23 PM",
+                                  "last_update": "Monday, 2026-04-27 4:53 PM",
+                                  "partner_name": "Credit ExpireDD",
+                                  "country_code": "BD",
+                                  "country_name": "Bangladesh",
+                                  "city_code": "BD-DAC",
+                                  "city_name": "Dhaka",
+                                  "city_pic": "",
+                                  "min_pax": 1,
+                                  "max_pax": 5,
+                                  "min_price": {
+                                      "amount": 20000,
+                                      "currency": "BDT"
+                                  },
+                                  "child_permission": "2",
+                                  "age_limit_adult": "18-60",
+                                  "age_limit_child": "0-17",
+                                  "can_book_status": "hold",
+                                  "category_code": "family",
+                                  "category_title": "Family",
+                                  "seo_code": "dhaka-panchagarh",
+                                  "docket_code": "",
+                                  "primary_photo": "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg",
+                                  "tour_photo": [
+                                      "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg",
+                                      "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg"
+                                  ],
+                                  "title": "Dhaka \u2192 Panchagarh",
+                                  "basic_info": "This tour offers a comfortable and flexible travel experience from Dhaka to Panchagarh, suitable for individuals, couples, or small groups. The package is designed for travelers who prefer independent travel planning with optional services based on availability. The tour duration is 5 days, allowing sufficient time for local sightseeing and relaxation.",
+                                  "tour_start_date": "2025-12-29",
+                                  "tour_duration": "5 Day",
+                                  "tour_end_date": "2026-12-31",
+                                  "inclusions_info": "
+                                  fjdfjdkfjdkfjdkfjd",
+                      
+                                      "price_breakdown": {
+                                      "currency": "BDT",
+                                      "total_amount": 20000,
+                                      "starting_price": 20000,
+                                      "starting_pax": 1,
+                                      "selected_service_amount": 0,
+                                      "additional_amount": {
+                                          "bed": {
+                                              "count": 0,
+                                              "amount": 0
+                                          },
+                                          "adult": {
+                                              "count": 0,
+                                              "amount": 0
+                                          },
+                                          "child": {
+                                              "count": 0,
+                                              "amount": 0
+                                          },
+                                          "infant": {
+                                              "count": 0,
+                                              "amount": 0
+                                          }
+                                      }
+                                  },
+                                  "meta_title": "Dhaka → Panchagarh",
+                                  "meta_description": "Dhaka \u2192 Panchagarh",
+                                  "meta_keywords": "",
+                                  "meta_robots": "index,follow",
+                                  "meta_googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+                                  "meta_canonical_link": "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg",
+                                  "meta_og_title": "Dhaka \u2192 Panchagarh",
+                                  "meta_ogurl": "",
+                                  "meta_ogdescription": "Dhaka \u2192 Panchagarh",
+                                  "meta_ogimage": "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg",
+                                  "contact": {
+                                      "number": "872295605",
+                                      "number_text_info": "",
+                                      "email": "cto@innovatesolution.co",
+                                      "email_text_info": ""
+                                  },
+                                  "selected_service_info": {
+                                      "activity": [
+                                          {
+                                              "Id": "244",
+                                              "service_type": "activity",
+                                              "service_title": "Local Sightseeing – Panchagarh Attractions",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "BDT",
+                                              "supplier_name": "Tour provider",
+                                              "supplier_expense": 0,
+                                              "supplier_currency": "BDT"
+                                          },
+                                          {
+                                              "Id": "276",
+                                              "service_type": "activity",
+                                              "service_title": "Psfsda",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 1789789,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "BDT",
+                                              "supplier_name": "unknown",
+                                              "supplier_expense": 15456,
+                                              "supplier_currency": "BDT"
+                                          }
+                                      ],
+                                      "flight": [
+                                          {
+                                              "Id": "255",
+                                              "service_type": "flight",
+                                              "service_title": "DXB to DAC",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "BDT",
+                                              "supplier_name": "Test tour supplier",
+                                              "supplier_expense": 5000,
+                                              "supplier_currency": "BDT"
+                                          }
+                                      ],
+                                      "hotel": [
+                                          {
+                                              "Id": "242",
+                                              "service_type": "hotel",
+                                              "service_title": "Panchagarh Tourist Motel",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "",
+                                              "supplier_name": "Tour provider",
+                                              "supplier_expense": 1,
+                                              "supplier_currency": "BDT"
+                                          },
+                                          {
+                                              "Id": "245",
+                                              "service_type": "hotel",
+                                              "service_title": "Ascott The Residence Dhaka",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "",
+                                              "supplier_name": "Test tour supplier",
+                                              "supplier_expense": 5000,
+                                              "supplier_currency": "BDT"
+                                          },
+                                          {
+                                              "Id": "254",
+                                              "service_type": "hotel",
+                                              "service_title": "Dunes Hotel Apartment - Oud Metha",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "",
+                                              "supplier_name": "",
+                                              "supplier_expense": 0,
+                                              "supplier_currency": "BDT"
+                                          }
+                                      ],
+                                      "itinerary": [
+                                          {
+                                              "Id": "239",
+                                              "service_type": "itinerary",
+                                              "service_title": "Day 3 Local Sightseeing in Panchagarh",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "",
+                                              "supplier_name": "",
+                                              "supplier_expense": 0,
+                                              "supplier_currency": ""
+                                          },
+                                          {
+                                              "Id": "240",
+                                              "service_type": "itinerary",
+                                              "service_title": "Leisure Day \/ Optional Activities",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "",
+                                              "supplier_name": "",
+                                              "supplier_expense": 0,
+                                              "supplier_currency": ""
+                                          },
+                                          {
+                                              "Id": "241",
+                                              "service_type": "itinerary",
+                                              "service_title": "Return Journey to Dhaka",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "",
+                                              "supplier_name": "",
+                                              "supplier_expense": 0,
+                                              "supplier_currency": ""
+                                          }
+                                      ],
+                                      "transfer": [
+                                          {
+                                              "Id": "243",
+                                              "service_type": "transfer",
+                                              "service_title": "Dhaka → Panchagarh Bus Transfer",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "BDT",
+                                              "supplier_name": "Tour provider",
+                                              "supplier_expense": 2000,
+                                              "supplier_currency": "BDT"
+                                          },
+                                          {
+                                              "Id": "270",
+                                              "service_type": "transfer",
+                                              "service_title": "REwerwe",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 1158,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "BDT",
+                                              "supplier_name": "",
+                                              "supplier_expense": 3435,
+                                              "supplier_currency": "BDT"
+                                          }
+                                      ]
+                                  },
+                                  "expense_price": {
+                                      "amount": 30892,
+                                      "currency": "BDT"
+                                  }
+                              },
+                              "data": {
+                                  "Id": "5082",
+                                  "timestamp": "1777287369",
+                                  "last_update": "1777287369",
+                                  "entry": "44",
+                                  "entry_n": "Sabbir",
+                                  "last_modify_member_id": null,
+                                  "ip": "15.235.203.210",
+                                  "ftm_partner_id": "1",
+                                  "master_partner_id": "1",
+                                  "zone_id": "5",
+                                  "zone_title": "Zone Gulshan",
+                                  "tracking_id": "1177728730503210LCAKM",
+                                  "flight_key": null,
+                                  "isImportPNR": "0",
+                                  "booking_platform": "B2B",
+                                  "booking_id": "TO2627APVEA3PP",
+                                  "supplier_confirmation_id": null,
+                                  "splitPNRref": null,
+                                  "order_id_ndc": null,
+                                  "order_id_Farelogix": null,
+                                  "supplier_others_id_a": null,
+                                  "supplier_others_id_b": null,
+                                  "supplier_booking_pcc": null,
+                                  "supplier_ticketing_pcc": null,
+                                  "supplier_provider_code": null,
+                                  "airlines_pnr": null,
+                                  "supplier_voucher_link": null,
+                                  "service_type": "TOUR",
+                                  "status": "initiated",
+                                  "booking_status": "initiated",
+                                  "booking_supplier_status": "initiated",
+                                  "booking_supplier_set_status": "initiated",
+                                  "payment_status": "pending",
+                                  "pay_tracking_id": null,
+                                  "ticket_status": "queue",
+                                  "supplier_timezone": null,
+                                  "partner_timezone": "Asia\/Dhaka",
+                                  "ticket_issue_date": null,
+                                  "ticket_issue_timestamp": null,
+                                  "ticket_issue_delay_alert": "pending",
+                                  "auto_cancel_status": "pending",
+                                  "auto_cancel": null,
+                                  "auto_cancel_timestamp": null,
+                                  "syncTimeLimit": "1",
+                                  "supplierTimeLimit": null,
+                                  "supplierTimeLimitTimezone": null,
+                                  "manualActionRequired": "no",
+                                  "manualActionRequiredCategory": "",
+                                  "manualActionRequiredNotes": "",
+                                  "reason": null,
+                                  "reason_admin": null,
+                                  "generated_date": "2026-04-27",
+                                  "checkin_departure_date": "2026-05-30",
+                                  "checkout_arrival_date": "2026-06-03",
+                                  "primary_guest_nationality": "",
+                                  "primary_guest_name": "MR MD MAHADE HASAN SABBIR",
+                                  "primary_guest_email": "sabbir@innovatesolution.com",
+                                  "primary_guest_isd_code": null,
+                                  "primary_guest_contact_no": "8801901402814",
+                                  "carrier_hotel": "Dhaka \u2192 Panchagarh",
+                                  "departure_airport": "1",
+                                  "arrival_airport": "0",
+                                  "journey_type": "Family",
+                                  "totalPax": "1",
+                                  "travelers_adult": "1",
+                                  "travelers_child": "0",
+                                  "travelers_infants": "0",
+                                  "TotalSegment": "0",
+                                  "flightSegment": null,
+                                  "journeyStartTime": null,
+                                  "journeyEndTime": null,
+                                  "bookingSource": "{\"platform\":\"b2b\",\"domain\":\"b2b.innovatedemo.com\",\"user_os\":\"Windows\",\"browser_name\":\"Chrome\",\"browser_version\":\"147.0.0.0\"}",
+                                  "isDomestic_Flight": "0",
+                                  "cabinPriceClass": null,
+                                  "cabinCode": null,
+                                  "bookingCode": null,
+                                  "supplier_code": "ITT",
+                                  "supplier_uid": "itt00001",
+                                  "supplier_partner_code": "Inno Travel Tech-1",
+                                  "currency": "BDT",
+                                  "total_amount": "20000",
+                                  "sell_total_price": "20000",
+                                  "sell_margin": "-10892",
+                                  "sell_paid_amount": "0.00",
+                                  "sell_paid_status": "Unpaid",
+                                  "sell_invoice_due_date": null,
+                                  "supplier_currency": "BDT",
+                                  "supplier_cost": "30892",
+                                  "supplier_validation_price": "0.00",
+                                  "supplier_validation_price_currency": null,
+                                  "fmg_price": "20000",
+                                  "discount_comission_ratio": "0",
+                                  "discount_comission_type": "general",
+                                  "discountPromoCode": "",
+                                  "discountPromoCodeApplied": "pending",
+                                  "margin": "-10892",
+                                  "payment_type": "account_balance",
+                                  "isPartialPay": "no",
+                                  "isPartialPayPossible": "no",
+                                  "isPartialDuePaid": "no",
+                                  "partial_pay_now": "0.00",
+                                  "partial_rest_payment_amount": "0.00",
+                                  "partial_rest_payment_date": null,
+                                  "partial_rest_payment_timestamp": null,
+                                  "partial_pay_now_supplier": null,
+                                  "partial_pay_now_supplier_currency": null,
+                                  "partial_pay_now_charges": null,
+                                  "penalty_info_data": null,
+                                  "redirect_url": "https:\/\/b2b.innovatedemo.com\/booking-details\/tour",
+                                  "hotel_flight_confirmation_status": "pending",
+                                  "ticket_numbers": null,
+                                  "fmg_id": "1",
+                                  "customer_markup_policy": null,
+                                  "branch_id": "BDHE001",
+                                  "service_details": "Tour 4 day(s) Booking Check-In 2026-05-30 and CheckOut 2026-06-03. For the occupancies of 1 adult(s) 0 child(s)",
+                                  "booking_remarks": null,
+                                  "special_requests_data": "",
+                                  "email_send": "pending",
+                                  "email_send_timestamp": null,
+                                  "email_meta_title": null,
+                                  "supplier_price_validation": "success",
+                                  "sales_closed": "pending",
+                                  "agency_isd_code": "880",
+                                  "agency_contact_no": "123456789",
+                                  "agency_email": "sabbir@innovatesolution.com",
+                                  "partner_name": "Credit ExpireDD",
+                                  "flight_group_json": "{\"activity\":[{\"Id\":\"244\",\"service_type\":\"activity\",\"service_title\":\"Local Sightseeing – Panchagarh Attractions\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"BDT\",\"supplier_name\":\"Tour provider\",\"supplier_expense\":0,\"supplier_currency\":\"BDT\"},{\"Id\":\"276\",\"service_type\":\"activity\",\"service_title\":\"Psfsda\",\"service_included\":\"included\",\"exclude_combined_charge\":1789789,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"BDT\",\"supplier_name\":\"unknown\",\"supplier_expense\":15456,\"supplier_currency\":\"BDT\"}],\"flight\":[{\"Id\":\"255\",\"service_type\":\"flight\",\"service_title\":\"DXB to DAC\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"BDT\",\"supplier_name\":\"Test tour supplier\",\"supplier_expense\":5000,\"supplier_currency\":\"BDT\"}],\"hotel\":[{\"Id\":\"242\",\"service_type\":\"hotel\",\"service_title\":\"Panchagarh Tourist Motel\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"\",\"supplier_name\":\"Tour provider\",\"supplier_expense\":1,\"supplier_currency\":\"BDT\"},{\"Id\":\"245\",\"service_type\":\"hotel\",\"service_title\":\"Ascott The Residence Dhaka\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"\",\"supplier_name\":\"Test tour supplier\",\"supplier_expense\":5000,\"supplier_currency\":\"BDT\"},{\"Id\":\"254\",\"service_type\":\"hotel\",\"service_title\":\"Dunes Hotel Apartment - Oud Metha\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"\",\"supplier_name\":\"\",\"supplier_expense\":0,\"supplier_currency\":\"BDT\"}],\"itinerary\":[{\"Id\":\"239\",\"service_type\":\"itinerary\",\"service_title\":\"Day 3 Local Sightseeing in Panchagarh\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"\",\"supplier_name\":\"\",\"supplier_expense\":0,\"supplier_currency\":\"\"},{\"Id\":\"240\",\"service_type\":\"itinerary\",\"service_title\":\"Leisure Day \\\/ Optional Activities\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"\",\"supplier_name\":\"\",\"supplier_expense\":0,\"supplier_currency\":\"\"},{\"Id\":\"241\",\"service_type\":\"itinerary\",\"service_title\":\"Return Journey to Dhaka\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"\",\"supplier_name\":\"\",\"supplier_expense\":0,\"supplier_currency\":\"\"}],\"transfer\":[{\"Id\":\"243\",\"service_type\":\"transfer\",\"service_title\":\"Dhaka → Panchagarh Bus Transfer\",\"service_included\":\"included\",\"exclude_combined_charge\":0,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"BDT\",\"supplier_name\":\"Tour provider\",\"supplier_expense\":2000,\"supplier_currency\":\"BDT\"},{\"Id\":\"270\",\"service_type\":\"transfer\",\"service_title\":\"REwerwe\",\"service_included\":\"included\",\"exclude_combined_charge\":1158,\"per_pax_price_adult\":0,\"per_pax_price_child\":0,\"per_pax_price_infant\":0,\"currency\":\"BDT\",\"supplier_name\":\"\",\"supplier_expense\":3435,\"supplier_currency\":\"BDT\"}]}",
+                                  "search_parameter_json": "{\"tour_seo_code\":\"dhaka-panchagarh\",\"adult\":1,\"child\":\"0\",\"infant\":\"0\",\"checkIn\":\"2026-05-30\",\"extra_bed_amount\":\"0\",\"itinerary_data\":[\"237\"],\"hotel_data\":[\"242\",\"245\",\"254\"],\"transfer_data\":[\"243\",\"270\"],\"flight_data\":[\"255\"],\"activity_data\":[\"244\",\"276\"],\"insurance_data\":[],\"meal_data\":[],\"guide\":[],\"checkOut\":\"2026-06-03\",\"total_night\":4}",
+                                  "supplier_invoice_company": null,
+                                  "supplier_invoice_number": null,
+                                  "IsCardPayBooking": "no",
+                                  "CardPayBookingJSON": null,
+                                  "CardPayStatus": "pending",
+                                  "CardPayBookingStatus": "processing",
+                                  "CardPayBookingStatusExecute": "pending",
+                                  "isAnyIssueTicket": "0",
+                                  "discountPromoAmount": "0",
+                                  "postBookingProcess": "auto",
+                                  "book_now_pay_later": "0",
+                                  "OnlineCheckIn": null,
+                                  "OnlineCheckInText": null,
+                                  "serviceChargeJson": null,
+                                  "refund_status": null,
+                                  "sendGTMEvent": "false"
+                              }
+                          }
+                      }
                   
             
 
@@ -1407,61 +1812,596 @@ paths:
                   status: "failed"
                   reason: "The tracking ID has expired or the tour package is no longer available."
                   tracking_id: "1176243236526194WVF8W"
-
-
-             
-  /esim/booking-details:
-    post:
-      tags: 
-        - Tour Service
-      summary: Get booking details
-      operationId: bookingDetails
-      requestBody:
-        required: true
+  /service-tour/order-details:
+   post:
+    tags:
+      - Tour Service
+    summary: Get tour order details
+    description: Retrieves the complete information, status, and summary of a confirmed tour booking using the tracking ID and booking ID.
+    operationId: getTourOrderDetails
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - booking_id
+            properties:
+              tracking_id:
+                type: string
+                description: "The unique tracking ID associated with the booking process."
+                example: "1175160241551208JLFCS"
+              booking_id:
+                type: string
+                description: "The final booking reference ID generated after a successful order."
+                example: "NS2504JLC7AABY"
+                
+    responses:
+      '200':
+        description: Order Details Retrieved Successfully.
         content:
           application/json:
             schema:
               type: object
-              required:
-                - member_id
-                - tracking_id
-                - booking_id
-              properties:
-
-                member_id:
-                  type: string
-                  description: Logged-in user member ID
-                  example: "2"
-
-                tracking_id:
-                  type: string
-                  description: eSIM or booking tracking ID
-                  example: "11177260822126194QDWJV"
-
-                booking_id:
-                  type: string
-                  description: Booking ID for the eSIM package
-                  example: "ES2604MAYVA3A8"
               additionalProperties: true
             examples:
-              default:
+              order_details:
+                summary: Order Details successfully retrieved.
                 value:
-                  member_id: "2"
-                  tracking_id: 11176276126126194RHSGI
-                  booking_id: ES2510NOKJAAFK
-      responses:
-        '200':
-          description: Booking info
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: true
-        
-        
+                     {
+                              "status": "confirm",
+                              "reason": "Booking Details",
+                              "tracking_id": "1177728730503210LCAKM",
+                              "booking_id": "TO2627APVEA3PP",
+                              "pay_tracking_id": null,
+                              "sendGTMEvent": false,
+                              "general": {
+                                  "service_type": "TOUR",
+                                  "service_details": "Tour 4 day(s) Booking Check-In 2026-05-30 and CheckOut 2026-06-03. For the occupancies of 1 adult(s) 0 child(s)",
+                                  "booking_remarks": null,
+                                  "generated_date": "2026-04-27",
+                                  "partner_id": "1",
+                                  "master_partner_id": "1",
+                                  "branch_id": "BDHE001",
+                                  "tracking_id": "1177728730503210LCAKM",
+                                  "booking_id": "TO2627APVEA3PP",
+                                  "checkin_date": "2026-05-30",
+                                  "checkout_date": "2026-06-03",
+                                  "supplier_confirmation_id": "TO2627APVEA3PP",
+                                  "supplier_others_id_a": null,
+                                  "supplier_others_id_b": null,
+                                  "supplier_booking_pcc": null,
+                                  "supplier_ticketing_pcc": null,
+                                  "supplier_provider_code": null,
+                                  "member_id": "44",
+                                  "book_by": "Sabbir",
+                                  "ip_address": "15.235.203.210",
+                                  "timestamp": "1777287369",
+                                  "last_update": "1777287460",
+                                  "selected_service": {
+                                      "activity": [
+                                          {
+                                              "Id": "244",
+                                              "service_type": "activity",
+                                              "service_title": "Local Sightseeing – Panchagarh Attractions",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "BDT",
+                                              "supplier_name": "Tour provider",
+                                              "supplier_expense": 0,
+                                              "supplier_currency": "BDT"
+                                          },
+                                          
+                                      ],
+                                      "flight": [
+                                          {
+                                              "Id": "255",
+                                              "service_type": "flight",
+                                              "service_title": "DXB to DAC",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "BDT",
+                                              "supplier_name": "Test tour supplier",
+                                              "supplier_expense": 5000,
+                                              "supplier_currency": "BDT"
+                                          }
+                                      ],
+                                      "hotel": [
+                                          {
+                                              "Id": "242",
+                                              "service_type": "hotel",
+                                              "service_title": "Panchagarh Tourist Motel",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "",
+                                              "supplier_name": "Tour provider",
+                                              "supplier_expense": 1,
+                                              "supplier_currency": "BDT"
+                                          },
+                                          
+                                      ],
+                                      "itinerary": [
+                                          {
+                                              "Id": "239",
+                                              "service_type": "itinerary",
+                                              "service_title": "Day 3 Local Sightseeing in Panchagarh",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "",
+                                              "supplier_name": "",
+                                              "supplier_expense": 0,
+                                              "supplier_currency": ""
+                                          },
+                                          
+                                      ],
+                                      "transfer": [
+                                          {
+                                              "Id": "243",
+                                              "service_type": "transfer",
+                                              "service_title": "Dhaka → Panchagarh Bus Transfer",
+                                              "service_included": "included",
+                                              "exclude_combined_charge": 0,
+                                              "per_pax_price_adult": 0,
+                                              "per_pax_price_child": 0,
+                                              "per_pax_price_infant": 0,
+                                              "currency": "BDT",
+                                              "supplier_name": "Tour provider",
+                                              "supplier_expense": 2000,
+                                              "supplier_currency": "BDT"
+                                          },
+                                          
+                                      ]
+                                  },
+                                  "supplier_invoice_company": null,
+                                  "supplier_invoice_number": null,
+                                  "voucher": {
+                                      "show_supplier_option": "yes"
+                                  }
+                              },
+                              "voucher": {
+                                  "can_view_download": "yes",
+                                  "link": "https:\/\/b2b.innovatedemo.com\/voucher\/tour?q=MTE3NzcyODczMDUwMzIxMExDQUtN",
+                                  "pdf": "https:\/\/b2b.innovatedemo.com\/voucher?q=eyJ0cmFja2luZ19pZCI6IjExNzc3Mjg3MzA1MDMyMTBMQ0FLTSIsInByaWNlIjpmYWxzZSwibGlua19leHBpcmUiOiIyMDI2LTA3LTI2In0=",
+                                  "pdf_with_price": "https:\/\/b2b.innovatedemo.com\/voucher?q=eyJ0cmFja2luZ19pZCI6IjExNzc3Mjg3MzA1MDMyMTBMQ0FLTSIsInByaWNlIjp0cnVlLCJsaW5rX2V4cGlyZSI6IjIwMjYtMDctMjYifQ==",
+                                  "show_supplier_option": "yes",
+                                  "url_value": null,
+                                  "flight_version": "1",
+                                  "hotel_version": "1",
+                                  "base_url": null,
+                                  "qr_code": "hide"
+                              },
+                              "booking": {
+                                  "status": "confirm",
+                                  "booking_status": "confirm",
+                                  "booking_supplier_status": "BOOKING_CONFIRM",
+                                  "voucher_status": "issued",
+                                  "voucherMsg": null,
+                                  "payment_status": "pending",
+                                  "auto_cancel_status": "pending",
+                                  "partner_timezone": "Asia\/Dhaka",
+                              },
+                              "price": {
+                                  "currency": "BDT",
+                                  "total_amount": "20000",
+                                  "sell_total_price": "20000",
+                                  "sales_comission": null,
+                                  "applied_comission_ratio": "0",
+                                  "customer_markup_policy": null,
+                                  "price_breakdown": {
+                                      "currency": "BDT",
+                                      "total_amount": 20000,
+                                      "starting_price": 20000,
+                                      "starting_pax": 1,
+                                      "selected_service_amount": 0,
+                                      "additional_amount": {
+                                          "bed": {
+                                              "count": 0,
+                                              "amount": 0
+                                          },
+                                          "adult": {
+                                              "count": 0,
+                                              "amount": 0
+                                          },
+                                          "child": {
+                                              "count": 0,
+                                              "amount": 0
+                                          },
+                                          "infant": {
+                                              "count": 0,
+                                              "amount": 0
+                                          }
+                                      }
+                                  }
+                              },
+                              "tour": {
+                                  "search_parameter": {
+                                      "tour_seo_code": "dhaka-panchagarh",
+                                      "adult": 1,
+                                      "child": "0",
+                                      "infant": "0",
+                                      "checkIn": "2026-05-30",
+                                      "extra_bed_amount": "0",
+                                      "itinerary_data": [
+                                          "237"
+                                      ],
+                                      "hotel_data": [
+                                          "242",
+                                          "245",
+                                          "254"
+                                      ],
+                                      "transfer_data": [
+                                          "243",
+                                          "270"
+                                      ],
+                                      "flight_data": [
+                                          "255"
+                                      ],
+                                      "activity_data": [
+                                          "244",
+                                          "276"
+                                      ],
+                                      "insurance_data": [],
+                                      "meal_data": [],
+                                      "guide": [],
+                                      "checkOut": "2026-06-03",
+                                      "total_night": 4
+                                  },
+                                  "data": {
+                                      "service_id": 26,
+                                      "created": "Tuesday, 2025-12-23 11:23 PM",
+                                      "last_update": "Monday, 2026-04-27 4:53 PM",
+                                      "partner_name": "Credit ExpireDD",
+                                      "country_code": "BD",
+                                      "country_name": "Bangladesh",
+                                      "city_code": "BD-DAC",
+                                      "city_name": "Dhaka",
+                                      "city_pic": "",
+                                      "min_pax": 1,
+                                      "max_pax": 5,
+                                      "min_price": {
+                                          "amount": 20000,
+                                          "currency": "BDT"
+                                      },
+                                      "child_permission": "2",
+                                      "age_limit_adult": "18-60",
+                                      "age_limit_child": "0-17",
+                                      "can_book_status": "hold",
+                                      "category_code": "family",
+                                      "category_title": "Family",
+                                      "seo_code": "dhaka-panchagarh",
+                                      "docket_code": "",
+                                      "primary_photo": "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg",
+                                      "tour_photo": [
+                                          "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg",
+                                          "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg"
+                                      ],
+                                      "title": "Dhaka \u2192 Panchagarh",
+                                      "basic_info": "This tour offers a comfortable and flexible travel experience from Dhaka to Panchagarh, suitable for individuals, couples, or small groups. The package is designed for travelers who prefer independent travel planning with optional services based on availability. The tour duration is 5 days, allowing sufficient time for local sightseeing and relaxation.",
+                                      "tour_start_date": "2025-12-29",
+                                      "tour_duration": "5 Day",
+                                      "tour_end_date": "2026-12-31",
+                                      "inclusions_info": "<ul>\n\t<li>\n\t\t<p>Accommodation in selected hotels with daily breakfast<\/p>\n\t<\/li>\n\t<li>\n\t\t<p>Round-trip bus transfer between Dhaka and Panchagarh<\/p>\n\t<\/li>\n\t<li>\n\t\t<p>Local sightseeing in Panchagarh as per itinerary<\/p>\n\t<\/li>\n\t<li>\n\t\t<p>All applicable taxes and service charges<\/p>\n\t<\/li>\n<\/ul>\n",                                      "exclusions_info": 
+                                      Booking status will remain pending until payment is confirmed<\/p>\n\t<\/li>\n<\/ul>\n",
+                                      "price_breakdown": {
+                                          "currency": "BDT",
+                                          "total_amount": 20000,
+                                          "starting_price": 20000,
+                                          "starting_pax": 1,
+                                          "selected_service_amount": 0,
+                                          "additional_amount": {
+                                              "bed": {
+                                                  "count": 0,
+                                                  "amount": 0
+                                              },
+                                              "adult": {
+                                                  "count": 0,
+                                                  "amount": 0
+                                              },
+                                              "child": {
+                                                  "count": 0,
+                                                  "amount": 0
+                                              },
+                                              "infant": {
+                                                  "count": 0,
+                                                  "amount": 0
+                                              }
+                                          }
+                                      },
+                                      "meta_title": "Dhaka → Panchagarh",
+                                      "meta_description": "Dhaka \u2192 Panchagarh",
+                                      "meta_keywords": "",
+                                      "meta_robots": "index,follow",
+                                      "meta_googlebot": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+                                      "meta_canonical_link": "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg",
+                                      "meta_og_title": "Dhaka \u2192 Panchagarh",
+                                      "meta_ogurl": "",
+                                      "meta_ogdescription": "Dhaka \u2192 Panchagarh",
+                                      "meta_ogimage": "https:\/\/cdn.innovategrid.com\/innovatesolution\/tour\/14551772689082359949.jpg",
+                                      "contact": {
+                                          "number": "872295605",
+                                          "number_text_info": "",
+                                          "email": "cto@innovatesolution.co",
+                                          "email_text_info": ""
+                                      },
+                                      "selected_service_info": {
+                                          "activity": 
+                                              {
+                                                  "Id": "244",
+                                                  "service_type": "activity",
+                                                  "service_title": "Local Sightseeing – Panchagarh Attractions",
+                                                  "service_included": "included",
+                                                  "exclude_combined_charge": 0,
+                                                  "per_pax_price_adult": 0,
+                                                  "per_pax_price_child": 0,
+                                                  "per_pax_price_infant": 0,
+                                                  "currency": "BDT",
+                                                  "supplier_name": "Tour provider",
+                                                  "supplier_expense": 0,
+                                                  "supplier_currency": "BDT"
+                                              },
+                                              
+                                      },
+                                      "expense_price": {
+                                          "amount": 30892,
+                                          "currency": "BDT"
+                                      }
+                                  }
+                              },
+                              "pax": {
+                                  "primary": {
+                                      "guest_name": "MR MD MAHADE HASAN SABBIR",
+                                      "guest_email": "sabbir@innovatesolution.com",
+                                      "guest_isd_code": null,
+                                      "guest_contact_no": "8801901402814",
+                                      "guest_nationality": ""
+                                  },
+                                  "data": [
+                                      {
+                                          "Id": "9212",
+                                          "timestamp": "1777287365",
+                                          "last_update": "1777287369",
+                                          "entry": "44",
+                                          "entry_n": "Sabbir",
+                                          "ftm_partner_id": "1",
+                                          "master_partner_id": null,
+                                          "tracking_id": "1177728730503210LCAKM",
+                                          "service_type": "TOUR",
+                                          "room_number": "1",
+                                          "pax_id": "1",
+                                          "passenger_id": null,
+                                          "supplier_pax_id": null,
+                                          "pax_type": "ADT",
+                                          "paxType_Identity": null,
+                                          "primary_ptc": null,
+                                          "ptc_title": null,
+                                          "gender": "M",
+                                          "supplement_data": null
+                                      }
+                                  ]
+                              },
+                              "invoice_data": [
+                                  {
+                                      "timestamp": "1777287460",
+                                      "branch_id": "BDHE001",
+                                      "branch_name": "Headquarter",
+                                      "default_currency": "BDT",
+                                      "partner_name": "Credit ExpireDD",
+                                      "invoice_id": "ITT-INV-270426-1607",
+                                      "booking_reference_id": "TO2627APVEA3PP",
+                                      "invoice_date": "2026-04-27",
+                                      "invoice_due_date": "2026-05-03",
+                                      "status": "Paid",
+                                      "invoice_amount": "20000.00",
+                                      "total_due": "0.00",
+                                      "balance": "0.00",
+                                      "service_notes": "Tour Reservation TO2627APVEA3PP  Family  1 ",
+                                      "service_type": "TOUR",
+                                      "admin_notes": null
+                                  }
+                              ],
+                              "refund_status_list": [
+                                  "requested",
+                                  "processing",
+                                  "refunded"
+                              ],
+                              "refund_data": [],
+                              "partner": {
+                                  "agency_isd_code": "880",
+                                  "agency_contact_no": "123456789",
+                                  "agency_email": "sabbir@innovatesolution.com",
+                                  "contact": {
+                                      "person_name": "Credit Expire",
+                                      "isd_code": "93",
+                                      "number": "01901402815",
+                                      "email": "redit@innovatesolution.com"
+                                  },
+                                  "partner_id": "1",
+                                  "master_partner_id": "1",
+                                  "partner_type": "MASTER",
+                                  "partner_profile_code": "ITT",
+                                  "branch_id": "BDHE001",
+                                  "brand_name": "Inno Travel Tech",
+                                  "tag_line": "Next generation B2B travel reservation portal specially designed only for travel professionals",
+                                  "partner_from_email_address": "no-reply@reservationmastermind.com",
+                                  "partner_from_email_full_name": "Inno Travel Tech"
+                              },
+                              "supplier": null,
+                              "terms": {
+                                  "status": null,
+                                  "text": null
+                              },
+                              "cancellation_terms": {
+                                  "status": null,
+                                  "text": null
+                              },
+                              "special_notice_status": null,
+                              "special_notice": null
+                          }
+              order_not_found:
+                    summary: Order Not Found
+                    value:
+                      status: "failed"
+                      reason: "No booking record found for the provided Booking ID or Tracking ID."
+                      booking_id: "NS2504JLC7AABY"
+              invalid_params:
+                    summary: Missing Parameters
+                    value:
+                      status: "failed"
+                      reason: "Both tracking_id and booking_id are required to fetch order details."
+  /service-tour/issue-order:
+   post:
+    tags:
+      - Tour Service
+    summary: Issue a tour order
+    description: Finalizes the ticket/voucher issuance process. If there is a price fluctuation, the user must explicitly accept it via the 'price_change_accepted' field.
+    operationId: issueTourOrder
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - tracking_id
+              - member_id
+              - price_change_accepted
+            properties:
+              member_id:
+                type: string
+                description: "The unique ID of the logged-in member."
+                example: "1"
+              tracking_id:
+                type: string
+                description: "The unique tracking ID for the booking."
+                example: "1175846471228195ILFOJ"
+              price_change_accepted:
+                type: string
+                enum: [yes, no]
+                description: "Whether the user accepts a potential price change during issuance."
+                example: "no"
+              notes:
+                type: string
+                description: "Any additional notes for the issuance process."
+                example: "not required"
+    responses:
+      '200':
+        description: Issuance Error
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            examples:
+              price_mismatch:
+                summary: Price Changed
+                value:
+                  {
+                      "status": "success",
+                      "reason": "The booking has been successfully Issue Booking",
+                      "reason_admin": null,
+                      "tracking_id": "1177728730503210LCAKM",
+                      "booking_status": "confirm",
+                      "past_booking_details": {
+                          "last_update": "1777287460",
+                          "tracking_id": "1177728730503210LCAKM",
+                          "booking_id": "TO2627APVEA3PP",
+                          "supplier_confirmation_id": "TO2627APVEA3PP",
+                          "airlines_pnr": null,
+                          "service_type": "TOUR",
+                          "status": "confirm",
+                          "booking_status": "confirm",
+                          "generated_date": "2026-04-27"
+                      },
+                      "Data": {
+                          "Id": "5082",
+                          "timestamp": "1777287369",
+                          "last_update": "1777287460",
+                          "entry": "44",
+                          "entry_n": "Sabbir",
+                          "last_modify_member_id": null,
+                          "ip": "15.235.203.210",
+                          "ftm_partner_id": "1",
+                          "master_partner_id": "1",
+                          "zone_id": "5",
+                          "zone_title": "Zone Gulshan",
+                          "tracking_id": "1177728730503210LCAKM",
+                          "flight_key": null,
+                          "isImportPNR": "0",
+                          "booking_platform": "B2B",
+                          "booking_id": "TO2627APVEA3PP",
+                          "supplier_confirmation_id": "TO2627APVEA3PP",
+                          "splitPNRref": null,
+                          "order_id_ndc": null,
+                          "order_id_Farelogix": null,
+                          "supplier_others_id_a": null,
+                          "supplier_others_id_b": null,
+                          "supplier_booking_pcc": null,
+                          "supplier_ticketing_pcc": null,
+                          "supplier_provider_code": null,
+                          "airlines_pnr": null,
+                          "supplier_voucher_link": null,
+                          "service_type": "TOUR",
+                          "status": "confirm",
+                          "booking_status": "confirm",
+                          "booking_supplier_status": "BOOKING_CONFIRM",
+                          "booking_supplier_set_status": "initiated",
+                          "payment_status": "pending",
+                          "pay_tracking_id": null,
+                          "ticket_status": "issued",
+                          "supplier_timezone": null,
+                          "partner_timezone": "Asia\/Dhaka",
+                          "ticket_issue_date": null,
+                          "ticket_issue_timestamp": null,
+                          "ticket_issue_delay_alert": "pending",
+                          "auto_cancel_status": "pending",
+                          "auto_cancel": null,
+                          "auto_cancel_timestamp": null,
+                          "syncTimeLimit": "1",
+                          "supplierTimeLimit": null,
+                          "supplierTimeLimitTimezone": null,
+                          "manualActionRequired": "no",
+                          "manualActionRequiredCategory": "",
+                          "manualActionRequiredNotes": "",
+                          "reason": null,
+                          "reason_admin": null,
+                          "generated_date": "2026-04-27",
+                          "checkin_departure_date": "2026-05-30",
+                          "checkout_arrival_date": "2026-06-03",
+                          "primary_guest_nationality": "",
+                          "primary_guest_name": "MR MD MAHADE HASAN SABBIR",
+                          "primary_guest_email": "sabbir@innovatesolution.com",
+                          "primary_guest_isd_code": null,
+                          "serviceChargeJson": null,
+                          "refund_status": null,
+                          "sendGTMEvent": "false"
+                      }
+                  }
 
+              issuance_failed:
+                summary: Final Issuance Failed
+                value:
+                  status: "failed"
+                  reason: "Unable to issue voucher. The tour operator has rejected the request. Please contact support."
 
-
+              insufficient_balance:
+                summary: Insufficient Balance
+                value:
+                  status: "failed"
+                  reason: "Insufficient balance to complete the ticket issuance."
 components:
   securitySchemes:
     apiKeyAuth:
